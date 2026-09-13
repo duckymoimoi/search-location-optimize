@@ -1,0 +1,18 @@
+{
+  "selected_run": "V4C2_e5_retrain_combined_lr2e5_epoch3",
+  "base_model_id": "intfloat/multilingual-e5-small",
+  "base_model_revision": "614241f622f53c4eeff9890bdc4f31cfecc418b3",
+  "dataset_version": "hnq20k-pilot-v4",
+  "corpus_version": "hn-260910-7f1b69b167",
+  "search_view_version": "hn-search-view-v3",
+  "embedding_dimension": 384,
+  "corpus_rows": 45693,
+  "model_files": {
+    "config.json": "51d8afcd56f9cdaf391c71abe73f1179fb52e71baa944234d27d070992917a9d",
+    "model.safetensors": "cdda6c307798d9deaa4041ecd5f20691d6f210f37e95b701e6d50d855fa4f6d9",
+    "sentencepiece.bpe.model": "cfc8146abe2a0488e9e2a0c56de7952f7c11ab059eca145a0a727afce0db2865",
+    "special_tokens_map.json": "38d989b0fdad0fec0c67c14b1f3c8b68184022cf6d4adc5444526ced8653f738",
+    "tokenizer.json": "a3f1be74be53baf1a5fda0224ff74efe2d17e180f31c0da5ee0a1bc7d960a396",
+    "tokenizer_config.json": "dbdcd9767f0481fd8fd8cd6bce3e73dae7f5c44ce22ae1fde00a66498e71b454"
+  }
+}

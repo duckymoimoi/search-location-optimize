@@ -1,0 +1,5 @@
+**
+!Dockerfile.local
+!Dockerfile.api
+!api-requirements.txt
+!runtime/opensearch-3.8.0-linux-x64.tar.gz

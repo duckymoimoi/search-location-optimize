@@ -1,0 +1,31 @@
+{
+  "passed": true,
+  "input_dir": "/kaggle/input/datasets/hiengchi/hanoi-poi-stage1-v3",
+  "config_path": "/kaggle/input/datasets/hiengchi/hanoi-poi-stage1-v3/train_config.json",
+  "verification": {
+    "dataset_version": true,
+    "corpus_version": true,
+    "search_view_version": true,
+    "files": {
+      "queries_10k.parquet": true,
+      "corpus_search_view.parquet": true,
+      "entity_resolution.parquet": true,
+      "dataset_manifest.json": true,
+      "generation_policy.json": true,
+      "entity_policy.json": true,
+      "validation_report.json": true
+    },
+    "passed": true
+  },
+  "queries": 10000,
+  "corpus": 45693,
+  "train": 3927,
+  "dev": 438,
+  "test": 391,
+  "diagnostics": 3500,
+  "batches": 123,
+  "batch_size_min": 23,
+  "batch_size_max": 32,
+  "unique_target_batches": true,
+  "unique_entity_batches": true
+}

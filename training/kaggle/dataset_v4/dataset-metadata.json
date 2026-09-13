@@ -1,0 +1,14 @@
+{
+  "title": "Hanoi POI Stage 1 v4",
+  "id": "hiengchi/hanoi-poi-stage1-v4",
+  "licenses": [
+    {
+      "name": "ODbL-1.0"
+    }
+  ],
+  "subtitle": "Private 20k query training inputs without architecture holdout",
+  "description": "Synthetic weak-label Hanoi POI train/dev and frozen v3 regression data. The architecture holdout is deliberately excluded.",
+  "keywords": [
+    "nlp"
+  ]
+}

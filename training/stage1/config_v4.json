@@ -1,0 +1,138 @@
+{
+  "experiment_version": "hanoi-poi-s1-e5-v4",
+  "dataset_version": "hnq20k-pilot-v4",
+  "record_source_versions": [
+    "hnq10k-pilot-v3",
+    "hnq20k-pilot-v4"
+  ],
+  "corpus_version": "hn-260910-7f1b69b167",
+  "search_view_version": "hn-search-view-v3",
+  "data": {
+    "mode": "split_files",
+    "anchor_file": "train_eligible_v4.parquet",
+    "train_file": "train_eligible_v4.parquet",
+    "dev_file": "dev_synthetic.parquet",
+    "test_file": "test_synthetic.parquet",
+    "eligibility_file": "eligibility_v4.parquet",
+    "required_files": [
+      "train_eligible_v4.parquet",
+      "dev_synthetic.parquet",
+      "test_synthetic.parquet",
+      "eligibility_v4.parquet",
+      "corpus_search_view.parquet",
+      "entity_resolution.parquet",
+      "dataset_manifest.json",
+      "generation_policy.json",
+      "entity_policy.json",
+      "validation_report.json",
+      "BENCHMARK_PROTOCOL.md",
+      "v3_model_config.json",
+      "v3_model_model.safetensors",
+      "v3_model_sentencepiece.bpe.model",
+      "v3_model_special_tokens_map.json",
+      "v3_model_tokenizer.json",
+      "v3_model_tokenizer_config.json"
+    ],
+    "expected_loaded_query_rows": 9959,
+    "expected_corpus_rows": 46792,
+    "expected_destination_rows": 45693,
+    "expected_training_views": {
+      "train": 6149,
+      "dev": 1477,
+      "test": 391
+    },
+    "architecture_holdout_uploaded": false
+  },
+  "models": [
+    {
+      "key": "v3_frozen",
+      "model_id": "local:hanoi-poi-s1-e5-v1",
+      "model_revision": "kaggle-kernel-v2:33636e0700c73f99cb6ad8cb1eb9cd7dff1d51af1b1f0cbb04249d65d4dbfdf7",
+      "baseline_name": "V4C0_v3_checkpoint_frozen",
+      "query_prefix": "query: ",
+      "passage_prefix": "passage: ",
+      "local_model_files": [
+        {
+          "source": "v3_model_config.json",
+          "target": "config.json",
+          "bytes": 622,
+          "sha256": "51d8afcd56f9cdaf391c71abe73f1179fb52e71baa944234d27d070992917a9d"
+        },
+        {
+          "source": "v3_model_model.safetensors",
+          "target": "model.safetensors",
+          "bytes": 470637416,
+          "sha256": "33636e0700c73f99cb6ad8cb1eb9cd7dff1d51af1b1f0cbb04249d65d4dbfdf7"
+        },
+        {
+          "source": "v3_model_sentencepiece.bpe.model",
+          "target": "sentencepiece.bpe.model",
+          "bytes": 5069051,
+          "sha256": "cfc8146abe2a0488e9e2a0c56de7952f7c11ab059eca145a0a727afce0db2865"
+        },
+        {
+          "source": "v3_model_special_tokens_map.json",
+          "target": "special_tokens_map.json",
+          "bytes": 965,
+          "sha256": "38d989b0fdad0fec0c67c14b1f3c8b68184022cf6d4adc5444526ced8653f738"
+        },
+        {
+          "source": "v3_model_tokenizer.json",
+          "target": "tokenizer.json",
+          "bytes": 17083052,
+          "sha256": "a3f1be74be53baf1a5fda0224ff74efe2d17e180f31c0da5ee0a1bc7d960a396"
+        },
+        {
+          "source": "v3_model_tokenizer_config.json",
+          "target": "tokenizer_config.json",
+          "bytes": 1203,
+          "sha256": "dbdcd9767f0481fd8fd8cd6bce3e73dae7f5c44ce22ae1fde00a66498e71b454"
+        }
+      ],
+      "runs": [
+        {
+          "name": "V4C1_v3_continue_combined_lr1e5",
+          "learning_rate": 1e-5,
+          "epochs": 2
+        }
+      ]
+    },
+    {
+      "key": "e5_base",
+      "model_id": "intfloat/multilingual-e5-small",
+      "model_revision": "614241f622f53c4eeff9890bdc4f31cfecc418b3",
+      "baseline_name": "V4D0_e5_base_zero_shot",
+      "query_prefix": "query: ",
+      "passage_prefix": "passage: ",
+      "runs": [
+        {
+          "name": "V4C2_e5_retrain_combined_lr2e5",
+          "learning_rate": 2e-5,
+          "epochs": 3
+        }
+      ]
+    }
+  ],
+  "max_query_tokens": 64,
+  "max_passage_tokens": 128,
+  "train_batch_size": 32,
+  "encode_batch_size": 256,
+  "epochs": 3,
+  "warmup_ratio": 0.1,
+  "weight_decay": 0.01,
+  "max_grad_norm": 1.0,
+  "temperature_scale": 20.0,
+  "seed": 20260914,
+  "selection_metrics": [
+    "candidate_hit_50",
+    "mrr_10",
+    "hit_1"
+  ],
+  "global_guardrail_baseline_key": "v3_frozen",
+  "guardrail_cases": [
+    "clean_name",
+    "address_exact"
+  ],
+  "guardrail_hit1_max_drop": 0.01,
+  "holdout_policy": "architecture_holdout is not uploaded to or evaluated by this training kernel"
+}

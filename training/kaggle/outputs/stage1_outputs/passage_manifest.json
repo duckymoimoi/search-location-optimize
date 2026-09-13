@@ -1,0 +1,12 @@
+{
+  "builder_version": "passage-v1",
+  "fields": [
+    "search_label",
+    "address",
+    "category",
+    "search_aliases"
+  ],
+  "prefix": "passage: ",
+  "rows": 45693,
+  "sha256": "eaf1bb6ae03db66ef8f031aa480a1edfe1f6d793c58fdfedfc739cc590dfe495"
+}

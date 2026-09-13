@@ -1,0 +1,8 @@
+python=3.12.13
+platform=Linux-6.12.90+-x86_64-with-glibc2.35
+torch=2.11.0+cu126
+transformers=4.57.6
+numpy=2.0.2
+pyarrow=24.0.0
+cuda=12.6
+gpu=Tesla P100-PCIE-16GB

@@ -1,0 +1,9 @@
+{
+  "query_prefix": "query: ",
+  "passage_prefix": "passage: ",
+  "max_query_tokens": 64,
+  "max_passage_tokens": 128,
+  "pooling": "attention_mask_mean",
+  "normalize": true,
+  "similarity": "dot_product_of_l2_normalized_vectors"
+}

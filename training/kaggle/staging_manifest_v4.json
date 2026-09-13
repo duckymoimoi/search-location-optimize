@@ -1,0 +1,101 @@
+{
+  "dataset_ref": "hiengchi/hanoi-poi-stage1-v4",
+  "model_dataset_ref": "hiengchi/hanoi-poi-stage1-v3-model",
+  "kernel_ref": "hiengchi/hanoi-poi-e5-stage1-v4-train",
+  "private": true,
+  "architecture_holdout_uploaded": false,
+  "data_files": [
+    {
+      "name": "train_eligible_v4.parquet",
+      "bytes": 518063,
+      "sha256": "f21261e11c12ff70c3644e60b7bec7a36ce14caa290fa432ad22d7d8e076c589"
+    },
+    {
+      "name": "dev_synthetic.parquet",
+      "bytes": 686705,
+      "sha256": "14f2cbb7b217a8edd99a89613959bfca61b790450ba0f595c148b1b289fb1075"
+    },
+    {
+      "name": "test_synthetic.parquet",
+      "bytes": 341098,
+      "sha256": "6aed3f206c21b2319e59e6d77e44f1731e3c7d93ba0929ba23b2a7826eb68b8a"
+    },
+    {
+      "name": "eligibility_v4.parquet",
+      "bytes": 102305,
+      "sha256": "61ceebab8bd06c554682cca3b3603fbf4c043b647890f7da98a67f5acd48e021"
+    },
+    {
+      "name": "corpus_search_view.parquet",
+      "bytes": 3475739,
+      "sha256": "92b3f88703ba22b371bdabc7fe67956c8266f2056231d2a9b464a70b091c8456"
+    },
+    {
+      "name": "entity_resolution.parquet",
+      "bytes": 608663,
+      "sha256": "033035d60c8470aaadb78b6923e9cf31b958e356bb777379aaa27f9e6eeaa547"
+    },
+    {
+      "name": "dataset_manifest.json",
+      "bytes": 7537,
+      "sha256": "3622ade2ff7d09f93fcd5cfe5cca418fe7d361a5ea591ec2dd08fc3655419df2"
+    },
+    {
+      "name": "generation_policy.json",
+      "bytes": 2062,
+      "sha256": "c73e4bc021c76d155b7f74db9699c8598c59f63e5a036ad07c8439d25edcf31e"
+    },
+    {
+      "name": "entity_policy.json",
+      "bytes": 983,
+      "sha256": "00ef3011f32960e2c7af39cf79f83769b421b3f09a0e228d356badce41dffdd6"
+    },
+    {
+      "name": "validation_report.json",
+      "bytes": 12479,
+      "sha256": "0531ae0e6ba8fa4680e508214cdb69129db25b43f31b35e3ef735e02452d2792"
+    },
+    {
+      "name": "BENCHMARK_PROTOCOL.md",
+      "bytes": 5990,
+      "sha256": "8fbdce66fa6847e00723936ee6296c67e90f75dd8bf07b5b7e318e1a28586050"
+    },
+    {
+      "name": "train_config.json",
+      "bytes": 4287,
+      "sha256": "0a8f7b587bb8b58564ad846a02ed2b0c09a5a38fd9db32656bd669b10a5fea04"
+    }
+  ],
+  "model_files": [
+    {
+      "name": "v3_model_config.json",
+      "bytes": 622,
+      "sha256": "51d8afcd56f9cdaf391c71abe73f1179fb52e71baa944234d27d070992917a9d"
+    },
+    {
+      "name": "v3_model_model.safetensors",
+      "bytes": 470637416,
+      "sha256": "33636e0700c73f99cb6ad8cb1eb9cd7dff1d51af1b1f0cbb04249d65d4dbfdf7"
+    },
+    {
+      "name": "v3_model_sentencepiece.bpe.model",
+      "bytes": 5069051,
+      "sha256": "cfc8146abe2a0488e9e2a0c56de7952f7c11ab059eca145a0a727afce0db2865"
+    },
+    {
+      "name": "v3_model_special_tokens_map.json",
+      "bytes": 965,
+      "sha256": "38d989b0fdad0fec0c67c14b1f3c8b68184022cf6d4adc5444526ced8653f738"
+    },
+    {
+      "name": "v3_model_tokenizer.json",
+      "bytes": 17083052,
+      "sha256": "a3f1be74be53baf1a5fda0224ff74efe2d17e180f31c0da5ee0a1bc7d960a396"
+    },
+    {
+      "name": "v3_model_tokenizer_config.json",
+      "bytes": 1203,
+      "sha256": "dbdcd9767f0481fd8fd8cd6bce3e73dae7f5c44ce22ae1fde00a66498e71b454"
+    }
+  ]
+}

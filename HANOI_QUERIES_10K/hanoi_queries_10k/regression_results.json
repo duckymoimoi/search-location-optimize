@@ -1,0 +1,9 @@
+{
+  "passed": true,
+  "rows": 10000,
+  "selected_pois": 2000,
+  "session_states": 4276,
+  "scope": "structural regressions; not semantic ground truth or real IME validation",
+  "pretrain_regressions_passed": true,
+  "real_ime_replay_verified": false
+}

@@ -1,0 +1,17 @@
+FROM hanoi-opensearch-base:ubuntu24.04
+
+ARG OPENSEARCH_VERSION=3.8.0
+ENV OPENSEARCH_HOME=/usr/share/opensearch
+ENV OPENSEARCH_JAVA_HOME=/usr/share/opensearch/jdk
+ENV PATH=/usr/share/opensearch/bin:/usr/share/opensearch/jdk/bin:$PATH
+
+ADD runtime/opensearch-3.8.0-linux-x64.tar.gz /usr/share/
+RUN mv "/usr/share/opensearch-${OPENSEARCH_VERSION}" "$OPENSEARCH_HOME" \
+    && groupadd --gid 1000 opensearch \
+    && useradd --uid 1000 --gid 1000 --home-dir "$OPENSEARCH_HOME" --shell /bin/bash opensearch \
+    && chown -R 1000:1000 "$OPENSEARCH_HOME"
+
+USER 1000:1000
+WORKDIR /usr/share/opensearch
+EXPOSE 9200 9600
+ENTRYPOINT ["/usr/share/opensearch/bin/opensearch"]

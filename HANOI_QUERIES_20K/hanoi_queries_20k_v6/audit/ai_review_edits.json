@@ -1,0 +1,3173 @@
+[
+  {
+    "query_id": "hnq20k-v5-fix-53a908f8fde504c7",
+    "before": "coffee beany tea &",
+    "after": "beany tea coffee",
+    "poi_name": "Beany Tea & Coffee",
+    "rule": "manual_source_token_selection"
+  },
+  {
+    "query_id": "hnq20k-v5-fix-14abb9aec179d871",
+    "before": "beany tea &",
+    "after": "beany tea",
+    "poi_name": "Beany Tea & Coffee",
+    "rule": "manual_source_token_selection"
+  },
+  {
+    "query_id": "hnq20k-v5-fix-8033a5f88cdff501",
+    "before": "xuân giang trường mầm non",
+    "after": "mầm non xuân giang",
+    "poi_name": "Trường Mầm non Xuân Giang",
+    "rule": "manual_source_token_selection"
+  },
+  {
+    "query_id": "hnq20k-v5-fix-a9df4c642cd61923",
+    "before": "họa mi (phân hiệu 1) trường mầm non",
+    "after": "mầm non họa mi phân hiệu 1",
+    "poi_name": "Trường Mầm non Họa Mi (phân hiệu 1)",
+    "rule": "manual_source_token_selection"
+  },
+  {
+    "query_id": "hnq20k-v5-fix-9b447dcfb9b0c784",
+    "before": "đức phúc bệnh viện",
+    "after": "bv đức phúc",
+    "poi_name": "Bệnh Viện Đức Phúc",
+    "rule": "manual_source_token_selection"
+  },
+  {
+    "query_id": "hnq20k-v5-fix-061e022c5dc22119",
+    "before": "bia hơi hải xồm nhà hàng",
+    "after": "hải xồm bia hơi",
+    "poi_name": "Nhà Hàng Bia Hơi Hải Xồm",
+    "rule": "manual_source_token_selection"
+  },
+  {
+    "query_id": "hnq20k-v5-fix-c33abd4b3bf91db2",
+    "before": "đa khoa quân y 76b phòng khám",
+    "after": "phòng khám quân y 76b",
+    "poi_name": "Phòng khám đa khoa Quân y 76B",
+    "rule": "manual_source_token_selection"
+  },
+  {
+    "query_id": "hnq20k-v5-fix-33e4597e18941559",
+    "before": "chữa bệnh phòng khám",
+    "after": "phòng khám chữa bệnh",
+    "poi_name": "Phòng Khám Chữa Bệnh",
+    "rule": "manual_source_token_selection"
+  },
+  {
+    "query_id": "hnq20k-v5-fix-0ac70c0c5e0b729d",
+    "before": "duy lê malraux nhà hàng",
+    "after": "duy lê malraux",
+    "poi_name": "Nhà Hàng Duy Lê Malraux",
+    "rule": "manual_source_token_selection"
+  },
+  {
+    "query_id": "hnq20k-v5-fix-807a8c5b764e573e",
+    "before": "xe máy điện vinfast đạt thắng cửa hàng",
+    "after": "vinfast đạt thắng",
+    "poi_name": "Cửa hàng Xe máy điện VinFast Đạt Thắng",
+    "rule": "manual_source_token_selection"
+  },
+  {
+    "query_id": "hnq20k-v5-fix-cfebdd48b52656c3",
+    "before": "đông y thiên phúc đường phòng khám",
+    "after": "phòng khám thiên phúc đường",
+    "poi_name": "Phòng khám Đông y Thiên Phúc Đường",
+    "rule": "manual_source_token_selection"
+  },
+  {
+    "query_id": "hnq20k-v5-fix-744ab072f95ef41f",
+    "before": "ba trại trường trung học cơ sở",
+    "after": "thcs ba trại",
+    "poi_name": "Trường Trung học cơ sở Ba Trại",
+    "rule": "manual_source_token_selection"
+  },
+  {
+    "query_id": "hnq20k-v5-fix-50fa467fc2743be5",
+    "before": "xăng dầu mỹ bảo 2 cửa hàng",
+    "after": "xang dau my bao 2",
+    "poi_name": "Cửa hàng xăng dầu Mỹ Bảo 2",
+    "rule": "manual_source_token_selection"
+  },
+  {
+    "query_id": "hnq20k-v5-fix-b08cb0fd1df5ab06",
+    "before": "xăng dầu petrolimex cửa hàng",
+    "after": "xăng dầu petrolimex",
+    "poi_name": "Cửa Hàng Xăng Dầu Petrolimex",
+    "rule": "manual_source_token_selection"
+  },
+  {
+    "query_id": "hnq20k-v5-fix-f09591dedb95747b",
+    "before": "nhi hà nội bệnh viện",
+    "after": "bv nhi hà nội",
+    "poi_name": "Bệnh viện Nhi Hà Nội",
+    "rule": "manual_source_token_selection"
+  },
+  {
+    "query_id": "hnq20k-v5-fix-313244306b140254",
+    "before": "hữu nghị quốc tế hà nội bệnh viện",
+    "after": "bv huu nghi quoc te ha noi",
+    "poi_name": "Bệnh viện Hữu nghị Quốc tế Hà Nội",
+    "rule": "manual_source_token_selection"
+  },
+  {
+    "query_id": "hnq20k-v5-fix-8826568200ddc14e",
+    "before": "duc phuc benh vien",
+    "after": "bv duc phuc",
+    "poi_name": "Bệnh Viện Đức Phúc",
+    "rule": "manual_source_token_selection"
+  },
+  {
+    "query_id": "hnq20k-v5-fix-370d122b89958ca8",
+    "before": "đa khoa hoè nhai bệnh viện",
+    "after": "bv da khoa hoe nhai",
+    "poi_name": "Bệnh viện Đa khoa Hoè Nhai",
+    "rule": "manual_source_token_selection"
+  },
+  {
+    "query_id": "hnq20k-v5-fix-37300f16ff955ea2",
+    "before": "tế tiêu trường mầm non",
+    "after": "mầm non tế tiêu",
+    "poi_name": "Trường Mầm non Tế Tiêu",
+    "rule": "manual_source_token_selection"
+  },
+  {
+    "query_id": "hnq20k-v5-fix-a146c3c4b729cc90",
+    "before": "thuỷ xuân tiên trường mầm non",
+    "after": "mầm non thuỷ xuân tiên",
+    "poi_name": "Trường Mầm non Thuỷ Xuân Tiên",
+    "rule": "manual_source_token_selection"
+  },
+  {
+    "query_id": "hnq20k-v5-fix-2b0260ebe6ce6d5c",
+    "before": "a xã liên ninh trường mầm non",
+    "after": "mầm non a liên ninh",
+    "poi_name": "Trường Mầm non A xã Liên Ninh",
+    "rule": "manual_source_token_selection"
+  },
+  {
+    "query_id": "hnq20k-v5-fix-efb281dc1720c2d4",
+    "before": "thị trấn chúc sơn a trường mầm non",
+    "after": "mầm non chúc sơn a",
+    "poi_name": "Trường Mầm non Thị trấn Chúc Sơn A",
+    "rule": "manual_source_token_selection"
+  },
+  {
+    "query_id": "hnq20k-v5-fix-775e41720ba2f9ee",
+    "before": "an khánh b trường mầm non",
+    "after": "mầm non an khánh b",
+    "poi_name": "Trường Mầm non An Khánh B",
+    "rule": "manual_source_token_selection"
+  },
+  {
+    "query_id": "hnq20k-v5-fix-dd550fbf4948ee34",
+    "before": "lại yên trường mầm non",
+    "after": "mầm non lại yên",
+    "poi_name": "Trường Mầm non Lại Yên",
+    "rule": "manual_source_token_selection"
+  },
+  {
+    "query_id": "hnq20k-v5-fix-5ef858bea1c1cd17",
+    "before": "yên sở trường mầm non",
+    "after": "mầm non yên sở",
+    "poi_name": "Trường Mầm non Yên Sở",
+    "rule": "manual_source_token_selection"
+  },
+  {
+    "query_id": "hnq20k-v5-fix-9575d160c6712712",
+    "before": "- căn hộ bảo hùng",
+    "after": "căn hộ bảo hùng",
+    "poi_name": "Khách Sạn - Căn Hộ Bảo Hùng",
+    "rule": "manual_source_token_selection"
+  },
+  {
+    "query_id": "hnq20k-v5-fix-3c10f12d35ba8437",
+    "before": "hạ mỗ trường mầm non",
+    "after": "mầm non hạ mỗ",
+    "poi_name": "Trường Mầm non Hạ Mỗ",
+    "rule": "manual_source_token_selection"
+  },
+  {
+    "query_id": "hnq20k-v5-fix-3d1cf180c51662d6",
+    "before": "vĩnh ngọc (khu phương trạch) trường mầm non",
+    "after": "mầm non vĩnh ngọc phương trạch",
+    "poi_name": "Trường Mầm non Vĩnh Ngọc (khu Phương Trạch)",
+    "rule": "manual_source_token_selection"
+  },
+  {
+    "query_id": "hnq20k-v5-fix-3da3b106f8467f19",
+    "before": "phương độ trường mầm non",
+    "after": "mầm non phương độ",
+    "poi_name": "Trường Mầm non Phương Độ",
+    "rule": "manual_source_token_selection"
+  },
+  {
+    "query_id": "hnq20k-v5-fix-950a20f20bf5bfbd",
+    "before": "nam hồng trường mầm non",
+    "after": "mầm non nam hồng",
+    "poi_name": "Trường Mầm non Nam Hồng",
+    "rule": "manual_source_token_selection"
+  },
+  {
+    "query_id": "hnq20k-v5-fix-fb3d430678debe29",
+    "before": "nguyên khê trường mầm non",
+    "after": "mầm non nguyên khê",
+    "poi_name": "Trường Mầm non Nguyên Khê",
+    "rule": "manual_source_token_selection"
+  },
+  {
+    "query_id": "hnq20k-v5-fix-60d99ffa9b501f26",
+    "before": "dịch vụ nghĩa đô trung tâm thương mại",
+    "after": "tttm nghĩa đô",
+    "poi_name": "Trung tâm thương mại dịch vụ Nghĩa Đô",
+    "rule": "manual_source_token_selection"
+  },
+  {
+    "query_id": "hnq20k-v5-fix-473cc74d4a136366",
+    "before": "bít tết ngọc hiếu nhà hàng",
+    "after": "bít tết ngọc hiếu",
+    "poi_name": "Nhà hàng Bít tết Ngọc Hiếu",
+    "rule": "manual_source_token_selection"
+  },
+  {
+    "query_id": "hnq20k-v5-fix-b08be11afcb1cf19",
+    "before": "quang minh nhà thuốc",
+    "after": "nhà thuốc quang minh",
+    "poi_name": "Nhà Thuốc Quang Minh",
+    "rule": "manual_source_token_selection"
+  },
+  {
+    "query_id": "hnq20k-v5-fix-e653aca4fdffcc3a",
+    "before": "thúy nhà thuốc",
+    "after": "nhà thuốc thúy",
+    "poi_name": "nhà thuốc Thúy",
+    "rule": "manual_source_token_selection"
+  },
+  {
+    "query_id": "hnq20k-v5-fix-1c32b2772fb0336e",
+    "before": "thanh xuân trung trường mầm non",
+    "after": "mầm non thanh xuân trung",
+    "poi_name": "Trường Mầm non Thanh Xuân Trung",
+    "rule": "manual_source_token_selection"
+  },
+  {
+    "query_id": "hnq20k-v5-fix-853d550fc945c1ce",
+    "before": "thanh hưởng (đạm - lân - kali) - quốc lộ 1a cửa hàng",
+    "after": "thanh hưởng quốc lộ 1a",
+    "poi_name": "Cửa hàng Thanh Hưởng (Đạm - Lân - Kali) - Quốc Lộ 1A",
+    "rule": "manual_source_token_selection"
+  },
+  {
+    "query_id": "hnq20k-v5-fix-ed67285abd8c0762",
+    "before": "tóc thanh xuân cửa hàng",
+    "after": "tóc thanh xuân",
+    "poi_name": "Cửa hàng tóc Thanh Xuân",
+    "rule": "manual_source_token_selection"
+  },
+  {
+    "query_id": "hnq20k-v5-fix-f0aa27cdfeaee12e",
+    "before": "tam kim công ty cổ phần",
+    "after": "công ty tam kim",
+    "poi_name": "Công Ty Cổ Phần Tam Kim",
+    "rule": "manual_source_token_selection"
+  },
+  {
+    "query_id": "hnq20k-v5-fix-4dd3eeeef656d6cb",
+    "before": "vân nội trường trung học cơ sở",
+    "after": "thcs vân nội",
+    "poi_name": "Trường Trung học cơ sở Vân Nội",
+    "rule": "manual_source_token_selection"
+  },
+  {
+    "query_id": "hnq20k-v5-fix-6a85da1914451b23",
+    "before": "việt hưng trường tiểu học",
+    "after": "tiểu học việt hưng",
+    "poi_name": "Trường Tiểu học Việt Hưng",
+    "rule": "manual_source_token_selection"
+  },
+  {
+    "query_id": "hnq20k-v5-fix-23f58a4d7e70e9af",
+    "before": "burger & buns cửa hàng",
+    "after": "burger & buns",
+    "poi_name": "Cửa Hàng Burger & Buns",
+    "rule": "manual_source_token_selection"
+  },
+  {
+    "query_id": "hnq20k-v5-fix-f35b66dc52e8f08b",
+    "before": "hanoi spark khách sạn",
+    "after": "khách sạn hanoi spark",
+    "poi_name": "Khách Sạn Hanoi Spark",
+    "rule": "manual_source_token_selection"
+  },
+  {
+    "query_id": "hnq20k-v5-fix-c97ca8dd3242cb16",
+    "before": "mini best mart siêu thị",
+    "after": "best mart",
+    "poi_name": "Siêu Thị Mini Best Mart",
+    "rule": "manual_source_token_selection"
+  },
+  {
+    "query_id": "hnq20k-v5-fix-828af63043706e3b",
+    "before": "đồ gỗ mỹ nghệ duy bắc làng túc cửa hàng",
+    "after": "đồ gỗ duy bắc",
+    "poi_name": "Cửa hàng đồ Gỗ Mỹ Nghệ Duy Bắc Làng Túc",
+    "rule": "manual_source_token_selection"
+  },
+  {
+    "query_id": "hnq20k-v5-fix-348467ab41348a36",
+    "before": "burger & buns cua hang",
+    "after": "burger buns",
+    "poi_name": "Cửa Hàng Burger & Buns",
+    "rule": "manual_source_token_selection"
+  },
+  {
+    "query_id": "hnq20k-v5-fix-b43408e815fde356",
+    "before": "xăng dầu hưng thịnh cửa hàng",
+    "after": "xăng dầu hưng thịnh",
+    "poi_name": "Cửa hàng Xăng dầu Hưng Thịnh",
+    "rule": "manual_source_token_selection"
+  },
+  {
+    "query_id": "hnq20k-v5-fix-15cef43ebb1ab371",
+    "before": "đại học y dược (cơ sở 2) bệnh viện",
+    "after": "bv đại học y dược cơ sở 2",
+    "poi_name": "Bệnh viện Đại học Y Dược (cơ sở 2)",
+    "rule": "manual_source_token_selection"
+  },
+  {
+    "query_id": "hnq20k-v5-fix-6beee8602fc7e8c9",
+    "before": "dệt may bệnh viện",
+    "after": "bv dệt may",
+    "poi_name": "Bệnh viện Dệt May",
+    "rule": "manual_source_token_selection"
+  },
+  {
+    "query_id": "hnq20k-v5-fix-38ef61d310bfe772",
+    "before": "đức hiếu khách sạn",
+    "after": "khách sạn đức hiếu",
+    "poi_name": "Khách Sạn Đức Hiếu",
+    "rule": "manual_source_token_selection"
+  },
+  {
+    "query_id": "hnq20k-v5-fix-3dbc53390641859c",
+    "before": "xã kim sơn trường tiểu học",
+    "after": "tiểu học kim sơn",
+    "poi_name": "Trường tiểu học xã Kim Sơn",
+    "rule": "manual_source_token_selection"
+  },
+  {
+    "query_id": "hnq20k-v5-fix-13b313402b20a7be",
+    "before": "văn phòng phẩm hồng hà công ty cổ phần",
+    "after": "văn phòng phẩm hồng hà",
+    "poi_name": "Công ty Cổ phần Văn phòng phẩm Hồng Hà",
+    "rule": "manual_source_token_selection"
+  },
+  {
+    "query_id": "hnq20k-v5-fix-af9cbfc1c8114674",
+    "before": "ngô thì nhậm trường tiểu học",
+    "after": "tiểu học ngô thì nhậm",
+    "poi_name": "Trường Tiểu học Ngô Thì Nhậm",
+    "rule": "manual_source_token_selection"
+  },
+  {
+    "query_id": "hnq20k-v5-fix-0e6726c7b6afcabd",
+    "before": "dương nội trường trung học cơ sở",
+    "after": "thcs dương nội",
+    "poi_name": "Trường Trung học cơ sở Dương Nội",
+    "rule": "manual_source_token_selection"
+  },
+  {
+    "query_id": "hnq20k-v5-fix-52f63f55839909fc",
+    "before": "liên ninh trường tiểu học",
+    "after": "tiểu học liên ninh",
+    "poi_name": "Trường Tiểu học Liên Ninh",
+    "rule": "manual_source_token_selection"
+  },
+  {
+    "query_id": "hnq20k-v5-fix-f0f037223b8cbfe5",
+    "before": "tân thời đại trường tiểu học",
+    "after": "tiểu học tân thời đại",
+    "poi_name": "Trường Tiểu học Tân Thời Đại",
+    "rule": "manual_source_token_selection"
+  },
+  {
+    "query_id": "hnq20k-v5-fix-5510e6edf6c1f1f3",
+    "before": "hoàng diệu – hai bà trưng trường trung học cơ sở",
+    "after": "thcs hoàng diệu hai bà trưng",
+    "poi_name": "Trường Trung học cơ sở Hoàng Diệu – Hai Bà Trưng",
+    "rule": "manual_source_token_selection"
+  },
+  {
+    "query_id": "hnq20k-v5-fix-e434d5197ed1bc21",
+    "before": "láng thượng trường mầm non",
+    "after": "mầm non láng thượng",
+    "poi_name": "Trường Mầm non Láng Thượng",
+    "rule": "manual_source_token_selection"
+  },
+  {
+    "query_id": "hnq20k-v5-fix-986365e581d644ad",
+    "before": "hành chính toà nhà",
+    "after": "tòa nhà hành chính",
+    "poi_name": "Toà nhà hành chính",
+    "rule": "manual_source_token_selection"
+  },
+  {
+    "query_id": "hnq20k-v5-fix-79239894bf163ea4",
+    "before": "travelbox khách sạn",
+    "after": "khách sạn travelbox",
+    "poi_name": "Khách Sạn TravelBox",
+    "rule": "manual_source_token_selection"
+  },
+  {
+    "query_id": "hnq20k-v5-fix-b782e7fd59af314b",
+    "before": "chef dzung nhà hàng",
+    "after": "chef dzung",
+    "poi_name": "Nhà hàng Chef Dzung",
+    "rule": "manual_source_token_selection"
+  },
+  {
+    "query_id": "hnq20k-v5-fix-dbac22213cb87c57",
+    "before": "tô lâm công ty tnhh",
+    "after": "công ty tô lâm",
+    "poi_name": "Công Ty TNHH Tô Lâm",
+    "rule": "manual_source_token_selection"
+  },
+  {
+    "query_id": "hnq20k-v5-fix-0e499906f73f3b0c",
+    "before": "đồng thái trường tiểu học",
+    "after": "tiểu học đồng thái",
+    "poi_name": "Trường Tiểu học Đồng Thái",
+    "rule": "manual_source_token_selection"
+  },
+  {
+    "query_id": "hnq20k-v5-fix-fa49017edbc3cdef",
+    "before": "2, 3rd floor tông đản",
+    "after": "2 tông đản",
+    "poi_name": "2, 3rd floor Phố Tông Đản",
+    "rule": "manual_source_token_selection"
+  },
+  {
+    "query_id": "hnq20k-v5-fix-e78c7edc8efd0ccb",
+    "before": "ninh hiệp trường trung học cơ sở",
+    "after": "thcs ninh hiệp",
+    "poi_name": "Trường Trung học cơ sở Ninh Hiệp",
+    "rule": "manual_source_token_selection"
+  },
+  {
+    "query_id": "hnq20k-v5-fix-ba6978db2b02362a",
+    "before": "bún hải sản quán",
+    "after": "quán bún hải sản",
+    "poi_name": "Quán bún hải sản",
+    "rule": "manual_source_token_selection"
+  },
+  {
+    "query_id": "hnq20k-v5-fix-3468a010fd81c42f",
+    "before": "việt hùng trường trung học cơ sở",
+    "after": "thcs việt hùng",
+    "poi_name": "Trường Trung học cơ sở Việt Hùng",
+    "rule": "manual_source_token_selection"
+  },
+  {
+    "query_id": "hnq20k-v5-fix-db1b30c50366c67e",
+    "before": "may 10 trường mầm non",
+    "after": "mầm non may 10",
+    "poi_name": "Trường Mầm non May 10",
+    "rule": "manual_source_token_selection"
+  },
+  {
+    "query_id": "hnq20k-v5-fix-8d4b516c23479ed5",
+    "before": "khazaana indian nhà hàng",
+    "after": "khazaana indian",
+    "poi_name": "Nhà Hàng Khazaana Indian",
+    "rule": "manual_source_token_selection"
+  },
+  {
+    "query_id": "hnq20k-v5-fix-4594febac0ee6209",
+    "before": "bình minh - quốc lộ 32 trường trung học phổ thông",
+    "after": "thpt bình minh quốc lộ 32",
+    "poi_name": "Trường Trung học phổ thông Bình Minh - Quốc lộ 32",
+    "rule": "manual_source_token_selection"
+  },
+  {
+    "query_id": "hnq20k-v5-fix-0ae50a3540277270",
+    "before": "bán và giới thiệu sản phẩm vinataba cửa hàng",
+    "after": "vinataba",
+    "poi_name": "Cửa hàng bán và giới thiệu sản phẩm Vinataba",
+    "rule": "manual_source_token_selection"
+  },
+  {
+    "query_id": "hnq20k-v5-fix-808b02981f526994",
+    "before": "tư vấn xây dựng điện 1 công ty cổ phần",
+    "after": "tư vấn xây dựng điện 1",
+    "poi_name": "Công Ty Cổ Phần Tư Vấn Xây Dựng Điện 1",
+    "rule": "manual_source_token_selection"
+  },
+  {
+    "query_id": "hnq20k-v5-fix-c5360c678c6c5886",
+    "before": "gỗ hoàng tùng và công ty tnhh thương mại việt hàn k&k",
+    "after": "gỗ hoàng tùng",
+    "poi_name": "Công ty TNHH gỗ Hoàng Tùng và Công Ty TNHH thương mại Việt Hàn K&K",
+    "rule": "manual_source_token_selection"
+  },
+  {
+    "query_id": "hnq20k-v5-fix-50c2e7ddc427e355",
+    "before": "binh chung nhà hàng",
+    "after": "nhà hàng binh chung",
+    "poi_name": "Nhà Hàng Binh Chung",
+    "rule": "manual_source_token_selection"
+  },
+  {
+    "query_id": "hnq20k-v5-fix-d688cd679274b4d4",
+    "before": "xe đạp nam anh cửa hàng",
+    "after": "xe đạp nam anh",
+    "poi_name": "Cửa Hàng Xe Đạp Nam Anh",
+    "rule": "manual_source_token_selection"
+  },
+  {
+    "query_id": "hnq20k-v5-fix-ce1addd8b2ffbf8b",
+    "before": "trần phú trường tiểu học",
+    "after": "tiểu học trần phú",
+    "poi_name": "Trường Tiểu học Trần Phú",
+    "rule": "manual_source_token_selection"
+  },
+  {
+    "query_id": "hnq20k-v5-fix-3741c7681d3e4051",
+    "before": "bizman media công ty cổ phần",
+    "after": "bizman media",
+    "poi_name": "Công Ty Cổ Phần Bizman Media",
+    "rule": "manual_source_token_selection"
+  },
+  {
+    "query_id": "hnq20k-v5-fix-3d15bc1e47c0ca4a",
+    "before": "phú xuyên b trường trung học phổ thông",
+    "after": "thpt phú xuyên b",
+    "poi_name": "Trường Trung học phổ thông Phú Xuyên B",
+    "rule": "manual_source_token_selection"
+  },
+  {
+    "query_id": "hnq20k-v5-fix-44fa40589b5a72d4",
+    "before": "25 lạc trung chung cư",
+    "after": "chung cư 25 lạc trung",
+    "poi_name": "Chung cư 25 Lạc Trung",
+    "rule": "manual_source_token_selection"
+  },
+  {
+    "query_id": "hnq20k-v5-fix-d3cdbce029ba31dd",
+    "before": "rex hanoi khách sạn",
+    "after": "khách sạn rex hanoi",
+    "poi_name": "Khách Sạn Rex Hanoi",
+    "rule": "manual_source_token_selection"
+  },
+  {
+    "query_id": "hnq20k-v5-fix-1c1adb5026e95b7f",
+    "before": "dệt 10/10 công ty cổ phần",
+    "after": "công ty dệt 10/10",
+    "poi_name": "Công ty Cổ phần Dệt 10/10",
+    "rule": "manual_source_token_selection"
+  },
+  {
+    "query_id": "hnq20k-v5-fix-2ace2ec2ff02b393",
+    "before": "công nghệ h2tc việt nam công ty tnhh",
+    "after": "h2tc việt nam",
+    "poi_name": "Công Ty TNHH Công Nghệ H2TC Việt Nam",
+    "rule": "manual_source_token_selection"
+  },
+  {
+    "query_id": "hnq20k-v5-fix-32aabd9142fcb443",
+    "before": "five star mỹ đình d1+d2+d3+d4-tt4",
+    "after": "five star mỹ đình, d1+d2+d3+d4-tt4",
+    "poi_name": "D1+D2+D3+D4-TT4 Five Star Mỹ Đình",
+    "rule": "street_first_with_explicit_number_marker"
+  },
+  {
+    "query_id": "hnq20k-v5-fix-f98677bc058f27f4",
+    "before": "ngọc trai 8 nt08-10",
+    "after": "ngọc trai 8, nt08-10",
+    "poi_name": "NT08-10 Ngọc Trai 8",
+    "rule": "street_first_with_explicit_number_marker"
+  },
+  {
+    "query_id": "hnq20k-v5-fix-ae7ea2ccc0adde5a",
+    "before": "ngõ 82 phố yên lãng 124",
+    "after": "ngõ 82 phố yên lãng, số 124",
+    "poi_name": "124 Ngõ 82 Phố Yên Lãng",
+    "rule": "street_first_with_explicit_number_marker"
+  },
+  {
+    "query_id": "hnq20k-v5-fix-4b117b970c7135fe",
+    "before": "ngôi sao 6 3",
+    "after": "ngôi sao 6, số 3",
+    "poi_name": "3 Ngôi Sao 6",
+    "rule": "street_first_with_explicit_number_marker"
+  },
+  {
+    "query_id": "hnq20k-v5-fix-0c2e5534d48cbdff",
+    "before": "ngõ xã đàn 2 105",
+    "after": "ngõ xã đàn 2, số 105",
+    "poi_name": "105 Ngõ Xã Đàn 2",
+    "rule": "street_first_with_explicit_number_marker"
+  },
+  {
+    "query_id": "hnq20k-v5-fix-249f5f22cb86c98b",
+    "before": "nhật nguyệt 5 41",
+    "after": "nhật nguyệt 5, số 41",
+    "poi_name": "41 Nhật Nguyệt 5",
+    "rule": "street_first_with_explicit_number_marker"
+  },
+  {
+    "query_id": "hnq20k-v5-fix-8c7bd79896b31723",
+    "before": "ngõ 143 nguyễn chính 72",
+    "after": "ngõ 143 nguyễn chính, số 72",
+    "poi_name": "72 Ngõ 143 Nguyễn Chính",
+    "rule": "street_first_with_explicit_number_marker"
+  },
+  {
+    "query_id": "hnq20k-v5-fix-153fbb7129f8a569",
+    "before": "ngõ 294/2 kim mã 31",
+    "after": "ngõ 294/2 kim mã, số 31",
+    "poi_name": "31 Ngõ 294/2 Kim Mã",
+    "rule": "street_first_with_explicit_number_marker"
+  },
+  {
+    "query_id": "hnq20k-v5-fix-a6c3307330886792",
+    "before": "ngọc trai 18 nt18-20",
+    "after": "ngọc trai 18, nt18-20",
+    "poi_name": "NT18-20 Ngọc Trai 18",
+    "rule": "street_first_with_explicit_number_marker"
+  },
+  {
+    "query_id": "hnq20k-v5-fix-73fbff88b067364e",
+    "before": "ngách 264/21 âu cơ 61",
+    "after": "ngách 264/21 âu cơ, số 61",
+    "poi_name": "61 Ngách 264/21 Âu Cơ",
+    "rule": "street_first_with_explicit_number_marker"
+  },
+  {
+    "query_id": "hnq20k-v5-fix-7c90e9c70f05329b",
+    "before": "khu đô thị mễ trì thượng a312-bt1b",
+    "after": "khu đô thị mễ trì thượng, a312-bt1b",
+    "poi_name": "A312-BT1B khu đô thị Mễ Trì Thượng",
+    "rule": "street_first_with_explicit_number_marker"
+  },
+  {
+    "query_id": "hnq20k-v5-fix-b88d0fb2814f117e",
+    "before": "san hô 12 sh12-30",
+    "after": "san hô 12, sh12-30",
+    "poi_name": "SH12-30 San Hô 12",
+    "rule": "street_first_with_explicit_number_marker"
+  },
+  {
+    "query_id": "hnq20k-v5-fix-452b92514064c713",
+    "before": "ngõ 26 đặng thùy trâm 1",
+    "after": "ngõ 26 đặng thùy trâm, số 1",
+    "poi_name": "1 Ngõ 26 Đặng Thùy Trâm",
+    "rule": "street_first_with_explicit_number_marker"
+  },
+  {
+    "query_id": "hnq20k-v5-fix-fe01ffc938ff6e4c",
+    "before": "ngách 129 ngõ xã đàn 2 5",
+    "after": "ngách 129 ngõ xã đàn 2, số 5",
+    "poi_name": "5 Ngách 129 Ngõ Xã Đàn 2",
+    "rule": "street_first_with_explicit_number_marker"
+  },
+  {
+    "query_id": "hnq20k-v5-fix-cab3c0366d22d1ee",
+    "before": "ngôi sao 2 15",
+    "after": "ngôi sao 2, số 15",
+    "poi_name": "15 Ngôi Sao 2",
+    "rule": "street_first_with_explicit_number_marker"
+  },
+  {
+    "query_id": "hnq20k-v5-fix-54fe92a2636d0c95",
+    "before": "ánh dương 1 61",
+    "after": "ánh dương 1, số 61",
+    "poi_name": "61 Ánh Dương 1",
+    "rule": "street_first_with_explicit_number_marker"
+  },
+  {
+    "query_id": "hnq20k-v5-fix-ba0e45bf7a2fe452",
+    "before": "ngõ 18 ngô quyền 2",
+    "after": "ngõ 18 ngô quyền, số 2",
+    "poi_name": "2 Ngõ 18 Ngô Quyền",
+    "rule": "street_first_with_explicit_number_marker"
+  },
+  {
+    "query_id": "hnq20k-v5-fix-bcb738e2457c44cf",
+    "before": "ngách 1/88 phạm tuấn tài 9",
+    "after": "ngách 1/88 phạm tuấn tài, số 9",
+    "poi_name": "9 Ngách 1/88 Phạm Tuấn Tài",
+    "rule": "street_first_with_explicit_number_marker"
+  },
+  {
+    "query_id": "hnq20k-v5-fix-c07a5f1f25fadca7",
+    "before": "ngõ 677 lạc long quân 8",
+    "after": "ngõ 677 lạc long quân, số 8",
+    "poi_name": "8 Ngõ 677 Lạc Long Quân",
+    "rule": "street_first_with_explicit_number_marker"
+  },
+  {
+    "query_id": "hnq20k-v5-fix-36c25911c9a8d95b",
+    "before": "thời đại 3 10",
+    "after": "thời đại 3, số 10",
+    "poi_name": "10 Thời Đại 3",
+    "rule": "street_first_with_explicit_number_marker"
+  },
+  {
+    "query_id": "hnq20k-v5-fix-d5d5ad0464fdbb12",
+    "before": "nhật nguyệt 1 15",
+    "after": "nhật nguyệt 1, số 15",
+    "poi_name": "15 Nhật Nguyệt 1",
+    "rule": "street_first_with_explicit_number_marker"
+  },
+  {
+    "query_id": "hnq20k-v5-fix-f8864d1642e60bbd",
+    "before": "ngách 1/48 phạm tuấn tài 8",
+    "after": "ngách 1/48 phạm tuấn tài, số 8",
+    "poi_name": "8 Ngách 1/48 Phạm Tuấn Tài",
+    "rule": "street_first_with_explicit_number_marker"
+  },
+  {
+    "query_id": "hnq20k-v5-fix-e8bb7705eab24870",
+    "before": "hẻm 10 ngách 111 xã đàn 2 10",
+    "after": "hẻm 10 ngách 111 xã đàn 2, số 10",
+    "poi_name": "10 Hẻm 10 Ngách 111 Xã Đàn 2",
+    "rule": "street_first_with_explicit_number_marker"
+  },
+  {
+    "query_id": "hnq20k-v5-fix-dc3643a5edc3cff3",
+    "before": "ngọc trai 17 nt17-01",
+    "after": "ngọc trai 17, nt17-01",
+    "poi_name": "NT17-01 Ngọc Trai 17",
+    "rule": "street_first_with_explicit_number_marker"
+  },
+  {
+    "query_id": "hnq20k-v5-fix-2dae3408ec6f0f50",
+    "before": "ngách 234/17 hoàng quốc việt 18",
+    "after": "ngách 234/17 hoàng quốc việt, số 18",
+    "poi_name": "18 Ngách 234/17 Hoàng Quốc Việt",
+    "rule": "street_first_with_explicit_number_marker"
+  },
+  {
+    "query_id": "hnq20k-v5-fix-50c2e5f9a981d52b",
+    "before": "ánh dương 1 62",
+    "after": "ánh dương 1, số 62",
+    "poi_name": "62 Ánh Dương 1",
+    "rule": "street_first_with_explicit_number_marker"
+  },
+  {
+    "query_id": "hnq20k-v5-fix-c459d854457fd7ab",
+    "before": "ngõ 116 nhân hòa 48",
+    "after": "ngõ 116 nhân hòa, số 48",
+    "poi_name": "48 Ngõ 116 Nhân Hòa",
+    "rule": "street_first_with_explicit_number_marker"
+  },
+  {
+    "query_id": "hnq20k-v5-fix-35103938a20c8e5b",
+    "before": "ngôi sao 7 3",
+    "after": "ngôi sao 7, số 3",
+    "poi_name": "3 Ngôi Sao 7",
+    "rule": "street_first_with_explicit_number_marker"
+  },
+  {
+    "query_id": "hnq20k-v5-fix-eee5b42288b380a4",
+    "before": "ngách 464/35 âu cơ 1",
+    "after": "ngách 464/35 âu cơ, số 1",
+    "poi_name": "1 Ngách 464/35 Âu Cơ",
+    "rule": "street_first_with_explicit_number_marker"
+  },
+  {
+    "query_id": "hnq20k-v5-fix-4c5ae59dd418180d",
+    "before": "ngôi sao 13",
+    "after": "ngôi sao, số 13",
+    "poi_name": "13 Ngôi Sao",
+    "rule": "street_first_with_explicit_number_marker"
+  },
+  {
+    "query_id": "hnq20k-v5-fix-3c5e7b73dbccb2eb",
+    "before": "ánh dương 10 52",
+    "after": "ánh dương 10, số 52",
+    "poi_name": "52 Ánh Dương 10",
+    "rule": "street_first_with_explicit_number_marker"
+  },
+  {
+    "query_id": "hnq20k-v5-fix-e6ee5a67f89e65a5",
+    "before": "ngõ 156 tam trinh 38",
+    "after": "ngõ 156 tam trinh, số 38",
+    "poi_name": "38 Ngõ 156 Tam Trinh",
+    "rule": "street_first_with_explicit_number_marker"
+  },
+  {
+    "query_id": "hnq20k-v5-fix-bbca3c2e922eb8ae",
+    "before": "ngõ 90 khuất duy tiến 19",
+    "after": "ngõ 90 khuất duy tiến, số 19",
+    "poi_name": "19 Ngõ 90 Khuất Duy Tiến",
+    "rule": "street_first_with_explicit_number_marker"
+  },
+  {
+    "query_id": "hnq20k-v5-fix-e4f5c3e5d00ac477",
+    "before": "nhật nguyệt 2 7",
+    "after": "nhật nguyệt 2, số 7",
+    "poi_name": "7 Nhật Nguyệt 2",
+    "rule": "street_first_with_explicit_number_marker"
+  },
+  {
+    "query_id": "hnq20k-v5-fix-ba1e407f19b079a1",
+    "before": "ngõ 371 đại mỗ 59",
+    "after": "ngõ 371 đại mỗ, số 59",
+    "poi_name": "59 Ngõ 371 Đại Mỗ",
+    "rule": "street_first_with_explicit_number_marker"
+  },
+  {
+    "query_id": "hnq20k-v5-fix-6608246e32db60af",
+    "before": "ngõ 1 phạm tuấn tài 36",
+    "after": "ngõ 1 phạm tuấn tài, số 36",
+    "poi_name": "36 Ngõ 1 Phạm Tuấn Tài",
+    "rule": "street_first_with_explicit_number_marker"
+  },
+  {
+    "query_id": "hnq20k-v5-fix-abc15b0be667d62e",
+    "before": "nhật nguyệt 4 60",
+    "after": "nhật nguyệt 4, số 60",
+    "poi_name": "60 Nhật Nguyệt 4",
+    "rule": "street_first_with_explicit_number_marker"
+  },
+  {
+    "query_id": "hnq20k-v5-fix-ef2213ff1235a5b5",
+    "before": "ngách 264/21 âu cơ 65",
+    "after": "ngách 264/21 âu cơ, số 65",
+    "poi_name": "65 Ngách 264/21 Âu Cơ",
+    "rule": "street_first_with_explicit_number_marker"
+  },
+  {
+    "query_id": "hnq20k-v5-fix-c520d08679cdd470",
+    "before": "viễn đông 9 23",
+    "after": "viễn đông 9, số 23",
+    "poi_name": "23 Viễn Đông 9",
+    "rule": "street_first_with_explicit_number_marker"
+  },
+  {
+    "query_id": "hnq20k-v5-fix-2e8d5860d01ca036",
+    "before": "ngách 421/4 hoàng quốc việt 18",
+    "after": "ngách 421/4 hoàng quốc việt, số 18",
+    "poi_name": "18 Ngách 421/4 Hoàng Quốc Việt",
+    "rule": "street_first_with_explicit_number_marker"
+  },
+  {
+    "query_id": "hnq20k-v5-fix-90b4b71cb1819940",
+    "before": "ngôi sao 1 18",
+    "after": "ngôi sao 1, số 18",
+    "poi_name": "18 Ngôi Sao 1",
+    "rule": "street_first_with_explicit_number_marker"
+  },
+  {
+    "query_id": "hnq20k-v5-fix-938697d814d50694",
+    "before": "ngôi sao 4 21",
+    "after": "ngôi sao 4, số 21",
+    "poi_name": "21 Ngôi Sao 4",
+    "rule": "street_first_with_explicit_number_marker"
+  },
+  {
+    "query_id": "hnq20k-v5-fix-5291d2bab722a737",
+    "before": "ngõ 46 trần quốc hoàn 2",
+    "after": "ngõ 46 trần quốc hoàn, số 2",
+    "poi_name": "2 Ngõ 46 Trần Quốc Hoàn",
+    "rule": "street_first_with_explicit_number_marker"
+  },
+  {
+    "query_id": "hnq20k-v5-fix-8d3f0a3e8922ea1f",
+    "before": "ngõ 143 nguyễn chính 90",
+    "after": "ngõ 143 nguyễn chính, số 90",
+    "poi_name": "90 Ngõ 143 Nguyễn Chính",
+    "rule": "street_first_with_explicit_number_marker"
+  },
+  {
+    "query_id": "hnq20k-v5-fix-e1aed942db620c13",
+    "before": "ngõ 423 an dương vương 8",
+    "after": "ngõ 423 an dương vương, số 8",
+    "poi_name": "8 Ngõ 423 An Dương Vương",
+    "rule": "street_first_with_explicit_number_marker"
+  },
+  {
+    "query_id": "hnq20k-v5-fix-8a0826069bedc3eb",
+    "before": "viễn đông 3 53",
+    "after": "viễn đông 3, số 53",
+    "poi_name": "53 Viễn Đông 3",
+    "rule": "street_first_with_explicit_number_marker"
+  },
+  {
+    "query_id": "hnq20k-v5-fix-79c21b5aed56f4e1",
+    "before": "ngôi sao 1 8",
+    "after": "ngôi sao 1, số 8",
+    "poi_name": "8 Ngôi Sao 1",
+    "rule": "street_first_with_explicit_number_marker"
+  },
+  {
+    "query_id": "hnq20k-v5-fix-80d87c3fdb6186f7",
+    "before": "ngôi sao 2 14",
+    "after": "ngôi sao 2, số 14",
+    "poi_name": "14 Ngôi Sao 2",
+    "rule": "street_first_with_explicit_number_marker"
+  },
+  {
+    "query_id": "hnq20k-v5-fix-0f22bfb91af5eb80",
+    "before": "ngõ 192 lê trọng tấn 61",
+    "after": "ngõ 192 lê trọng tấn, số 61",
+    "poi_name": "61 Ngõ 192 Lê Trọng Tấn",
+    "rule": "street_first_with_explicit_number_marker"
+  },
+  {
+    "query_id": "hnq20k-v5-fix-7dcbcfc5e6b7e9bb",
+    "before": "hẻm 10 ngách 111 xã đàn 2 4",
+    "after": "hẻm 10 ngách 111 xã đàn 2, số 4",
+    "poi_name": "4 Hẻm 10 Ngách 111 Xã Đàn 2",
+    "rule": "street_first_with_explicit_number_marker"
+  },
+  {
+    "query_id": "hnq20k-v5-fix-8425722d948536b0",
+    "before": "nhật nguyệt 5 61",
+    "after": "nhật nguyệt 5, số 61",
+    "poi_name": "61 Nhật Nguyệt 5",
+    "rule": "street_first_with_explicit_number_marker"
+  },
+  {
+    "query_id": "hnq20k-v5-fix-3f4d101f525ff227",
+    "before": "ánh dương 4 57",
+    "after": "ánh dương 4, số 57",
+    "poi_name": "57 Ánh Dương 4",
+    "rule": "street_first_with_explicit_number_marker"
+  },
+  {
+    "query_id": "hnq20k-v5-fix-6ac7543be2ea19bc",
+    "before": "ngôi sao 5 23",
+    "after": "ngôi sao 5, số 23",
+    "poi_name": "23 Ngôi Sao 5",
+    "rule": "street_first_with_explicit_number_marker"
+  },
+  {
+    "query_id": "hnq20k-v5-fix-62332c92ab9b15fe",
+    "before": "ngọc trai 2 nt02-64",
+    "after": "ngọc trai 2, nt02-64",
+    "poi_name": "NT02-64 Ngọc Trai 2",
+    "rule": "street_first_with_explicit_number_marker"
+  },
+  {
+    "query_id": "hnq20k-v5-fix-14a67fda96a0f978",
+    "before": "ngọc trai 15 nt15-19",
+    "after": "ngọc trai 15, nt15-19",
+    "poi_name": "NT15-19 Ngọc Trai 15",
+    "rule": "street_first_with_explicit_number_marker"
+  },
+  {
+    "query_id": "hnq20k-v5-fix-3a542ea8ae876e16",
+    "before": "ngách 1/96 phạm tuấn tài 15",
+    "after": "ngách 1/96 phạm tuấn tài, số 15",
+    "poi_name": "15 Ngách 1/96 Phạm Tuấn Tài",
+    "rule": "street_first_with_explicit_number_marker"
+  },
+  {
+    "query_id": "hnq20k-v5-fix-f1e7ba11163e8b0e",
+    "before": "ngõ 91 nguyễn chí thanh 21",
+    "after": "ngõ 91 nguyễn chí thanh, số 21",
+    "poi_name": "21 Ngõ 91 Nguyễn Chí Thanh",
+    "rule": "street_first_with_explicit_number_marker"
+  },
+  {
+    "query_id": "hnq20k-v5-fix-439e39332762f64f",
+    "before": "ánh dương 11 23",
+    "after": "ánh dương 11, số 23",
+    "poi_name": "23 Ánh Dương 11",
+    "rule": "street_first_with_explicit_number_marker"
+  },
+  {
+    "query_id": "hnq20k-v5-fix-3b488c68b31b5548",
+    "before": "viễn đông 5 11",
+    "after": "viễn đông 5, số 11",
+    "poi_name": "11 Viễn Đông 5",
+    "rule": "street_first_with_explicit_number_marker"
+  },
+  {
+    "query_id": "hnq20k-v5-fix-c9c7b4586e3ed663",
+    "before": "ánh dương 10 18",
+    "after": "ánh dương 10, số 18",
+    "poi_name": "18 Ánh Dương 10",
+    "rule": "street_first_with_explicit_number_marker"
+  },
+  {
+    "query_id": "hnq20k-v5-fix-f200d90fc194a389",
+    "before": "ánh dương 10 6",
+    "after": "ánh dương 10, số 6",
+    "poi_name": "6 Ánh Dương 10",
+    "rule": "street_first_with_explicit_number_marker"
+  },
+  {
+    "query_id": "hnq20k-v5-fix-026d8fa8134e18e0",
+    "before": "tân xuân 56",
+    "after": "tân xuân, số 56",
+    "poi_name": "56 Tân Xuân",
+    "rule": "street_first_with_explicit_number_marker"
+  },
+  {
+    "query_id": "hnq20k-v5-fix-6dbcdca6be30a889",
+    "before": "ngõ 896 nguyễn khoái 09",
+    "after": "ngõ 896 nguyễn khoái, số 09",
+    "poi_name": "09 Ngõ 896 Nguyễn Khoái",
+    "rule": "street_first_with_explicit_number_marker"
+  },
+  {
+    "query_id": "hnq20k-v5-fix-6db966da83e1ab2d",
+    "before": "ngõ 32 an dương 20",
+    "after": "ngõ 32 an dương, số 20",
+    "poi_name": "20 Ngõ 32 An Dương",
+    "rule": "street_first_with_explicit_number_marker"
+  },
+  {
+    "query_id": "hnq20k-v5-fix-4c73ffe9c094e189",
+    "before": "viễn đông 5 15",
+    "after": "viễn đông 5, số 15",
+    "poi_name": "15 Viễn Đông 5",
+    "rule": "street_first_with_explicit_number_marker"
+  },
+  {
+    "query_id": "hnq20k-v5-fix-a3ef896e2ca59c78",
+    "before": "nhật nguyệt 3 38",
+    "after": "nhật nguyệt 3, số 38",
+    "poi_name": "38 Nhật Nguyệt 3",
+    "rule": "street_first_with_explicit_number_marker"
+  },
+  {
+    "query_id": "hnq20k-v5-fix-b92998b241127575",
+    "before": "cầu vồng xóm 6",
+    "after": "cầu vồng, xóm 6",
+    "poi_name": "xóm 6 Cầu Vồng",
+    "rule": "street_first_with_explicit_number_marker"
+  },
+  {
+    "query_id": "hnq20k-v5-fix-60af0c8c8b973903",
+    "before": "ngõ 2 tây trà 139",
+    "after": "ngõ 2 tây trà, số 139",
+    "poi_name": "139 Ngõ 2 Tây Trà",
+    "rule": "street_first_with_explicit_number_marker"
+  },
+  {
+    "query_id": "hnq20k-v5-fix-3cf1537f6b94b818",
+    "before": "ngõ 3 phạm tuấn tài 28",
+    "after": "ngõ 3 phạm tuấn tài, số 28",
+    "poi_name": "28 Ngõ 3 Phạm Tuấn Tài",
+    "rule": "street_first_with_explicit_number_marker"
+  },
+  {
+    "query_id": "hnq20k-v5-fix-8079101ad6ff97d7",
+    "before": "xuân đỉnh 521",
+    "after": "xuân đỉnh, số 521",
+    "poi_name": "521 Xuân Đỉnh",
+    "rule": "street_first_with_explicit_number_marker"
+  },
+  {
+    "query_id": "hnq20k-v5-fix-f514f3a80b6d18fb",
+    "before": "ngõ huyện 56",
+    "after": "ngõ huyện, số 56",
+    "poi_name": "56 Ngõ Huyện",
+    "rule": "street_first_with_explicit_number_marker"
+  },
+  {
+    "query_id": "hnq20k-v5-fix-56c353692c3bbfee",
+    "before": "san hô 15 sh15-11",
+    "after": "san hô 15, sh15-11",
+    "poi_name": "SH15-11 San Hô 15",
+    "rule": "street_first_with_explicit_number_marker"
+  },
+  {
+    "query_id": "hnq20k-v5-fix-5e27345399b42d22",
+    "before": "ngõ 34 hoàng cầu 86",
+    "after": "ngõ 34 hoàng cầu, số 86",
+    "poi_name": "86 Ngõ 34 Hoàng Cầu",
+    "rule": "street_first_with_explicit_number_marker"
+  },
+  {
+    "query_id": "hnq20k-v5-fix-6f1ea11ca5710da7",
+    "before": "ngọc trai 11 nt11-30",
+    "after": "ngọc trai 11, nt11-30",
+    "poi_name": "NT11-30 Ngọc Trai 11",
+    "rule": "street_first_with_explicit_number_marker"
+  },
+  {
+    "query_id": "hnq20k-v5-fix-7aaaccc312bbeac9",
+    "before": "ngõ 50 đặng thùy trâm 1",
+    "after": "ngõ 50 đặng thùy trâm, số 1",
+    "poi_name": "1 Ngõ 50 Đặng Thùy Trâm",
+    "rule": "street_first_with_explicit_number_marker"
+  },
+  {
+    "query_id": "hnq20k-v5-fix-cf5dc57ead6fffc4",
+    "before": "ngõ 91 lương định của 103",
+    "after": "ngõ 91 lương định của, số 103",
+    "poi_name": "103 Ngõ 91 Lương Định Của",
+    "rule": "street_first_with_explicit_number_marker"
+  },
+  {
+    "query_id": "hnq20k-v5-fix-8fc6ca2e0256c510",
+    "before": "san hô 1 sh01-20",
+    "after": "san hô 1, sh01-20",
+    "poi_name": "SH01-20 San Hô 1",
+    "rule": "street_first_with_explicit_number_marker"
+  },
+  {
+    "query_id": "hnq20k-v5-fix-312d04a517e2f61b",
+    "before": "ngõ 77 lê hồng phong 18",
+    "after": "ngõ 77 lê hồng phong, số 18",
+    "poi_name": "18 Ngõ 77 Lê Hồng Phong",
+    "rule": "street_first_with_explicit_number_marker"
+  },
+  {
+    "query_id": "hnq20k-v5-fix-ed8944caab40b277",
+    "before": "ngôi sao 1 1",
+    "after": "ngôi sao 1, số 1",
+    "poi_name": "1 Ngôi Sao 1",
+    "rule": "street_first_with_explicit_number_marker"
+  },
+  {
+    "query_id": "hnq20k-v5-fix-0b6811e0096b27fb",
+    "before": "nhật nguyệt 4 85",
+    "after": "nhật nguyệt 4, số 85",
+    "poi_name": "85 Nhật Nguyệt 4",
+    "rule": "street_first_with_explicit_number_marker"
+  },
+  {
+    "query_id": "hnq20k-v5-fix-c8d8acd02dee5cbd",
+    "before": "ngôi sao 6 7",
+    "after": "ngôi sao 6, số 7",
+    "poi_name": "7 Ngôi Sao 6",
+    "rule": "street_first_with_explicit_number_marker"
+  },
+  {
+    "query_id": "hnq20k-v5-fix-7a9d2356092d61e4",
+    "before": "ngọc trai 12 nt12-20",
+    "after": "ngọc trai 12, nt12-20",
+    "poi_name": "NT12-20 Ngọc Trai 12",
+    "rule": "street_first_with_explicit_number_marker"
+  },
+  {
+    "query_id": "hnq20k-v5-fix-a923f9af012343c8",
+    "before": "viễn đông 5 4",
+    "after": "viễn đông 5, số 4",
+    "poi_name": "4 Viễn Đông 5",
+    "rule": "street_first_with_explicit_number_marker"
+  },
+  {
+    "query_id": "hnq20k-v5-fix-62b3fe0b46e0aadc",
+    "before": "ngách 238/25 hoàng quốc việt 26",
+    "after": "ngách 238/25 hoàng quốc việt, số 26",
+    "poi_name": "26 Ngách 238/25 Hoàng Quốc Việt",
+    "rule": "street_first_with_explicit_number_marker"
+  },
+  {
+    "query_id": "hnq20k-v5-fix-7dafb207a044a4c1",
+    "before": "ngôi sao 8 10",
+    "after": "ngôi sao 8, số 10",
+    "poi_name": "10 Ngôi Sao 8",
+    "rule": "street_first_with_explicit_number_marker"
+  },
+  {
+    "query_id": "hnq20k-v5-fix-da4d4a84adfb6d3c",
+    "before": "ngách 238/29 hoàng quốc việt 19",
+    "after": "ngách 238/29 hoàng quốc việt, số 19",
+    "poi_name": "19 Ngách 238/29 Hoàng Quốc Việt",
+    "rule": "street_first_with_explicit_number_marker"
+  },
+  {
+    "query_id": "hnq20k-v5-fix-45699eac48b57320",
+    "before": "ngọc trai 8 nt08-12",
+    "after": "ngọc trai 8, nt08-12",
+    "poi_name": "NT08-12 Ngọc Trai 8",
+    "rule": "street_first_with_explicit_number_marker"
+  },
+  {
+    "query_id": "hnq20k-v5-fix-6fff18d84f6592a7",
+    "before": "ngôi sao 9 6",
+    "after": "ngôi sao 9, số 6",
+    "poi_name": "6 Ngôi Sao 9",
+    "rule": "street_first_with_explicit_number_marker"
+  },
+  {
+    "query_id": "hnq20k-v5-fix-d20c5776f0ad0c0c",
+    "before": "ngôi sao 5 17",
+    "after": "ngôi sao 5, số 17",
+    "poi_name": "17 Ngôi Sao 5",
+    "rule": "street_first_with_explicit_number_marker"
+  },
+  {
+    "query_id": "hnq20k-v5-fix-31389eac8e80ca01",
+    "before": "ngõ 238 hoàng quốc việt 29",
+    "after": "ngõ 238 hoàng quốc việt, số 29",
+    "poi_name": "29 Ngõ 238 Hoàng Quốc Việt",
+    "rule": "street_first_with_explicit_number_marker"
+  },
+  {
+    "query_id": "hnq20k-v5-fix-5912c30c9e1724bb",
+    "before": "viễn đông 6 56",
+    "after": "viễn đông 6, số 56",
+    "poi_name": "56 Viễn Đông 6",
+    "rule": "street_first_with_explicit_number_marker"
+  },
+  {
+    "query_id": "hnq20k-v5-fix-da1bba8f1a96968a",
+    "before": "ngôi sao 4 7",
+    "after": "ngôi sao 4, số 7",
+    "poi_name": "7 Ngôi Sao 4",
+    "rule": "street_first_with_explicit_number_marker"
+  },
+  {
+    "query_id": "hnq20k-v5-fix-f2d2ecf087dc1748",
+    "before": "ngôi sao 6 19",
+    "after": "ngôi sao 6, số 19",
+    "poi_name": "19 Ngôi Sao 6",
+    "rule": "street_first_with_explicit_number_marker"
+  },
+  {
+    "query_id": "hnq20k-v5-fix-0c1f044c660679dd",
+    "before": "ngõ 61 phạm tuấn tài 19",
+    "after": "ngõ 61 phạm tuấn tài, số 19",
+    "poi_name": "19 Ngõ 61 Phạm Tuấn Tài",
+    "rule": "street_first_with_explicit_number_marker"
+  },
+  {
+    "query_id": "hnq20k-v5-fix-a0f0ab0ff295e368",
+    "before": "ngõ 6 trần quốc hoàn 21",
+    "after": "ngõ 6 trần quốc hoàn, số 21",
+    "poi_name": "21 Ngõ 6 Trần Quốc Hoàn",
+    "rule": "street_first_with_explicit_number_marker"
+  },
+  {
+    "query_id": "hnq20k-v5-fix-0a8d99f1bf6d56b7",
+    "before": "ngách 234/35 hoàng quốc việt 46",
+    "after": "ngách 234/35 hoàng quốc việt, số 46",
+    "poi_name": "46 Ngách 234/35 Hoàng Quốc Việt",
+    "rule": "street_first_with_explicit_number_marker"
+  },
+  {
+    "query_id": "hnq20k-v5-fix-052c4c1871d56e2c",
+    "before": "đường thụy khuê 432",
+    "after": "đường thụy khuê, số 432",
+    "poi_name": "432 Đường Thụy Khuê",
+    "rule": "street_first_with_explicit_number_marker"
+  },
+  {
+    "query_id": "hnq20k-v5-fix-f3a5a3e8e5893556",
+    "before": "ngõ huyện 36",
+    "after": "ngõ huyện, số 36",
+    "poi_name": "36 Ngõ Huyện",
+    "rule": "street_first_with_explicit_number_marker"
+  },
+  {
+    "query_id": "hnq20k-v5-fix-12a7d9763f491bc6",
+    "before": "ngõ 172 âu cơ 105",
+    "after": "ngõ 172 âu cơ, số 105",
+    "poi_name": "105 Ngõ 172 Âu Cơ",
+    "rule": "street_first_with_explicit_number_marker"
+  },
+  {
+    "query_id": "hnq20k-v5-fix-b05d97911ccdc432",
+    "before": "ngôi sao 4 9",
+    "after": "ngôi sao 4, số 9",
+    "poi_name": "9 Ngôi Sao 4",
+    "rule": "street_first_with_explicit_number_marker"
+  },
+  {
+    "query_id": "hnq20k-v5-fix-7627f63a9acb7b30",
+    "before": "ngõ 26 đặng thùy trâm 6",
+    "after": "ngõ 26 đặng thùy trâm, số 6",
+    "poi_name": "6 Ngõ 26 Đặng Thùy Trâm",
+    "rule": "street_first_with_explicit_number_marker"
+  },
+  {
+    "query_id": "hnq20k-v5-fix-ae335fc0a60ddf0f",
+    "before": "san hô 11 sh11-28",
+    "after": "san hô 11, sh11-28",
+    "poi_name": "SH11-28 San Hô 11",
+    "rule": "street_first_with_explicit_number_marker"
+  },
+  {
+    "query_id": "hnq20k-v5-fix-057893ea684a67f9",
+    "before": "hàng bạc 89",
+    "after": "hàng bạc, số 89",
+    "poi_name": "89 Hàng Bạc",
+    "rule": "street_first_with_explicit_number_marker"
+  },
+  {
+    "query_id": "hnq20k-v5-fix-4377a648c3e929ca",
+    "before": "phố hàng cót 18",
+    "after": "phố hàng cót, số 18",
+    "poi_name": "18 Phố Hàng Cót",
+    "rule": "street_first_with_explicit_number_marker"
+  },
+  {
+    "query_id": "hnq20k-v5-fix-62aee925806e02db",
+    "before": "đường la thành 516",
+    "after": "đường la thành, số 516",
+    "poi_name": "516 Đường La Thành",
+    "rule": "street_first_with_explicit_number_marker"
+  },
+  {
+    "query_id": "hnq20k-v5-fix-58696710594d368f",
+    "before": "hàng bè 43a",
+    "after": "hàng bè, 43a",
+    "poi_name": "43a Hàng Bè",
+    "rule": "street_first_with_explicit_number_marker"
+  },
+  {
+    "query_id": "hnq20k-v5-fix-89e25d1455946d82",
+    "before": "phố thái phiên 11",
+    "after": "phố thái phiên, số 11",
+    "poi_name": "11 Phố Thái Phiên",
+    "rule": "street_first_with_explicit_number_marker"
+  },
+  {
+    "query_id": "hnq20k-v5-fix-6f6e3476e5d616d3",
+    "before": "phố thái phiên 1a",
+    "after": "phố thái phiên, 1a",
+    "poi_name": "1A Phố Thái Phiên",
+    "rule": "street_first_with_explicit_number_marker"
+  },
+  {
+    "query_id": "hnq20k-v5-fix-729860e9e340515b",
+    "before": "phố chợ gạo 8",
+    "after": "phố chợ gạo, số 8",
+    "poi_name": "8 Phố Chợ Gạo",
+    "rule": "street_first_with_explicit_number_marker"
+  },
+  {
+    "query_id": "hnq20k-v5-fix-69a0ced2d0b68998",
+    "before": "phố lý nam đế 67",
+    "after": "phố lý nam đế, số 67",
+    "poi_name": "67 Phố Lý Nam Đế",
+    "rule": "street_first_with_explicit_number_marker"
+  },
+  {
+    "query_id": "hnq20k-v5-fix-5d9e551303552138",
+    "before": "đường láng 94",
+    "after": "đường láng, số 94",
+    "poi_name": "94 Đường Láng",
+    "rule": "street_first_with_explicit_number_marker"
+  },
+  {
+    "query_id": "hnq20k-v5-fix-31c43be39385bd89",
+    "before": "phố cát linh 37",
+    "after": "phố cát linh, số 37",
+    "poi_name": "37 Phố Cát Linh",
+    "rule": "street_first_with_explicit_number_marker"
+  },
+  {
+    "query_id": "hnq20k-v5-fix-7d71d847e5485330",
+    "before": "phố thuốc bắc 63",
+    "after": "phố thuốc bắc, số 63",
+    "poi_name": "63 Phố Thuốc Bắc",
+    "rule": "street_first_with_explicit_number_marker"
+  },
+  {
+    "query_id": "hnq20k-v5-fix-c98625e2c2298dd3",
+    "before": "đường láng 370",
+    "after": "đường láng, số 370",
+    "poi_name": "370 Đường Láng",
+    "rule": "street_first_with_explicit_number_marker"
+  },
+  {
+    "query_id": "hnq20k-v5-fix-47b1acb333e45317",
+    "before": "phố lê thánh tông 9",
+    "after": "phố lê thánh tông, số 9",
+    "poi_name": "9 Phố Lê Thánh Tông",
+    "rule": "street_first_with_explicit_number_marker"
+  },
+  {
+    "query_id": "hnq20k-v5-fix-55663004400cf1fb",
+    "before": "phố nhân hòa 77",
+    "after": "phố nhân hòa, số 77",
+    "poi_name": "77 Phố Nhân Hòa",
+    "rule": "street_first_with_explicit_number_marker"
+  },
+  {
+    "query_id": "hnq20k-v5-fix-b5912a8ae1b7ec2f",
+    "before": "phố quan nhân 76",
+    "after": "phố quan nhân, số 76",
+    "poi_name": "76 Phố Quan Nhân",
+    "rule": "street_first_with_explicit_number_marker"
+  },
+  {
+    "query_id": "hnq20k-v5-fix-86b58767bc3966be",
+    "before": "phố nguyễn gia thiều 15",
+    "after": "phố nguyễn gia thiều, số 15",
+    "poi_name": "15 Phố Nguyễn Gia Thiều",
+    "rule": "street_first_with_explicit_number_marker"
+  },
+  {
+    "query_id": "hnq20k-v5-fix-c67c192dde29d08c",
+    "before": "phố ngọc hà 19a",
+    "after": "phố ngọc hà, 19a",
+    "poi_name": "19A Phố Ngọc Hà",
+    "rule": "street_first_with_explicit_number_marker"
+  },
+  {
+    "query_id": "hnq20k-v5-fix-5a5326226b62ca1a",
+    "before": "đường trần nhật duật 28",
+    "after": "đường trần nhật duật, số 28",
+    "poi_name": "28 Đường Trần Nhật Duật",
+    "rule": "street_first_with_explicit_number_marker"
+  },
+  {
+    "query_id": "hnq20k-v5-fix-e67bde25390de45e",
+    "before": "phố thuốc bắc 35b",
+    "after": "phố thuốc bắc, 35b",
+    "poi_name": "35B Phố Thuốc Bắc",
+    "rule": "street_first_with_explicit_number_marker"
+  },
+  {
+    "query_id": "hnq20k-v5-fix-5db558c3939f7731",
+    "before": "phố hàng cót 7",
+    "after": "phố hàng cót, số 7",
+    "poi_name": "7 Phố Hàng Cót",
+    "rule": "street_first_with_explicit_number_marker"
+  },
+  {
+    "query_id": "hnq20k-v5-fix-95fa62d65eb957d0",
+    "before": "phõ vũ ngọc phan 91",
+    "after": "phõ vũ ngọc phan, số 91",
+    "poi_name": "91 Phõ Vũ Ngọc Phan",
+    "rule": "street_first_with_explicit_number_marker"
+  },
+  {
+    "query_id": "hnq20k-v5-fix-e90cb8dc2342b875",
+    "before": "phố bà triệu 10",
+    "after": "phố bà triệu, số 10",
+    "poi_name": "10 Phố Bà Triệu",
+    "rule": "street_first_with_explicit_number_marker"
+  },
+  {
+    "query_id": "hnq20k-v5-fix-616fcf68c63ddb58",
+    "before": "phố hàng bồ 79",
+    "after": "phố hàng bồ, số 79",
+    "poi_name": "79 Phố Hàng Bồ",
+    "rule": "street_first_with_explicit_number_marker"
+  },
+  {
+    "query_id": "hnq20k-v5-fix-623c7087cbbb569d",
+    "before": "phố phan chu trinh 33",
+    "after": "phố phan chu trinh, số 33",
+    "poi_name": "33 Phố Phan Chu Trinh",
+    "rule": "street_first_with_explicit_number_marker"
+  },
+  {
+    "query_id": "hnq20k-v5-fix-d12667bfbe23da63",
+    "before": "phố tô hiến thành 65a",
+    "after": "phố tô hiến thành, 65a",
+    "poi_name": "65A Phố Tô Hiến Thành",
+    "rule": "street_first_with_explicit_number_marker"
+  },
+  {
+    "query_id": "hnq20k-v5-fix-233fe378fd661ee8",
+    "before": "đường giải phóng 8",
+    "after": "đường giải phóng, số 8",
+    "poi_name": "8 Đường Giải Phóng",
+    "rule": "street_first_with_explicit_number_marker"
+  },
+  {
+    "query_id": "hnq20k-v5-fix-4ad13c8689e2ae3c",
+    "before": "ngõ 101 phạm ngọc thạch 39",
+    "after": "ngõ 101 phạm ngọc thạch, số 39",
+    "poi_name": "39 Ngõ 101 Phạm Ngọc Thạch",
+    "rule": "street_first_with_explicit_number_marker"
+  },
+  {
+    "query_id": "hnq20k-v5-fix-9b836c46fd8b3e46",
+    "before": "phố chùa bộc 89",
+    "after": "phố chùa bộc, số 89",
+    "poi_name": "89 Phố Chùa Bộc",
+    "rule": "street_first_with_explicit_number_marker"
+  },
+  {
+    "query_id": "hnq20k-v5-fix-5f8a8928d5151236",
+    "before": "phố hồng tiến 379",
+    "after": "phố hồng tiến, số 379",
+    "poi_name": "379 Phố Hồng Tiến",
+    "rule": "street_first_with_explicit_number_marker"
+  },
+  {
+    "query_id": "hnq20k-v5-fix-8fe7699a7c5f4bb4",
+    "before": "đường la thành 212",
+    "after": "đường la thành, số 212",
+    "poi_name": "212 Đường La Thành",
+    "rule": "street_first_with_explicit_number_marker"
+  },
+  {
+    "query_id": "hnq20k-v5-fix-d2ee3562c2a7e0b7",
+    "before": "phố tràng tiền 60",
+    "after": "phố tràng tiền, số 60",
+    "poi_name": "60 Phố Tràng Tiền",
+    "rule": "street_first_with_explicit_number_marker"
+  },
+  {
+    "query_id": "hnq20k-v5-fix-2ac4ae86c4d06f77",
+    "before": "phố cửa đông 12",
+    "after": "phố cửa đông, số 12",
+    "poi_name": "12 Phố Cửa Đông",
+    "rule": "street_first_with_explicit_number_marker"
+  },
+  {
+    "query_id": "hnq20k-v5-fix-d150472245e9ada1",
+    "before": "phố xã đàn 197",
+    "after": "phố xã đàn, số 197",
+    "poi_name": "197 Phố Xã Đàn",
+    "rule": "street_first_with_explicit_number_marker"
+  },
+  {
+    "query_id": "hnq20k-v5-fix-8c32ab16042a8c58",
+    "before": "phố thái phiên 35",
+    "after": "phố thái phiên, số 35",
+    "poi_name": "35 Phố Thái Phiên",
+    "rule": "street_first_with_explicit_number_marker"
+  },
+  {
+    "query_id": "hnq20k-v5-fix-cef4c1a92a05ed4c",
+    "before": "đường láng 448",
+    "after": "đường láng, số 448",
+    "poi_name": "448 Đường Láng",
+    "rule": "street_first_with_explicit_number_marker"
+  },
+  {
+    "query_id": "hnq20k-v5-fix-8f7287fac5afd415",
+    "before": "đường trần nhật duật 32",
+    "after": "đường trần nhật duật, số 32",
+    "poi_name": "32 Đường Trần Nhật Duật",
+    "rule": "street_first_with_explicit_number_marker"
+  },
+  {
+    "query_id": "hnq20k-v5-fix-7d5defc0cc5299b7",
+    "before": "phố thuốc bắc 67",
+    "after": "phố thuốc bắc, số 67",
+    "poi_name": "67 Phố Thuốc Bắc",
+    "rule": "street_first_with_explicit_number_marker"
+  },
+  {
+    "query_id": "hnq20k-v5-fix-53c681ce8f3b21d7",
+    "before": "phố bà triệu 50a",
+    "after": "phố bà triệu, 50a",
+    "poi_name": "50A Phố Bà Triệu",
+    "rule": "street_first_with_explicit_number_marker"
+  },
+  {
+    "query_id": "hnq20k-v5-fix-3887d95e5c6a7adc",
+    "before": "đường trường chinh 198",
+    "after": "đường trường chinh, số 198",
+    "poi_name": "198 Đường Trường Chinh",
+    "rule": "street_first_with_explicit_number_marker"
+  },
+  {
+    "query_id": "hnq20k-v5-fix-7e3545898798fd8c",
+    "before": "phố tây sơn 31",
+    "after": "phố tây sơn, số 31",
+    "poi_name": "31 Phố Tây Sơn",
+    "rule": "street_first_with_explicit_number_marker"
+  },
+  {
+    "query_id": "hnq20k-v5-fix-f365b371572074a1",
+    "before": "phố sơn tây 32-a1",
+    "after": "phố sơn tây, 32-a1",
+    "poi_name": "32-A1 Phố Sơn Tây",
+    "rule": "street_first_with_explicit_number_marker"
+  },
+  {
+    "query_id": "hnq20k-v5-fix-b10764c21bbb6978",
+    "before": "phố nguyên hồng 36",
+    "after": "phố nguyên hồng, số 36",
+    "poi_name": "36 Phố Nguyên Hồng",
+    "rule": "street_first_with_explicit_number_marker"
+  },
+  {
+    "query_id": "hnq20k-v5-fix-0a057e9238f09004",
+    "before": "phố nguyễn hữu huân 54",
+    "after": "phố nguyễn hữu huân, số 54",
+    "poi_name": "54 Phố Nguyễn Hữu Huân",
+    "rule": "street_first_with_explicit_number_marker"
+  },
+  {
+    "query_id": "hnq20k-v5-fix-be380b904fe634f4",
+    "before": "phố nguyễn ngọc nại 15",
+    "after": "phố nguyễn ngọc nại, số 15",
+    "poi_name": "15 Phố Nguyễn Ngọc Nại",
+    "rule": "street_first_with_explicit_number_marker"
+  },
+  {
+    "query_id": "hnq20k-v5-fix-9b16eef2720603f1",
+    "before": "ngọc trai 20 nt20-08",
+    "after": "ngọc trai 20, nt20-08",
+    "poi_name": "NT20-08 Ngọc Trai 20",
+    "rule": "street_first_with_explicit_number_marker"
+  },
+  {
+    "query_id": "hnq20k-v5-fix-05e9e5b37ae1e03a",
+    "before": "phố bùi thị xuân 141",
+    "after": "phố bùi thị xuân, số 141",
+    "poi_name": "141 Phố Bùi Thị Xuân",
+    "rule": "street_first_with_explicit_number_marker"
+  },
+  {
+    "query_id": "hnq20k-v5-fix-fcb4af1aac0bfa5f",
+    "before": "phố trần quốc hoàn 20",
+    "after": "phố trần quốc hoàn, số 20",
+    "poi_name": "20 Phố Trần Quốc Hoàn",
+    "rule": "street_first_with_explicit_number_marker"
+  },
+  {
+    "query_id": "hnq20k-v5-fix-71c578396831dfb8",
+    "before": "ngõ xã đàn 2 185",
+    "after": "ngõ xã đàn 2, số 185",
+    "poi_name": "185 Ngõ Xã Đàn 2",
+    "rule": "street_first_with_explicit_number_marker"
+  },
+  {
+    "query_id": "hnq20k-v5-fix-b6b84b48ee60adb5",
+    "before": "phố bà triệu 155",
+    "after": "phố bà triệu, số 155",
+    "poi_name": "155 Phố Bà Triệu",
+    "rule": "street_first_with_explicit_number_marker"
+  },
+  {
+    "query_id": "hnq20k-v5-fix-06767ab1c77c597e",
+    "before": "đường âu cơ 246",
+    "after": "đường âu cơ, số 246",
+    "poi_name": "246 Đường Âu Cơ",
+    "rule": "street_first_with_explicit_number_marker"
+  },
+  {
+    "query_id": "hnq20k-v5-fix-28a87efa558f02ba",
+    "before": "ngõ 61 phạm tuấn tài 2",
+    "after": "ngõ 61 phạm tuấn tài, số 2",
+    "poi_name": "2 Ngõ 61 Phạm Tuấn Tài",
+    "rule": "street_first_with_explicit_number_marker"
+  },
+  {
+    "query_id": "hnq20k-v5-fix-644de6ceaa5138cf",
+    "before": "viễn đông 1 21",
+    "after": "viễn đông 1, số 21",
+    "poi_name": "21 Viễn Đông 1",
+    "rule": "street_first_with_explicit_number_marker"
+  },
+  {
+    "query_id": "hnq20k-v5-fix-6a6a35a7c98de576",
+    "before": "phố kim mã 161",
+    "after": "phố kim mã, số 161",
+    "poi_name": "161 Phố Kim Mã",
+    "rule": "street_first_with_explicit_number_marker"
+  },
+  {
+    "query_id": "hnq20k-v5-fix-c5412d67bab6bf5e",
+    "before": "ngo 90 khuat duy tien 19",
+    "after": "ngo 90 khuat duy tien, so 19",
+    "poi_name": "19 Ngõ 90 Khuất Duy Tiến",
+    "rule": "street_first_with_explicit_number_marker"
+  },
+  {
+    "query_id": "hnq20k-v5-fix-5068d2b1c665aed3",
+    "before": "ngõ 1 26",
+    "after": "ngõ 1, số 26",
+    "poi_name": "26 Ngõ 1",
+    "rule": "street_first_with_explicit_number_marker"
+  },
+  {
+    "query_id": "hnq20k-v5-fix-fd89d08b7d9bc901",
+    "before": "ngách 335/28 an dương vương 2",
+    "after": "ngách 335/28 an dương vương, số 2",
+    "poi_name": "2 Ngách 335/28 An Dương Vương",
+    "rule": "street_first_with_explicit_number_marker"
+  },
+  {
+    "query_id": "hnq20k-v5-fix-68ff1b199439a93f",
+    "before": "đường thiên nga 5 227",
+    "after": "đường thiên nga 5, số 227",
+    "poi_name": "227 Đường Thiên Nga 5",
+    "rule": "street_first_with_explicit_number_marker"
+  },
+  {
+    "query_id": "hnq20k-v5-fix-187ce4b9e93ec679",
+    "before": "phố triệu việt vương 127b",
+    "after": "phố triệu việt vương, 127b",
+    "poi_name": "127B Phố Triệu Việt Vương",
+    "rule": "street_first_with_explicit_number_marker"
+  },
+  {
+    "query_id": "hnq20k-v5-fix-4031b7685d65131f",
+    "before": "ngọc trai 9 nt09-27",
+    "after": "ngọc trai 9, nt09-27",
+    "poi_name": "NT09-27 Ngọc Trai 9",
+    "rule": "street_first_with_explicit_number_marker"
+  },
+  {
+    "query_id": "hnq20k-v5-fix-ec2d13ab59472ca6",
+    "before": "ngõ 99 định công hạ 98",
+    "after": "ngõ 99 định công hạ, số 98",
+    "poi_name": "98 Ngõ 99 Định Công Hạ",
+    "rule": "street_first_with_explicit_number_marker"
+  },
+  {
+    "query_id": "hnq20k-v5-fix-7d0bb31f3395cb9e",
+    "before": "ngõ 421 hoàng quốc việt 1",
+    "after": "ngõ 421 hoàng quốc việt, số 1",
+    "poi_name": "1 Ngõ 421 Hoàng Quốc Việt",
+    "rule": "street_first_with_explicit_number_marker"
+  },
+  {
+    "query_id": "hnq20k-v5-fix-baaf0e2f67324f6b",
+    "before": "thời đại 8 30",
+    "after": "thời đại 8, số 30",
+    "poi_name": "30 Thời Đại 8",
+    "rule": "street_first_with_explicit_number_marker"
+  },
+  {
+    "query_id": "hnq20k-v5-fix-d65ed73241d633ac",
+    "before": "san hô 12 sh12-24",
+    "after": "san hô 12, sh12-24",
+    "poi_name": "SH12-24 San Hô 12",
+    "rule": "street_first_with_explicit_number_marker"
+  },
+  {
+    "query_id": "hnq20k-v5-fix-df496eee03929fb3",
+    "before": "ngõ 120 yên lãng 24",
+    "after": "ngõ 120 yên lãng, số 24",
+    "poi_name": "24 Ngõ 120 Yên Lãng",
+    "rule": "street_first_with_explicit_number_marker"
+  },
+  {
+    "query_id": "hnq20k-v5-fix-2a1272e6b29228ca",
+    "before": "phố hàng than 73",
+    "after": "phố hàng than, số 73",
+    "poi_name": "73 Phố Hàng Than",
+    "rule": "street_first_with_explicit_number_marker"
+  },
+  {
+    "query_id": "hnq20k-v5-fix-4998019e3361c37b",
+    "before": "đường thiên nga 3 75",
+    "after": "đường thiên nga 3, số 75",
+    "poi_name": "75 Đường Thiên Nga 3",
+    "rule": "street_first_with_explicit_number_marker"
+  },
+  {
+    "query_id": "hnq20k-v5-fix-832eef404e8b78a6",
+    "before": "phố quán thánh 80",
+    "after": "phố quán thánh, số 80",
+    "poi_name": "80 Phố Quán Thánh",
+    "rule": "street_first_with_explicit_number_marker"
+  },
+  {
+    "query_id": "hnq20k-v5-fix-fc4edc1594c97541",
+    "before": "phố thuốc bắc 95",
+    "after": "phố thuốc bắc, số 95",
+    "poi_name": "95 Phố Thuốc Bắc",
+    "rule": "street_first_with_explicit_number_marker"
+  },
+  {
+    "query_id": "hnq20k-v5-fix-84800b0528f4d866",
+    "before": "đường kim giang 166",
+    "after": "đường kim giang, số 166",
+    "poi_name": "166 Đường Kim Giang",
+    "rule": "street_first_with_explicit_number_marker"
+  },
+  {
+    "query_id": "hnq20k-v5-fix-44fa9f4550ebef82",
+    "before": "ngõ 99 định công hạ 103",
+    "after": "ngõ 99 định công hạ, số 103",
+    "poi_name": "103 Ngõ 99 Định Công Hạ",
+    "rule": "street_first_with_explicit_number_marker"
+  },
+  {
+    "query_id": "hnq20k-v5-fix-a58ee053c76e5f83",
+    "before": "đường cổ nhuế 469",
+    "after": "đường cổ nhuế, số 469",
+    "poi_name": "469 Đường Cổ Nhuế",
+    "rule": "street_first_with_explicit_number_marker"
+  },
+  {
+    "query_id": "hnq20k-v5-fix-9b64f3589903df50",
+    "before": "ngõ 54 kim quan thượng 16",
+    "after": "ngõ 54 kim quan thượng, số 16",
+    "poi_name": "16 Ngõ 54 Kim Quan Thượng",
+    "rule": "street_first_with_explicit_number_marker"
+  },
+  {
+    "query_id": "hnq20k-v5-fix-2a5732ef1b7b81bc",
+    "before": "ngách 1/88 phạm tuấn tài 3",
+    "after": "ngách 1/88 phạm tuấn tài, số 3",
+    "poi_name": "3 Ngách 1/88 Phạm Tuấn Tài",
+    "rule": "street_first_with_explicit_number_marker"
+  },
+  {
+    "query_id": "hnq20k-v5-fix-cf59360b47bea336",
+    "before": "đường thành phố 1.1 8",
+    "after": "đường thành phố 1.1, số 8",
+    "poi_name": "8 Đường Thành Phố 1.1",
+    "rule": "street_first_with_explicit_number_marker"
+  },
+  {
+    "query_id": "hnq20k-v5-fix-08263d97a08a6a72",
+    "before": "ngô gia tự 17b",
+    "after": "ngô gia tự, 17b",
+    "poi_name": "17B Ngô Gia Tự",
+    "rule": "street_first_with_explicit_number_marker"
+  },
+  {
+    "query_id": "hnq20k-v5-fix-62b87746d294c1c9",
+    "before": "phố phạm ngọc thạch 52",
+    "after": "phố phạm ngọc thạch, số 52",
+    "poi_name": "52 Phố Phạm Ngọc Thạch",
+    "rule": "street_first_with_explicit_number_marker"
+  },
+  {
+    "query_id": "hnq20k-v5-fix-6aa41e3c0f353382",
+    "before": "đường nguyễn văn cừ 427",
+    "after": "đường nguyễn văn cừ, số 427",
+    "poi_name": "427 Đường Nguyễn Văn Cừ",
+    "rule": "street_first_with_explicit_number_marker"
+  },
+  {
+    "query_id": "hnq20k-v5-fix-5e1782b441dfae33",
+    "before": "phố phan bội châu 8",
+    "after": "phố phan bội châu, số 8",
+    "poi_name": "8 Phố Phan Bội Châu",
+    "rule": "street_first_with_explicit_number_marker"
+  },
+  {
+    "query_id": "hnq20k-v5-fix-73f9c08f017943a9",
+    "before": "viễn đông 5 53",
+    "after": "viễn đông 5, số 53",
+    "poi_name": "53 Viễn Đông 5",
+    "rule": "street_first_with_explicit_number_marker"
+  },
+  {
+    "query_id": "hnq20k-v5-fix-8d2cd604dca44db2",
+    "before": "phố phúc tân 11",
+    "after": "phố phúc tân, số 11",
+    "poi_name": "11 Phố Phúc Tân",
+    "rule": "street_first_with_explicit_number_marker"
+  },
+  {
+    "query_id": "hnq20k-v5-fix-42b1d8b4b0bfe70d",
+    "before": "ngõ 15 tây mỗ 7",
+    "after": "ngõ 15 tây mỗ, số 7",
+    "poi_name": "7 Ngõ 15 Tây Mỗ",
+    "rule": "street_first_with_explicit_number_marker"
+  },
+  {
+    "query_id": "hnq20k-v5-fix-0e56de0211551c95",
+    "before": "mặt hồ tai trâu 18",
+    "after": "mặt hồ tai trâu, số 18",
+    "poi_name": "18 Mặt hồ tai trâu",
+    "rule": "street_first_with_explicit_number_marker"
+  },
+  {
+    "query_id": "hnq20k-v5-fix-78122453559f0893",
+    "before": "đường hoàng quốc việt 148",
+    "after": "đường hoàng quốc việt, số 148",
+    "poi_name": "148 Đường Hoàng Quốc Việt",
+    "rule": "street_first_with_explicit_number_marker"
+  },
+  {
+    "query_id": "hnq20k-v5-fix-ee92ac5fd8fc0874",
+    "before": "đường hữu hưng 257",
+    "after": "đường hữu hưng, số 257",
+    "poi_name": "257 Đường Hữu Hưng",
+    "rule": "street_first_with_explicit_number_marker"
+  },
+  {
+    "query_id": "hnq20k-v5-fix-301f114c89bf43b6",
+    "before": "đường thiên nga 5 14",
+    "after": "đường thiên nga 5, số 14",
+    "poi_name": "14 Đường Thiên Nga 5",
+    "rule": "street_first_with_explicit_number_marker"
+  },
+  {
+    "query_id": "hnq20k-v5-fix-e65f9f0d5b567c77",
+    "before": "đường thiên nga 4 60",
+    "after": "đường thiên nga 4, số 60",
+    "poi_name": "60 Đường Thiên Nga 4",
+    "rule": "street_first_with_explicit_number_marker"
+  },
+  {
+    "query_id": "hnq20k-v5-fix-e027309e6c8e8f0e",
+    "before": "ánh dương 10 31",
+    "after": "ánh dương 10, số 31",
+    "poi_name": "31 Ánh Dương 10",
+    "rule": "street_first_with_explicit_number_marker"
+  },
+  {
+    "query_id": "hnq20k-v5-fix-53c9ecd169869b02",
+    "before": "phố đội cấn 147",
+    "after": "phố đội cấn, số 147",
+    "poi_name": "147 Phố Đội Cấn",
+    "rule": "street_first_with_explicit_number_marker"
+  },
+  {
+    "query_id": "hnq20k-v5-fix-3e4cf2412df5b713",
+    "before": "phố trung hoà 84",
+    "after": "phố trung hoà, số 84",
+    "poi_name": "84 Phố Trung Hoà",
+    "rule": "street_first_with_explicit_number_marker"
+  },
+  {
+    "query_id": "hnq20k-v5-fix-8db6515d8171b4bf",
+    "before": "phố hàng mã 72",
+    "after": "phố hàng mã, số 72",
+    "poi_name": "72 Phố Hàng Mã",
+    "rule": "street_first_with_explicit_number_marker"
+  },
+  {
+    "query_id": "hnq20k-v5-fix-6c6ecc2190a4cb07",
+    "before": "nhật nguyệt 3 61",
+    "after": "nhật nguyệt 3, số 61",
+    "poi_name": "61 Nhật Nguyệt 3",
+    "rule": "street_first_with_explicit_number_marker"
+  },
+  {
+    "query_id": "hnq20k-v5-fix-b8f5ee0c6d79d2a8",
+    "before": "phố trích sài 117",
+    "after": "phố trích sài, số 117",
+    "poi_name": "117 Phố Trích Sài",
+    "rule": "street_first_with_explicit_number_marker"
+  },
+  {
+    "query_id": "hnq20k-v5-fix-23e9d4fd690cff14",
+    "before": "đường âu cơ 429",
+    "after": "đường âu cơ, số 429",
+    "poi_name": "429 Đường Âu Cơ",
+    "rule": "street_first_with_explicit_number_marker"
+  },
+  {
+    "query_id": "hnq20k-v5-fix-9b8fe60c44b09f83",
+    "before": "phố trần hưng đạo 106",
+    "after": "phố trần hưng đạo, số 106",
+    "poi_name": "106 Phố Trần Hưng Đạo",
+    "rule": "street_first_with_explicit_number_marker"
+  },
+  {
+    "query_id": "hnq20k-v5-fix-52f15128c557f4b1",
+    "before": "phố phủ doãn 17a",
+    "after": "phố phủ doãn, 17a",
+    "poi_name": "17a Phố Phủ Doãn",
+    "rule": "street_first_with_explicit_number_marker"
+  },
+  {
+    "query_id": "hnq20k-v5-fix-7fa5cf320eafb420",
+    "before": "phố nguyễn gia thiều 27b",
+    "after": "phố nguyễn gia thiều, 27b",
+    "poi_name": "27B Phố Nguyễn Gia Thiều",
+    "rule": "street_first_with_explicit_number_marker"
+  },
+  {
+    "query_id": "hnq20k-v5-fix-1bee9af430a96254",
+    "before": "đường giải phóng 207",
+    "after": "đường giải phóng, số 207",
+    "poi_name": "207 đường Giải Phóng",
+    "rule": "street_first_with_explicit_number_marker"
+  },
+  {
+    "query_id": "hnq20k-v5-fix-ede0029074384f8f",
+    "before": "đường trường chinh 182",
+    "after": "đường trường chinh, số 182",
+    "poi_name": "182 Đường Trường Chinh",
+    "rule": "street_first_with_explicit_number_marker"
+  },
+  {
+    "query_id": "hnq20k-v5-fix-552a0be635d30c9a",
+    "before": "phố lê thái tổ 14",
+    "after": "phố lê thái tổ, số 14",
+    "poi_name": "14 Phố Lê Thái Tổ",
+    "rule": "street_first_with_explicit_number_marker"
+  },
+  {
+    "query_id": "hnq20k-v5-fix-6662b061613fb7a6",
+    "before": "phố chùa bộc 68",
+    "after": "phố chùa bộc, số 68",
+    "poi_name": "68 Phố Chùa Bộc",
+    "rule": "street_first_with_explicit_number_marker"
+  },
+  {
+    "query_id": "hnq20k-v5-fix-3dca840cccdcf9a7",
+    "before": "phố nguyễn gia thiều 11b",
+    "after": "phố nguyễn gia thiều, 11b",
+    "poi_name": "11B Phố Nguyễn Gia Thiều",
+    "rule": "street_first_with_explicit_number_marker"
+  },
+  {
+    "query_id": "hnq20k-v5-fix-a9120fcba02d4fae",
+    "before": "phố thanh bảo 24",
+    "after": "phố thanh bảo, số 24",
+    "poi_name": "24 Phố Thanh Bảo",
+    "rule": "street_first_with_explicit_number_marker"
+  },
+  {
+    "query_id": "hnq20k-v5-fix-ba99d18cc3d4fe62",
+    "before": "hàng bè 37",
+    "after": "hàng bè, số 37",
+    "poi_name": "37 Hàng Bè",
+    "rule": "street_first_with_explicit_number_marker"
+  },
+  {
+    "query_id": "hnq20k-v5-fix-0c4d8612c0a48ecd",
+    "before": "phố thiền quang 8",
+    "after": "phố thiền quang, số 8",
+    "poi_name": "8 Phố Thiền Quang",
+    "rule": "street_first_with_explicit_number_marker"
+  },
+  {
+    "query_id": "hnq20k-v5-fix-506ecb62bdf94ee3",
+    "before": "phố thanh nhàn 333",
+    "after": "phố thanh nhàn, số 333",
+    "poi_name": "333 Phố Thanh Nhàn",
+    "rule": "street_first_with_explicit_number_marker"
+  },
+  {
+    "query_id": "hnq20k-v5-fix-0c2c71e0279dbb63",
+    "before": "phố bùi thị xuân 18",
+    "after": "phố bùi thị xuân, số 18",
+    "poi_name": "18 Phố Bùi Thị Xuân",
+    "rule": "street_first_with_explicit_number_marker"
+  },
+  {
+    "query_id": "hnq20k-v5-fix-a476adf5b76e9dbb",
+    "before": "phố yên lãng 123",
+    "after": "phố yên lãng, số 123",
+    "poi_name": "123 Phố Yên Lãng",
+    "rule": "street_first_with_explicit_number_marker"
+  },
+  {
+    "query_id": "hnq20k-v5-fix-2766d246752e2b12",
+    "before": "phố xã đàn 229",
+    "after": "phố xã đàn, số 229",
+    "poi_name": "229 Phố Xã Đàn",
+    "rule": "street_first_with_explicit_number_marker"
+  },
+  {
+    "query_id": "hnq20k-v5-fix-6720ee5e17544ce6",
+    "before": "phố phạm ngũ lão 9",
+    "after": "phố phạm ngũ lão, số 9",
+    "poi_name": "9 Phố Phạm Ngũ Lão",
+    "rule": "street_first_with_explicit_number_marker"
+  },
+  {
+    "query_id": "hnq20k-v5-fix-ce68e8fd0d50f5fa",
+    "before": "phố quốc tử giám 15",
+    "after": "phố quốc tử giám, số 15",
+    "poi_name": "15 Phố Quốc Tử Giám",
+    "rule": "street_first_with_explicit_number_marker"
+  },
+  {
+    "query_id": "hnq20k-v5-fix-9892a799f1d8b3c1",
+    "before": "đường thành phố 1 15",
+    "after": "đường thành phố 1, số 15",
+    "poi_name": "15 Đường Thành Phố 1",
+    "rule": "street_first_with_explicit_number_marker"
+  },
+  {
+    "query_id": "hnq20k-v5-fix-f73752fb326a46d0",
+    "before": "đường âu cơ 478",
+    "after": "đường âu cơ, số 478",
+    "poi_name": "478 Đường Âu Cơ",
+    "rule": "street_first_with_explicit_number_marker"
+  },
+  {
+    "query_id": "hnq20k-v5-fix-79f167546570b962",
+    "before": "phố giang văn minh 75",
+    "after": "phố giang văn minh, số 75",
+    "poi_name": "75 Phố Giang Văn Minh",
+    "rule": "street_first_with_explicit_number_marker"
+  },
+  {
+    "query_id": "hnq20k-v5-fix-1a9954fd287f68a8",
+    "before": "phố lê hồng phong 41",
+    "after": "phố lê hồng phong, số 41",
+    "poi_name": "41 Phố Lê Hồng Phong",
+    "rule": "street_first_with_explicit_number_marker"
+  },
+  {
+    "query_id": "hnq20k-v5-fix-e23109b440d9356e",
+    "before": "đường thành phố 1 9",
+    "after": "đường thành phố 1, số 9",
+    "poi_name": "9 Đường Thành Phố 1",
+    "rule": "street_first_with_explicit_number_marker"
+  },
+  {
+    "query_id": "hnq20k-v5-fix-f184e2a4e3d27123",
+    "before": "ngõ 64 9",
+    "after": "ngõ 64, số 9",
+    "poi_name": "9 Ngõ 64",
+    "rule": "street_first_with_explicit_number_marker"
+  },
+  {
+    "query_id": "hnq20k-v5-fix-2286d6005ab5e1b9",
+    "before": "phố trần hưng đạo 16",
+    "after": "phố trần hưng đạo, số 16",
+    "poi_name": "16 Phố Trần Hưng Đạo",
+    "rule": "street_first_with_explicit_number_marker"
+  },
+  {
+    "query_id": "hnq20k-v5-fix-f53ae7930362110d",
+    "before": "phố hàng giầy 24",
+    "after": "phố hàng giầy, số 24",
+    "poi_name": "24 Phố Hàng Giầy",
+    "rule": "street_first_with_explicit_number_marker"
+  },
+  {
+    "query_id": "hnq20k-v5-fix-a903789bcf2f61b2",
+    "before": "đường thụy phương 57",
+    "after": "đường thụy phương, số 57",
+    "poi_name": "57 Đường Thụy Phương",
+    "rule": "street_first_with_explicit_number_marker"
+  },
+  {
+    "query_id": "hnq20k-v5-fix-26f913a8f49e37b3",
+    "before": "phố phạm ngọc thạch 68",
+    "after": "phố phạm ngọc thạch, số 68",
+    "poi_name": "68 Phố Phạm Ngọc Thạch",
+    "rule": "street_first_with_explicit_number_marker"
+  },
+  {
+    "query_id": "hnq20k-v5-fix-b8f73a0261b9e1b8",
+    "before": "đường thành 79",
+    "after": "đường thành, số 79",
+    "poi_name": "79 Đường Thành",
+    "rule": "street_first_with_explicit_number_marker"
+  },
+  {
+    "query_id": "hnq20k-v5-fix-05f7941d9c2603ac",
+    "before": "ngõ 29 thượng thanh 78",
+    "after": "ngõ 29 thượng thanh, số 78",
+    "poi_name": "78 Ngõ 29 Thượng Thanh",
+    "rule": "street_first_with_explicit_number_marker"
+  },
+  {
+    "query_id": "hnq20k-v5-fix-dfdcd7df34454b1a",
+    "before": "five star mỹ đình b4-tt2",
+    "after": "five star mỹ đình, b4-tt2",
+    "poi_name": "B4-TT2 Five Star Mỹ Đình",
+    "rule": "street_first_with_explicit_number_marker"
+  },
+  {
+    "query_id": "hnq20k-v5-fix-bbbd33b747dfd5d0",
+    "before": "ngõ 87 yên duyên 87",
+    "after": "ngõ 87 yên duyên, số 87",
+    "poi_name": "87 Ngõ 87 Yên Duyên",
+    "rule": "street_first_with_explicit_number_marker"
+  },
+  {
+    "query_id": "hnq20k-v5-fix-52a6c3fe1b522240",
+    "before": "phố quốc tử giám 53",
+    "after": "phố quốc tử giám, số 53",
+    "poi_name": "53 Phố Quốc Tử Giám",
+    "rule": "street_first_with_explicit_number_marker"
+  },
+  {
+    "query_id": "hnq20k-v5-fix-4e7c46f1d63b958e",
+    "before": "phố nhật chiêu 113",
+    "after": "phố nhật chiêu, số 113",
+    "poi_name": "113 Phố Nhật Chiêu",
+    "rule": "street_first_with_explicit_number_marker"
+  },
+  {
+    "query_id": "hnq20k-v5-fix-e691538744c6f3fa",
+    "before": "phố thái hà 356",
+    "after": "phố thái hà, số 356",
+    "poi_name": "356 Phố Thái Hà",
+    "rule": "street_first_with_explicit_number_marker"
+  },
+  {
+    "query_id": "hnq20k-v5-fix-bee617c8dd05ebd7",
+    "before": "phố hàng khay 11",
+    "after": "phố hàng khay, số 11",
+    "poi_name": "11 Phố Hàng Khay",
+    "rule": "street_first_with_explicit_number_marker"
+  },
+  {
+    "query_id": "hnq20k-v5-fix-7c1c7ec47c7f238f",
+    "before": "đường phan trọng tuệ 70",
+    "after": "đường phan trọng tuệ, số 70",
+    "poi_name": "70 Đường Phan Trọng Tuệ",
+    "rule": "street_first_with_explicit_number_marker"
+  },
+  {
+    "query_id": "hnq20k-v5-fix-5229ace76c7648ca",
+    "before": "đường giải phóng 246",
+    "after": "đường giải phóng, số 246",
+    "poi_name": "246 Đường Giải Phóng",
+    "rule": "street_first_with_explicit_number_marker"
+  },
+  {
+    "query_id": "hnq20k-v5-fix-f88ec65acb3f5fab",
+    "before": "trần xuân soạn 11- 13- 15",
+    "after": "trần xuân soạn, số 11- 13- 15",
+    "poi_name": "11- 13- 15 Trần Xuân Soạn",
+    "rule": "street_first_with_explicit_number_marker"
+  },
+  {
+    "query_id": "hnq20k-v5-fix-e26a14b523fe7113",
+    "before": "ngõ 144 11",
+    "after": "ngõ 144, số 11",
+    "poi_name": "11 Ngõ 144",
+    "rule": "street_first_with_explicit_number_marker"
+  },
+  {
+    "query_id": "hnq20k-v5-fix-3d5141c0ed5d3d70",
+    "before": "phố trúc bạch 53",
+    "after": "phố trúc bạch, số 53",
+    "poi_name": "53 Phố Trúc Bạch",
+    "rule": "street_first_with_explicit_number_marker"
+  },
+  {
+    "query_id": "hnq20k-v5-fix-e5dc386da9394391",
+    "before": "đường tây mỗ 21",
+    "after": "đường tây mỗ, số 21",
+    "poi_name": "21 Đường Tây Mỗ",
+    "rule": "street_first_with_explicit_number_marker"
+  },
+  {
+    "query_id": "hnq20k-v5-fix-74ccae4cf75f49c0",
+    "before": "đường lê quang đạo 15",
+    "after": "đường lê quang đạo, số 15",
+    "poi_name": "15 Đường Lê Quang Đạo",
+    "rule": "street_first_with_explicit_number_marker"
+  },
+  {
+    "query_id": "hnq20k-v5-fix-58829bd54d11412d",
+    "before": "phố hoàng như tiếp số nhà 95, tổ 22",
+    "after": "phố hoàng như tiếp, số nhà 95, tổ 22",
+    "poi_name": "số nhà 95, tổ 22 Phố Hoàng Như Tiếp",
+    "rule": "street_first_with_explicit_number_marker"
+  },
+  {
+    "query_id": "hnq20k-v5-fix-f2a4ccca012ff068",
+    "before": "định công 357",
+    "after": "định công, số 357",
+    "poi_name": "357 Định Công",
+    "rule": "street_first_with_explicit_number_marker"
+  },
+  {
+    "query_id": "hnq20k-v5-fix-aa33643ffbf141c5",
+    "before": "yên thái 27",
+    "after": "yên thái, số 27",
+    "poi_name": "27 Yên Thái",
+    "rule": "street_first_with_explicit_number_marker"
+  },
+  {
+    "query_id": "hnq20k-v5-fix-50874281759e76f8",
+    "before": "đường thiên nga 51",
+    "after": "đường thiên nga, số 51",
+    "poi_name": "51 Đường Thiên Nga",
+    "rule": "street_first_with_explicit_number_marker"
+  },
+  {
+    "query_id": "hnq20k-v5-fix-56b54a9fb48b306c",
+    "before": "đường cổ nhuế 463 xóm 19a",
+    "after": "đường cổ nhuế, 463 xóm 19a",
+    "poi_name": "463 Xóm 19A Đường Cổ Nhuế",
+    "rule": "street_first_with_explicit_number_marker"
+  },
+  {
+    "query_id": "hnq20k-v5-fix-0a908127bde661d1",
+    "before": "phố nhật chiêu 149",
+    "after": "phố nhật chiêu, số 149",
+    "poi_name": "149 Phố Nhật Chiêu",
+    "rule": "street_first_with_explicit_number_marker"
+  },
+  {
+    "query_id": "hnq20k-v5-fix-11116df2e3878869",
+    "before": "phố quan nhân 115",
+    "after": "phố quan nhân, số 115",
+    "poi_name": "115 Phố Quan Nhân",
+    "rule": "street_first_with_explicit_number_marker"
+  },
+  {
+    "query_id": "hnq20k-v5-fix-bfebfbff533e9dba",
+    "before": "hàng bè 35",
+    "after": "hàng bè, số 35",
+    "poi_name": "35 Hàng Bè",
+    "rule": "street_first_with_explicit_number_marker"
+  },
+  {
+    "query_id": "hnq20k-v5-fix-9aebe866bef9f199",
+    "before": "phố định công hạ 67",
+    "after": "phố định công hạ, số 67",
+    "poi_name": "67 Phố Định Công Hạ",
+    "rule": "street_first_with_explicit_number_marker"
+  },
+  {
+    "query_id": "hnq20k-v5-fix-a2937ab96b5c3616",
+    "before": "ngõ 238 âu cơ 135",
+    "after": "ngõ 238 âu cơ, số 135",
+    "poi_name": "135 Ngõ 238 Âu Cơ",
+    "rule": "street_first_with_explicit_number_marker"
+  },
+  {
+    "query_id": "hnq20k-v5-fix-9b374d7bc109fc24",
+    "before": "ngõ 45 phạm tuấn tài 2",
+    "after": "ngõ 45 phạm tuấn tài, số 2",
+    "poi_name": "2 Ngõ 45 Phạm Tuấn Tài",
+    "rule": "street_first_with_explicit_number_marker"
+  },
+  {
+    "query_id": "hnq20k-v5-fix-6b3f86d259f52cd3",
+    "before": "đường hữu hưng 196",
+    "after": "đường hữu hưng, số 196",
+    "poi_name": "196 Đường Hữu Hưng",
+    "rule": "street_first_with_explicit_number_marker"
+  },
+  {
+    "query_id": "hnq20k-v5-fix-0c89130acb6a3f5a",
+    "before": "phố hàng trống 19",
+    "after": "phố hàng trống, số 19",
+    "poi_name": "19 Phố Hàng Trống",
+    "rule": "street_first_with_explicit_number_marker"
+  },
+  {
+    "query_id": "hnq20k-v5-fix-df4584533f0f709d",
+    "before": "ngách 640/21/10 nguyễn văn cừ sn 17, tổ 13",
+    "after": "ngách 640/21/10 nguyễn văn cừ, số 17, tổ 13",
+    "poi_name": "sn 17, tổ 13 Ngách 640/21/10 Nguyễn Văn Cừ",
+    "rule": "street_first_with_explicit_number_marker"
+  },
+  {
+    "query_id": "hnq20k-v5-fix-dceb279f5109756e",
+    "before": "phố huế 106",
+    "after": "phố huế, số 106",
+    "poi_name": "106 Phố Huế",
+    "rule": "street_first_with_explicit_number_marker"
+  },
+  {
+    "query_id": "hnq20k-v5-fix-15892283516a2de2",
+    "before": "đường thạch bàn 68",
+    "after": "đường thạch bàn, số 68",
+    "poi_name": "68 Đường Thạch Bàn",
+    "rule": "street_first_with_explicit_number_marker"
+  },
+  {
+    "query_id": "hnq20k-v5-fix-1ec95624cbde00e1",
+    "before": "đường nguyễn văn cừ 66",
+    "after": "đường nguyễn văn cừ, số 66",
+    "poi_name": "66 Đường Nguyễn Văn Cừ",
+    "rule": "street_first_with_explicit_number_marker"
+  },
+  {
+    "query_id": "hnq20k-v5-fix-d3f46fb84eda1497",
+    "before": "đường thành công 16",
+    "after": "đường thành công, số 16",
+    "poi_name": "16 Đường Thành Công",
+    "rule": "street_first_with_explicit_number_marker"
+  },
+  {
+    "query_id": "hnq20k-v5-fix-822545a3f75df401",
+    "before": "phố trịnh công sơn 59",
+    "after": "phố trịnh công sơn, số 59",
+    "poi_name": "59 Phố Trịnh Công Sơn",
+    "rule": "street_first_with_explicit_number_marker"
+  },
+  {
+    "query_id": "hnq20k-v5-fix-adfc9aed1371aa07",
+    "before": "đường xuân thủy 195",
+    "after": "đường xuân thủy, số 195",
+    "poi_name": "195 Đường Xuân Thủy",
+    "rule": "street_first_with_explicit_number_marker"
+  },
+  {
+    "query_id": "hnq20k-v5-fix-4263519156799783",
+    "before": "hai bà trưng 48",
+    "after": "hai bà trưng, số 48",
+    "poi_name": "48 Hai Bà Trưng",
+    "rule": "street_first_with_explicit_number_marker"
+  },
+  {
+    "query_id": "hnq20k-v5-fix-c75ef3fd371ebe1f",
+    "before": "ngõ 61 68",
+    "after": "ngõ 61, số 68",
+    "poi_name": "68 Ngõ 61",
+    "rule": "street_first_with_explicit_number_marker"
+  },
+  {
+    "query_id": "hnq20k-v5-fix-bc0b92cc8f8d8eab",
+    "before": "phố tôn đức thắng 292",
+    "after": "phố tôn đức thắng, số 292",
+    "poi_name": "292 Phố Tôn Đức Thắng",
+    "rule": "street_first_with_explicit_number_marker"
+  },
+  {
+    "query_id": "hnq20k-v5-fix-39e28d64cbd3b55e",
+    "before": "phố vũ tông phan 53",
+    "after": "phố vũ tông phan, số 53",
+    "poi_name": "53 Phố Vũ Tông Phan",
+    "rule": "street_first_with_explicit_number_marker"
+  },
+  {
+    "query_id": "hnq20k-v5-fix-fceeab0ce530b024",
+    "before": "đường thiên nga 66",
+    "after": "đường thiên nga, số 66",
+    "poi_name": "66 Đường Thiên Nga",
+    "rule": "street_first_with_explicit_number_marker"
+  },
+  {
+    "query_id": "hnq20k-v5-fix-7ce7c6d801817367",
+    "before": "phố hàng chĩnh 18",
+    "after": "phố hàng chĩnh, số 18",
+    "poi_name": "18 Phố Hàng Chĩnh",
+    "rule": "street_first_with_explicit_number_marker"
+  },
+  {
+    "query_id": "hnq20k-v5-fix-72e05c31f92674b7",
+    "before": "định công hạ 175",
+    "after": "định công hạ, số 175",
+    "poi_name": "175 Định Công Hạ",
+    "rule": "street_first_with_explicit_number_marker"
+  },
+  {
+    "query_id": "hnq20k-v5-fix-37a273dd140c5c7b",
+    "before": "ngõ 156 tam trinh 16",
+    "after": "ngõ 156 tam trinh, số 16",
+    "poi_name": "16 Ngõ 156 Tam Trinh",
+    "rule": "street_first_with_explicit_number_marker"
+  },
+  {
+    "query_id": "hnq20k-v5-fix-2a78af263a31927c",
+    "before": "phố hàng vôi 19",
+    "after": "phố hàng vôi, số 19",
+    "poi_name": "19 Phố Hàng Vôi",
+    "rule": "street_first_with_explicit_number_marker"
+  },
+  {
+    "query_id": "hnq20k-v5-fix-5ba48e9851139aea",
+    "before": "phố phan bội châu 25",
+    "after": "phố phan bội châu, số 25",
+    "poi_name": "25 Phố Phan Bội Châu",
+    "rule": "street_first_with_explicit_number_marker"
+  },
+  {
+    "query_id": "hnq20k-v5-fix-130e36c207ecda06",
+    "before": "phố nguyễn tư giản 25",
+    "after": "phố nguyễn tư giản, số 25",
+    "poi_name": "25 Phố Nguyễn Tư Giản",
+    "rule": "street_first_with_explicit_number_marker"
+  },
+  {
+    "query_id": "hnq20k-v5-fix-8d791726077a2ed6",
+    "before": "ngõ 143 nguyễn chính 4",
+    "after": "ngõ 143 nguyễn chính, số 4",
+    "poi_name": "4 Ngõ 143 Nguyễn Chính",
+    "rule": "street_first_with_explicit_number_marker"
+  },
+  {
+    "query_id": "hnq20k-v5-fix-2e35396249ae10aa",
+    "before": "phố hàng giấy 30",
+    "after": "phố hàng giấy, số 30",
+    "poi_name": "30 Phố Hàng Giấy",
+    "rule": "street_first_with_explicit_number_marker"
+  },
+  {
+    "query_id": "hnq20k-v5-fix-bdf45c32f4059401",
+    "before": "ngõ 1 72a",
+    "after": "ngõ 1, 72a",
+    "poi_name": "72A Ngõ 1",
+    "rule": "street_first_with_explicit_number_marker"
+  },
+  {
+    "query_id": "hnq10k-v3-01500",
+    "before": "13 ánh dương 1 ánh dương 1",
+    "after": "13 ánh dươn",
+    "poi_name": "13 Ánh Dương 1",
+    "rule": "remove_duplicated_street_append;existing_form_collision_use_typing_prefix"
+  },
+  {
+    "query_id": "hnq10k-v3-01525",
+    "before": "34 thời đại 3 thời đại 3",
+    "after": "34 thời đạ",
+    "poi_name": "34 Thời Đại 3",
+    "rule": "remove_duplicated_street_append;existing_form_collision_use_typing_prefix"
+  },
+  {
+    "query_id": "hnq10k-v3-01550",
+    "before": "1 ngách 234/17 hoàng quốc việt ngách 234/17 hoàng quốc việt",
+    "after": "1 ngách 234/17 h",
+    "poi_name": "1 Ngách 234/17 Hoàng Quốc Việt",
+    "rule": "remove_duplicated_street_append;existing_form_collision_use_typing_prefix"
+  },
+  {
+    "query_id": "hnq10k-v3-01575",
+    "before": "43 đường thiên nga 4 đường thiên nga 4",
+    "after": "43 đường thiên n",
+    "poi_name": "43 Đường Thiên Nga 4",
+    "rule": "remove_duplicated_street_append;existing_form_collision_use_typing_prefix"
+  },
+  {
+    "query_id": "hnq10k-v3-01600",
+    "before": "40 ánh dương 2 ánh dương 2",
+    "after": "40 ánh dươn",
+    "poi_name": "40 Ánh Dương 2",
+    "rule": "remove_duplicated_street_append;existing_form_collision_use_typing_prefix"
+  },
+  {
+    "query_id": "hnq10k-v3-01625",
+    "before": "66 phố bà triệu phố bà triệu",
+    "after": "66 bà triệu",
+    "poi_name": "66 Phố Bà Triệu",
+    "rule": "remove_duplicated_street_append"
+  },
+  {
+    "query_id": "hnq10k-v3-01650",
+    "before": "62 đường trần phú đường trần phú",
+    "after": "62 đường trần ph",
+    "poi_name": "62 Đường Trần Phú",
+    "rule": "remove_duplicated_street_append;existing_form_collision_use_typing_prefix"
+  },
+  {
+    "query_id": "hnq10k-v3-01675",
+    "before": "163 ngõ xã đàn 2 ngõ xã đàn 2",
+    "after": "163 ngõ xã đà",
+    "poi_name": "163 Ngõ Xã Đàn 2",
+    "rule": "remove_duplicated_street_append;existing_form_collision_use_typing_prefix"
+  },
+  {
+    "query_id": "hnq10k-v3-01700",
+    "before": "22 phố ông ích khiêm phố ông ích khiêm",
+    "after": "22 ông ích khiêm",
+    "poi_name": "22 Phố Ông Ích Khiêm",
+    "rule": "remove_duplicated_street_append"
+  },
+  {
+    "query_id": "hnq10k-v3-01725",
+    "before": "sh09-12 san hô 9 san hô 9",
+    "after": "sh09-12 san h",
+    "poi_name": "SH09-12 San Hô 9",
+    "rule": "remove_duplicated_street_append;existing_form_collision_use_typing_prefix"
+  },
+  {
+    "query_id": "hnq10k-v3-01745",
+    "before": "23 ngôi sao 7 ngôi sao 7",
+    "after": "23 ngôi sa",
+    "poi_name": "23 Ngôi Sao 7",
+    "rule": "remove_duplicated_street_append;existing_form_collision_use_typing_prefix"
+  },
+  {
+    "query_id": "hnq10k-v3-01750",
+    "before": "19 ngõ 61 phạm tuấn tài ngõ 61 phạm tuấn tài",
+    "after": "19 ngõ 61 phạm t",
+    "poi_name": "19 Ngõ 61 Phạm Tuấn Tài",
+    "rule": "remove_duplicated_street_append;existing_form_collision_use_typing_prefix"
+  },
+  {
+    "query_id": "hnq10k-v3-01775",
+    "before": "130 đường thiên nga 5 đường thiên nga 5",
+    "after": "130 đường thiê",
+    "poi_name": "130 Đường Thiên Nga 5",
+    "rule": "remove_duplicated_street_append;existing_form_collision_use_typing_prefix"
+  },
+  {
+    "query_id": "hnq10k-v3-01800",
+    "before": "12 ngõ 4 đặng văn ngữ ngõ 4 đặng văn ngữ",
+    "after": "12 ngõ 4 đặng vă",
+    "poi_name": "12 Ngõ 4 Đặng Văn Ngữ",
+    "rule": "remove_duplicated_street_append;existing_form_collision_use_typing_prefix"
+  },
+  {
+    "query_id": "hnq10k-v3-01825",
+    "before": "40 viễn đông 6 viễn đông 6",
+    "after": "40 viễn đôn",
+    "poi_name": "40 Viễn Đông 6",
+    "rule": "remove_duplicated_street_append;existing_form_collision_use_typing_prefix"
+  },
+  {
+    "query_id": "hnq10k-v3-01850",
+    "before": "41a ngõ 143 nguyễn chính ngõ 143 nguyễn chính",
+    "after": "41a ngõ 143 nguy",
+    "poi_name": "41A Ngõ 143 Nguyễn Chính",
+    "rule": "remove_duplicated_street_append;existing_form_collision_use_typing_prefix"
+  },
+  {
+    "query_id": "hnq10k-v3-01875",
+    "before": "4 ngõ 54 kim quan thượng ngõ 54 kim quan thượng",
+    "after": "4 ngõ 54 kim qua",
+    "poi_name": "4 Ngõ 54 Kim Quan Thượng",
+    "rule": "remove_duplicated_street_append;existing_form_collision_use_typing_prefix"
+  },
+  {
+    "query_id": "hnq10k-v3-01900",
+    "before": "19 đường hoàng quốc việt đường hoàng quốc việt",
+    "after": "19 đường hoàng q",
+    "poi_name": "19 Đường Hoàng Quốc Việt",
+    "rule": "remove_duplicated_street_append;existing_form_collision_use_typing_prefix"
+  },
+  {
+    "query_id": "hnq10k-v3-01925",
+    "before": "74 phố tây trà phố tây trà",
+    "after": "74 tây trà",
+    "poi_name": "74 Phố Tây Trà",
+    "rule": "remove_duplicated_street_append"
+  },
+  {
+    "query_id": "hnq10k-v3-01945",
+    "before": "39 ngôi sao 8 ngôi sao 8",
+    "after": "39 ngôi sa",
+    "poi_name": "39 Ngôi Sao 8",
+    "rule": "remove_duplicated_street_append;existing_form_collision_use_typing_prefix"
+  },
+  {
+    "query_id": "hnq10k-v3-01950",
+    "before": "30 ngõ 755 nguyễn văn linh ngõ 755 nguyễn văn linh",
+    "after": "30 ngõ 755 nguyễ",
+    "poi_name": "30 Ngõ 755 Nguyễn Văn Linh",
+    "rule": "remove_duplicated_street_append;existing_form_collision_use_typing_prefix"
+  },
+  {
+    "query_id": "hnq10k-v3-01975",
+    "before": "cửa khẩu cảng, đ.khuyến lương đ.khuyến lương",
+    "after": "cửa khẩu cản",
+    "poi_name": "Cửa khẩu cảng, Đ.Khuyến Lương",
+    "rule": "remove_duplicated_street_append;existing_form_collision_use_typing_prefix"
+  },
+  {
+    "query_id": "hnq10k-v3-01990",
+    "before": "37 ngôi sao 8 ngôi sao 8",
+    "after": "37 ngôi sa",
+    "poi_name": "37 Ngôi Sao 8",
+    "rule": "remove_duplicated_street_append;existing_form_collision_use_typing_prefix"
+  },
+  {
+    "query_id": "hnq10k-v3-02000",
+    "before": "100 ngõ 192 lê trọng tấn ngõ 192 lê trọng tấn",
+    "after": "100 ngõ 192 lê t",
+    "poi_name": "100 Ngõ 192 Lê Trọng Tấn",
+    "rule": "remove_duplicated_street_append;existing_form_collision_use_typing_prefix"
+  },
+  {
+    "query_id": "hnq10k-v3-02025",
+    "before": "20 phố mai hắc đế phố mai hắc đế",
+    "after": "20 mai hắc đế",
+    "poi_name": "20 Phố Mai Hắc Đế",
+    "rule": "remove_duplicated_street_append"
+  },
+  {
+    "query_id": "hnq10k-v3-02050",
+    "before": "sh-06 đường san hô đường san hô",
+    "after": "sh-06 đường sa",
+    "poi_name": "SH-06 Đường San Hô",
+    "rule": "remove_duplicated_street_append;existing_form_collision_use_typing_prefix"
+  },
+  {
+    "query_id": "hnq10k-v3-02075",
+    "before": "16 ngôi sao 6 ngôi sao 6",
+    "after": "16 ngôi sa",
+    "poi_name": "16 Ngôi Sao 6",
+    "rule": "remove_duplicated_street_append;existing_form_collision_use_typing_prefix"
+  },
+  {
+    "query_id": "hnq10k-v3-02100",
+    "before": "168 đường thiên nga 6 đường thiên nga 6",
+    "after": "168 đường thiê",
+    "poi_name": "168 Đường Thiên Nga 6",
+    "rule": "remove_duplicated_street_append;existing_form_collision_use_typing_prefix"
+  },
+  {
+    "query_id": "hnq10k-v3-02125",
+    "before": "11 viễn đông 7 viễn đông 7",
+    "after": "11 viễn đôn",
+    "poi_name": "11 Viễn Đông 7",
+    "rule": "remove_duplicated_street_append;existing_form_collision_use_typing_prefix"
+  },
+  {
+    "query_id": "hnq10k-v3-02150",
+    "before": "97 đường 72 đường 72",
+    "after": "97 đườn",
+    "poi_name": "97 Đường 72",
+    "rule": "remove_duplicated_street_append;existing_form_collision_use_typing_prefix"
+  },
+  {
+    "query_id": "hnq10k-v3-02175",
+    "before": "55 ngõ 23 đỗ quang ngõ 23 đỗ quang",
+    "after": "55 ngõ 23 đỗ qua",
+    "poi_name": "55 Ngõ 23 Đỗ Quang",
+    "rule": "remove_duplicated_street_append;existing_form_collision_use_typing_prefix"
+  },
+  {
+    "query_id": "hnq10k-v3-02200",
+    "before": "173 đường thiên nga 5 đường thiên nga 5",
+    "after": "173 đường thiê",
+    "poi_name": "173 Đường Thiên Nga 5",
+    "rule": "remove_duplicated_street_append;existing_form_collision_use_typing_prefix"
+  },
+  {
+    "query_id": "hnq10k-v3-02225",
+    "before": "68 nhật nguyệt 5 nhật nguyệt 5",
+    "after": "68 nhật nguyệ",
+    "poi_name": "68 Nhật Nguyệt 5",
+    "rule": "remove_duplicated_street_append;existing_form_collision_use_typing_prefix"
+  },
+  {
+    "query_id": "hnq10k-v3-02250",
+    "before": "18 cầu vồng cầu vồng",
+    "after": "18 cầu vồn",
+    "poi_name": "18 Cầu Vồng",
+    "rule": "remove_duplicated_street_append;existing_form_collision_use_typing_prefix"
+  },
+  {
+    "query_id": "hnq10k-v3-02275",
+    "before": "353 đường an dương vương đường an dương vương",
+    "after": "353 đường an dươ",
+    "poi_name": "353 Đường An Dương Vương",
+    "rule": "remove_duplicated_street_append;existing_form_collision_use_typing_prefix"
+  },
+  {
+    "query_id": "hnq10k-v3-02300",
+    "before": "129 ngõ xã đàn 2 ngõ xã đàn 2",
+    "after": "129 ngõ xã đà",
+    "poi_name": "129 Ngõ Xã Đàn 2",
+    "rule": "remove_duplicated_street_append;existing_form_collision_use_typing_prefix"
+  },
+  {
+    "query_id": "hnq10k-v3-02325",
+    "before": "17 ngõ 423 an dương vương ngõ 423 an dương vương",
+    "after": "17 ngõ 423 an dư",
+    "poi_name": "17 Ngõ 423 An Dương Vương",
+    "rule": "remove_duplicated_street_append;existing_form_collision_use_typing_prefix"
+  },
+  {
+    "query_id": "hnq10k-v3-02350",
+    "before": "213 phố trần quốc hoàn phố trần quốc hoàn",
+    "after": "213 trần quốc hoàn",
+    "poi_name": "213 Phố Trần Quốc Hoàn",
+    "rule": "remove_duplicated_street_append"
+  },
+  {
+    "query_id": "hnq10k-v3-02370",
+    "before": "nt02-38 ngọc trai 2 ngọc trai 2",
+    "after": "nt02-38 ngọc tra",
+    "poi_name": "NT02-38 Ngọc Trai 2",
+    "rule": "remove_duplicated_street_append;existing_form_collision_use_typing_prefix"
+  },
+  {
+    "query_id": "hnq10k-v3-02375",
+    "before": "50 phố quán thánh phố quán thánh",
+    "after": "50 quán thánh",
+    "poi_name": "50 Phố Quán Thánh",
+    "rule": "remove_duplicated_street_append"
+  },
+  {
+    "query_id": "hnq10k-v3-02400",
+    "before": "43 phố nguyễn ngọc nại phố nguyễn ngọc nại",
+    "after": "43 nguyễn ngọc nại",
+    "poi_name": "43 Phố Nguyễn Ngọc Nại",
+    "rule": "remove_duplicated_street_append"
+  },
+  {
+    "query_id": "hnq10k-v3-02420",
+    "before": "46a ngõ linh quang ngõ linh quang",
+    "after": "46a ngõ linh qua",
+    "poi_name": "46a Ngõ Linh Quang",
+    "rule": "remove_duplicated_street_append;existing_form_collision_use_typing_prefix"
+  },
+  {
+    "query_id": "hnq10k-v3-02425",
+    "before": "31 phố lộc phố lộc",
+    "after": "31 lộc",
+    "poi_name": "31 Phố Lộc",
+    "rule": "remove_duplicated_street_append"
+  },
+  {
+    "query_id": "hnq10k-v3-02450",
+    "before": "30 phố bảo linh phố bảo linh",
+    "after": "30 bảo linh",
+    "poi_name": "30 Phố Bảo Linh",
+    "rule": "remove_duplicated_street_append"
+  },
+  {
+    "query_id": "hnq10k-v3-02475",
+    "before": "125 ngõ 143 nguyễn chính ngõ 143 nguyễn chính",
+    "after": "125 ngõ 143 nguy",
+    "poi_name": "125 Ngõ 143 Nguyễn Chính",
+    "rule": "remove_duplicated_street_append;existing_form_collision_use_typing_prefix"
+  },
+  {
+    "query_id": "hnq10k-v3-02500",
+    "before": "24 ngách 3/11 phạm tuấn tài ngách 3/11 phạm tuấn tài",
+    "after": "24 ngách 3/11 ph",
+    "poi_name": "24 Ngách 3/11 Phạm Tuấn Tài",
+    "rule": "remove_duplicated_street_append;existing_form_collision_use_typing_prefix"
+  },
+  {
+    "query_id": "hnq10k-v3-02525",
+    "before": "20 ngõ 211 xã đàn ngõ 211 xã đàn",
+    "after": "20 ngõ 211 xã đà",
+    "poi_name": "20 Ngõ 211 Xã Đàn",
+    "rule": "remove_duplicated_street_append;existing_form_collision_use_typing_prefix"
+  },
+  {
+    "query_id": "hnq10k-v3-02540",
+    "before": "19 ngôi sao 4 ngôi sao 4",
+    "after": "19 ngôi sa",
+    "poi_name": "19 Ngôi Sao 4",
+    "rule": "remove_duplicated_street_append;existing_form_collision_use_typing_prefix"
+  },
+  {
+    "query_id": "hnq10k-v3-02550",
+    "before": "106 ngõ xã đàn 2 ngõ xã đàn 2",
+    "after": "106 ngõ xã đà",
+    "poi_name": "106 Ngõ Xã Đàn 2",
+    "rule": "remove_duplicated_street_append;existing_form_collision_use_typing_prefix"
+  },
+  {
+    "query_id": "hnq10k-v3-02575",
+    "before": "nt11-15 ngọc trai 11 ngọc trai 11",
+    "after": "nt11-15 ngọc tra",
+    "poi_name": "NT11-15 Ngọc Trai 11",
+    "rule": "remove_duplicated_street_append;existing_form_collision_use_typing_prefix"
+  },
+  {
+    "query_id": "hnq10k-v3-02600",
+    "before": "86 phố chùa thông phố chùa thông",
+    "after": "86 chùa thông",
+    "poi_name": "86 Phố Chùa Thông",
+    "rule": "remove_duplicated_street_append"
+  },
+  {
+    "query_id": "hnq10k-v3-02625",
+    "before": "66 phố thanh lân phố thanh lân",
+    "after": "66 thanh lân",
+    "poi_name": "66 Phố Thanh Lân",
+    "rule": "remove_duplicated_street_append"
+  },
+  {
+    "query_id": "hnq10k-v3-02650",
+    "before": "16 phố phú kiều phố phú kiều",
+    "after": "16 phú kiều",
+    "poi_name": "16 Phố Phú Kiều",
+    "rule": "remove_duplicated_street_append"
+  },
+  {
+    "query_id": "hnq10k-v3-02675",
+    "before": "46 phố trần phú phố trần phú",
+    "after": "46 trần phú",
+    "poi_name": "46 Phố Trần Phú",
+    "rule": "remove_duplicated_street_append"
+  },
+  {
+    "query_id": "hnq10k-v3-02700",
+    "before": "257 đường hữu hưng đường hữu hưng",
+    "after": "257 đường hữu hư",
+    "poi_name": "257 Đường Hữu Hưng",
+    "rule": "remove_duplicated_street_append;existing_form_collision_use_typing_prefix"
+  },
+  {
+    "query_id": "hnq10k-v3-02720",
+    "before": "sh07-19 san hô 7 san hô 7",
+    "after": "sh07-19 san h",
+    "poi_name": "SH07-19 San Hô 7",
+    "rule": "remove_duplicated_street_append;existing_form_collision_use_typing_prefix"
+  },
+  {
+    "query_id": "hnq10k-v3-02725",
+    "before": "51 phố bảo linh phố bảo linh",
+    "after": "51 bao linh",
+    "poi_name": "51 Phố Bảo Linh",
+    "rule": "remove_duplicated_street_append"
+  },
+  {
+    "query_id": "hnq10k-v3-02750",
+    "before": "97 phố nhật chiêu phố nhật chiêu",
+    "after": "97 nhật chiêu",
+    "poi_name": "97 Phố Nhật Chiêu",
+    "rule": "remove_duplicated_street_append"
+  },
+  {
+    "query_id": "hnq10k-v3-02775",
+    "before": "103 đường đê la thành đường đê la thành",
+    "after": "103 đường đê l",
+    "poi_name": "103 Đường Đê La Thành",
+    "rule": "remove_duplicated_street_append;existing_form_collision_use_typing_prefix"
+  },
+  {
+    "query_id": "hnq10k-v3-02800",
+    "before": "331 phố ngọc lâm phố ngọc lâm",
+    "after": "331 ngọc lâm",
+    "poi_name": "331 Phố Ngọc Lâm",
+    "rule": "remove_duplicated_street_append"
+  },
+  {
+    "query_id": "hnq10k-v3-02820",
+    "before": "19 đê quai đê quai",
+    "after": "19 đê qua",
+    "poi_name": "19 Đê Quai",
+    "rule": "remove_duplicated_street_append;existing_form_collision_use_typing_prefix"
+  },
+  {
+    "query_id": "hnq10k-v3-02825",
+    "before": "65 đường thành phố 4.1 đường thành phố 4.1",
+    "after": "65 đường thành p",
+    "poi_name": "65 Đường Thành Phố 4.1",
+    "rule": "remove_duplicated_street_append;existing_form_collision_use_typing_prefix"
+  },
+  {
+    "query_id": "hnq10k-v3-02850",
+    "before": "355 đường nguyễn văn cừ đường nguyễn văn cừ",
+    "after": "355 đường nguyễ",
+    "poi_name": "355 Đường Nguyễn Văn Cừ",
+    "rule": "remove_duplicated_street_append;existing_form_collision_use_typing_prefix"
+  },
+  {
+    "query_id": "hnq10k-v3-02875",
+    "before": "43 phố hàng điếu phố hàng điếu",
+    "after": "43 hàng điếu",
+    "poi_name": "43 Phố Hàng Điếu",
+    "rule": "remove_duplicated_street_append"
+  },
+  {
+    "query_id": "hnq10k-v3-02900",
+    "before": "10 ngõ 60 đường khuê ngõ 60 đường khuê",
+    "after": "10 ngõ 60 đườn",
+    "poi_name": "10 Ngõ 60 Đường Khuê",
+    "rule": "remove_duplicated_street_append;existing_form_collision_use_typing_prefix"
+  },
+  {
+    "query_id": "hnq10k-v3-02925",
+    "before": "11 ngõ 143 nguyễn chính ngõ 143 nguyễn chính",
+    "after": "11 ngõ 143 nguyễ",
+    "poi_name": "11 Ngõ 143 Nguyễn Chính",
+    "rule": "remove_duplicated_street_append;existing_form_collision_use_typing_prefix"
+  },
+  {
+    "query_id": "hnq10k-v3-02950",
+    "before": "177 đường xuân đỉnh đường xuân đỉnh",
+    "after": "177 đường xuân đ",
+    "poi_name": "177 Đường Xuân Đỉnh",
+    "rule": "remove_duplicated_street_append;existing_form_collision_use_typing_prefix"
+  },
+  {
+    "query_id": "hnq10k-v3-02975",
+    "before": "46 phố bùi thị xuân phố bùi thị xuân",
+    "after": "46 bùi thị xuân",
+    "poi_name": "46 Phố Bùi Thị Xuân",
+    "rule": "remove_duplicated_street_append"
+  },
+  {
+    "query_id": "hnq10k-v3-03000",
+    "before": "10 ngõ 67 cầu cốc ngõ 67 cầu cốc",
+    "after": "10 ngõ 67 cầu cố",
+    "poi_name": "10 Ngõ 67 Cầu Cốc",
+    "rule": "remove_duplicated_street_append;existing_form_collision_use_typing_prefix"
+  },
+  {
+    "query_id": "hnq10k-v3-03025",
+    "before": "57 phố lê hồng phong phố lê hồng phong",
+    "after": "57 lê hồng phong",
+    "poi_name": "57 Phố Lê Hồng Phong",
+    "rule": "remove_duplicated_street_append"
+  },
+  {
+    "query_id": "hnq10k-v3-03050",
+    "before": "nt09-35 ngọc trai 9 ngọc trai 9",
+    "after": "nt09-35 ngọc tra",
+    "poi_name": "NT09-35 Ngọc Trai 9",
+    "rule": "remove_duplicated_street_append;existing_form_collision_use_typing_prefix"
+  },
+  {
+    "query_id": "hnq10k-v3-03075",
+    "before": "6 đường thành phố 4.4 đường thành phố 4.4",
+    "after": "6 đường thành ph",
+    "poi_name": "6 Đường Thành Phố 4.4",
+    "rule": "remove_duplicated_street_append;existing_form_collision_use_typing_prefix"
+  },
+  {
+    "query_id": "hnq10k-v3-03100",
+    "before": "5 ngách 89/46 đường lạc long quân ngách 89/46 đường lạc long quân",
+    "after": "5 ngách 89/46 đư",
+    "poi_name": "5 Ngách 89/46 Đường Lạc Long Quân",
+    "rule": "remove_duplicated_street_append;existing_form_collision_use_typing_prefix"
+  },
+  {
+    "query_id": "hnq10k-v3-03120",
+    "before": "nt16-15 ngọc trai 16 ngọc trai 16",
+    "after": "nt16-15 ngọc tra",
+    "poi_name": "NT16-15 Ngọc Trai 16",
+    "rule": "remove_duplicated_street_append;existing_form_collision_use_typing_prefix"
+  },
+  {
+    "query_id": "hnq10k-v3-03125",
+    "before": "51 ánh dương 1 ánh dương 1",
+    "after": "51 ánh dươn",
+    "poi_name": "51 Ánh Dương 1",
+    "rule": "remove_duplicated_street_append;existing_form_collision_use_typing_prefix"
+  },
+  {
+    "query_id": "hnq10k-v3-03150",
+    "before": "126 đường thiên nga 5 đường thiên nga 5",
+    "after": "126 đường thiê",
+    "poi_name": "126 Đường Thiên Nga 5",
+    "rule": "remove_duplicated_street_append;existing_form_collision_use_typing_prefix"
+  },
+  {
+    "query_id": "hnq10k-v3-03175",
+    "before": "17 phố hàng khay phố hàng khay",
+    "after": "17 hàng khay",
+    "poi_name": "17 Phố Hàng Khay",
+    "rule": "remove_duplicated_street_append"
+  },
+  {
+    "query_id": "hnq10k-v3-03200",
+    "before": "100 an dương an dương",
+    "after": "100 an dươn",
+    "poi_name": "100 An Dương",
+    "rule": "remove_duplicated_street_append;existing_form_collision_use_typing_prefix"
+  },
+  {
+    "query_id": "hnq10k-v3-03225",
+    "before": "17 ngách 234/17 hoàng quốc việt ngách 234/17 hoàng quốc việt",
+    "after": "17 ngác",
+    "poi_name": "17 Ngách 234/17 Hoàng Quốc Việt",
+    "rule": "remove_duplicated_street_append;existing_form_collision_use_typing_prefix"
+  },
+  {
+    "query_id": "hnq10k-v3-03775",
+    "before": "102 ngõ 49 thúy lĩnh ngõ 49 thúy lĩnh",
+    "after": "102 ngõ 49 thú",
+    "poi_name": "102 Ngõ 49 Thúy Lĩnh",
+    "rule": "remove_duplicated_street_append;existing_form_collision_use_typing_prefix"
+  },
+  {
+    "query_id": "hnq10k-v3-03800",
+    "before": "16 ngõ 421 hoàng quốc việt ngõ 421 hoàng quốc việt",
+    "after": "16 ngõ 421 hoàn",
+    "poi_name": "16 Ngõ 421 Hoàng Quốc Việt",
+    "rule": "remove_duplicated_street_append;existing_form_collision_use_typing_prefix"
+  },
+  {
+    "query_id": "hnq10k-v3-03825",
+    "before": "192 ngõ xã đàn 2 ngõ xã đàn 2",
+    "after": "192 ngõ xã đà",
+    "poi_name": "192 Ngõ Xã Đàn 2",
+    "rule": "remove_duplicated_street_append;existing_form_collision_use_typing_prefix"
+  },
+  {
+    "query_id": "hnq10k-v3-03850",
+    "before": "38 ngõ 61 ngõ 61",
+    "after": "38 ng",
+    "poi_name": "38 Ngõ 61",
+    "rule": "remove_duplicated_street_append;existing_form_collision_use_typing_prefix"
+  },
+  {
+    "query_id": "hnq10k-v3-03875",
+    "before": "98 ngõ 1 phạm tuấn tài ngõ 1 phạm tuấn tài",
+    "after": "98 ngõ 1 phạm tu",
+    "poi_name": "98 Ngõ 1 Phạm Tuấn Tài",
+    "rule": "remove_duplicated_street_append;existing_form_collision_use_typing_prefix"
+  },
+  {
+    "query_id": "hnq10k-v3-03945",
+    "before": "45 ngõ 156 tam trinh ngõ 156 tam trinh",
+    "after": "45 ngõ 156 tam t",
+    "poi_name": "45 Ngõ 156 Tam Trinh",
+    "rule": "remove_duplicated_street_append;existing_form_collision_use_typing_prefix"
+  },
+  {
+    "query_id": "hnq10k-v3-03975",
+    "before": "63 ngõ 61 ngõ 61",
+    "after": "63 ng",
+    "poi_name": "63 Ngõ 61",
+    "rule": "remove_duplicated_street_append;existing_form_collision_use_typing_prefix"
+  },
+  {
+    "query_id": "hnq10k-v3-03995",
+    "before": "31 ngõ 156 tam trinh ngõ 156 tam trinh",
+    "after": "31 ngõ 156 tam t",
+    "poi_name": "31 Ngõ 156 Tam Trinh",
+    "rule": "remove_duplicated_street_append;existing_form_collision_use_typing_prefix"
+  },
+  {
+    "query_id": "hnq10k-v3-04000",
+    "before": "48 ngõ 238 âu cơ ngõ 238 âu cơ",
+    "after": "48 ngõ 238 âu c",
+    "poi_name": "48 Ngõ 238 Âu Cơ",
+    "rule": "remove_duplicated_street_append;existing_form_collision_use_typing_prefix"
+  },
+  {
+    "query_id": "hnq10k-v3-04025",
+    "before": "9 ngõ 423 an dương vương ngõ 423 an dương vương",
+    "after": "9 ngõ 423 an dươ",
+    "poi_name": "9 Ngõ 423 An Dương Vương",
+    "rule": "remove_duplicated_street_append;existing_form_collision_use_typing_prefix"
+  },
+  {
+    "query_id": "hnq10k-v3-04050",
+    "before": "104 phố đại đồng phố đại đồng",
+    "after": "104 dai dong",
+    "poi_name": "104 Phố Đại Đồng",
+    "rule": "remove_duplicated_street_append"
+  },
+  {
+    "query_id": "hnq10k-v3-04075",
+    "before": "15lk10 đường lk9 - lk10 khu đấu giá mậu lương đường lk9 - lk10 khu đấu giá mậu lương",
+    "after": "15lk10 đường l",
+    "poi_name": "15LK10 Đường LK9 - LK10 Khu Đấu Giá Mậu Lương",
+    "rule": "remove_duplicated_street_append;existing_form_collision_use_typing_prefix"
+  },
+  {
+    "query_id": "hnq10k-v3-04100",
+    "before": "3 phố đại linh phố đại linh",
+    "after": "3 đại linh",
+    "poi_name": "3 Phố Đại Linh",
+    "rule": "remove_duplicated_street_append"
+  },
+  {
+    "query_id": "hnq10k-v3-04120",
+    "before": "nt16-21 ngọc trai 16 ngọc trai 16",
+    "after": "nt16-21 ngọc tra",
+    "poi_name": "NT16-21 Ngọc Trai 16",
+    "rule": "remove_duplicated_street_append;existing_form_collision_use_typing_prefix"
+  },
+  {
+    "query_id": "hnq10k-v3-04150",
+    "before": "8 phố lê đại hành phố lê đại hành",
+    "after": "8 lê đại hành",
+    "poi_name": "8 Phố Lê Đại Hành",
+    "rule": "remove_duplicated_street_append"
+  },
+  {
+    "query_id": "hnq10k-v3-04175",
+    "before": "khu ươm tơ đường tỉnh 422b đường tỉnh 422b",
+    "after": "khu ươm tơ đườn",
+    "poi_name": "Khu Ươm Tơ Đường tỉnh 422B",
+    "rule": "remove_duplicated_street_append;existing_form_collision_use_typing_prefix"
+  },
+  {
+    "query_id": "hnq10k-v3-04200",
+    "before": "16 ngõ 22 kim quan ngõ 22 kim quan",
+    "after": "16 ngõ 22 kim qu",
+    "poi_name": "16 Ngõ 22 Kim Quan",
+    "rule": "remove_duplicated_street_append;existing_form_collision_use_typing_prefix"
+  },
+  {
+    "query_id": "hnq10k-v3-04225",
+    "before": "20 phố nhật tảo phố nhật tảo",
+    "after": "20 nhật tảo",
+    "poi_name": "20 Phố Nhật Tảo",
+    "rule": "remove_duplicated_street_append"
+  },
+  {
+    "query_id": "hnq10k-v3-04250",
+    "before": "52 đường cao lỗ đường cao lỗ",
+    "after": "52 đường cao l",
+    "poi_name": "52 Đường Cao Lỗ",
+    "rule": "remove_duplicated_street_append;existing_form_collision_use_typing_prefix"
+  },
+  {
+    "query_id": "hnq10k-v3-06850",
+    "before": "697 đường lạc long quân đường lạc long quân",
+    "after": "697 đường lạc lo",
+    "poi_name": "697 Đường Lạc Long Quân",
+    "rule": "remove_duplicated_street_append;existing_form_collision_use_typing_prefix"
+  },
+  {
+    "query_id": "hnq10k-v3-08550",
+    "before": "466 đường âu cơ đường âu cơ",
+    "after": "466 đường âu c",
+    "poi_name": "466 Đường Âu Cơ",
+    "rule": "remove_duplicated_street_append;existing_form_collision_use_typing_prefix"
+  }
+]

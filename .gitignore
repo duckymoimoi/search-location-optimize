@@ -1,0 +1,62 @@
+﻿# Secrets / credentials
+kaggle.json
+.env
+.env.*
+**/credentials*.json
+
+# OSM / heavy source snapshots
+*.osm.pbf
+*.pbf
+
+# Model weights & dense vectors
+*.safetensors
+*.bin
+*.pt
+*.pth
+*.ckpt
+*.npy
+*.npz
+*.onnx
+
+# OpenSearch local runtime & index data
+training/opensearch/runtime/
+training/opensearch/data/
+training/opensearch/logs/
+*.tar.gz
+*.tar.xz
+*.zip
+
+# Python / Node
+__pycache__/
+*.py[cod]
+.venv/
+venv/
+node_modules/
+.pytest_cache/
+.mypy_cache/
+.ruff_cache/
+
+# OS / IDE
+.DS_Store
+Thumbs.db
+.idea/
+.vscode/
+
+# Large redundant dumps (parquet kept)
+**/queries_10k.jsonl
+**/queries_20k.jsonl
+
+# Local / transient
+training/stage1/smoke_output/
+training/stage1/smoke_output_v4/
+training/stage1/demo_logs/
+training/stage1/demo_api.pid
+training/opensearch/launcher.pid
+training/**/cache/
+
+# Duplicate tokenizers in checkpoints & model_v3_input (keep final_model tokenizer)
+training/kaggle/outputs/stage1_outputs/checkpoints/*/tokenizer.json
+training/kaggle/outputs_v4/stage1_outputs/checkpoints/*/tokenizer.json
+training/kaggle/model_v3_input/v3_model_tokenizer.json
+training/kaggle/model_v3_input/v3_model_sentencepiece.bpe.model
+**/sentencepiece.bpe.model

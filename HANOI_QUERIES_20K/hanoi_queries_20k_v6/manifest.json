@@ -1,0 +1,154 @@
+{
+  "dataset_version": "hnq20k-compact-v6",
+  "query_rows": 20000,
+  "query_columns": 8,
+  "qrel_rows": 4621105,
+  "poi_rows": 46792,
+  "destination_searchable": 45693,
+  "train_eligible": 6066,
+  "ai_reviewed": 1790,
+  "splits": {
+    "train": 13190,
+    "dev_synthetic": 2925,
+    "test_synthetic": 885,
+    "architecture_holdout": 3000
+  },
+  "main_metric_by_split": {
+    "architecture_holdout": 1567,
+    "dev_synthetic": 1452,
+    "test_synthetic": 390,
+    "train": 6454
+  },
+  "core_bytes": 463336,
+  "source_query_bytes": 3227622,
+  "source_sha256": {
+    "queries": "c3fc74d7c9db35597356802291934b813b24dd0a3ebc515231dae5d502d9bebd",
+    "corpus": "92b3f88703ba22b371bdabc7fe67956c8266f2056231d2a9b464a70b091c8456",
+    "frozen_test": "31157d3759129cc86d92795d2a68630e2bf66f1198bd60236ae36cd33506436e"
+  },
+  "source_record_constants": {
+    "corpus_version": "hn-260910-7f1b69b167",
+    "search_view_version": "hn-search-view-v3",
+    "dataset_version": "hnq20k-pilot-v5",
+    "label_completeness": "not_guaranteed"
+  },
+  "qrels_semantics": "known-compatible weak labels only; intended target remains queries.intended_poi_id; no adjudicated relevance grades",
+  "change_scope": "storage normalization only; no query, split, target, compatibility or eligibility changes",
+  "files": [
+    {
+      "path": "HANOI_QUERIES_20K_SCHEMA.json",
+      "bytes": 37587,
+      "sha256": "e99d956a63f03bc50bab5341e397dfe3929ed3cf726bb379b004ccdc76b993d5"
+    },
+    {
+      "path": "HANOI_QUERIES_20K_SCHEMA.md",
+      "bytes": 6546,
+      "sha256": "948ee7b5d3fb5ef1aafb8856a973b3d4dffb30e5298f5b80e67ba31dbc940a26"
+    },
+    {
+      "path": "README.md",
+      "bytes": 3381,
+      "sha256": "5f2d3e411d57af31527061c4abf089a9dbc1511b7daf3ba8f6730f347394a2c4"
+    },
+    {
+      "path": "audit/ai_review_edits.json",
+      "bytes": 112311,
+      "sha256": "e765c9796d0141b3889c71c55f47bd359835a9d32261d0fe6b94f5f54d734732"
+    },
+    {
+      "path": "audit/ai_review_log.json",
+      "bytes": 736473,
+      "sha256": "7fccc99865d69422d173c895f5276a6f72a6d4d2466838aaa060f16a3c278ce4"
+    },
+    {
+      "path": "audit/initial_query_lineage.parquet",
+      "bytes": 38422,
+      "sha256": "a1ccee65237f72dc356123b3358a29c1620bd99d88c07aeeea0b9bc8c8b90988"
+    },
+    {
+      "path": "audit/manual_review_choices.json",
+      "bytes": 5844,
+      "sha256": "d44414d632ad4715225c49ea803f672ef4d79a7da62c41db77d865f27d47ea9f"
+    },
+    {
+      "path": "audit/query_generation.parquet",
+      "bytes": 639857,
+      "sha256": "1395d61f74564739e6bdc8333d70cf0f3298d516a968e71eb7b460c1bb4d03e9"
+    },
+    {
+      "path": "audit/query_review.parquet",
+      "bytes": 86012,
+      "sha256": "8c275f75d80be32df8ce8659ffcab4467129d35b8f03713aa00adda7da6c91cf"
+    },
+    {
+      "path": "audit/source_generation_policy.json",
+      "bytes": 2444,
+      "sha256": "ce7801b1f7954c62c4820abe06a42d210e65b3c362a118cd6143a8fa63e767e0"
+    },
+    {
+      "path": "audit/v5_field_mapping.json",
+      "bytes": 5136,
+      "sha256": "13fd1372d2ab9eff0c439c858b1c85cbb08dc27f838667ea9f0f8748d9057507"
+    },
+    {
+      "path": "build_compact.py",
+      "bytes": 7931,
+      "sha256": "b7634785dbd7727383a8cb55c1f15dd56410a05d90e3f91b7025f5b0b4795fc1"
+    },
+    {
+      "path": "eligibility.parquet",
+      "bytes": 108901,
+      "sha256": "de0bb600d6caa6d25b03ee1d62ac47a69817fe9d30bf49a78a4988aaa260b421"
+    },
+    {
+      "path": "load_dataset.py",
+      "bytes": 1800,
+      "sha256": "be6529fade79f3d27f91acdc15f6cb4fddf8257b3ea18287b2a6b4e184cf1ce0"
+    },
+    {
+      "path": "package_compact.py",
+      "bytes": 12878,
+      "sha256": "9a60752841ff2775e063d9cc281fdfc08bdc332556ec7d6a9bd8a52c4553c6a6"
+    },
+    {
+      "path": "poi_splits.parquet",
+      "bytes": 371536,
+      "sha256": "8be6769d870ddcf66e8f93766416206aab606bd14c0fd4d9bf6ade947410babd"
+    },
+    {
+      "path": "pois.parquet",
+      "bytes": 3474664,
+      "sha256": "dcdc7e173ef77e633436296fd79c2aba94519a98a8f932814758b77347f59bc6"
+    },
+    {
+      "path": "qrels.parquet",
+      "bytes": 11762354,
+      "sha256": "1437f0b834bb441b1c4569fbdfd74dad5f2b25e8553af770f11f97133404674f"
+    },
+    {
+      "path": "queries_20k.parquet",
+      "bytes": 463336,
+      "sha256": "013c69b2628f761fcd8af9d6ed6173a6519f11bf4a383ac593a3e2ea9f845697"
+    },
+    {
+      "path": "reference/frozen_v3_test.parquet",
+      "bytes": 339172,
+      "sha256": "31157d3759129cc86d92795d2a68630e2bf66f1198bd60236ae36cd33506436e"
+    },
+    {
+      "path": "requirements.txt",
+      "bytes": 16,
+      "sha256": "c8d942b4f137ab3dedb56cfe8ed0c5d82c211d37f3237882ff65ef31328e7e3f"
+    },
+    {
+      "path": "typing_sessions.parquet",
+      "bytes": 123424,
+      "sha256": "ae27da021b69fb27ce4b7c8852458f033bd247ba53386f87bfae9d70f22ed533"
+    },
+    {
+      "path": "validation.json",
+      "bytes": 355,
+      "sha256": "cf33ad5cfe8656d915023a3be9a67494b9a006478c613d102763aec061291350"
+    }
+  ]
+}
