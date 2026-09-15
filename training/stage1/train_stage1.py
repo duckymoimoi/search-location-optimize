@@ -7,12 +7,10 @@ The script is designed for a Kaggle script kernel but has a local
 from __future__ import annotations
 
 import argparse
-import collections
 import hashlib
 import importlib.metadata
 import json
 import math
-import os
 import platform
 import random
 import shutil

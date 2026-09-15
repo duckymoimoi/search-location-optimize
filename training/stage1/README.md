@@ -1,33 +1,14 @@
-# Stage 1 training runner
+# Stage 1 — training and evaluation tools
 
-Local preflight, không tải model:
+Thư mục này chỉ giữ mã nghiên cứu còn dùng. Runtime API/FE nằm tại [`apps/poi-search`](../../apps/poi-search/README.md).
 
-```powershell
-python train_stage1.py --validate-only `
-  --input-dir ..\..\HANOI_QUERIES_10K\hanoi_queries_10k `
-  --output-dir .\smoke-output
-```
+Nguồn canonical:
 
-GPU training dùng cùng script và `config.json`. Kaggle staging nằm ở `training/kaggle`; không đưa `kaggle.json` hoặc PBF vào staging.
+- Corpus: `HANOI_POI_STABLE_V1/hanoi_poi_stable_v1/`
+- Evaluation dataset: `HANOI_QUERIES_20K/hanoi_queries_20k_stable_v1/`
+- Encoder release: `artifacts/models/e5-v4-finetuned/`
+- Frozen index vectors: `artifacts/indexes/hanoi-poi-stable-v1-release1/`
+- Kết quả đã chốt: `artifacts/evaluations/stage1-stable-v1/`
+- Protocol và kết luận: [`docs/as-built/STAGE1_EVALUATION.md`](../../docs/as-built/STAGE1_EVALUATION.md)
 
-Runner dùng Transformers + PyTorch trực tiếp:
-
-- shared bi-encoder với hai backbone: multilingual E5-small và BamiBERT;
-- mean pooling có attention mask;
-- L2 normalization;
-- MNRL/in-batch negatives;
-- batch không trùng target/entity/query;
-- exact full-corpus retrieval để chọn checkpoint;
-- test chỉ chạy sau khi chọn model trên dev.
-
-Runner thực hiện hai zero-shot baseline, D1/D2 cho E5 và D3 cho BamiBERT.
-BamiBERT nhận raw Vietnamese nên phù hợp hơn raw PhoBERT cho query lỗi/chưa gõ
-xong; giấy phép Qualcomm Responsible AI cần được review trước khi dùng thương mại.
-
-Khi push bằng Kaggle CLI, ưu tiên khóa T4 để dùng trực tiếp PyTorch của image:
-
-```powershell
-kaggle kernels push -p ..\kaggle\kernel --accelerator NvidiaTeslaT4
-```
-
-Runner vẫn có fallback cài wheel CUDA 12.6 nếu scheduler cấp P100 cũ.
+Các script được giữ lại theo ba nhóm: train encoder (`train_stage1.py`), chuẩn bị/đánh giá exact–ANN–hybrid, và dựng OpenSearch (`opensearch_index.py`). Mọi tuning phải dùng dev; test frozen không được dùng để chỉnh policy.

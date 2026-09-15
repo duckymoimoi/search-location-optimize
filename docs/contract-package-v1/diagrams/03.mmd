@@ -1,0 +1,23 @@
+sequenceDiagram
+    participant U as UI
+    participant A as API
+    participant S as Search
+    participant H as History
+    participant R as Ranker
+    U->>A: query, anchor, context revision
+    A->>A: pin release, parse, scope plan
+    par Truy hồi
+        A->>S: ưu tiên và toàn corpus
+        S-->>A: candidates và evidence
+    and History snapshot
+        A->>H: user và cutoff
+        H-->>A: events trước request
+    end
+    A->>S: bounded rescue nếu bật
+    S-->>A: candidates bổ sung
+    A->>R: feature matrix của tối đa 50 POI
+    R-->>A: scores
+    A->>H: persist exposure
+    A-->>U: top-5, exposure, versions
+    U->>A: select từ exposure đã hiển thị
+    A->>H: idempotent selection event

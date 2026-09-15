@@ -1,0 +1,62 @@
+{
+  "query_only_request": {
+    "request_id": "example-q1",
+    "session_id": "demo-session",
+    "context_revision": 1,
+    "query": "highlands",
+    "top_k": 5,
+    "expected_corpus_version": "hn-poi-stable-v1"
+  },
+  "personalized_request": {
+    "request_id": "example-q2",
+    "session_id": "demo-session",
+    "context_revision": 2,
+    "query": "highlands",
+    "top_k": 5,
+    "expected_corpus_version": "hn-poi-stable-v1",
+    "search_kind": "destination",
+    "origin": {
+      "kind": "map",
+      "point": {
+        "lat": 21.03,
+        "lon": 105.83
+      }
+    },
+    "demo_user_id": null,
+    "context_time": null,
+    "preferred_region_id": null
+  },
+  "empty_response": {
+    "request_id": "example-q1",
+    "context_revision": 1,
+    "exposure_id": null,
+    "selectable": false,
+    "versions": {
+      "release_id": "example-lexical-v1",
+      "corpus_version": "hn-poi-stable-v1",
+      "index_version": "example-index-v1",
+      "encoder_id": null,
+      "embedding_space_id": null,
+      "passage_builder_version": "stable-v1-address",
+      "scope_policy_version": "scope-v1",
+      "candidate_policy_version": "candidate-v1",
+      "ranker_id": "identity-v1",
+      "feature_version": "tabular-v1"
+    },
+    "scope_summary": {
+      "mode": "global",
+      "coverage_id": "hanoi-boundary-1903516",
+      "primary_region_id": null,
+      "primary_radius_m": null,
+      "notes": []
+    },
+    "resolved_context_time": "2026-09-14T08:00:00Z",
+    "history_version": null,
+    "candidate_count": 0,
+    "results": [],
+    "degraded_reasons": [],
+    "timings_ms": {
+      "total": 1.0
+    }
+  }
+}

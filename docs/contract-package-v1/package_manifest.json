@@ -1,0 +1,75 @@
+{
+  "design_version": "poi-search-design-v1",
+  "created_date": "2026-09-14",
+  "status": "implementation_spec_not_deployed",
+  "files": {
+    "README.md": {
+      "bytes": 3454,
+      "sha256": "ec68e1d536c64d9544fb817de0caaa322fb8246ddcfe1806874c34cd4acaa8f2"
+    },
+    "SYSTEM_DESIGN.md": {
+      "bytes": 22021,
+      "sha256": "8ddd88641f90bf1fa4c8a61c72b0157b2de80a88f426381d64ce5064cd3a2130"
+    },
+    "TECHNICAL_SPEC.md": {
+      "bytes": 26808,
+      "sha256": "bb85e17b3c31bbfe6865457a1b7f1a15e1be7f9c5f6d6f083c2a05ce73c10246"
+    },
+    "configs/search.json": {
+      "bytes": 2223,
+      "sha256": "6d507a9e413938dc7da887d97d92d5b0bef99148e3e07021de4e2ab196855971"
+    },
+    "contract_validation.json": {
+      "bytes": 443,
+      "sha256": "90c47824bc07f70c972c8b7bf710ebe906a656a876fdab5405f2ad8a8b397e76"
+    },
+    "contracts/examples.json": {
+      "bytes": 1621,
+      "sha256": "b0893bd4ff9c47d1f086418ed326a85486d79bb6dc82b5b72ee3feab20c6b20e"
+    },
+    "contracts/features.json": {
+      "bytes": 3379,
+      "sha256": "3373d7098788938ea80a19eda37d7d6a874cd1b1d85837a39734832dd20fad71"
+    },
+    "contracts/model_bundle.schema.json": {
+      "bytes": 5995,
+      "sha256": "8ee65e9d79c4c0351daa8eac9580ee527c896aff7343646adc5e72225691371b"
+    },
+    "contracts/openapi.json": {
+      "bytes": 49274,
+      "sha256": "08584fe25c460a6e03934b35b93e75b36b5e3e0a67ec0e1052966a9d04131d9f"
+    },
+    "contracts/release.schema.json": {
+      "bytes": 1630,
+      "sha256": "7adc68bd4659fa06de63395dc37a6169b4c1afd60dc4fcfdf766f1c9d2603c7c"
+    },
+    "diagrams/01.mmd": {
+      "bytes": 321,
+      "sha256": "44a60fd351f9ec0ea86634fdf487e889e9e6cd885ba879f914db87266dbb77e0"
+    },
+    "diagrams/02.mmd": {
+      "bytes": 456,
+      "sha256": "a1afdd77ae8310cd27271a714c2acc92672ea33569a2ef897ec7b70e32266968"
+    },
+    "diagrams/03.mmd": {
+      "bytes": 733,
+      "sha256": "ca24fe694312c95e80c2b2ce4460f2d352205249b16e1dcd8f5162c21c304d5d"
+    },
+    "diagrams/04.mmd": {
+      "bytes": 340,
+      "sha256": "0805d07ea6fb130be8a196228de4ec8b26b51e02870f1c2c0c61f395050a9990"
+    },
+    "diagrams/05.mmd": {
+      "bytes": 366,
+      "sha256": "9200e55226e9822ebee9d172f2454c721cfb4366b401fe8958453a6287e49487"
+    },
+    "requirements-validation.txt": {
+      "bytes": 49,
+      "sha256": "e58bb9bd78e102871d5b97a96a1ab4aeefddf9e3763d9cbc7d3b7f22405f4492"
+    },
+    "validate_contracts.py": {
+      "bytes": 4363,
+      "sha256": "c472828e230fe0b86472a5df689e24cee2475a6ac20b7f3954a4638459656eb9"
+    }
+  }
+}

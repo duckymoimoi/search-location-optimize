@@ -1,0 +1,46 @@
+{
+  "policy_version": "search-policy-stable-demo-v5",
+  "default_retrieval_profile": "hybrid",
+  "retrieval": {
+    "branch_depth": 50,
+    "candidate_budget": 50,
+    "ann_candidates": 200,
+    "rrf_constant": 60,
+    "dense_min_compact_chars": 5
+  },
+  "lexical": {
+    "exact": 16.0,
+    "alias_exact": 12.0,
+    "leading_prefix": 12.0,
+    "phrase": 6.0,
+    "prefix_field": 10.0,
+    "and_match": 3.0,
+    "fuzzy": 1.0
+  },
+  "warmup_queries": ["ga", "vincom", "phở bò nam định", "23 nguyễn trãi"],
+  "query_rewrites": [
+    {"pattern": "\\bbv\\b", "replacement": "bệnh viện"},
+    {"pattern": "\\bdh\\b", "replacement": "đại học"},
+    {"pattern": "\\bthpt\\b", "replacement": "trung học phổ thông"},
+    {"pattern": "\\bthcs\\b", "replacement": "trung học cơ sở"}
+  ],
+  "ranking": {
+    "retrieval_weight": 0.65,
+    "name_token_overlap_weight": 0.35,
+    "relevance_blend": 0.65,
+    "geo_blend": 0.35,
+    "geo_decay_m": 5000,
+    "exact_text_bonus": 0.04,
+    "protect_exact_name_or_alias": true,
+    "deduplication": {
+      "entity_group_id": true,
+      "normalized_name_within_m": 300
+    }
+  },
+  "cors_origins": [
+    "http://localhost:5173",
+    "http://127.0.0.1:5173",
+    "http://localhost:5174",
+    "http://127.0.0.1:5174"
+  ]
+}

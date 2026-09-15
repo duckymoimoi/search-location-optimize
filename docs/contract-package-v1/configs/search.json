@@ -1,0 +1,85 @@
+{
+  "policy_version": "search-policy-stable-demo-v4",
+  "status": "evaluated_demo_policy",
+  "corpus_version": "hn-poi-stable-v1",
+  "profile": "hybrid",
+  "ui": {
+    "debounce_ms": 120,
+    "top_k": 5,
+    "camera_on_result_update": "markers_only",
+    "camera_on_selection": "fly_to_selected",
+    "camera_on_recenter_action": "fly_to_origin"
+  },
+  "scope": {
+    "global_lane_required": true,
+    "pickup_radius_m": 5000,
+    "destination_radius_m": 15000,
+    "pickup_retry_radius_m": 20000,
+    "destination_retry_radius_m": 60000,
+    "max_radius_retries": 1,
+    "gps_max_age_s": 120,
+    "gps_max_accuracy_m": 200,
+    "gps_max_future_s": 30
+  },
+  "retrieval": {
+    "branch_depth": 50,
+    "candidate_budget": 50,
+    "public_top_k_max": 5,
+    "rrf_c": 60,
+    "rrf_weights": {
+      "lexical": 1,
+      "dense": 1
+    },
+    "explicit_protected_max": 5,
+    "global_reserved_max": 10,
+    "dense_min_query_chars": 5,
+    "prefix_min_gram": 1,
+    "prefix_max_gram": 20
+  },
+  "rescue": {
+    "enabled": false,
+    "geo_slots": 5,
+    "history_slots": 5,
+    "depth_per_source": 20,
+    "min_remaining_ms": 40
+  },
+  "ranker": {
+    "kind": "relevance_gated_geo_v4",
+    "exact_text_match_protected": true,
+    "runtime_policy_file": "apps/poi-search/api/search_policy.json",
+    "category_intent_action": "filter",
+    "require_non_intent_name_coverage": true,
+    "retrieval_weight": 0.65,
+    "name_token_overlap_weight": 0.35,
+    "relevance_blend": 0.65,
+    "geo_blend": 0.35,
+    "geo_decay_m": 5000,
+    "deduplicate_by": ["entity_group_id", "normalized_name_within_300m"],
+    "candidate_only_rerank": true,
+    "history_limit": 50,
+    "timezone": "Asia/Ho_Chi_Minh"
+  },
+  "timeouts_ms": {
+    "request": 180,
+    "encoder": 60,
+    "retrieval_branch": 70,
+    "ranker": 20,
+    "route_preview": 1000
+  },
+  "runtime": {
+    "model_queue_max": 32,
+    "embedding_cache_entries": 10000,
+    "personalized_cache_enabled": false,
+    "exposure_ttl_s": 900,
+    "demo_overrides_enabled": true
+  },
+  "benchmark_target": {
+    "status": "target_only",
+    "offered_qps": 10,
+    "vcpu": 8,
+    "ram_gib": 32,
+    "stage1_p95_ms": 100,
+    "personalized_p95_ms": 150,
+    "personalized_p99_ms": 300
+  }
+}

@@ -1,0 +1,1909 @@
+{
+  "openapi": "3.1.0",
+  "info": {
+    "title": "POI Ride Search MVP",
+    "version": "1.0.0",
+    "description": "Implementation contract, not a deployed service. Demo selection events are not booking or verified relevance labels."
+  },
+  "servers": [
+    {
+      "url": "http://localhost:8000"
+    }
+  ],
+  "security": [
+    {
+      "sessionCookie": []
+    }
+  ],
+  "paths": {
+    "/v1/status": {
+      "get": {
+        "operationId": "getStatus",
+        "description": "Active immutable release and advertised coverage. No model activation through this endpoint.",
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Status"
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "See Error.code and technical spec",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "See Error.code and technical spec",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "409": {
+            "description": "See Error.code and technical spec",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "See Error.code and technical spec",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "429": {
+            "description": "See Error.code and technical spec",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "503": {
+            "description": "See Error.code and technical spec",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          }
+        },
+        "security": []
+      }
+    },
+    "/v1/origins": {
+      "get": {
+        "operationId": "listOrigins",
+        "description": "",
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/OriginList"
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "See Error.code and technical spec",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "See Error.code and technical spec",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "409": {
+            "description": "See Error.code and technical spec",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "See Error.code and technical spec",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "429": {
+            "description": "See Error.code and technical spec",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "503": {
+            "description": "See Error.code and technical spec",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Session missing or invalid",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "corpus_version",
+            "in": "query",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "minLength": 1
+            }
+          },
+          {
+            "name": "q",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "string",
+              "maxLength": 256
+            }
+          },
+          {
+            "name": "limit",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "integer",
+              "minimum": 1,
+              "maximum": 50,
+              "default": 20
+            }
+          },
+          {
+            "name": "cursor",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ]
+      }
+    },
+    "/v1/pois/details": {
+      "get": {
+        "operationId": "getPoiDetails",
+        "description": "",
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/PoiDetails"
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "See Error.code and technical spec",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "See Error.code and technical spec",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "409": {
+            "description": "See Error.code and technical spec",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "See Error.code and technical spec",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "429": {
+            "description": "See Error.code and technical spec",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "503": {
+            "description": "See Error.code and technical spec",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Session missing or invalid",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "poi_id",
+            "in": "query",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "minLength": 1
+            }
+          },
+          {
+            "name": "corpus_version",
+            "in": "query",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "minLength": 1
+            }
+          }
+        ]
+      }
+    },
+    "/v1/suggest": {
+      "post": {
+        "operationId": "suggestQueryOnly",
+        "description": "Fixed global scope, no context routing/history/geo. Empty normalized query returns no exposure.",
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/SuggestResponse"
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "See Error.code and technical spec",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "See Error.code and technical spec",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "409": {
+            "description": "See Error.code and technical spec",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "See Error.code and technical spec",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "429": {
+            "description": "See Error.code and technical spec",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "503": {
+            "description": "See Error.code and technical spec",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Session missing or invalid",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          }
+        },
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/SuggestRequest"
+              }
+            }
+          }
+        }
+      }
+    },
+    "/v1/suggest/personalized": {
+      "post": {
+        "operationId": "suggestPersonalized",
+        "description": "Scope routing and configured Stage 2. demo_user_id/context_time overrides forbidden outside demo mode. User identity otherwise resolved server-side.",
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/SuggestResponse"
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "See Error.code and technical spec",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "See Error.code and technical spec",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "409": {
+            "description": "See Error.code and technical spec",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "See Error.code and technical spec",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "429": {
+            "description": "See Error.code and technical spec",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "503": {
+            "description": "See Error.code and technical spec",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Session missing or invalid",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          }
+        },
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/PersonalizedRequest"
+              }
+            }
+          }
+        }
+      }
+    },
+    "/v1/exposures/displayed": {
+      "post": {
+        "operationId": "markDisplayed",
+        "description": "Idempotent acknowledgement for the session and current context revision.",
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/DisplayResponse"
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "See Error.code and technical spec",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "See Error.code and technical spec",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "409": {
+            "description": "See Error.code and technical spec",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "See Error.code and technical spec",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "429": {
+            "description": "See Error.code and technical spec",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "503": {
+            "description": "See Error.code and technical spec",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Session missing or invalid",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          }
+        },
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/DisplayRequest"
+              }
+            }
+          }
+        }
+      }
+    },
+    "/v1/select": {
+      "post": {
+        "operationId": "selectPoi",
+        "description": "Transactional idempotency by session+key. Must select from displayed, unexpired, current-revision exposure. This MVP records demo events only.",
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/SelectResponse"
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "See Error.code and technical spec",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "See Error.code and technical spec",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "409": {
+            "description": "See Error.code and technical spec",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "See Error.code and technical spec",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "429": {
+            "description": "See Error.code and technical spec",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "503": {
+            "description": "See Error.code and technical spec",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Session missing or invalid",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          }
+        },
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/SelectRequest"
+              }
+            }
+          }
+        }
+      }
+    },
+    "/v1/route-preview": {
+      "post": {
+        "operationId": "previewRoute",
+        "description": "Straight-line MVP; road unavailable without verified routing points and configured graph. auto permits fallback, road requires allow_fallback=true.",
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/RouteResponse"
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "See Error.code and technical spec",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "See Error.code and technical spec",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "409": {
+            "description": "See Error.code and technical spec",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "See Error.code and technical spec",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "429": {
+            "description": "See Error.code and technical spec",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "503": {
+            "description": "See Error.code and technical spec",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Session missing or invalid",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          }
+        },
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/RouteRequest"
+              }
+            }
+          }
+        }
+      }
+    },
+    "/v1/sessions": {
+      "post": {
+        "operationId": "createDemoSession",
+        "security": [],
+        "description": "Create server-owned anonymous demo session; no client subject accepted. Production mode requires application authentication integration.",
+        "responses": {
+          "200": {
+            "description": "Session created; opaque HttpOnly cookie",
+            "headers": {
+              "Set-Cookie": {
+                "schema": {
+                  "type": "string"
+                },
+                "description": "poi_demo_session; HttpOnly; SameSite=Lax; Secure on HTTPS"
+              }
+            },
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/SessionResponse"
+                }
+              }
+            }
+          },
+          "429": {
+            "description": "Rate limited",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/v1/demo/users": {
+      "get": {
+        "operationId": "listDemoUsers",
+        "description": "Demo-only fixture labels and IDs, no user history. 403 outside demo mode.",
+        "responses": {
+          "200": {
+            "description": "Registered fixtures",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/DemoUsersResponse"
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "Demo disabled",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Session missing or invalid",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  },
+  "components": {
+    "securitySchemes": {
+      "sessionCookie": {
+        "type": "apiKey",
+        "in": "cookie",
+        "name": "poi_demo_session"
+      }
+    },
+    "schemas": {
+      "Point": {
+        "type": "object",
+        "properties": {
+          "lat": {
+            "type": "number",
+            "minimum": -90,
+            "maximum": 90
+          },
+          "lon": {
+            "type": "number",
+            "minimum": -180,
+            "maximum": 180
+          }
+        },
+        "required": [
+          "lat",
+          "lon"
+        ],
+        "additionalProperties": false
+      },
+      "MapPoint": {
+        "type": "object",
+        "properties": {
+          "lat": {
+            "type": "number",
+            "minimum": -90,
+            "maximum": 90
+          },
+          "lon": {
+            "type": "number",
+            "minimum": -180,
+            "maximum": 180
+          },
+          "quality": {
+            "type": "string",
+            "minLength": 1
+          }
+        },
+        "required": [
+          "lat",
+          "lon",
+          "quality"
+        ],
+        "additionalProperties": false
+      },
+      "Origin": {
+        "oneOf": [
+          {
+            "type": "object",
+            "properties": {
+              "kind": {
+                "const": "poi"
+              },
+              "poi_id": {
+                "type": "string",
+                "minLength": 1
+              }
+            },
+            "required": [
+              "kind",
+              "poi_id"
+            ],
+            "additionalProperties": false
+          },
+          {
+            "type": "object",
+            "properties": {
+              "kind": {
+                "const": "gps"
+              },
+              "point": {
+                "$ref": "#/components/schemas/Point"
+              },
+              "accuracy_m": {
+                "type": "number",
+                "minimum": 0
+              },
+              "observed_at": {
+                "type": "string",
+                "format": "date-time"
+              }
+            },
+            "required": [
+              "kind",
+              "point",
+              "accuracy_m",
+              "observed_at"
+            ],
+            "additionalProperties": false
+          },
+          {
+            "type": "object",
+            "properties": {
+              "kind": {
+                "const": "map"
+              },
+              "point": {
+                "$ref": "#/components/schemas/Point"
+              }
+            },
+            "required": [
+              "kind",
+              "point"
+            ],
+            "additionalProperties": false
+          },
+          {
+            "type": "null"
+          }
+        ]
+      },
+      "Versions": {
+        "type": "object",
+        "properties": {
+          "release_id": {
+            "type": "string",
+            "minLength": 1
+          },
+          "corpus_version": {
+            "type": "string",
+            "minLength": 1
+          },
+          "index_version": {
+            "type": "string",
+            "minLength": 1
+          },
+          "encoder_id": {
+            "type": [
+              "string",
+              "null"
+            ]
+          },
+          "embedding_space_id": {
+            "anyOf": [
+              {
+                "type": "string",
+                "pattern": "^[a-f0-9]{64}$"
+              },
+              {
+                "type": "null"
+              }
+            ]
+          },
+          "passage_builder_version": {
+            "type": "string",
+            "minLength": 1
+          },
+          "scope_policy_version": {
+            "type": "string",
+            "minLength": 1
+          },
+          "candidate_policy_version": {
+            "type": "string",
+            "minLength": 1
+          },
+          "ranker_id": {
+            "type": "string",
+            "minLength": 1
+          },
+          "feature_version": {
+            "type": "string",
+            "minLength": 1
+          }
+        },
+        "required": [
+          "release_id",
+          "corpus_version",
+          "index_version",
+          "encoder_id",
+          "embedding_space_id",
+          "passage_builder_version",
+          "scope_policy_version",
+          "candidate_policy_version",
+          "ranker_id",
+          "feature_version"
+        ],
+        "additionalProperties": false
+      },
+      "ScopeSummary": {
+        "type": "object",
+        "properties": {
+          "mode": {
+            "enum": [
+              "global",
+              "radius_and_global",
+              "region_and_global"
+            ]
+          },
+          "coverage_id": {
+            "type": "string",
+            "minLength": 1
+          },
+          "primary_region_id": {
+            "type": [
+              "string",
+              "null"
+            ]
+          },
+          "primary_radius_m": {
+            "type": [
+              "number",
+              "null"
+            ],
+            "minimum": 0
+          },
+          "notes": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          }
+        },
+        "required": [
+          "mode",
+          "coverage_id",
+          "primary_region_id",
+          "primary_radius_m",
+          "notes"
+        ],
+        "additionalProperties": false
+      },
+      "DegradedReason": {
+        "type": "string",
+        "enum": [
+          "dense_timeout",
+          "dense_unavailable",
+          "lexical_timeout",
+          "lexical_unavailable",
+          "primary_scope_unavailable",
+          "global_scope_unavailable",
+          "rescue_timeout",
+          "ranker_timeout",
+          "ranker_unavailable",
+          "history_unavailable",
+          "exposure_store_unavailable",
+          "road_unavailable"
+        ]
+      },
+      "SuggestRequest": {
+        "type": "object",
+        "properties": {
+          "request_id": {
+            "type": "string",
+            "minLength": 1
+          },
+          "session_id": {
+            "type": "string",
+            "minLength": 1
+          },
+          "context_revision": {
+            "type": "integer",
+            "minimum": 0
+          },
+          "query": {
+            "type": "string",
+            "maxLength": 256
+          },
+          "query_surface": {
+            "enum": [
+              "committed_text",
+              "raw_keys"
+            ],
+            "default": "committed_text"
+          },
+          "top_k": {
+            "type": "integer",
+            "minimum": 1,
+            "maximum": 5,
+            "default": 5
+          },
+          "expected_corpus_version": {
+            "type": "string",
+            "minLength": 1
+          }
+        },
+        "required": [
+          "request_id",
+          "session_id",
+          "context_revision",
+          "query",
+          "expected_corpus_version"
+        ],
+        "additionalProperties": false
+      },
+      "PersonalizedRequest": {
+        "type": "object",
+        "properties": {
+          "request_id": {
+            "type": "string",
+            "minLength": 1
+          },
+          "session_id": {
+            "type": "string",
+            "minLength": 1
+          },
+          "context_revision": {
+            "type": "integer",
+            "minimum": 0
+          },
+          "query": {
+            "type": "string",
+            "maxLength": 256
+          },
+          "query_surface": {
+            "enum": [
+              "committed_text",
+              "raw_keys"
+            ],
+            "default": "committed_text"
+          },
+          "top_k": {
+            "type": "integer",
+            "minimum": 1,
+            "maximum": 5,
+            "default": 5
+          },
+          "expected_corpus_version": {
+            "type": "string",
+            "minLength": 1
+          },
+          "search_kind": {
+            "enum": [
+              "pickup",
+              "destination"
+            ]
+          },
+          "origin": {
+            "$ref": "#/components/schemas/Origin"
+          },
+          "preferred_region_id": {
+            "type": [
+              "string",
+              "null"
+            ]
+          },
+          "demo_user_id": {
+            "type": [
+              "string",
+              "null"
+            ]
+          },
+          "context_time": {
+            "type": [
+              "string",
+              "null"
+            ],
+            "format": "date-time"
+          }
+        },
+        "required": [
+          "request_id",
+          "session_id",
+          "context_revision",
+          "query",
+          "expected_corpus_version",
+          "search_kind"
+        ],
+        "additionalProperties": false
+      },
+      "Result": {
+        "type": "object",
+        "properties": {
+          "poi_id": {
+            "type": "string",
+            "minLength": 1
+          },
+          "name": {
+            "type": "string",
+            "minLength": 1
+          },
+          "rank": {
+            "type": "integer",
+            "minimum": 1,
+            "maximum": 5
+          },
+          "address_text": {
+            "type": "string"
+          },
+          "context_text": {
+            "type": "string"
+          },
+          "ranking_point": {
+            "$ref": "#/components/schemas/MapPoint"
+          },
+          "routing_point": {
+            "anyOf": [
+              {
+                "$ref": "#/components/schemas/MapPoint"
+              },
+              {
+                "type": "null"
+              }
+            ]
+          },
+          "pickup_access_verified": {
+            "type": "boolean"
+          },
+          "ranking_distance_m": {
+            "type": [
+              "number",
+              "null"
+            ],
+            "minimum": 0
+          }
+        },
+        "required": [
+          "poi_id",
+          "name",
+          "rank",
+          "address_text",
+          "context_text",
+          "ranking_point",
+          "routing_point",
+          "pickup_access_verified",
+          "ranking_distance_m"
+        ],
+        "additionalProperties": false
+      },
+      "SuggestResponse": {
+        "type": "object",
+        "properties": {
+          "request_id": {
+            "type": "string",
+            "minLength": 1
+          },
+          "context_revision": {
+            "type": "integer",
+            "minimum": 0
+          },
+          "exposure_id": {
+            "type": [
+              "string",
+              "null"
+            ]
+          },
+          "selectable": {
+            "type": "boolean"
+          },
+          "versions": {
+            "$ref": "#/components/schemas/Versions"
+          },
+          "scope_summary": {
+            "$ref": "#/components/schemas/ScopeSummary"
+          },
+          "resolved_context_time": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "history_version": {
+            "type": [
+              "string",
+              "null"
+            ]
+          },
+          "candidate_count": {
+            "type": "integer",
+            "minimum": 0,
+            "maximum": 50
+          },
+          "results": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/Result"
+            },
+            "maxItems": 5
+          },
+          "degraded_reasons": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/DegradedReason"
+            }
+          },
+          "timings_ms": {
+            "type": "object",
+            "additionalProperties": {
+              "type": "number",
+              "minimum": 0
+            }
+          }
+        },
+        "required": [
+          "request_id",
+          "context_revision",
+          "exposure_id",
+          "selectable",
+          "versions",
+          "scope_summary",
+          "resolved_context_time",
+          "history_version",
+          "candidate_count",
+          "results",
+          "degraded_reasons",
+          "timings_ms"
+        ],
+        "additionalProperties": false
+      },
+      "Error": {
+        "type": "object",
+        "properties": {
+          "code": {
+            "type": "string",
+            "minLength": 1
+          },
+          "message": {
+            "type": "string"
+          },
+          "request_id": {
+            "type": [
+              "string",
+              "null"
+            ]
+          }
+        },
+        "required": [
+          "code",
+          "message",
+          "request_id"
+        ],
+        "additionalProperties": false
+      },
+      "Status": {
+        "type": "object",
+        "properties": {
+          "ready": {
+            "type": "boolean"
+          },
+          "versions": {
+            "$ref": "#/components/schemas/Versions"
+          },
+          "coverage_id": {
+            "type": "string",
+            "minLength": 1
+          },
+          "profile": {
+            "enum": [
+              "lexical_only",
+              "hybrid",
+              "personalized"
+            ]
+          },
+          "capabilities": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          }
+        },
+        "required": [
+          "ready",
+          "versions",
+          "coverage_id",
+          "profile",
+          "capabilities"
+        ],
+        "additionalProperties": false
+      },
+      "OriginList": {
+        "type": "object",
+        "properties": {
+          "corpus_version": {
+            "type": "string",
+            "minLength": 1
+          },
+          "items": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "properties": {
+                "poi_id": {
+                  "type": "string",
+                  "minLength": 1
+                },
+                "name": {
+                  "type": "string",
+                  "minLength": 1
+                },
+                "ranking_point": {
+                  "$ref": "#/components/schemas/MapPoint"
+                },
+                "pickup_access_verified": {
+                  "type": "boolean"
+                }
+              },
+              "required": [
+                "poi_id",
+                "name",
+                "ranking_point",
+                "pickup_access_verified"
+              ],
+              "additionalProperties": false
+            }
+          },
+          "next_cursor": {
+            "type": [
+              "string",
+              "null"
+            ]
+          }
+        },
+        "required": [
+          "corpus_version",
+          "items",
+          "next_cursor"
+        ],
+        "additionalProperties": false
+      },
+      "PoiDetails": {
+        "type": "object",
+        "properties": {
+          "poi_id": {
+            "type": "string",
+            "minLength": 1
+          },
+          "corpus_version": {
+            "type": "string",
+            "minLength": 1
+          },
+          "name": {
+            "type": [
+              "string",
+              "null"
+            ]
+          },
+          "aliases": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          },
+          "category": {
+            "type": "string"
+          },
+          "address_text": {
+            "type": "string"
+          },
+          "context_text": {
+            "type": "string"
+          },
+          "address_status": {
+            "enum": [
+              "direct",
+              "inherited_building",
+              "missing"
+            ]
+          },
+          "ranking_point": {
+            "$ref": "#/components/schemas/MapPoint"
+          },
+          "routing_point": {
+            "anyOf": [
+              {
+                "$ref": "#/components/schemas/MapPoint"
+              },
+              {
+                "type": "null"
+              }
+            ]
+          },
+          "destination_searchable": {
+            "type": "boolean"
+          },
+          "origin_search_eligible": {
+            "type": "boolean"
+          },
+          "pickup_access_verified": {
+            "type": "boolean"
+          }
+        },
+        "required": [
+          "poi_id",
+          "corpus_version",
+          "name",
+          "aliases",
+          "category",
+          "address_text",
+          "context_text",
+          "address_status",
+          "ranking_point",
+          "routing_point",
+          "destination_searchable",
+          "origin_search_eligible",
+          "pickup_access_verified"
+        ],
+        "additionalProperties": false
+      },
+      "DisplayRequest": {
+        "type": "object",
+        "properties": {
+          "session_id": {
+            "type": "string",
+            "minLength": 1
+          },
+          "exposure_id": {
+            "type": "string",
+            "minLength": 1
+          },
+          "context_revision": {
+            "type": "integer",
+            "minimum": 0
+          }
+        },
+        "required": [
+          "session_id",
+          "exposure_id",
+          "context_revision"
+        ],
+        "additionalProperties": false
+      },
+      "DisplayResponse": {
+        "type": "object",
+        "properties": {
+          "exposure_id": {
+            "type": "string",
+            "minLength": 1
+          },
+          "displayed": {
+            "const": true
+          }
+        },
+        "required": [
+          "exposure_id",
+          "displayed"
+        ],
+        "additionalProperties": false
+      },
+      "SelectRequest": {
+        "type": "object",
+        "properties": {
+          "session_id": {
+            "type": "string",
+            "minLength": 1
+          },
+          "exposure_id": {
+            "type": "string",
+            "minLength": 1
+          },
+          "context_revision": {
+            "type": "integer",
+            "minimum": 0
+          },
+          "selected_poi_id": {
+            "type": "string",
+            "minLength": 1
+          },
+          "idempotency_key": {
+            "type": "string",
+            "minLength": 1
+          }
+        },
+        "required": [
+          "session_id",
+          "exposure_id",
+          "context_revision",
+          "selected_poi_id",
+          "idempotency_key"
+        ],
+        "additionalProperties": false
+      },
+      "SelectResponse": {
+        "type": "object",
+        "properties": {
+          "selection_id": {
+            "type": "string",
+            "minLength": 1
+          },
+          "exposure_id": {
+            "type": "string",
+            "minLength": 1
+          },
+          "selected_poi_id": {
+            "type": "string",
+            "minLength": 1
+          },
+          "corpus_version": {
+            "type": "string",
+            "minLength": 1
+          },
+          "recorded_at": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "history_version": {
+            "type": "string",
+            "minLength": 1
+          },
+          "event_source": {
+            "const": "demo_selection"
+          }
+        },
+        "required": [
+          "selection_id",
+          "exposure_id",
+          "selected_poi_id",
+          "corpus_version",
+          "recorded_at",
+          "history_version",
+          "event_source"
+        ],
+        "additionalProperties": false
+      },
+      "RouteRequest": {
+        "type": "object",
+        "properties": {
+          "corpus_version": {
+            "type": "string",
+            "minLength": 1
+          },
+          "origin_poi_id": {
+            "type": [
+              "string",
+              "null"
+            ]
+          },
+          "destination_poi_id": {
+            "type": "string",
+            "minLength": 1
+          },
+          "mode": {
+            "enum": [
+              "straight_line",
+              "road",
+              "auto"
+            ],
+            "default": "straight_line"
+          },
+          "allow_fallback": {
+            "type": "boolean",
+            "default": false
+          }
+        },
+        "required": [
+          "corpus_version",
+          "origin_poi_id",
+          "destination_poi_id"
+        ],
+        "additionalProperties": false
+      },
+      "RouteResponse": {
+        "type": "object",
+        "properties": {
+          "status": {
+            "enum": [
+              "ok",
+              "missing_origin",
+              "unavailable"
+            ]
+          },
+          "corpus_version": {
+            "type": "string",
+            "minLength": 1
+          },
+          "mode_used": {
+            "enum": [
+              "straight_line",
+              "road",
+              null
+            ]
+          },
+          "geometry": {
+            "anyOf": [
+              {
+                "type": "object",
+                "properties": {
+                  "type": {
+                    "const": "LineString"
+                  },
+                  "coordinates": {
+                    "type": "array",
+                    "minItems": 2,
+                    "items": {
+                      "type": "array",
+                      "prefixItems": [
+                        {
+                          "type": "number",
+                          "minimum": -180,
+                          "maximum": 180
+                        },
+                        {
+                          "type": "number",
+                          "minimum": -90,
+                          "maximum": 90
+                        }
+                      ],
+                      "minItems": 2,
+                      "maxItems": 2
+                    }
+                  }
+                },
+                "required": [
+                  "type",
+                  "coordinates"
+                ],
+                "additionalProperties": false
+              },
+              {
+                "type": "null"
+              }
+            ]
+          },
+          "geodesic_distance_m": {
+            "type": [
+              "number",
+              "null"
+            ],
+            "minimum": 0
+          },
+          "route_distance_m": {
+            "type": [
+              "number",
+              "null"
+            ],
+            "minimum": 0
+          },
+          "route_duration_s": {
+            "type": [
+              "number",
+              "null"
+            ],
+            "minimum": 0
+          },
+          "graph_version": {
+            "type": [
+              "string",
+              "null"
+            ]
+          },
+          "profile_version": {
+            "type": [
+              "string",
+              "null"
+            ]
+          },
+          "degraded_reasons": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/DegradedReason"
+            }
+          }
+        },
+        "required": [
+          "status",
+          "corpus_version",
+          "mode_used",
+          "geometry",
+          "geodesic_distance_m",
+          "route_distance_m",
+          "route_duration_s",
+          "graph_version",
+          "profile_version",
+          "degraded_reasons"
+        ],
+        "additionalProperties": false
+      },
+      "SessionResponse": {
+        "type": "object",
+        "properties": {
+          "session_id": {
+            "type": "string",
+            "minLength": 1
+          },
+          "context_revision": {
+            "const": 0
+          }
+        },
+        "required": [
+          "session_id",
+          "context_revision"
+        ],
+        "additionalProperties": false
+      },
+      "DemoUsersResponse": {
+        "type": "object",
+        "properties": {
+          "users": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "properties": {
+                "demo_user_id": {
+                  "type": "string",
+                  "minLength": 1
+                },
+                "label": {
+                  "type": "string"
+                }
+              },
+              "required": [
+                "demo_user_id",
+                "label"
+              ],
+              "additionalProperties": false
+            }
+          }
+        },
+        "required": [
+          "users"
+        ],
+        "additionalProperties": false
+      }
+    }
+  }
+}

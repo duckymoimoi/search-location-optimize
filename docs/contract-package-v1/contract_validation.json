@@ -1,0 +1,18 @@
+{
+  "passed": true,
+  "openapi_version": "3.1.0",
+  "http_paths": 10,
+  "valid_examples": 3,
+  "rejected_bad_http_examples": 4,
+  "model_bundle_positive_and_dimension_negative": true,
+  "feature_count": 29,
+  "mermaid_source_consistency": 5,
+  "not_checked": [
+    "application execution",
+    "database transactions",
+    "model weights",
+    "mermaid visual rendering",
+    "retrieval quality",
+    "serving latency"
+  ]
+}

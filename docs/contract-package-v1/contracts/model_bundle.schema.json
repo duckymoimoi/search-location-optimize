@@ -1,0 +1,257 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "Model bundle v1",
+  "oneOf": [
+    {
+      "type": "object",
+      "properties": {
+        "schema_version": {
+          "const": "model-bundle-v1"
+        },
+        "kind": {
+          "const": "encoder"
+        },
+        "model_id": {
+          "type": "string",
+          "minLength": 1
+        },
+        "checkpoint_sha256": {
+          "type": "string",
+          "pattern": "^[a-f0-9]{64}$"
+        },
+        "files": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "path": {
+                "type": "string",
+                "minLength": 1
+              },
+              "sha256": {
+                "type": "string",
+                "pattern": "^[a-f0-9]{64}$"
+              }
+            },
+            "required": [
+              "path",
+              "sha256"
+            ],
+            "additionalProperties": false
+          }
+        },
+        "training_dataset_manifest_sha256": {
+          "anyOf": [
+            {
+              "type": "string",
+              "pattern": "^[a-f0-9]{64}$"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "evaluation_report_path": {
+          "type": "string",
+          "minLength": 1
+        },
+        "precision": {
+          "enum": [
+            "fp32",
+            "fp16",
+            "bf16",
+            "int8"
+          ]
+        },
+        "base_model": {
+          "type": "string",
+          "minLength": 1
+        },
+        "tokenizer_sha256": {
+          "type": "string",
+          "pattern": "^[a-f0-9]{64}$"
+        },
+        "embedding_space_id": {
+          "type": "string",
+          "pattern": "^[a-f0-9]{64}$"
+        },
+        "dimension": {
+          "const": 384
+        },
+        "pooling": {
+          "const": "attention_mask_mean"
+        },
+        "l2_normalize": {
+          "const": true
+        },
+        "query_prefix": {
+          "const": "query: "
+        },
+        "passage_prefix": {
+          "const": "passage: "
+        },
+        "query_max_length": {
+          "type": "integer",
+          "minimum": 1,
+          "maximum": 512
+        },
+        "passage_max_length": {
+          "type": "integer",
+          "minimum": 1,
+          "maximum": 512
+        },
+        "passage_builder_sha256": {
+          "type": "string",
+          "pattern": "^[a-f0-9]{64}$"
+        },
+        "fixture_vectors_path": {
+          "type": "string",
+          "minLength": 1
+        }
+      },
+      "required": [
+        "schema_version",
+        "kind",
+        "model_id",
+        "checkpoint_sha256",
+        "files",
+        "training_dataset_manifest_sha256",
+        "evaluation_report_path",
+        "precision",
+        "base_model",
+        "tokenizer_sha256",
+        "embedding_space_id",
+        "dimension",
+        "pooling",
+        "l2_normalize",
+        "query_prefix",
+        "passage_prefix",
+        "query_max_length",
+        "passage_max_length",
+        "passage_builder_sha256",
+        "fixture_vectors_path"
+      ],
+      "additionalProperties": false
+    },
+    {
+      "type": "object",
+      "properties": {
+        "schema_version": {
+          "const": "model-bundle-v1"
+        },
+        "kind": {
+          "const": "ranker"
+        },
+        "model_id": {
+          "type": "string",
+          "minLength": 1
+        },
+        "checkpoint_sha256": {
+          "type": "string",
+          "pattern": "^[a-f0-9]{64}$"
+        },
+        "files": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "path": {
+                "type": "string",
+                "minLength": 1
+              },
+              "sha256": {
+                "type": "string",
+                "pattern": "^[a-f0-9]{64}$"
+              }
+            },
+            "required": [
+              "path",
+              "sha256"
+            ],
+            "additionalProperties": false
+          }
+        },
+        "training_dataset_manifest_sha256": {
+          "anyOf": [
+            {
+              "type": "string",
+              "pattern": "^[a-f0-9]{64}$"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "evaluation_report_path": {
+          "type": "string",
+          "minLength": 1
+        },
+        "precision": {
+          "enum": [
+            "fp32",
+            "fp16",
+            "bf16",
+            "int8"
+          ]
+        },
+        "algorithm": {
+          "enum": [
+            "lambdamart",
+            "aggregate_mlp",
+            "context_attention"
+          ]
+        },
+        "feature_version": {
+          "type": "string",
+          "minLength": 1
+        },
+        "feature_schema_sha256": {
+          "type": "string",
+          "pattern": "^[a-f0-9]{64}$"
+        },
+        "candidate_policy_version": {
+          "type": "string",
+          "minLength": 1
+        },
+        "encoder_embedding_space_id": {
+          "anyOf": [
+            {
+              "type": "string",
+              "pattern": "^[a-f0-9]{64}$"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "history_limit": {
+          "type": "integer",
+          "minimum": 0,
+          "maximum": 50
+        },
+        "label_rubric_version": {
+          "type": "string",
+          "minLength": 1
+        }
+      },
+      "required": [
+        "schema_version",
+        "kind",
+        "model_id",
+        "checkpoint_sha256",
+        "files",
+        "training_dataset_manifest_sha256",
+        "evaluation_report_path",
+        "precision",
+        "algorithm",
+        "feature_version",
+        "feature_schema_sha256",
+        "candidate_policy_version",
+        "encoder_embedding_space_id",
+        "history_limit",
+        "label_rubric_version"
+      ],
+      "additionalProperties": false
+    }
+  ]
+}

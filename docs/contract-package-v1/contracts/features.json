@@ -1,0 +1,132 @@
+{
+  "feature_version": "tabular-v1",
+  "dtype": "float32",
+  "ordered_features": [
+    {
+      "name": "stage1_rr",
+      "definition": "1/(1+rank), rank starts at 1"
+    },
+    {
+      "name": "lexical_rr",
+      "definition": "1/(1+best lexical rank); 0 if absent"
+    },
+    {
+      "name": "lexical_missing",
+      "definition": "1 iff no lexical evidence"
+    },
+    {
+      "name": "dense_cosine",
+      "definition": "dot product of normalized vectors; 0 if absent"
+    },
+    {
+      "name": "dense_missing",
+      "definition": "1 iff no dense score"
+    },
+    {
+      "name": "name_exact",
+      "definition": "accent-preserving exact name/alias"
+    },
+    {
+      "name": "address_joint_match",
+      "definition": "number and street/place consistent with explicit query"
+    },
+    {
+      "name": "ref_namespace_match",
+      "definition": "ref matches with explicit namespace"
+    },
+    {
+      "name": "explicit_mismatch",
+      "definition": "contradiction with confidently parsed number/street/ref/region"
+    },
+    {
+      "name": "primary_scope_member",
+      "definition": "1 iff in chosen primary scope"
+    },
+    {
+      "name": "from_global",
+      "definition": "1 iff retrieved by global lane"
+    },
+    {
+      "name": "from_geo_rescue",
+      "definition": "1 iff added by geo rescue"
+    },
+    {
+      "name": "from_history_rescue",
+      "definition": "1 iff added by history rescue"
+    },
+    {
+      "name": "log1p_distance_m",
+      "definition": "log1p geodesic distance; 0 if missing"
+    },
+    {
+      "name": "origin_missing",
+      "definition": "1 iff anchor unusable"
+    },
+    {
+      "name": "history_missing",
+      "definition": "1 iff no valid history events"
+    },
+    {
+      "name": "poi_frequency",
+      "definition": "count among history / max(1,history size)"
+    },
+    {
+      "name": "brand_frequency",
+      "definition": "same-source brand count / max(1,history size)"
+    },
+    {
+      "name": "category_frequency",
+      "definition": "same category count / max(1,history size)"
+    },
+    {
+      "name": "log1p_recency_hours",
+      "definition": "hours since last selection of this POI, log1p; 0 if absent"
+    },
+    {
+      "name": "recency_missing",
+      "definition": "1 iff this POI never appears in history"
+    },
+    {
+      "name": "hour_sin",
+      "definition": "sin(2*pi*local_hour/24)"
+    },
+    {
+      "name": "hour_cos",
+      "definition": "cos(2*pi*local_hour/24)"
+    },
+    {
+      "name": "weekday_sin",
+      "definition": "sin(2*pi*weekday/7), Monday=0"
+    },
+    {
+      "name": "weekday_cos",
+      "definition": "cos(2*pi*weekday/7)"
+    },
+    {
+      "name": "same_hour_affinity",
+      "definition": "same POI events within circular hour distance<=2 / max(1,history size)"
+    },
+    {
+      "name": "query_char_count",
+      "definition": "Unicode codepoint count after trim"
+    },
+    {
+      "name": "has_address_pattern",
+      "definition": "observable query parser signal; not dataset track"
+    },
+    {
+      "name": "has_code_pattern",
+      "definition": "observable query parser signal; not dataset track"
+    }
+  ],
+  "missing_policy": "numeric 0 plus explicit missing indicator; no NaN/Inf",
+  "forbidden": [
+    "raw_user_id",
+    "target_id",
+    "target_distance_stratum",
+    "query_family_id",
+    "case_type",
+    "gold_label",
+    "future_events"
+  ]
+}

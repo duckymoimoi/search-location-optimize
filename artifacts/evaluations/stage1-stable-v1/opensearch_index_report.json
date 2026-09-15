@@ -1,0 +1,304 @@
+{
+  "holdout_evaluated": false,
+  "server": {
+    "name": "hanoi-poi-opensearch",
+    "cluster_name": "hanoi-poi-docker",
+    "cluster_uuid": "exchl_JPSESdo_q9G9oy3g",
+    "version": {
+      "distribution": "opensearch",
+      "number": "3.8.0",
+      "build_type": "tar",
+      "build_hash": "e5a3c5691be87af6c12dbe3e158c59c04ee72973",
+      "build_date": "2026-08-01T18:48:00.452816924Z",
+      "build_snapshot": false,
+      "lucene_version": "10.5.0",
+      "minimum_wire_compatibility_version": "2.19.0",
+      "minimum_index_compatibility_version": "2.0.0"
+    },
+    "tagline": "The OpenSearch Project: https://opensearch.org/"
+  },
+  "index": "hanoi-poi-stable-v1-release1",
+  "mapping": {
+    "settings": {
+      "index": {
+        "number_of_shards": 1,
+        "number_of_replicas": 0,
+        "refresh_interval": "-1",
+        "knn": true,
+        "knn.algo_param.ef_search": 100
+      },
+      "analysis": {
+        "char_filter": {
+          "vietnamese_d": {
+            "type": "mapping",
+            "mappings": [
+              "đ => d",
+              "Đ => D"
+            ]
+          }
+        },
+        "filter": {
+          "poi_edge": {
+            "type": "edge_ngram",
+            "min_gram": 1,
+            "max_gram": 20
+          }
+        },
+        "analyzer": {
+          "vi_folded": {
+            "type": "custom",
+            "char_filter": [
+              "vietnamese_d"
+            ],
+            "tokenizer": "standard",
+            "filter": [
+              "lowercase",
+              "asciifolding"
+            ]
+          },
+          "vi_prefix": {
+            "type": "custom",
+            "char_filter": [
+              "vietnamese_d"
+            ],
+            "tokenizer": "standard",
+            "filter": [
+              "lowercase",
+              "asciifolding",
+              "poi_edge"
+            ]
+          }
+        }
+      }
+    },
+    "mappings": {
+      "dynamic": "strict",
+      "properties": {
+        "canonical_id": {
+          "type": "keyword"
+        },
+        "search_label": {
+          "type": "text",
+          "analyzer": "vi_folded",
+          "fields": {
+            "prefix": {
+              "type": "text",
+              "analyzer": "vi_prefix",
+              "search_analyzer": "vi_folded"
+            }
+          }
+        },
+        "search_aliases": {
+          "type": "text",
+          "analyzer": "vi_folded",
+          "fields": {
+            "prefix": {
+              "type": "text",
+              "analyzer": "vi_prefix",
+              "search_analyzer": "vi_folded"
+            }
+          }
+        },
+        "label_folded": {
+          "type": "keyword"
+        },
+        "aliases_folded": {
+          "type": "keyword"
+        },
+        "address": {
+          "type": "text",
+          "analyzer": "vi_folded"
+        },
+        "category": {
+          "type": "keyword"
+        },
+        "category_text": {
+          "type": "text",
+          "analyzer": "vi_folded"
+        },
+        "destination_searchable": {
+          "type": "boolean"
+        },
+        "entity_group_id": {
+          "type": "keyword"
+        },
+        "context_text": {
+          "type": "text",
+          "analyzer": "vi_folded"
+        },
+        "ranking_point": {
+          "properties": {
+            "lat": {
+              "type": "double"
+            },
+            "lon": {
+              "type": "double"
+            },
+            "quality": {
+              "type": "keyword"
+            }
+          }
+        },
+        "routing_point": {
+          "properties": {
+            "lat": {
+              "type": "double"
+            },
+            "lon": {
+              "type": "double"
+            },
+            "quality": {
+              "type": "keyword"
+            }
+          }
+        },
+        "pickup_access_verified": {
+          "type": "boolean"
+        },
+        "origin_search_eligible": {
+          "type": "boolean"
+        },
+        "embedding": {
+          "type": "knn_vector",
+          "dimension": 384,
+          "method": {
+            "name": "hnsw",
+            "space_type": "cosinesimil",
+            "engine": "lucene",
+            "parameters": {
+              "ef_construction": 512,
+              "m": 32
+            }
+          }
+        }
+      }
+    }
+  },
+  "hnsw": {
+    "ef_construction": 512,
+    "m": 32
+  },
+  "model_manifest": {
+    "corpus_version": "hn-poi-stable-v1",
+    "embedding_dimension": 384,
+    "passage_builder": "passage_context"
+  },
+  "corpus_rows": 45692,
+  "corpus_embeddings_sha256": "98d39495b29843072d602533180fb2e620ba1aa9f7bc6cf118246d691ef24c7b",
+  "indexing_seconds": 127.97599190000255,
+  "documents_per_second": 357.03571679055756,
+  "force_merge_seconds": 109.43667239999922,
+  "bulk_size": 200,
+  "bulk_latency_ms": {
+    "mean": 504.7075912663079,
+    "p95": 1055.8040600008096,
+    "max": 1931.054500000755
+  },
+  "index_stats": {
+    "uuid": "WD7O8BbyTf6ntCfJlTWJlw",
+    "primaries": {
+      "store": {
+        "size_in_bytes": 174274537,
+        "reserved_in_bytes": 0
+      },
+      "segments": {
+        "count": 1,
+        "memory_in_bytes": 0,
+        "terms_memory_in_bytes": 0,
+        "stored_fields_memory_in_bytes": 0,
+        "term_vectors_memory_in_bytes": 0,
+        "norms_memory_in_bytes": 0,
+        "points_memory_in_bytes": 0,
+        "doc_values_memory_in_bytes": 0,
+        "index_writer_memory_in_bytes": 0,
+        "version_map_memory_in_bytes": 0,
+        "fixed_bit_set_memory_in_bytes": 0,
+        "max_unsafe_auto_id_timestamp": -1,
+        "remote_store": {
+          "upload": {
+            "total_upload_size": {
+              "started_bytes": 0,
+              "succeeded_bytes": 0,
+              "failed_bytes": 0
+            },
+            "refresh_size_lag": {
+              "total_bytes": 0,
+              "max_bytes": 0
+            },
+            "max_refresh_time_lag_in_millis": 0,
+            "total_time_spent_in_millis": 0,
+            "pressure": {
+              "total_rejections": 0
+            }
+          },
+          "download": {
+            "total_download_size": {
+              "started_bytes": 0,
+              "succeeded_bytes": 0,
+              "failed_bytes": 0
+            },
+            "total_time_spent_in_millis": 0
+          }
+        },
+        "segment_replication": {
+          "max_bytes_behind": 0,
+          "total_bytes_behind": 0,
+          "max_replication_lag": 0
+        },
+        "file_sizes": {}
+      }
+    },
+    "total": {
+      "store": {
+        "size_in_bytes": 174274537,
+        "reserved_in_bytes": 0
+      },
+      "segments": {
+        "count": 1,
+        "memory_in_bytes": 0,
+        "terms_memory_in_bytes": 0,
+        "stored_fields_memory_in_bytes": 0,
+        "term_vectors_memory_in_bytes": 0,
+        "norms_memory_in_bytes": 0,
+        "points_memory_in_bytes": 0,
+        "doc_values_memory_in_bytes": 0,
+        "index_writer_memory_in_bytes": 0,
+        "version_map_memory_in_bytes": 0,
+        "fixed_bit_set_memory_in_bytes": 0,
+        "max_unsafe_auto_id_timestamp": -1,
+        "remote_store": {
+          "upload": {
+            "total_upload_size": {
+              "started_bytes": 0,
+              "succeeded_bytes": 0,
+              "failed_bytes": 0
+            },
+            "refresh_size_lag": {
+              "total_bytes": 0,
+              "max_bytes": 0
+            },
+            "max_refresh_time_lag_in_millis": 0,
+            "total_time_spent_in_millis": 0,
+            "pressure": {
+              "total_rejections": 0
+            }
+          },
+          "download": {
+            "total_download_size": {
+              "started_bytes": 0,
+              "succeeded_bytes": 0,
+              "failed_bytes": 0
+            },
+            "total_time_spent_in_millis": 0
+          }
+        },
+        "segment_replication": {
+          "max_bytes_behind": 0,
+          "total_bytes_behind": 0,
+          "max_replication_lag": 0
+        },
+        "file_sizes": {}
+      }
+    }
+  }
+}

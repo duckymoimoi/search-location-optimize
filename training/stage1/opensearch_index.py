@@ -143,6 +143,21 @@ def index_body(dimension: int, ef_construction: int, m: int) -> dict[str, Any]:
                 "category_text": {"type": "text", "analyzer": "vi_folded"},
                 "destination_searchable": {"type": "boolean"},
                 "entity_group_id": {"type": "keyword"},
+                "context_text": {"type": "text", "analyzer": "vi_folded"},
+                "ranking_point": {
+                    "properties": {
+                        "lat": {"type": "double"}, "lon": {"type": "double"},
+                        "quality": {"type": "keyword"}
+                    }
+                },
+                "routing_point": {
+                    "properties": {
+                        "lat": {"type": "double"}, "lon": {"type": "double"},
+                        "quality": {"type": "keyword"}
+                    }
+                },
+                "pickup_access_verified": {"type": "boolean"},
+                "origin_search_eligible": {"type": "boolean"},
                 "embedding": {
                     "type": "knn_vector",
                     "dimension": dimension,
@@ -168,41 +183,78 @@ def main() -> None:
     parser.add_argument("--bulk-size", type=int, default=200)
     parser.add_argument("--ef-construction", type=int, default=100)
     parser.add_argument("--m", type=int, default=16)
+    parser.add_argument("--stable-corpus", action="store_true")
+    parser.add_argument("--embeddings")
+    parser.add_argument("--id-map")
     parser.add_argument("--recreate", action="store_true")
     args = parser.parse_args()
 
-    if not args.index.startswith("hanoi-poi-stage1-v4-"):
-        raise ValueError("Index name must stay inside the v4 benchmark namespace")
+    if not args.index.startswith(("hanoi-poi-stage1-v4-", "hanoi-poi-stable-v1-")):
+        raise ValueError("Index name must stay inside a Stage 1 benchmark namespace")
     bundle = Path(args.bundle)
     artifacts = Path(args.artifacts)
     output = Path(args.output)
     output.mkdir(parents=True, exist_ok=True)
     server = request(args.base_url, "GET", "/")
-    manifest = json.loads(
-        (artifacts / "final_model_manifest.json").read_text(encoding="utf-8")
-    )
-    embeddings = np.load(artifacts / "corpus_embeddings.npy", mmap_mode="r")
-    id_map = (
-        pq.read_table(artifacts / "corpus_id_map.parquet", columns=["canonical_id"])
-        .column(0)
-        .to_pylist()
-    )
-    columns = [
-        "canonical_id",
-        "search_label",
-        "search_aliases",
-        "address_fields_json",
-        "category",
-        "destination_searchable",
-        "entity_group_id",
-    ]
-    corpus = [
-        row
-        for row in pq.read_table(
-            bundle / "corpus_search_view.parquet", columns=columns
-        ).to_pylist()
-        if row["destination_searchable"]
-    ]
+    if args.stable_corpus:
+        if not args.embeddings or not args.id_map:
+            raise ValueError("Stable mode requires --embeddings and --id-map")
+        embeddings_path = Path(args.embeddings)
+        id_map_path = Path(args.id_map)
+        embeddings = np.load(embeddings_path, mmap_mode="r")
+        id_map = pq.read_table(id_map_path, columns=["poi_id"]).column(0).to_pylist()
+        pois = {
+            row["poi_id"]: row
+            for row in pq.read_table(
+                bundle / "pois.parquet",
+                columns=[
+                    "poi_id", "category", "destination_searchable", "entity_group_id",
+                    "ranking_point", "routing_point", "pickup_access_verified", "origin_search_eligible",
+                ],
+            ).to_pylist()
+        }
+        corpus = []
+        for document in pq.read_table(bundle / "search_documents.parquet").to_pylist():
+            poi = pois[document["poi_id"]]
+            if poi["destination_searchable"]:
+                corpus.append({
+                    "canonical_id": document["poi_id"],
+                    "search_label": document["name"],
+                    "search_aliases": document["aliases"],
+                    "address": document["address_text"],
+                    "category": poi["category"],
+                    "destination_searchable": True,
+                    "entity_group_id": poi["entity_group_id"],
+                    "context_text": document["passage_context"],
+                    "ranking_point": poi["ranking_point"],
+                    "routing_point": poi["routing_point"],
+                    "pickup_access_verified": poi["pickup_access_verified"],
+                    "origin_search_eligible": poi["origin_search_eligible"],
+                })
+        manifest = {
+            "corpus_version": "hn-poi-stable-v1",
+            "embedding_dimension": int(embeddings.shape[1]),
+            "passage_builder": "passage_context",
+        }
+    else:
+        manifest = json.loads(
+            (artifacts / "final_model_manifest.json").read_text(encoding="utf-8")
+        )
+        embeddings_path = artifacts / "corpus_embeddings.npy"
+        embeddings = np.load(embeddings_path, mmap_mode="r")
+        id_map = (
+            pq.read_table(artifacts / "corpus_id_map.parquet", columns=["canonical_id"])
+            .column(0)
+            .to_pylist()
+        )
+        columns = [
+            "canonical_id", "search_label", "search_aliases", "address_fields_json",
+            "category", "destination_searchable", "entity_group_id",
+        ]
+        corpus = [
+            row for row in pq.read_table(bundle / "corpus_search_view.parquet", columns=columns).to_pylist()
+            if row["destination_searchable"]
+        ]
     if [row["canonical_id"] for row in corpus] != id_map:
         raise ValueError("Corpus order does not match the frozen embedding ID map")
     if embeddings.shape != (len(corpus), manifest["embedding_dimension"]):
@@ -246,11 +298,16 @@ def main() -> None:
                         "search_aliases": row["search_aliases"],
                         "label_folded": fold(row["search_label"]),
                         "aliases_folded": [fold(value) for value in row["search_aliases"]],
-                        "address": address_text(row["address_fields_json"]),
+                        "address": row["address"] if args.stable_corpus else address_text(row["address_fields_json"]),
                         "category": row["category"] or "",
                         "category_text": (row["category"] or "").replace("=", " ").replace("_", " "),
                         "destination_searchable": True,
                         "entity_group_id": row["entity_group_id"],
+                        "context_text": row.get("context_text", ""),
+                        "ranking_point": row.get("ranking_point"),
+                        "routing_point": row.get("routing_point"),
+                        "pickup_access_verified": row.get("pickup_access_verified", False),
+                        "origin_search_eligible": row.get("origin_search_eligible", False),
                         "embedding": np.asarray(embeddings[index]).tolist(),
                     },
                     ensure_ascii=False,
@@ -303,7 +360,7 @@ def main() -> None:
         "hnsw": {"ef_construction": args.ef_construction, "m": args.m},
         "model_manifest": manifest,
         "corpus_rows": len(corpus),
-        "corpus_embeddings_sha256": sha256(artifacts / "corpus_embeddings.npy"),
+        "corpus_embeddings_sha256": sha256(embeddings_path),
         "indexing_seconds": indexing_seconds,
         "documents_per_second": len(corpus) / indexing_seconds,
         "force_merge_seconds": merge_seconds,

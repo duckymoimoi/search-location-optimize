@@ -1,0 +1,13 @@
+flowchart TD
+    P["PBF và metadata snapshot"] --> E["Extract toàn quốc và kiểm tra geometry"]
+    E --> C["Canonical POI và audit"]
+    C --> G["Region membership sidecar"]
+    C --> Q["Query dataset có evidence"]
+    Q --> T["Train encoder offline"]
+    C --> D["Dựng passage và lexical fields"]
+    T --> V["Encode toàn corpus"]
+    D --> V
+    D --> I["Index staging"]
+    G --> I
+    V --> I
+    I --> K["Kiểm tra và publish release"]

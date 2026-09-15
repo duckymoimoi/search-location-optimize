@@ -1,0 +1,778 @@
+"""Runnable POI Search demo API backed by the stable OpenSearch index."""
+
+from __future__ import annotations
+
+import math
+import http.client
+import json
+import os
+import re
+import threading
+import time
+import unicodedata
+import uuid
+from collections import defaultdict
+from concurrent.futures import ThreadPoolExecutor
+from datetime import UTC, datetime
+from pathlib import Path
+from typing import Any, Literal
+from urllib.error import HTTPError, URLError
+from urllib.parse import urlencode, urlparse
+from urllib.request import Request as UrlRequest, urlopen
+
+import numpy as np
+import torch
+import torch.nn.functional as functional
+from fastapi import FastAPI, HTTPException, Request, Response
+from fastapi.middleware.cors import CORSMiddleware
+from fastapi.responses import JSONResponse
+from pydantic import BaseModel, ConfigDict, Field
+from transformers import AutoModel, AutoTokenizer
+
+class OpenSearchClient:
+    def __init__(self, base_url: str):
+        parsed = urlparse(base_url)
+        self.connection = http.client.HTTPConnection(parsed.hostname, parsed.port or 80, timeout=60)
+
+    def request(self, method: str, path: str, body: Any | None = None) -> Any:
+        payload = None if body is None else json.dumps(body).encode("utf-8")
+        self.connection.request(method, path, body=payload, headers={"Content-Type": "application/json"})
+        response = self.connection.getresponse()
+        content = response.read()
+        if response.status >= 400:
+            raise RuntimeError(f"OpenSearch {response.status}: {content.decode(errors='replace')}")
+        return json.loads(content) if content else None
+
+
+def fold(text: str) -> str:
+    text = unicodedata.normalize("NFKC", text or "").replace("đ", "d").replace("Đ", "D")
+    return " ".join("".join(ch for ch in unicodedata.normalize("NFD", text) if not unicodedata.combining(ch)).casefold().split())
+
+
+def lexical_body(query: str, size: int) -> dict[str, Any]:
+    folded = fold(query)
+    should: list[dict[str, Any]] = [
+        {"term": {"label_folded": {"value": folded, "boost": LEXICAL_CONFIG["exact"]}}},
+        {"term": {"aliases_folded": {"value": folded, "boost": LEXICAL_CONFIG["alias_exact"]}}},
+        {"match_phrase": {"search_label": {"query": query, "boost": LEXICAL_CONFIG["phrase"]}}},
+        {"multi_match": {"query": query, "fields": ["search_label^6", "search_aliases^4", "address^2", "category_text"],
+                         "type": "best_fields", "operator": "and", "boost": LEXICAL_CONFIG["and_match"]}},
+        {"multi_match": {"query": query, "fields": ["search_label.prefix^5", "search_aliases.prefix^3"],
+                         "type": "best_fields", "operator": "and", "boost": LEXICAL_CONFIG["prefix_field"]}},
+    ]
+    fuzzy_terms = [token for token in text_tokens(query) if token.isalpha() and len(token) >= 4]
+    if fuzzy_terms:
+        should.append({"multi_match": {"query": " ".join(fuzzy_terms),
+            "fields": ["search_label^4", "search_aliases^3"], "type": "best_fields",
+            "operator": "and", "fuzziness": "AUTO", "prefix_length": 1,
+            "max_expansions": 50, "boost": LEXICAL_CONFIG["fuzzy"]}})
+    expanded = expand_query(query)
+    if normalized_text(expanded) != normalized_text(query):
+        should.append({"multi_match": {"query": expanded,
+            "fields": ["search_label^6", "search_aliases^4", "address^2"],
+            "type": "cross_fields", "operator": "and", "boost": 0.5}})
+    # A query can span the POI name and its address.
+    should.append({"multi_match": {"query": query,
+        "fields": ["search_label", "search_aliases", "address"], "type": "cross_fields",
+        "operator": "and", "boost": LEXICAL_CONFIG["and_match"]}})
+    if len(folded) >= 2:
+        should += [
+            {"prefix": {"label_folded": {"value": folded, "boost": LEXICAL_CONFIG["leading_prefix"]}}},
+            {"prefix": {"aliases_folded": {"value": folded, "boost": LEXICAL_CONFIG["leading_prefix"] * .8}}},
+        ]
+    return {"size": size, "track_total_hits": False, "_source": False,
+            "sort": [{"_score": {"order": "desc"}}, {"canonical_id": {"order": "asc"}}],
+            "query": {"bool": {"filter": [{"term": {"destination_searchable": True}}],
+                               "should": should, "minimum_should_match": 1}}}
+
+
+def ann_body(vector: np.ndarray, size: int) -> dict[str, Any]:
+    return {"size": size, "track_total_hits": False, "_source": False,
+            "sort": [{"_score": {"order": "desc"}}, {"canonical_id": {"order": "asc"}}],
+            "query": {"knn": {"embedding": {"vector": vector.tolist(), "k": ANN_CANDIDATES,
+                                               "filter": {"term": {"destination_searchable": True}}}}}}
+
+
+def search(client: OpenSearchClient, body: dict[str, Any]) -> tuple[list[str], float]:
+    began = time.perf_counter()
+    response = client.request("POST", f"/{INDEX_NAME}/_search", body)
+    return [hit["_id"] for hit in response["hits"]["hits"]], (time.perf_counter() - began) * 1000
+
+
+def rrf(left: list[str], right: list[str]) -> list[str]:
+    scores: dict[str, float] = defaultdict(float)
+    best: dict[str, int] = {}
+    for branch in (left[:BRANCH_DEPTH], right[:BRANCH_DEPTH]):
+        for rank, poi_id in enumerate(branch, 1):
+            scores[poi_id] += 1 / (RRF_CONSTANT + rank)
+            best[poi_id] = min(best.get(poi_id, rank), rank)
+    return sorted(scores, key=lambda poi_id: (-scores[poi_id], best[poi_id], poi_id))
+
+MODEL_DIR = Path(os.environ.get("HANOI_POI_MODEL_DIR", "/model"))
+OPENSEARCH_URL = os.environ.get("HANOI_POI_OPENSEARCH_URL", "http://opensearch:9200")
+INDEX_NAME = os.environ.get("HANOI_POI_INDEX", "hanoi-poi-stable-v1-release1")
+EXPECTED_ROWS = int(os.environ.get("HANOI_POI_EXPECTED_ROWS", "45692"))
+POLICY_PATH = Path(os.environ.get("HANOI_POI_SEARCH_POLICY", Path(__file__).with_name("search_policy.json")))
+POLICY = json.loads(POLICY_PATH.read_text(encoding="utf-8"))
+RETRIEVAL_PROFILE = os.environ.get("HANOI_POI_RETRIEVAL_PROFILE", POLICY["default_retrieval_profile"])
+GOONG_API_KEY = os.environ.get("GOONG_API_KEY", "").strip()
+GOONG_DIRECTION_URL = os.environ.get("GOONG_DIRECTION_URL", "https://rsapi.goong.io/Direction").strip()
+if RETRIEVAL_PROFILE not in {"lexical_only", "dense_only", "hybrid"}:
+    raise ValueError(f"Unsupported retrieval profile: {RETRIEVAL_PROFILE}")
+CORPUS_VERSION = "hn-poi-stable-v1"
+BRANCH_DEPTH = int(POLICY["retrieval"]["branch_depth"])
+ANN_CANDIDATES = int(POLICY["retrieval"]["ann_candidates"])
+RRF_CONSTANT = int(POLICY["retrieval"]["rrf_constant"])
+RANKING_POLICY = POLICY["ranking"]
+LEXICAL_CONFIG = POLICY["lexical"]
+
+
+class StrictModel(BaseModel):
+    model_config = ConfigDict(extra="forbid")
+
+
+class Point(StrictModel):
+    model_config = ConfigDict(extra="ignore")
+    lat: float = Field(ge=-90, le=90)
+    lon: float = Field(ge=-180, le=180)
+
+
+class Origin(StrictModel):
+    kind: Literal["poi", "gps", "map"]
+    poi_id: str | None = None
+    point: Point | None = None
+    accuracy_m: float | None = None
+    observed_at: datetime | None = None
+
+
+class SuggestRequest(StrictModel):
+    request_id: str
+    session_id: str
+    context_revision: int = Field(ge=1)
+    query: str = Field(max_length=200)
+    top_k: int = Field(default=5, ge=1, le=50)
+    expected_corpus_version: str
+    search_kind: str | None = None
+    origin: Origin | None = None
+    demo_user_id: str | None = None
+    context_time: datetime | None = None
+    preferred_region_id: str | None = None
+
+
+class DisplayRequest(StrictModel):
+    session_id: str
+    exposure_id: str
+    context_revision: int
+
+
+class SelectRequest(DisplayRequest):
+    selected_poi_id: str
+    idempotency_key: str
+
+
+class RouteRequest(StrictModel):
+    corpus_version: str
+    origin_poi_id: str | None = None
+    destination_poi_id: str | None = None
+    origin_point: Point | None = None
+    destination_point: Point | None = None
+    mode: Literal["straight_line", "road"] = "straight_line"
+    vehicle: Literal["car", "bike", "taxi", "truck", "hd"] = "car"
+    allow_fallback: bool = False
+
+
+class Runtime:
+    def __init__(self) -> None:
+        self.tokenizer = AutoTokenizer.from_pretrained(MODEL_DIR / "final_model")
+        self.model = AutoModel.from_pretrained(MODEL_DIR / "final_model").cpu().eval()
+        torch.set_num_threads(max(1, min(8, os.cpu_count() or 1)))
+        self.lock = threading.Lock()
+        self.local = threading.local()
+        self.pool = ThreadPoolExecutor(max_workers=2)
+        self.sessions: set[str] = set()
+        self.exposures: dict[str, dict[str, Any]] = {}
+        self.selections: dict[tuple[str, str], dict[str, Any]] = {}
+
+    def client(self) -> OpenSearchClient:
+        value = getattr(self.local, "client", None)
+        if value is None:
+            value = OpenSearchClient(OPENSEARCH_URL)
+            self.local.client = value
+        return value
+
+    def encode(self, query: str) -> np.ndarray:
+        tokens = self.tokenizer(
+            ["query: " + query], padding=True, truncation=True,
+            max_length=64, return_tensors="pt",
+        )
+        with self.lock, torch.no_grad():
+            hidden = self.model(**tokens).last_hidden_state
+            mask = tokens["attention_mask"].unsqueeze(-1).expand(hidden.size()).float()
+            vector = functional.normalize(
+                torch.sum(hidden * mask, dim=1) / torch.clamp(mask.sum(dim=1), min=1e-9),
+                p=2, dim=1,
+            )[0]
+        return vector.numpy().astype(np.float32, copy=False)
+
+    def lexical(self, query: str) -> tuple[list[str], float]:
+        ids, elapsed = search(self.client(), lexical_body(query, BRANCH_DEPTH))
+        return ids, elapsed
+
+    def dense(self, vector: np.ndarray) -> tuple[list[str], float]:
+        ids, elapsed = search(self.client(), ann_body(vector, BRANCH_DEPTH))
+        return ids, elapsed
+
+    def documents(self, ids: list[str]) -> list[dict[str, Any]]:
+        if not ids:
+            return []
+        response = self.client().request("POST", f"/{INDEX_NAME}/_mget", {"ids": ids})
+        by_id = {item["_id"]: item["_source"] for item in response["docs"] if item.get("found")}
+        return [by_id[poi_id] for poi_id in ids if poi_id in by_id]
+
+
+runtime = Runtime()
+app = FastAPI(title="Hanoi POI Search Demo", version="1.0.0")
+app.add_middleware(
+    CORSMiddleware,
+    allow_origins=POLICY["cors_origins"],
+    allow_credentials=True,
+    allow_methods=["*"],
+    allow_headers=["*"],
+)
+
+
+@app.on_event("startup")
+def warmup() -> None:
+    """Keep the first user request out of model/index cold-start cost."""
+    for query in POLICY["warmup_queries"]:
+        if RETRIEVAL_PROFILE != "dense_only":
+            runtime.lexical(query)
+        if RETRIEVAL_PROFILE != "lexical_only":
+            runtime.dense(runtime.encode(query))
+
+
+@app.exception_handler(HTTPException)
+async def http_error(_: Request, exc: HTTPException) -> JSONResponse:
+    detail = exc.detail if isinstance(exc.detail, dict) else {}
+    return JSONResponse(
+        status_code=exc.status_code,
+        content={
+            "code": detail.get("code", f"http_{exc.status_code}"),
+            "message": detail.get("message", str(exc.detail)),
+            "request_id": None,
+        },
+    )
+
+
+def versions() -> dict[str, Any]:
+    return {
+        "release_id": "hanoi-poi-demo-r1", "corpus_version": CORPUS_VERSION,
+        "index_version": INDEX_NAME, "encoder_id": "e5-v4-finetuned",
+        "embedding_space_id": "e5-v4-context-384", "passage_builder_version": "stable-v1-context",
+        "scope_policy_version": "global-v1",
+        "candidate_policy_version": f"{POLICY['policy_version']}:safe-candidates-v5:{RETRIEVAL_PROFILE}",
+        "ranker_id": "heuristic-geo-v5", "feature_version": "field-aware-bounded-geo-v5",
+    }
+
+
+def compact_length(value: str) -> int:
+    return len("".join(unicodedata.normalize("NFKC", value).split()))
+
+
+def normalized_text(value: str) -> str:
+    """Normalize spacing/case while preserving Vietnamese accents."""
+    return " ".join(unicodedata.normalize("NFKC", value or "").casefold().split())
+
+
+def is_exact_text_match(query: str, document: dict[str, Any]) -> bool:
+    names = [document.get("search_label", ""), *(document.get("search_aliases") or [])]
+    return bool(normalized_text(query)) and any(normalized_text(query) == normalized_text(name) for name in names)
+
+
+def expand_query(query: str) -> str:
+    """One optional lexical alternative; never replace the encoder input."""
+    value = unicodedata.normalize("NFKC", query)
+    for rewrite in POLICY.get("query_rewrites", []):
+        value = re.sub(rewrite["pattern"], rewrite["replacement"], value, flags=re.IGNORECASE)
+    return " ".join(value.split())
+
+
+def text_tokens(value: str) -> list[str]:
+    # Keep slash/hyphen inside address numbers and building identifiers.
+    return re.findall(r"[^\W_]+(?:[/-][^\W_]+)*", fold(value))
+
+
+def token_overlap(query: str, document: dict[str, Any]) -> float:
+    tokens = text_tokens(query)
+    fields = [document.get("search_label", ""), *(document.get("search_aliases") or []),
+              document.get("address", "")]
+    available = set(text_tokens(" ".join(fields)))
+    if not tokens:
+        return 0.0
+    matched = 0.0
+    for index, token in enumerate(tokens):
+        if token in available:
+            matched += 1.0
+        elif index == len(tokens) - 1 and len(token) >= 3 and token.isalpha():
+            # Only unfinished final text can prefix-match. B12 must never match B1.
+            matched += 0.5 if any(t.startswith(token) for t in available) else 0.0
+    return matched / len(tokens)
+
+
+def entity_key(document: dict[str, Any]) -> tuple[str, ...]:
+    canonical = str(document["canonical_id"])
+    category = str(document.get("category", ""))
+    access_point = document.get("preserve_individual_access_point") or any(
+        marker in category for marker in ("public_transport=platform", "railway=platform", "entrance=")
+    )
+    group = document.get("entity_group_id")
+    if access_point or not group or not RANKING_POLICY.get("deduplication", {}).get("entity_group_id", True):
+        return ("poi", canonical)
+    # Different branches/access points are not duplicates of the parent complex.
+    return ("entity", str(group), str(document.get("branch_id") or ""))
+
+
+def candidate_documents(ids: list[str], docs: list[dict[str, Any]]) -> list[dict[str, Any]]:
+    """Stable retrieval order, authoritative entity collapse, fixed Stage 1 budget."""
+    by_id = {doc["canonical_id"]: doc for doc in docs}
+    seen = set()
+    output = []
+    budget = int(POLICY["retrieval"]["candidate_budget"])
+    for poi_id in ids:
+        doc = by_id.get(poi_id)
+        if doc is None:
+            continue
+        key = entity_key(doc)
+        if key in seen:
+            continue
+        seen.add(key)
+        output.append(doc)
+        if len(output) >= budget:
+            break
+    return output
+
+
+def rank_candidates(query: str, docs: list[dict[str, Any]], evidence: dict,
+                    anchor: dict | None) -> list[tuple[float, int, float | None, dict]]:
+    """Query-only keeps retrieval order; personalized blends relevance + bounded geo.
+
+    final = relevance_blend * text_relevance + geo_blend * exp(-distance/decay)
+    when an origin anchor exists. Structured tokens (e.g. B12) must be compatible
+    before geo applies. Exact name/alias stays protected. No category discard.
+    """
+    best = max((float(evidence[d["canonical_id"]]["rrf"] or 0) for d in docs), default=1.0) or 1.0
+    retrieval_w = float(RANKING_POLICY.get("retrieval_weight", 0.65))
+    overlap_w = float(RANKING_POLICY.get("name_token_overlap_weight", 0.35))
+    relevance_blend = float(RANKING_POLICY.get("relevance_blend", 0.65))
+    geo_blend = float(RANKING_POLICY.get("geo_blend", 0.35))
+    decay = max(1.0, float(RANKING_POLICY.get("geo_decay_m", 5000)))
+    exact_bonus = float(RANKING_POLICY["exact_text_bonus"])
+    protect_exact = bool(RANKING_POLICY.get("protect_exact_name_or_alias", True))
+
+    ranked: list[tuple[float, int, float | None, dict]] = []
+    for rank, doc in enumerate(docs, 1):
+        rrf_norm = float(evidence[doc["canonical_id"]]["rrf"] or 0) / best
+        distance = haversine(anchor, doc["ranking_point"]) if anchor and doc.get("ranking_point") else None
+
+        if anchor is None:
+            ranked.append((rrf_norm, rank, distance, doc))
+            continue
+
+        coverage = token_overlap(query, doc)
+        names = [doc.get("search_label", ""), *(doc.get("search_aliases") or [])]
+        exact = is_exact_text_match(query, doc)
+        folded_exact = bool(fold(query)) and any(fold(query) == fold(name) for name in names)
+        text_rel = retrieval_w * rrf_norm + overlap_w * coverage
+        if exact:
+            text_rel += exact_bonus
+        elif folded_exact:
+            text_rel += 0.5 * exact_bonus
+        if protect_exact and (exact or folded_exact):
+            text_rel = max(text_rel, retrieval_w * rrf_norm + overlap_w)
+
+        fields = " ".join([*names, doc.get("address", "")])
+        available = set(text_tokens(fields))
+        structured = [token for token in text_tokens(query) if any(c.isdigit() for c in token)]
+        compatible = all(token in available for token in structured)
+        geo = 0.0
+        if distance is not None and compatible:
+            geo = math.exp(-distance / decay)
+
+        score = relevance_blend * text_rel + geo_blend * geo
+        ranked.append((score, rank, distance, doc))
+    return sorted(ranked, key=lambda item: (-item[0], item[1], item[3]["canonical_id"]))
+
+
+def haversine(left: dict[str, float], right: dict[str, float]) -> float:
+    radius = 6_371_008.8
+    lat1, lat2 = math.radians(left["lat"]), math.radians(right["lat"])
+    dlat = lat2 - lat1
+    dlon = math.radians(right["lon"] - left["lon"])
+    a = math.sin(dlat / 2) ** 2 + math.cos(lat1) * math.cos(lat2) * math.sin(dlon / 2) ** 2
+    return 2 * radius * math.asin(math.sqrt(min(1.0, max(0.0, a))))
+
+
+def decode_polyline(encoded: str) -> list[list[float]]:
+    """Decode Google/Goong encoded polyline into [lon, lat] coordinates."""
+    coordinates: list[list[float]] = []
+    index = 0
+    lat = 0
+    lon = 0
+    length = len(encoded)
+    while index < length:
+        result = 0
+        shift = 0
+        while True:
+            value = ord(encoded[index]) - 63
+            index += 1
+            result |= (value & 0x1F) << shift
+            shift += 5
+            if value < 0x20:
+                break
+        delta_lat = ~(result >> 1) if result & 1 else (result >> 1)
+        lat += delta_lat
+
+        result = 0
+        shift = 0
+        while True:
+            value = ord(encoded[index]) - 63
+            index += 1
+            result |= (value & 0x1F) << shift
+            shift += 5
+            if value < 0x20:
+                break
+        delta_lon = ~(result >> 1) if result & 1 else (result >> 1)
+        lon += delta_lon
+        coordinates.append([lon / 1e5, lat / 1e5])
+    return coordinates
+
+
+def goong_directions(origin: dict[str, float], destination: dict[str, float], vehicle: str) -> dict[str, Any]:
+    if not GOONG_API_KEY:
+        raise RuntimeError("goong_api_key_missing")
+    query = urlencode(
+        {
+            "origin": f"{origin['lat']},{origin['lon']}",
+            "destination": f"{destination['lat']},{destination['lon']}",
+            "vehicle": vehicle,
+            "api_key": GOONG_API_KEY,
+        }
+    )
+    request = UrlRequest(
+        f"{GOONG_DIRECTION_URL}?{query}",
+        headers={
+            # Cloudflare rejects Python-urllib's default UA (error 1010).
+            "User-Agent": "poi-search-api/0.1 (+https://localhost; Goong Directions)",
+            "Accept": "application/json",
+        },
+    )
+    try:
+        with urlopen(request, timeout=20) as response:
+            payload = json.loads(response.read().decode("utf-8"))
+    except HTTPError as exc:
+        body = ""
+        try:
+            body = exc.read().decode("utf-8", errors="replace")[:200]
+        except Exception:
+            body = ""
+        raise RuntimeError(f"goong_http_{exc.code}:{body or exc.reason}") from exc
+    except URLError as exc:
+        raise RuntimeError(f"goong_network:{exc.reason}") from exc
+    routes = payload.get("routes") or []
+    if not routes:
+        raise RuntimeError("goong_no_route")
+    route = routes[0]
+    legs = route.get("legs") or []
+    if not legs:
+        raise RuntimeError("goong_no_legs")
+    encoded = ((route.get("overview_polyline") or {}).get("points")) or ""
+    if not encoded:
+        raise RuntimeError("goong_missing_polyline")
+    coordinates = decode_polyline(encoded)
+    if len(coordinates) < 2:
+        raise RuntimeError("goong_polyline_too_short")
+    return {
+        "coordinates": coordinates,
+        "distance_m": int((legs[0].get("distance") or {}).get("value") or 0),
+        "duration_s": int((legs[0].get("duration") or {}).get("value") or 0),
+    }
+
+
+def resolve_anchor(origin: Origin | None) -> dict[str, float] | None:
+    if origin is None:
+        return None
+    if origin.kind in {"gps", "map"}:
+        if origin.point is None:
+            raise HTTPException(422, detail={"code": "origin_point_required", "message": "Origin point is required"})
+        if origin.kind == "gps" and origin.accuracy_m is not None and origin.accuracy_m > 200:
+            return None
+        return origin.point.model_dump()
+    if not origin.poi_id:
+        raise HTTPException(422, detail={"code": "origin_poi_required", "message": "Origin POI is required"})
+    docs = runtime.documents([origin.poi_id])
+    if not docs or not docs[0].get("origin_search_eligible"):
+        raise HTTPException(422, detail={"code": "invalid_origin_poi", "message": "POI is not origin eligible"})
+    return docs[0]["ranking_point"]
+
+
+def retrieve(query: str) -> tuple[list[str], str, dict[str, float], dict[str, dict[str, float | None]]]:
+    timings = {"encode": 0.0, "lexical": 0.0, "ann": 0.0, "fusion": 0.0}
+    if RETRIEVAL_PROFILE == "lexical_only" or (
+        RETRIEVAL_PROFILE == "hybrid"
+        and compact_length(query) < int(POLICY["retrieval"]["dense_min_compact_chars"])
+    ):
+        ids, timings["lexical"] = runtime.lexical(query)
+        evidence = {
+            poi_id: {"lexical_rank": rank, "dense_rank": None, "rrf": 1 / (RRF_CONSTANT + rank)}
+            for rank, poi_id in enumerate(ids, 1)
+        }
+        return ids, "lexical_only" if RETRIEVAL_PROFILE == "lexical_only" else "lexical_short_query", timings, evidence
+    if RETRIEVAL_PROFILE == "dense_only":
+        began = time.perf_counter()
+        vector = runtime.encode(query)
+        timings["encode"] = (time.perf_counter() - began) * 1000
+        ids, timings["ann"] = runtime.dense(vector)
+        evidence = {
+            poi_id: {"lexical_rank": None, "dense_rank": rank, "rrf": 1 / (RRF_CONSTANT + rank)}
+            for rank, poi_id in enumerate(ids, 1)
+        }
+        return ids, "dense_only", timings, evidence
+    lexical_future = runtime.pool.submit(runtime.lexical, query)
+    began = time.perf_counter()
+    vector = runtime.encode(query)
+    timings["encode"] = (time.perf_counter() - began) * 1000
+    dense_ids, timings["ann"] = runtime.dense(vector)
+    lexical_ids, timings["lexical"] = lexical_future.result()
+    began = time.perf_counter()
+    ids = rrf(lexical_ids, dense_ids)
+    timings["fusion"] = (time.perf_counter() - began) * 1000
+    lexical_ranks = {poi_id: rank for rank, poi_id in enumerate(lexical_ids, 1)}
+    dense_ranks = {poi_id: rank for rank, poi_id in enumerate(dense_ids, 1)}
+    evidence = {}
+    for poi_id in ids:
+        lexical_rank = lexical_ranks.get(poi_id)
+        dense_rank = dense_ranks.get(poi_id)
+        evidence[poi_id] = {
+            "lexical_rank": lexical_rank,
+            "dense_rank": dense_rank,
+            "rrf": (1 / (RRF_CONSTANT + lexical_rank) if lexical_rank else 0)
+            + (1 / (RRF_CONSTANT + dense_rank) if dense_rank else 0),
+        }
+    return ids, "hybrid_long_query", timings, evidence
+
+
+def suggest(payload: SuggestRequest, personalized: bool) -> dict[str, Any]:
+    if payload.expected_corpus_version != CORPUS_VERSION:
+        raise HTTPException(409, detail={"code": "corpus_version_mismatch", "message": "Corpus version mismatch"})
+    if payload.session_id not in runtime.sessions:
+        raise HTTPException(401, detail={"code": "invalid_session", "message": "Unknown session"})
+    query = " ".join(payload.query.split())
+    if not query:
+        return response_payload(payload, [], None, {}, "empty_query", personalized, None)
+    began = time.perf_counter()
+    ids, route, timings, evidence = retrieve(query)
+    docs = candidate_documents(ids, runtime.documents(ids))
+    anchor = resolve_anchor(payload.origin) if personalized else None
+    ranked = rank_candidates(query, docs, evidence, anchor)
+    results = []
+    for _, _, distance, doc in ranked[:payload.top_k]:
+        results.append({
+            "poi_id": doc["canonical_id"], "name": doc["search_label"], "rank": len(results) + 1,
+            "address_text": doc.get("address", ""), "context_text": doc.get("context_text", ""),
+            "ranking_point": doc["ranking_point"], "routing_point": doc.get("routing_point"),
+            "pickup_access_verified": doc.get("pickup_access_verified", False),
+            "ranking_distance_m": round(distance) if distance is not None else None,
+        })
+    timings["total"] = (time.perf_counter() - began) * 1000
+    exposure_id = f"exp-{uuid.uuid4()}" if results else None
+    if exposure_id:
+        runtime.exposures[exposure_id] = {
+            "session_id": payload.session_id, "context_revision": payload.context_revision,
+            "shown_ids": [item["poi_id"] for item in results], "displayed": False,
+            "created_at": time.time(),
+        }
+    return response_payload(payload, results, exposure_id, timings, route, personalized, anchor, len(docs))
+
+
+def response_payload(payload: SuggestRequest, results: list[dict], exposure_id: str | None,
+                     timings: dict, route: str, personalized: bool, anchor: dict | None, candidate_count: int = 0) -> dict[str, Any]:
+    return {
+        "request_id": payload.request_id, "context_revision": payload.context_revision,
+        "exposure_id": exposure_id, "selectable": exposure_id is not None, "versions": versions(),
+        "scope_summary": {
+            "mode": "global_with_geo_heuristic" if personalized and anchor else "global",
+            "coverage_id": "hanoi-osm-stable-v1", "primary_region_id": None,
+            "primary_radius_m": None,
+            "notes": [
+                route,
+                f"Stage 2 policy {POLICY['policy_version']}: {RETRIEVAL_PROFILE}, bounded text-compatible geo; no user/time model",
+            ],
+        },
+        "resolved_context_time": (payload.context_time or datetime.now(UTC)).isoformat(),
+        "history_version": None, "candidate_count": candidate_count, "results": results,
+        "degraded_reasons": [], "timings_ms": timings,
+    }
+
+
+@app.get("/health")
+def health() -> dict[str, Any]:
+    count = runtime.client().request("GET", f"/{INDEX_NAME}/_count")["count"]
+    return {"status": "ok" if count == EXPECTED_ROWS else "degraded", "index": INDEX_NAME, "corpus_rows": count}
+
+
+@app.post("/v1/sessions")
+def create_session(response: Response) -> dict[str, str]:
+    session_id = f"session-{uuid.uuid4()}"
+    runtime.sessions.add(session_id)
+    response.set_cookie("poi_session", session_id, httponly=True, samesite="lax")
+    return {"session_id": session_id}
+
+
+@app.get("/v1/status")
+def status() -> dict[str, Any]:
+    count = runtime.client().request("GET", f"/{INDEX_NAME}/_count")["count"]
+    return {"ready": count == EXPECTED_ROWS, "versions": versions(), "coverage_id": "hanoi-osm-stable-v1",
+            "profile": RETRIEVAL_PROFILE,
+            "capabilities": [
+                RETRIEVAL_PROFILE,
+                "geo_heuristic",
+                "straight_line_preview",
+                *(["goong_road_route"] if GOONG_API_KEY else []),
+            ],
+        }
+
+
+@app.get("/v1/demo/users")
+def demo_users() -> list[dict[str, str]]:
+    return []
+
+
+@app.get("/v1/origins")
+def origins(q: str = "", limit: int = 20) -> dict[str, Any]:
+    body = lexical_body(q.strip(), max(1, min(limit, 50)))
+    if not q.strip():
+        body["query"] = {"bool": {"filter": []}}
+    body["query"]["bool"]["filter"] = [{"term": {"origin_search_eligible": True}}]
+    ids, _ = search(runtime.client(), body)
+    items = [{"poi_id": d["canonical_id"], "name": d["search_label"], "ranking_point": d["ranking_point"],
+              "pickup_access_verified": d.get("pickup_access_verified", False)} for d in runtime.documents(ids)]
+    return {"corpus_version": CORPUS_VERSION, "items": items, "next_cursor": None}
+
+
+@app.post("/v1/suggest")
+def suggest_query_only(payload: SuggestRequest) -> dict[str, Any]:
+    return suggest(payload, False)
+
+
+@app.post("/v1/suggest/personalized")
+def suggest_personalized(payload: SuggestRequest) -> dict[str, Any]:
+    return suggest(payload, True)
+
+
+@app.post("/v1/exposures/displayed")
+def displayed(payload: DisplayRequest) -> dict[str, Any]:
+    exposure = runtime.exposures.get(payload.exposure_id)
+    if not exposure:
+        raise HTTPException(404, detail={"code": "exposure_not_found", "message": "Exposure not found"})
+    if exposure["session_id"] != payload.session_id or exposure["context_revision"] != payload.context_revision:
+        raise HTTPException(409, detail={"code": "exposure_conflict", "message": "Exposure context mismatch"})
+    exposure["displayed"] = True
+    return {"exposure_id": payload.exposure_id, "displayed": True}
+
+
+@app.post("/v1/select")
+def select(payload: SelectRequest) -> dict[str, Any]:
+    exposure = runtime.exposures.get(payload.exposure_id)
+    if exposure and (exposure["session_id"] != payload.session_id or exposure["context_revision"] != payload.context_revision):
+        raise HTTPException(409, detail={"code": "exposure_conflict", "message": "Exposure context mismatch"})
+    key = (payload.session_id, payload.idempotency_key)
+    if key in runtime.selections:
+        cached = runtime.selections[key]
+        if cached["selected_poi_id"] != payload.selected_poi_id or cached["exposure_id"] != payload.exposure_id:
+            raise HTTPException(409, detail={"code": "idempotency_conflict", "message": "Key reused with another POI"})
+        return cached
+    exposure = runtime.exposures.get(payload.exposure_id)
+    if not exposure or not exposure["displayed"] or payload.selected_poi_id not in exposure["shown_ids"]:
+        raise HTTPException(409, detail={"code": "invalid_selection", "message": "Selection is not in a displayed exposure"})
+    result = {"selection_id": f"sel-{uuid.uuid4()}", "exposure_id": payload.exposure_id,
+              "selected_poi_id": payload.selected_poi_id, "corpus_version": CORPUS_VERSION,
+              "recorded_at": datetime.now(UTC).isoformat(), "history_version": "in-memory-demo-v1",
+              "event_source": "demo_selection"}
+    runtime.selections[key] = result
+    return result
+
+
+@app.post("/v1/route-preview")
+def route_preview(payload: RouteRequest) -> dict[str, Any]:
+    if payload.corpus_version != CORPUS_VERSION:
+        raise HTTPException(409, detail={"code": "corpus_version_mismatch", "message": "Corpus version mismatch"})
+
+    def point_from_poi(poi_id: str | None) -> dict[str, float] | None:
+        if not poi_id:
+            return None
+        docs = runtime.documents([poi_id])
+        if not docs:
+            raise HTTPException(404, detail={"code": "poi_not_found", "message": f"POI missing: {poi_id}"})
+        return docs[0]["ranking_point"]
+
+    origin = payload.origin_point.model_dump() if payload.origin_point else point_from_poi(payload.origin_poi_id)
+    destination = (
+        payload.destination_point.model_dump()
+        if payload.destination_point
+        else point_from_poi(payload.destination_poi_id)
+    )
+    if origin is None:
+        return {
+            "status": "missing_origin",
+            "corpus_version": CORPUS_VERSION,
+            "mode_used": None,
+            "geometry": None,
+            "geodesic_distance_m": None,
+            "route_distance_m": None,
+            "route_duration_s": None,
+            "reason": "missing_origin",
+        }
+    if destination is None:
+        raise HTTPException(422, detail={"code": "missing_destination", "message": "Destination point or POI is required"})
+
+    geodesic = round(haversine(origin, destination))
+    if payload.mode == "road":
+        try:
+            road = goong_directions(origin, destination, payload.vehicle)
+            return {
+                "status": "ok",
+                "corpus_version": CORPUS_VERSION,
+                "mode_used": "road",
+                "geometry": {"type": "LineString", "coordinates": road["coordinates"]},
+                "geodesic_distance_m": geodesic,
+                "route_distance_m": road["distance_m"],
+                "route_duration_s": road["duration_s"],
+                "reason": f"goong_directions:{payload.vehicle}",
+            }
+        except RuntimeError as exc:
+            if not payload.allow_fallback:
+                return {
+                    "status": "unavailable",
+                    "corpus_version": CORPUS_VERSION,
+                    "mode_used": None,
+                    "geometry": None,
+                    "geodesic_distance_m": geodesic,
+                    "route_distance_m": None,
+                    "route_duration_s": None,
+                    "reason": str(exc),
+                }
+            # fall through to straight line
+
+    return {
+        "status": "ok",
+        "corpus_version": CORPUS_VERSION,
+        "mode_used": "straight_line",
+        "geometry": {
+            "type": "LineString",
+            "coordinates": [[origin["lon"], origin["lat"]], [destination["lon"], destination["lat"]]],
+        },
+        "geodesic_distance_m": geodesic,
+        "route_distance_m": None,
+        "route_duration_s": None,
+        "reason": "straight_line_illustration_not_road_route",
+    }

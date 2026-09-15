@@ -1,0 +1,9 @@
+flowchart TD
+    E["Events và fixture histories"] --> H["Snapshot trước cutoff"]
+    Q["Requests có context"] --> C["Frozen candidate retrieval"]
+    H --> F["Feature factory dùng chung"]
+    C --> F
+    L["Nhãn ý định độc lập"] --> T["Train và eval ranker"]
+    F --> T
+    T --> B["Ranker bundle có feature hash"]
+    B --> R["Release registry"]

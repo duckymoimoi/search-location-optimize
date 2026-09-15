@@ -5,8 +5,6 @@ from __future__ import annotations
 import argparse
 import http.client
 import json
-import math
-import statistics
 import time
 import unicodedata
 from collections import defaultdict
@@ -280,7 +278,16 @@ def main() -> None:
     parser.add_argument("--index", default="hanoi-poi-stage1-v4-lexical-dense")
     parser.add_argument("--top-k", type=int, default=100)
     parser.add_argument("--ann-candidates", type=int, default=100)
+    parser.add_argument("--expected-index-count", type=int, default=45_693)
+    parser.add_argument("--frozen", action="store_true")
+    parser.add_argument("--split-label", default="dev_synthetic")
     args = parser.parse_args()
+    lexical_configs = (
+        {"L1_prefix_heavy": LEXICAL_CONFIGS["L1_prefix_heavy"]}
+        if args.frozen else LEXICAL_CONFIGS
+    )
+    branch_depths = (50,) if args.frozen else BRANCH_DEPTHS
+    rrf_constants = (60,) if args.frozen else RRF_CONSTANTS
 
     bundle = Path(args.bundle)
     cache = Path(args.cache)
@@ -302,10 +309,10 @@ def main() -> None:
     client = OpenSearchClient(args.base_url)
     server = client.request("GET", "/")
     index_count = client.request("GET", f"/{args.index}/_count")["count"]
-    if index_count != 45_693:
-        raise ValueError(f"Expected 45693 indexed POIs, got {index_count}")
+    if index_count != args.expected_index_count:
+        raise ValueError(f"Expected {args.expected_index_count} indexed POIs, got {index_count}")
     for row, dense in zip(dev_rows[:20], dense_rows[:20]):
-        search(client, args.index, lexical_body(row["query"], LEXICAL_CONFIGS["L0_balanced"], 10))
+        search(client, args.index, lexical_body(row["query"], next(iter(lexical_configs.values())), 10))
         search(
             client,
             args.index,
@@ -313,8 +320,8 @@ def main() -> None:
         )
 
     records: list[dict[str, Any]] = []
-    lexical_latency: dict[str, list[float]] = {name: [] for name in LEXICAL_CONFIGS}
-    lexical_took: dict[str, list[float]] = {name: [] for name in LEXICAL_CONFIGS}
+    lexical_latency: dict[str, list[float]] = {name: [] for name in lexical_configs}
+    lexical_took: dict[str, list[float]] = {name: [] for name in lexical_configs}
     ann_latency: list[float] = []
     ann_took: list[float] = []
     for index, (row, dense) in enumerate(zip(dev_rows, dense_rows)):
@@ -331,7 +338,7 @@ def main() -> None:
             "structured_metric_candidate": row["structured_metric_candidate"],
             "exact_dense_ids": dense["top_ids"],
         }
-        for name, config in LEXICAL_CONFIGS.items():
+        for name, config in lexical_configs.items():
             ids, scores, took_ms, client_ms = search(
                 client, args.index, lexical_body(row["query"], config, args.top_k)
             )
@@ -357,10 +364,10 @@ def main() -> None:
         "exact_dense": [row["exact_dense_ids"] for row in records],
         "ann": [row["ann_ids"] for row in records],
     }
-    for lexical_name in LEXICAL_CONFIGS:
+    for lexical_name in lexical_configs:
         methods[lexical_name] = [row[f"{lexical_name}_ids"] for row in records]
-        for depth in BRANCH_DEPTHS:
-            for constant in RRF_CONSTANTS:
+        for depth in branch_depths:
+            for constant in rrf_constants:
                 exact_name = f"H_exact_{lexical_name}_d{depth}_c{constant}"
                 ann_name = f"H_ann_{lexical_name}_d{depth}_c{constant}"
                 methods[exact_name] = [
@@ -399,9 +406,9 @@ def main() -> None:
         ann_target_delta[f"candidate_hit_{k}_ann_minus_exact"] = float(ann_hit - exact_hit)
 
     hybrid_ann_delta: dict[str, Any] = {}
-    for lexical_name in LEXICAL_CONFIGS:
-        for depth in BRANCH_DEPTHS:
-            for constant in RRF_CONSTANTS:
+    for lexical_name in lexical_configs:
+        for depth in branch_depths:
+            for constant in rrf_constants:
                 exact_name = f"H_exact_{lexical_name}_d{depth}_c{constant}"
                 ann_name = f"H_ann_{lexical_name}_d{depth}_c{constant}"
                 hybrid_ann_delta[ann_name] = {
@@ -411,16 +418,16 @@ def main() -> None:
                 }
 
     report = {
-        "split": "dev_synthetic",
-        "holdout_evaluated": False,
+        "split": args.split_label,
+        "holdout_evaluated": args.split_label == "architecture_holdout",
         "server": server,
         "index": args.index,
         "index_count": index_count,
         "ann_candidates": args.ann_candidates,
         "final_ks": list(FINAL_KS),
-        "branch_depths": list(BRANCH_DEPTHS),
-        "rrf_constants": list(RRF_CONSTANTS),
-        "lexical_configs": LEXICAL_CONFIGS,
+        "branch_depths": list(branch_depths),
+        "rrf_constants": list(rrf_constants),
+        "lexical_configs": lexical_configs,
         "quality": quality,
         "ann_vs_exact": {**ann_recall, **ann_target_delta},
         "hybrid_ann_minus_exact": hybrid_ann_delta,
@@ -429,7 +436,7 @@ def main() -> None:
                 "client": latency(lexical_latency[name]),
                 "server_took": latency(lexical_took[name]),
             }
-            for name in LEXICAL_CONFIGS
+            for name in lexical_configs
         }
         | {
             "ann": {
@@ -456,7 +463,7 @@ def main() -> None:
         "structured_metric_candidate",
         "exact_dense_ids",
         "ann_ids",
-        *[f"{name}_ids" for name in LEXICAL_CONFIGS],
+        *[f"{name}_ids" for name in lexical_configs],
     ]
     for row in records:
         branch_rows.append({field: row[field] for field in saved_fields})
@@ -471,9 +478,9 @@ def main() -> None:
                 "queries": len(records),
                 "ann_recall_50": ann_recall["overlap_recall_50"],
                 "exact_dense_core_ch50": quality["exact_dense"]["retrieval_core_main"]["hit_50"],
-                "lexical_l0_core_ch50": quality["L0_balanced"]["retrieval_core_main"]["hit_50"],
+                "lexical_selected_core_ch50": quality[next(iter(lexical_configs))]["retrieval_core_main"]["hit_50"],
                 "ann_p95_ms": latency(ann_latency)["p95_ms"],
-                "lexical_l0_p95_ms": latency(lexical_latency["L0_balanced"])["p95_ms"],
+                "lexical_selected_p95_ms": latency(lexical_latency[next(iter(lexical_configs))])["p95_ms"],
             }
         )
     )

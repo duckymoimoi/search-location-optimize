@@ -1,0 +1,77 @@
+{
+  "schema_version": "hn-poi-stable-v1",
+  "fields": [
+    {
+      "name": "poi_id",
+      "type": "string"
+    },
+    {
+      "name": "name",
+      "type": "string"
+    },
+    {
+      "name": "aliases",
+      "type": "list<item: string>"
+    },
+    {
+      "name": "category",
+      "type": "string"
+    },
+    {
+      "name": "brand",
+      "type": "string"
+    },
+    {
+      "name": "ref",
+      "type": "string"
+    },
+    {
+      "name": "address",
+      "type": "struct<housenumber: string, street: string, place: string, unit: string, floor: string, block: string, building: string, housename: string, quarter: string, hamlet: string, subdistrict: string, district: string, city: string, province: string, postcode: string, country: string, full: string, suburb: string, ward: string, neighborhood: string, neighbourhood: string, state: string>"
+    },
+    {
+      "name": "address_status",
+      "type": "string"
+    },
+    {
+      "name": "context",
+      "type": "struct<container_name: string, container_osm_id: string, nearby_street: string, nearby_street_osm_id: string, nearby_street_distance_m_approx: double, admin: map<string, string>>"
+    },
+    {
+      "name": "ranking_point",
+      "type": "struct<lat: double, lon: double, quality: string>"
+    },
+    {
+      "name": "routing_point",
+      "type": "struct<lat: double, lon: double, quality: string>"
+    },
+    {
+      "name": "destination_searchable",
+      "type": "bool"
+    },
+    {
+      "name": "origin_search_eligible",
+      "type": "bool"
+    },
+    {
+      "name": "pickup_access_verified",
+      "type": "bool"
+    },
+    {
+      "name": "entity_group_id",
+      "type": "string"
+    },
+    {
+      "name": "branch_id",
+      "type": "string"
+    },
+    {
+      "name": "complex_id",
+      "type": "string"
+    },
+    {
+      "name": "preserve_individual_access_point",
+      "type": "bool"
+    }
+  ]
+}

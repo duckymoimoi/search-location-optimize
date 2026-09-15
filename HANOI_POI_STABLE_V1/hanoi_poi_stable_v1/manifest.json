@@ -1,0 +1,36 @@
+{
+  "corpus_version": "hn-poi-stable-v1",
+  "policy_version": "conservative-address-v1",
+  "source_dataset_version": "hnq20k-address-v8",
+  "source_osm_corpus_version": "hn-260910-7f1b69b167",
+  "source_pbf_sha256": "867d3d6d721b50737b39eedf49fd3542254b7c31831485cce38f3bee4f8908b2",
+  "source_snapshot_timestamp": "2026-09-10T20:21:06Z",
+  "boundary_relation": 1903516,
+  "statistics": {
+    "rows": 46792,
+    "destination_searchable": 45692,
+    "origin_search_eligible": 8131,
+    "pickup_access_verified": 0,
+    "with_direct_address": 28834,
+    "with_validated_building_inheritance": 625,
+    "with_pending_enrichment": 5699,
+    "with_rejected_direct_fields": 96,
+    "destination_number_street_or_place": 25731,
+    "destination_missing_address": 17270
+  },
+  "inputs": {
+    "canonical_evidence.parquet": "a4f04e7bb1c269a6f208162d5a6aab06df5e8851b1171627ea5cc3119a295c61",
+    "osm_source_evidence.parquet": "7e38005f03fdc072b05730576070ae586f6545c9b65174426741ecccae2debd5",
+    "v8_pois.parquet": "a779d95cea1f73c27682507f3d2448aacc7452af3eba945a19a72f3f2a071edb"
+  },
+  "files": {
+    "entity_members.parquet": "fcfc391a5fad52a392320214f67ee1aff6dc18ebf35684304e1c97ac305edbdd",
+    "poi_audit.parquet": "dd6dd34fccfd73e4e8b499ea466e9faa6e4cf048038105bd9b3a119a02a0208d",
+    "pois.parquet": "8cb2c51e02e133756bb1d474520368c2fea9f18ffd295cc4714023c08d30807e",
+    "search_documents.parquet": "d8d0042c0c417f3c28b27f766170232f0f06d4e15fe40a9ad0f029b069f499ed"
+  },
+  "label_policy": "OSM-source-backed weak evidence; not ground truth or pickup verification",
+  "context_policy": "v8 spatial hints retained separately; approximate distances; never training address truth",
+  "entity_policy": "preserved v8; no new merges; container is not complex membership",
+  "license": "OSM-derived data; retain OpenStreetMap contributors attribution and ODbL metadata from source"
+}

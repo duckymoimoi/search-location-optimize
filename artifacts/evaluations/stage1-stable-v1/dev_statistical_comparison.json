@@ -1,0 +1,160 @@
+{
+  "method": "paired cluster bootstrap by query_family_id",
+  "bootstrap_samples": 10000,
+  "holdout_evaluated": false,
+  "core_lexical_vs_exact_dense": {
+    "track": "core",
+    "queries": 1447,
+    "families": 1008,
+    "candidate": "L1_prefix_heavy_ids",
+    "baseline": "exact_dense_ids",
+    "point_delta": {
+      "hit_5": 0.01520387007601935,
+      "candidate_hit_20": 0.010366275051831375,
+      "candidate_hit_50": 0.0034554250172771253,
+      "mrr_10": 0.02601167165783614
+    },
+    "ci95": {
+      "hit_5": [
+        0.0006752080559785169,
+        0.0297029702970297
+      ],
+      "candidate_hit_20": [
+        -0.0006844744170346825,
+        0.021103018564764934
+      ],
+      "candidate_hit_50": [
+        -0.00549073438572409,
+        0.011964250329143885
+      ],
+      "mrr_10": [
+        0.009287977535481584,
+        0.042625099126064436
+      ]
+    }
+  },
+  "core_hybrid_exact_vs_lexical": {
+    "track": "core",
+    "queries": 1447,
+    "families": 1008,
+    "candidate": "hybrid_exact",
+    "baseline": "L1_prefix_heavy_ids",
+    "point_delta": {
+      "hit_5": 0.007601935038009675,
+      "candidate_hit_20": 0.013130615065653075,
+      "candidate_hit_50": 0.010366275051831375,
+      "mrr_10": 0.010465001480896434
+    },
+    "ci95": {
+      "hit_5": [
+        -0.0020366944678119185,
+        0.01750868885066502
+      ],
+      "candidate_hit_20": [
+        0.006328780812791472,
+        0.02087724034822787
+      ],
+      "candidate_hit_50": [
+        0.00468203982121089,
+        0.01737347785367098
+      ],
+      "mrr_10": [
+        0.0003748835647750141,
+        0.020916266173269808
+      ]
+    }
+  },
+  "core_hybrid_ann_vs_hybrid_exact": {
+    "track": "core",
+    "queries": 1447,
+    "families": 1008,
+    "candidate": "hybrid_ann",
+    "baseline": "hybrid_exact",
+    "point_delta": {
+      "hit_5": 0.0,
+      "candidate_hit_20": 0.0,
+      "candidate_hit_50": 0.0,
+      "mrr_10": 0.0
+    },
+    "ci95": {
+      "hit_5": [
+        0.0,
+        0.0
+      ],
+      "candidate_hit_20": [
+        0.0,
+        0.0
+      ],
+      "candidate_hit_50": [
+        0.0,
+        0.0
+      ],
+      "mrr_10": [
+        0.0,
+        0.0
+      ]
+    }
+  },
+  "autocomplete_lexical_vs_exact_dense": {
+    "track": "autocomplete",
+    "queries": 298,
+    "families": 269,
+    "candidate": "L1_prefix_heavy_ids",
+    "baseline": "exact_dense_ids",
+    "point_delta": {
+      "hit_5": 0.22818791946308725,
+      "candidate_hit_20": 0.2684563758389262,
+      "candidate_hit_50": 0.2214765100671141,
+      "mrr_5": 0.17181208053691277
+    },
+    "ci95": {
+      "hit_5": [
+        0.17390947968638631,
+        0.2857142857142857
+      ],
+      "candidate_hit_20": [
+        0.2120226967893369,
+        0.3253424657534247
+      ],
+      "candidate_hit_50": [
+        0.17434210526315788,
+        0.2711864406779661
+      ],
+      "mrr_5": [
+        0.12834981279333438,
+        0.21784919930523738
+      ]
+    }
+  },
+  "autocomplete_lexical_vs_hybrid_exact": {
+    "track": "autocomplete",
+    "queries": 298,
+    "families": 269,
+    "candidate": "L1_prefix_heavy_ids",
+    "baseline": "hybrid_exact",
+    "point_delta": {
+      "hit_5": 0.087248322147651,
+      "candidate_hit_20": 0.053691275167785234,
+      "candidate_hit_50": 0.020134228187919462,
+      "mrr_5": 0.05397091722595079
+    },
+    "ci95": {
+      "hit_5": [
+        0.0457516339869281,
+        0.13043478260869565
+      ],
+      "candidate_hit_20": [
+        0.023333333333333334,
+        0.08609271523178808
+      ],
+      "candidate_hit_50": [
+        0.006600660066006601,
+        0.03754266211604096
+      ],
+      "mrr_5": [
+        0.02086057224789364,
+        0.08741382242552194
+      ]
+    }
+  }
+}

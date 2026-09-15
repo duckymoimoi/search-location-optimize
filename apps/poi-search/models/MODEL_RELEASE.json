@@ -1,0 +1,19 @@
+{
+  "release_id": "hanoi-poi-demo-r1",
+  "encoder_id": "e5-v4-finetuned",
+  "embedding_space_id": "e5-v4-context-384",
+  "passage_builder_version": "stable-v1-context",
+  "corpus_version": "hn-poi-stable-v1",
+  "index_version": "hanoi-poi-stable-v1-release1",
+  "expected_rows": 45692,
+  "model_dir": "models/current",
+  "model_entrypoint": "final_model",
+  "inference_config": "inference_config.json",
+  "source_path": "artifacts/models/e5-v4-finetuned",
+  "link_type": "windows_junction",
+  "notes": [
+    "Runtime mounts models/current as /model.",
+    "Do not import training/stage1 into the API container.",
+    "To retarget a new checkpoint, update source_path and re-run scripts/link_model.ps1."
+  ]
+}

@@ -1,0 +1,9 @@
+flowchart TD
+    U["UI: nhập và chọn điểm"] --> A["Search API"]
+    A --> S["OpenSearch"]
+    A --> M["Encoder và ranker adapters"]
+    A --> H["PostgreSQL: history và events"]
+    J["Jobs: corpus, train, index"] --> S
+    J --> B["Model và release artifacts"]
+    B --> M
+    A --> R["Route preview adapter"]

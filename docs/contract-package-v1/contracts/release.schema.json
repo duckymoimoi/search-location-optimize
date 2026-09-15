@@ -1,0 +1,73 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "Immutable runtime version tuple",
+  "allOf": [
+    {
+      "type": "object",
+      "properties": {
+        "release_id": {
+          "type": "string",
+          "minLength": 1
+        },
+        "corpus_version": {
+          "type": "string",
+          "minLength": 1
+        },
+        "index_version": {
+          "type": "string",
+          "minLength": 1
+        },
+        "encoder_id": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "embedding_space_id": {
+          "anyOf": [
+            {
+              "type": "string",
+              "pattern": "^[a-f0-9]{64}$"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "passage_builder_version": {
+          "type": "string",
+          "minLength": 1
+        },
+        "scope_policy_version": {
+          "type": "string",
+          "minLength": 1
+        },
+        "candidate_policy_version": {
+          "type": "string",
+          "minLength": 1
+        },
+        "ranker_id": {
+          "type": "string",
+          "minLength": 1
+        },
+        "feature_version": {
+          "type": "string",
+          "minLength": 1
+        }
+      },
+      "required": [
+        "release_id",
+        "corpus_version",
+        "index_version",
+        "encoder_id",
+        "embedding_space_id",
+        "passage_builder_version",
+        "scope_policy_version",
+        "candidate_policy_version",
+        "ranker_id",
+        "feature_version"
+      ],
+      "additionalProperties": false
+    }
+  ]
+}

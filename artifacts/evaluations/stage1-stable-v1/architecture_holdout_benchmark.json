@@ -1,0 +1,323 @@
+{
+  "split": "architecture_holdout",
+  "holdout_evaluated": true,
+  "server": {
+    "name": "hanoi-poi-opensearch",
+    "cluster_name": "hanoi-poi-docker",
+    "cluster_uuid": "exchl_JPSESdo_q9G9oy3g",
+    "version": {
+      "distribution": "opensearch",
+      "number": "3.8.0",
+      "build_type": "tar",
+      "build_hash": "e5a3c5691be87af6c12dbe3e158c59c04ee72973",
+      "build_date": "2026-08-01T18:48:00.452816924Z",
+      "build_snapshot": false,
+      "lucene_version": "10.5.0",
+      "minimum_wire_compatibility_version": "2.19.0",
+      "minimum_index_compatibility_version": "2.0.0"
+    },
+    "tagline": "The OpenSearch Project: https://opensearch.org/"
+  },
+  "index": "hanoi-poi-stable-v1-context-m32",
+  "index_count": 45692,
+  "ann_candidates": 200,
+  "final_ks": [
+    5,
+    20,
+    50
+  ],
+  "branch_depths": [
+    50
+  ],
+  "rrf_constants": [
+    60
+  ],
+  "lexical_configs": {
+    "L1_prefix_heavy": {
+      "exact": 16.0,
+      "alias_exact": 12.0,
+      "leading_prefix": 12.0,
+      "phrase": 6.0,
+      "prefix_field": 10.0,
+      "and_match": 3.0,
+      "fuzzy": 1.0
+    }
+  },
+  "quality": {
+    "exact_dense": {
+      "retrieval_core_main": {
+        "count": 1565,
+        "hit_5": 0.9629392971246007,
+        "hit_20": 0.982108626198083,
+        "hit_50": 0.9859424920127795,
+        "mrr_10": 0.9260076575891273
+      },
+      "autocomplete": {
+        "count": 300,
+        "hit_5": 0.42333333333333334,
+        "hit_20": 0.61,
+        "hit_50": 0.7133333333333334,
+        "mrr_10": 0.30183465608465604,
+        "mrr_5": 0.288
+      },
+      "ambiguity_stress": {
+        "count": 466,
+        "hit_5": 0.10300429184549356,
+        "hit_20": 0.17381974248927037,
+        "hit_50": 0.2167381974248927,
+        "mrr_10": 0.06453181415627768,
+        "known_compatible_recall_5": 0.06825309076061413,
+        "known_compatible_coverage_5": 0.851931330472103,
+        "known_compatible_recall_20": 0.1308002664773794,
+        "known_compatible_coverage_20": 0.9313304721030042,
+        "known_compatible_recall_50": 0.18426978065479402,
+        "known_compatible_coverage_50": 0.9549356223175965
+      },
+      "ime_keystream": {
+        "count": 150,
+        "hit_5": 0.6133333333333333,
+        "hit_20": 0.7066666666666667,
+        "hit_50": 0.76,
+        "mrr_10": 0.5224074074074074
+      },
+      "structured_metric": {
+        "count": 22,
+        "hit_5": 0.9545454545454546,
+        "hit_20": 1.0,
+        "hit_50": 1.0,
+        "mrr_10": 0.9621212121212122
+      }
+    },
+    "ann": {
+      "retrieval_core_main": {
+        "count": 1565,
+        "hit_5": 0.9629392971246007,
+        "hit_20": 0.982108626198083,
+        "hit_50": 0.9859424920127795,
+        "mrr_10": 0.9260076575891273
+      },
+      "autocomplete": {
+        "count": 300,
+        "hit_5": 0.42333333333333334,
+        "hit_20": 0.61,
+        "hit_50": 0.7133333333333334,
+        "mrr_10": 0.30183465608465604,
+        "mrr_5": 0.288
+      },
+      "ambiguity_stress": {
+        "count": 466,
+        "hit_5": 0.10300429184549356,
+        "hit_20": 0.17381974248927037,
+        "hit_50": 0.2167381974248927,
+        "mrr_10": 0.06453181415627768,
+        "known_compatible_recall_5": 0.06825309076061413,
+        "known_compatible_coverage_5": 0.851931330472103,
+        "known_compatible_recall_20": 0.12972730510398886,
+        "known_compatible_coverage_20": 0.9313304721030042,
+        "known_compatible_recall_50": 0.18319681928140347,
+        "known_compatible_coverage_50": 0.9549356223175965
+      },
+      "ime_keystream": {
+        "count": 150,
+        "hit_5": 0.6133333333333333,
+        "hit_20": 0.6933333333333334,
+        "hit_50": 0.74,
+        "mrr_10": 0.5215740740740741
+      },
+      "structured_metric": {
+        "count": 22,
+        "hit_5": 0.9545454545454546,
+        "hit_20": 1.0,
+        "hit_50": 1.0,
+        "mrr_10": 0.9621212121212122
+      }
+    },
+    "L1_prefix_heavy": {
+      "retrieval_core_main": {
+        "count": 1565,
+        "hit_5": 0.949520766773163,
+        "hit_20": 0.9782747603833866,
+        "hit_50": 0.9859424920127795,
+        "mrr_10": 0.9215738627719459
+      },
+      "autocomplete": {
+        "count": 300,
+        "hit_5": 0.69,
+        "hit_20": 0.87,
+        "hit_50": 0.9633333333333334,
+        "mrr_10": 0.5337936507936508,
+        "mrr_5": 0.5175555555555555
+      },
+      "ambiguity_stress": {
+        "count": 466,
+        "hit_5": 0.14163090128755365,
+        "hit_20": 0.21888412017167383,
+        "hit_50": 0.28969957081545067,
+        "mrr_10": 0.08705804210096056,
+        "known_compatible_recall_5": 0.10808220199324325,
+        "known_compatible_coverage_5": 0.98068669527897,
+        "known_compatible_recall_20": 0.19109440013134146,
+        "known_compatible_coverage_20": 0.9871244635193133,
+        "known_compatible_recall_50": 0.2698156183416513,
+        "known_compatible_coverage_50": 0.9935622317596566
+      },
+      "ime_keystream": {
+        "count": 150,
+        "hit_5": 0.9533333333333334,
+        "hit_20": 0.9933333333333333,
+        "hit_50": 1.0,
+        "mrr_10": 0.8844629629629628
+      },
+      "structured_metric": {
+        "count": 22,
+        "hit_5": 0.7727272727272727,
+        "hit_20": 0.9545454545454546,
+        "hit_50": 0.9545454545454546,
+        "mrr_10": 0.6064935064935065
+      }
+    },
+    "H_exact_L1_prefix_heavy_d50_c60": {
+      "retrieval_core_main": {
+        "count": 1565,
+        "hit_5": 0.9738019169329073,
+        "hit_20": 0.9923322683706071,
+        "hit_50": 0.994888178913738,
+        "mrr_10": 0.9510720624778134
+      },
+      "autocomplete": {
+        "count": 300,
+        "hit_5": 0.62,
+        "hit_20": 0.84,
+        "hit_50": 0.92,
+        "mrr_10": 0.45728306878306874,
+        "mrr_5": 0.4429444444444444
+      },
+      "ambiguity_stress": {
+        "count": 466,
+        "hit_5": 0.12875536480686695,
+        "hit_20": 0.19957081545064378,
+        "hit_50": 0.27896995708154504,
+        "mrr_10": 0.08582669119149805,
+        "known_compatible_recall_5": 0.09512742977178414,
+        "known_compatible_coverage_5": 0.9763948497854077,
+        "known_compatible_recall_20": 0.17738262402212723,
+        "known_compatible_coverage_20": 1.0,
+        "known_compatible_recall_50": 0.24774114656007454,
+        "known_compatible_coverage_50": 1.0
+      },
+      "ime_keystream": {
+        "count": 150,
+        "hit_5": 0.96,
+        "hit_20": 0.9933333333333333,
+        "hit_50": 0.9933333333333333,
+        "mrr_10": 0.818952380952381
+      },
+      "structured_metric": {
+        "count": 22,
+        "hit_5": 1.0,
+        "hit_20": 1.0,
+        "hit_50": 1.0,
+        "mrr_10": 0.8446969696969696
+      }
+    },
+    "H_ann_L1_prefix_heavy_d50_c60": {
+      "retrieval_core_main": {
+        "count": 1565,
+        "hit_5": 0.9738019169329073,
+        "hit_20": 0.9923322683706071,
+        "hit_50": 0.994888178913738,
+        "mrr_10": 0.9510720624778134
+      },
+      "autocomplete": {
+        "count": 300,
+        "hit_5": 0.62,
+        "hit_20": 0.84,
+        "hit_50": 0.92,
+        "mrr_10": 0.45728306878306874,
+        "mrr_5": 0.4429444444444444
+      },
+      "ambiguity_stress": {
+        "count": 466,
+        "hit_5": 0.12875536480686695,
+        "hit_20": 0.19957081545064378,
+        "hit_50": 0.27896995708154504,
+        "mrr_10": 0.08582669119149805,
+        "known_compatible_recall_5": 0.09405446839839357,
+        "known_compatible_coverage_5": 0.9763948497854077,
+        "known_compatible_recall_20": 0.17738262402212723,
+        "known_compatible_coverage_20": 1.0,
+        "known_compatible_recall_50": 0.24774351774543013,
+        "known_compatible_coverage_50": 1.0
+      },
+      "ime_keystream": {
+        "count": 150,
+        "hit_5": 0.96,
+        "hit_20": 0.9933333333333333,
+        "hit_50": 0.9933333333333333,
+        "mrr_10": 0.8128412698412698
+      },
+      "structured_metric": {
+        "count": 22,
+        "hit_5": 1.0,
+        "hit_20": 1.0,
+        "hit_50": 1.0,
+        "mrr_10": 0.8484848484848484
+      }
+    }
+  },
+  "ann_vs_exact": {
+    "overlap_recall_5": 0.999,
+    "overlap_recall_20": 0.9992333333333333,
+    "overlap_recall_50": 0.9985466666666668,
+    "candidate_hit_5_ann_minus_exact": 0.0,
+    "candidate_hit_20_ann_minus_exact": 0.0,
+    "candidate_hit_50_ann_minus_exact": 0.0
+  },
+  "hybrid_ann_minus_exact": {
+    "H_ann_L1_prefix_heavy_d50_c60": {
+      "hit_5": 0.0,
+      "hit_20": 0.0,
+      "hit_50": 0.0,
+      "mrr_10": 0.0
+    }
+  },
+  "latency": {
+    "L1_prefix_heavy": {
+      "client": {
+        "count": 3000,
+        "mean_ms": 7.172156466641657,
+        "p50_ms": 6.655949999185395,
+        "p95_ms": 12.839699997857677,
+        "p99_ms": 17.543414998144716,
+        "max_ms": 40.503199998056516
+      },
+      "server_took": {
+        "count": 3000,
+        "mean_ms": 4.526,
+        "p50_ms": 4.0,
+        "p95_ms": 10.0,
+        "p99_ms": 14.0,
+        "max_ms": 24.0
+      }
+    },
+    "ann": {
+      "client": {
+        "count": 3000,
+        "mean_ms": 5.9671599000175775,
+        "p50_ms": 5.653899997923872,
+        "p95_ms": 8.017305002249486,
+        "p99_ms": 12.378621000352723,
+        "max_ms": 29.42090000215103
+      },
+      "server_took": {
+        "count": 3000,
+        "mean_ms": 3.0526666666666666,
+        "p50_ms": 3.0,
+        "p95_ms": 4.0,
+        "p99_ms": 7.0,
+        "max_ms": 15.0
+      }
+    }
+  },
+  "latency_note": "Branch requests were sequential over a persistent localhost HTTP connection; dense encoder latency is stored separately in dense_runtime.json. Hybrid fusion is computed locally and this report does not claim parallel end-to-end API latency."
+}

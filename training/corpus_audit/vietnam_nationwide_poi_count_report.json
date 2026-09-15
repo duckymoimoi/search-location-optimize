@@ -1,0 +1,69 @@
+{
+  "source": {
+    "filename": "vietnam-260910.osm.pbf",
+    "size_bytes": 328214395,
+    "scan_seconds": 265.18,
+    "policy_note": "functional∈{amenity,shop,tourism,office,healthcare,craft,leisure,public_transport}; identity∈{name,name:vi,name:en,brand,operator,ref}; addressable=(addr:housenumber|housename)∧(addr:street|place); building_named=building∧identity; searchable_union=(functional∧identity)∨addressable∨building_named; destination_like=searchable_union∧(identity∨addressable). No polygon clip; no canonical dedup."
+  },
+  "vietnam_all_objects": {
+    "nodes": 46131361,
+    "ways": 4700656,
+    "relations": 24453,
+    "total": 50856470,
+    "tagged_nodes": 456856
+  },
+  "vietnam_tag_key_counts": {
+    "building": 1263984,
+    "addr:street": 90635,
+    "addr:housenumber": 83455,
+    "amenity": 80160,
+    "shop": 26120,
+    "public_transport": 18682,
+    "leisure": 18629,
+    "tourism": 17091,
+    "office": 6929,
+    "addr:place": 6325,
+    "healthcare": 3701,
+    "addr:housename": 2102,
+    "craft": 442
+  },
+  "vietnam_searchable_policy_raw": {
+    "intake_objects": 229608,
+    "functional": 166815,
+    "functional_with_identity": 123401,
+    "addressable_house_street": 77304,
+    "building_named": 26735,
+    "searchable_union": 187017,
+    "destination_like_label": 187017
+  },
+  "hanoi_admin_tag_proxy_searchable_policy_raw": {
+    "intake_objects": 16045,
+    "functional": 5711,
+    "functional_with_identity": 5460,
+    "addressable_house_street": 14557,
+    "building_named": 1537,
+    "searchable_union": 15986,
+    "destination_like_label": 15986
+  },
+  "hanoi_pilot_frozen_for_comparison": {
+    "functional_raw": 32900,
+    "functional_with_identity": 24277,
+    "addressable_raw": 26394,
+    "building_named": 6512,
+    "searchable_raw_union": 55029,
+    "canonical_pilot": 46792,
+    "destination_searchable": 45693
+  },
+  "totals": {
+    "vietnam_searchable_union_raw": 187017,
+    "vietnam_destination_like_raw": 187017,
+    "vietnam_functional": 166815,
+    "vietnam_functional_with_identity": 123401,
+    "vietnam_addressable": 77304,
+    "vietnam_building_named": 26735,
+    "approx_canonical_if_same_dedup_ratio": 159023,
+    "approx_destination_if_same_dest_ratio": 155288,
+    "hanoi_pilot_destination_searchable": 45693,
+    "ratio_vietnam_searchable_to_hanoi_searchable_raw": 3.4
+  }
+}

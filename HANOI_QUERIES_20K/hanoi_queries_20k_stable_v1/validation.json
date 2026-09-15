@@ -1,0 +1,142 @@
+{
+  "passed": true,
+  "dataset_version": "hnq20k-stable-v1-eval1",
+  "corpus_version": "hn-poi-stable-v1",
+  "query_count": 20000,
+  "split_counts": {
+    "architecture_holdout": 3000,
+    "dev_synthetic": 2925,
+    "test_synthetic": 885,
+    "train": 13190
+  },
+  "all_intended_targets_searchable": true,
+  "qrels_before": 4575413,
+  "qrels_after": 4575409,
+  "removed_qrels": [
+    {
+      "query_id": "hnq10k-v3-00177",
+      "poi_id": "osm:node/8746891305"
+    },
+    {
+      "query_id": "hnq10k-v3-00352",
+      "poi_id": "osm:node/8746891305"
+    },
+    {
+      "query_id": "hnq10k-v3-01237",
+      "poi_id": "osm:node/8746891305"
+    },
+    {
+      "query_id": "hnq20k-v4-add-07984",
+      "poi_id": "osm:node/8746891305"
+    }
+  ],
+  "address_qualifier_queries": 3147,
+  "address_evidence_failures": 22,
+  "address_failure_counts": [
+    {
+      "split": "architecture_holdout",
+      "track": "retrieval_core",
+      "case_type": "address_namespace",
+      "count": 1
+    },
+    {
+      "split": "dev_synthetic",
+      "track": "ime_keystream",
+      "case_type": "telex_raw_keys",
+      "count": 1
+    },
+    {
+      "split": "dev_synthetic",
+      "track": "retrieval_core",
+      "case_type": "address_namespace",
+      "count": 1
+    },
+    {
+      "split": "dev_synthetic",
+      "track": "retrieval_core",
+      "case_type": "name_address",
+      "count": 1
+    },
+    {
+      "split": "dev_synthetic",
+      "track": "retrieval_core",
+      "case_type": "no_diacritics",
+      "count": 1
+    },
+    {
+      "split": "dev_synthetic",
+      "track": "retrieval_core",
+      "case_type": "slash_alley_address",
+      "count": 1
+    },
+    {
+      "split": "train",
+      "track": "ime_keystream",
+      "case_type": "vni_raw_keys",
+      "count": 1
+    },
+    {
+      "split": "train",
+      "track": "retrieval_core",
+      "case_type": "address_first",
+      "count": 1
+    },
+    {
+      "split": "train",
+      "track": "retrieval_core",
+      "case_type": "address_namespace",
+      "count": 2
+    },
+    {
+      "split": "train",
+      "track": "retrieval_core",
+      "case_type": "name_address",
+      "count": 3
+    },
+    {
+      "split": "train",
+      "track": "retrieval_core",
+      "case_type": "no_diacritics",
+      "count": 3
+    },
+    {
+      "split": "train",
+      "track": "retrieval_core",
+      "case_type": "partial_diacritics",
+      "count": 1
+    },
+    {
+      "split": "train",
+      "track": "retrieval_core",
+      "case_type": "slash_alley_address",
+      "count": 1
+    },
+    {
+      "split": "train",
+      "track": "structured_code",
+      "case_type": "address_first",
+      "count": 1
+    },
+    {
+      "split": "train",
+      "track": "structured_code",
+      "case_type": "name_address",
+      "count": 1
+    },
+    {
+      "split": "train",
+      "track": "structured_code",
+      "case_type": "no_diacritics",
+      "count": 1
+    },
+    {
+      "split": "train",
+      "track": "structured_code",
+      "case_type": "wrong_tone",
+      "count": 1
+    }
+  ],
+  "supervised_training_eligible": 6060,
+  "main_metric_candidate": 9847,
+  "architecture_holdout_status": "data_qa_inspected_not_blind_final"
+}

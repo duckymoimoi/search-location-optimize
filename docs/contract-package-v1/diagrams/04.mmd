@@ -1,0 +1,8 @@
+flowchart TD
+    C["Khóa API, passage và feature contract"] --> S["Serving: lexical, UI, events"]
+    C --> T["Training: migrate labels, train, eval"]
+    S --> A["Adapter acceptance fixtures"]
+    T --> B["Versioned model bundle"]
+    A --> I["Integration và benchmark"]
+    B --> I
+    I --> P["Publish release hoặc giữ baseline"]

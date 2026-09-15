@@ -1,6 +1,8 @@
 $ErrorActionPreference = "Stop"
 
 $runtime = Join-Path $PSScriptRoot "runtime"
+$repoRoot = (Resolve-Path (Join-Path $PSScriptRoot "..\..")).Path
+$productCompose = Join-Path $repoRoot "apps\poi-search\docker-compose.yml"
 New-Item -ItemType Directory -Force $runtime | Out-Null
 $ubuntu = Join-Path $runtime "ubuntu-24.04-minimal-root.tar.xz"
 $opensearch = Join-Path $runtime "opensearch-3.8.0-linux-x64.tar.gz"
@@ -29,7 +31,7 @@ docker image inspect hanoi-opensearch-base:ubuntu24.04 *> $null
 if ($LASTEXITCODE -ne 0) {
     docker import $ubuntu hanoi-opensearch-base:ubuntu24.04
 }
-docker compose -f "$PSScriptRoot\docker-compose.yml" build opensearch api
+docker compose -f $productCompose build opensearch api
 if ($LASTEXITCODE -ne 0) {
     throw "Docker image build failed"
 }
@@ -43,4 +45,4 @@ docker run --rm --user root --entrypoint /bin/bash `
 if ($LASTEXITCODE -ne 0) {
     throw "Volume ownership initialization failed"
 }
-Write-Output "Docker demo runtime is ready. Run .\start_docker.ps1"
+Write-Output "Docker runtime is ready. Run .\apps\poi-search\scripts\start.ps1 from the repository root."

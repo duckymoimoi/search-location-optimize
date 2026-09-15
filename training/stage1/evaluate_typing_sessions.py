@@ -29,8 +29,8 @@ METHODS = (
     "exact_dense",
     "ann",
     "L1_prefix_heavy",
-    "hybrid_exact_d50_c10",
-    "hybrid_ann_d50_c10",
+    "hybrid_exact_d50_c60",
+    "hybrid_ann_d50_c60",
 )
 KS = (5, 20, 50)
 
@@ -111,6 +111,7 @@ def main() -> None:
     parser.add_argument("--index", default="hanoi-poi-stage1-v4-hnsw-hq")
     parser.add_argument("--ann-candidates", type=int, default=200)
     parser.add_argument("--top-k", type=int, default=100)
+    parser.add_argument("--expected-index-count", type=int, default=45_693)
     args = parser.parse_args()
 
     cache = Path(args.cache)
@@ -126,8 +127,8 @@ def main() -> None:
     client = OpenSearchClient(args.base_url)
     server = client.request("GET", "/")
     count = client.request("GET", f"/{args.index}/_count")["count"]
-    if count != 45_693:
-        raise ValueError(f"Expected 45693 indexed POIs, got {count}")
+    if count != args.expected_index_count:
+        raise ValueError(f"Expected {args.expected_index_count} indexed POIs, got {count}")
     lexical_times: list[float] = []
     ann_times: list[float] = []
     results: list[dict[str, Any]] = []
@@ -153,10 +154,10 @@ def main() -> None:
                 "exact_dense": row["top_ids"],
                 "ann": ann_ids,
                 "L1_prefix_heavy": lexical_ids,
-                "hybrid_exact_d50_c10": rrf(
-                    lexical_ids, row["top_ids"], 50, 10
+                "hybrid_exact_d50_c60": rrf(
+                    lexical_ids, row["top_ids"], 50, 60
                 ),
-                "hybrid_ann_d50_c10": rrf(lexical_ids, ann_ids, 50, 10),
+                "hybrid_ann_d50_c60": rrf(lexical_ids, ann_ids, 50, 60),
             }
         )
         lexical_times.append(lexical_ms)

@@ -5,7 +5,6 @@ from __future__ import annotations
 import argparse
 import json
 import sys
-from collections import defaultdict
 from pathlib import Path
 from typing import Any
 
@@ -105,10 +104,10 @@ def main() -> None:
     rows = pq.read_table(args.branches).to_pylist()
     for row in rows:
         row["hybrid_exact"] = rrf(
-            row["L1_prefix_heavy_ids"], row["exact_dense_ids"], 50, 10
+            row["L1_prefix_heavy_ids"], row["exact_dense_ids"], 50, 60
         )
         row["hybrid_ann"] = rrf(
-            row["L1_prefix_heavy_ids"], row["ann_ids"], 50, 10
+            row["L1_prefix_heavy_ids"], row["ann_ids"], 50, 60
         )
     comparisons = {
         "method": "paired cluster bootstrap by query_family_id",

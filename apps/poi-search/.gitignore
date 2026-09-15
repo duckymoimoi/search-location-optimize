@@ -1,0 +1,10 @@
+.env
+**/.env.local
+web/node_modules/
+web/dist/
+web/*.log
+bench/results/*
+!bench/results/.gitignore
+models/current/
+**/__pycache__/
+*.pyc
