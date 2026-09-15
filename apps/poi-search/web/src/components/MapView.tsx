@@ -14,9 +14,31 @@ type Props = {
   flyToken?: number
 }
 
-const STYLE =
-  (import.meta.env.VITE_MAP_STYLE_URL as string) ||
-  'https://tiles.openfreemap.org/styles/bright'
+const GOONG_MAPTILES_KEY = (
+  import.meta.env.VITE_GOONG_MAPTILES_KEY as string | undefined
+)?.trim()
+const GOONG_STYLE =
+  'https://tiles.goong.io/assets/goong_map_web.json'
+const OPENFREEMAP_STYLE = 'https://tiles.openfreemap.org/styles/bright'
+
+function withGoongKey(url: string, key: string): string {
+  if (!key || url.includes('api_key=')) return url
+  return `${url}${url.includes('?') ? '&' : '?'}api_key=${encodeURIComponent(key)}`
+}
+
+function resolveMapStyle(): string {
+  const override = (import.meta.env.VITE_MAP_STYLE_URL as string | undefined)?.trim()
+  if (override) {
+    if (GOONG_MAPTILES_KEY && override.includes('tiles.goong.io')) {
+      return withGoongKey(override, GOONG_MAPTILES_KEY)
+    }
+    return override
+  }
+  if (GOONG_MAPTILES_KEY) return withGoongKey(GOONG_STYLE, GOONG_MAPTILES_KEY)
+  return OPENFREEMAP_STYLE
+}
+
+const STYLE = resolveMapStyle()
 const CENTER: [number, number] = [
   Number(import.meta.env.VITE_MAP_CENTER_LON ?? 105.8542),
   Number(import.meta.env.VITE_MAP_CENTER_LAT ?? 21.0285),
@@ -54,6 +76,13 @@ function routeCollection(
 function firstLabelLayerId(map: MaplibreMap): string | undefined {
   const layers = map.getStyle()?.layers
   if (!layers) return undefined
+  const withText = layers.find(
+    (layer) =>
+      layer.type === 'symbol' &&
+      !layer.id.startsWith('route-') &&
+      Boolean((layer as { layout?: Record<string, unknown> }).layout?.['text-field']),
+  )
+  if (withText) return withText.id
   const hit = layers.find(
     (layer) =>
       layer.type === 'symbol' &&
@@ -83,6 +112,9 @@ function ensureRouteLayers(map: MaplibreMap) {
 
   const beforeId = firstLabelLayerId(map)
 
+  // Drop legacy soft-glow layer if a previous session still has it.
+  if (map.getLayer('route-line-soft')) map.removeLayer('route-line-soft')
+
   if (!map.getLayer('route-approach-line')) {
     map.addLayer(
       {
@@ -101,19 +133,37 @@ function ensureRouteLayers(map: MaplibreMap) {
     )
   }
 
-  // Soft wide underlay (fake glow) + thinner core — both under labels.
-  if (!map.getLayer('route-line-soft')) {
+  // White casing + blue core — both under labels so street names stay readable.
+  const casingWidth: maplibregl.ExpressionSpecification = [
+    'interpolate',
+    ['linear'],
+    ['zoom'],
+    12,
+    8,
+    16,
+    12,
+  ]
+  const coreWidth: maplibregl.ExpressionSpecification = [
+    'interpolate',
+    ['linear'],
+    ['zoom'],
+    12,
+    4.5,
+    16,
+    7,
+  ]
+
+  if (!map.getLayer('route-line-casing')) {
     map.addLayer(
       {
-        id: 'route-line-soft',
+        id: 'route-line-casing',
         type: 'line',
         source: 'route',
         layout: { 'line-join': 'round', 'line-cap': 'round' },
         paint: {
-          'line-color': '#4d8dff',
-          'line-width': 10,
-          'line-opacity': 0.22,
-          'line-blur': 2.5,
+          'line-color': '#ffffff',
+          'line-width': casingWidth,
+          'line-opacity': 0.92,
         },
       },
       beforeId,
@@ -128,19 +178,22 @@ function ensureRouteLayers(map: MaplibreMap) {
         layout: { 'line-join': 'round', 'line-cap': 'round' },
         paint: {
           'line-color': '#2f6fed',
-          'line-width': 4.5,
-          'line-opacity': 0.55,
-          'line-blur': 0.4,
+          'line-width': coreWidth,
+          'line-opacity': 0.88,
         },
       },
       beforeId,
     )
+  } else {
+    map.setPaintProperty('route-line', 'line-width', coreWidth)
+    map.setPaintProperty('route-line', 'line-opacity', 0.88)
+    map.setPaintProperty('route-line', 'line-blur', 0)
   }
 
   // Re-stack under labels if style/layers shifted.
   if (beforeId && map.getLayer(beforeId)) {
     if (map.getLayer('route-approach-line')) map.moveLayer('route-approach-line', beforeId)
-    if (map.getLayer('route-line-soft')) map.moveLayer('route-line-soft', beforeId)
+    if (map.getLayer('route-line-casing')) map.moveLayer('route-line-casing', beforeId)
     if (map.getLayer('route-line')) map.moveLayer('route-line', beforeId)
   }
 }
@@ -192,6 +245,8 @@ export function MapView({
   routeRef.current = routeCoordinates
   const originRef = useRef(originPoint)
   originRef.current = originPoint
+  /** Fit camera once per route geometry — ignore GPS jitter. */
+  const fittedRouteKeyRef = useRef<string | null>(null)
   const [mapReady, setMapReady] = useState(false)
 
   useEffect(() => {
@@ -202,11 +257,21 @@ export function MapView({
       style: STYLE,
       center: CENTER,
       zoom: ZOOM,
+      transformRequest: (url) => {
+        if (!GOONG_MAPTILES_KEY) return { url }
+        if (!url.includes('goong.io')) return { url }
+        return { url: withGoongKey(url, GOONG_MAPTILES_KEY) }
+      },
     })
     map.addControl(new maplibregl.NavigationControl({ showCompass: false }), 'top-right')
     map.on('error', (e) => {
       console.error('[maplibre]', e.error ?? e)
     })
+    if (!GOONG_MAPTILES_KEY && !import.meta.env.VITE_MAP_STYLE_URL) {
+      console.warn(
+        '[map] VITE_GOONG_MAPTILES_KEY missing — using OpenFreeMap. Create a Map tiles key at https://account.goong.io/keys',
+      )
+    }
     const markReady = () => {
       map.resize()
       setMapReady(true)
@@ -295,6 +360,7 @@ export function MapView({
   }, [flyToken, originPoint, mapReady])
 
   // Draw / clear road route + dashed GPS→route approach once style is ready.
+  // Camera fit only when route geometry changes — GPS watch must not re-zoom.
   useEffect(() => {
     const map = mapRef.current
     if (!map || !mapReady) return
@@ -311,15 +377,20 @@ export function MapView({
       routeSource.setData(collection)
       approachSource.setData(approach)
 
-      if (collection.features.length > 0 && coords && coords.length >= 2) {
-        const bounds = new maplibregl.LngLatBounds(
-          coords[0] as [number, number],
-          coords[0] as [number, number],
-        )
-        for (const coord of coords) bounds.extend(coord as [number, number])
-        if (origin) bounds.extend([origin.lon, origin.lat])
-        map.fitBounds(bounds, { padding: 72, maxZoom: 16, duration: 900 })
+      if (!coords || coords.length < 2) {
+        fittedRouteKeyRef.current = null
+        return
       }
+      const first = coords[0]
+      const last = coords[coords.length - 1]
+      const routeKey = `${coords.length}:${first[0]},${first[1]}:${last[0]},${last[1]}`
+      if (fittedRouteKeyRef.current === routeKey) return
+      fittedRouteKeyRef.current = routeKey
+
+      const bounds = new maplibregl.LngLatBounds(first, first)
+      for (const coord of coords) bounds.extend(coord as [number, number])
+      if (origin) bounds.extend([origin.lon, origin.lat])
+      map.fitBounds(bounds, { padding: 72, maxZoom: 16, duration: 900 })
     } catch (err) {
       console.error('[maplibre] route layer', err)
     }

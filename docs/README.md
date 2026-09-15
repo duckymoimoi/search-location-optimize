@@ -6,6 +6,7 @@ Tài liệu được tách theo mục đích để tránh trộn trạng thái h
 
 - [Current state](as-built/CURRENT_STATE.md): phiên bản, luồng code thực tế và gap cần xử lý.
 - [Stage 1 evaluation](as-built/STAGE1_EVALUATION.md): bằng chứng lexical/dense/hybrid, ANN, typing và latency theo snapshot.
+- [Diagnostic & next-step plan](as-built/DIAGNOSTIC_NEGATIVES_GEO_PLAN.md): review runtime geo/parity và thứ tự P0–P5.
 - [Runtime product](../apps/poi-search/README.md): cách chạy FE/API/Docker và smoke test.
 
 ## 2. Kiến trúc đích
@@ -13,6 +14,7 @@ Tài liệu được tách theo mục đích để tránh trộn trạng thái h
 - [System design](specs/SYSTEM_DESIGN.md)
 - [Technical spec](specs/TECHNICAL_SPEC.md)
 - [Training and retrieval protocol](specs/TRAINING_AND_RETRIEVAL_PROTOCOL.md)
+- [Origin-aware dense](specs/ORIGIN_AWARE_DENSE.md): thí nghiệm Stage 1 query+origin (O1/O2), chưa triển khai.
 
 Các tài liệu này mô tả hướng xây dựng. Một mục chỉ trở thành “đã triển khai” khi xuất hiện trong current state và có version/test tương ứng.
 

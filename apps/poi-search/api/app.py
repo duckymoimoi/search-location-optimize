@@ -80,10 +80,14 @@ def lexical_body(query: str, size: int) -> dict[str, Any]:
             {"prefix": {"label_folded": {"value": folded, "boost": LEXICAL_CONFIG["leading_prefix"]}}},
             {"prefix": {"aliases_folded": {"value": folded, "boost": LEXICAL_CONFIG["leading_prefix"] * .8}}},
         ]
+    # Multi-token queries must satisfy ≥2 lexical signals so a single weak
+    # address token (e.g. "hàng") cannot retrieve alone.
+    token_n = len(text_tokens(query))
+    minimum_should_match = 2 if token_n > 2 else 1
     return {"size": size, "track_total_hits": False, "_source": False,
             "sort": [{"_score": {"order": "desc"}}, {"canonical_id": {"order": "asc"}}],
             "query": {"bool": {"filter": [{"term": {"destination_searchable": True}}],
-                               "should": should, "minimum_should_match": 1}}}
+                               "should": should, "minimum_should_match": minimum_should_match}}}
 
 
 def ann_body(vector: np.ndarray, size: int) -> dict[str, Any]:
@@ -265,13 +269,26 @@ async def http_error(_: Request, exc: HTTPException) -> JSONResponse:
 
 
 def versions() -> dict[str, Any]:
+    geo_mode = str(RANKING_POLICY.get("geo_mode", "v6")).strip().lower()
+    ranker = "heuristic-geo-v6" if geo_mode == "v6" else "heuristic-geo-v5"
+    feature = (
+        "equivalent-name-band-geo-v6+nearby-name-rescue"
+        if geo_mode == "v6"
+        else "field-aware-bounded-geo-v5+nearby-name-rescue"
+    )
+    if not (RANKING_POLICY.get("nearby_name_rescue") or {}).get("enabled", False):
+        feature = (
+            "equivalent-name-band-geo-v6"
+            if geo_mode == "v6"
+            else "field-aware-bounded-geo-v5"
+        )
     return {
         "release_id": "hanoi-poi-demo-r1", "corpus_version": CORPUS_VERSION,
         "index_version": INDEX_NAME, "encoder_id": "e5-v4-finetuned",
         "embedding_space_id": "e5-v4-context-384", "passage_builder_version": "stable-v1-context",
         "scope_policy_version": "global-v1",
         "candidate_policy_version": f"{POLICY['policy_version']}:safe-candidates-v5:{RETRIEVAL_PROFILE}",
-        "ranker_id": "heuristic-geo-v5", "feature_version": "field-aware-bounded-geo-v5",
+        "ranker_id": ranker, "feature_version": feature,
     }
 
 
@@ -319,6 +336,194 @@ def token_overlap(query: str, document: dict[str, Any]) -> float:
     return matched / len(tokens)
 
 
+def _token_in_set(token: str, available: set[str], *, allow_prefix: bool) -> bool:
+    if token in available:
+        return True
+    if allow_prefix and token.isalpha() and len(token) >= 3:
+        return any(item.startswith(token) for item in available)
+    return False
+
+
+def _contiguous_span_in_field(
+    span: list[str],
+    field_tokens: list[str],
+    *,
+    allow_final_prefix: bool,
+) -> bool:
+    """True if `span` appears as an adjacent subsequence of `field_tokens`."""
+    if not span or not field_tokens or len(span) > len(field_tokens):
+        return False
+    last = len(span) - 1
+    for start in range(len(field_tokens) - len(span) + 1):
+        ok = True
+        for offset, token in enumerate(span):
+            field = field_tokens[start + offset]
+            if token == field:
+                continue
+            if (
+                allow_final_prefix
+                and offset == last
+                and token.isalpha()
+                and len(token) >= 2
+                and field.startswith(token)
+            ):
+                continue
+            ok = False
+            break
+        if ok:
+            return True
+    return False
+
+
+def name_address_evidence(query: str, document: dict[str, Any]) -> float:
+    """Brand∩street evidence via name hits + contiguous address phrase.
+
+    Address side must match a contiguous query span (≥2 tokens) that is not
+    already a contiguous span on the name/alias side. No admin stopword list —
+    single-token overlaps like «thành» in «Thành phố» cannot satisfy a span.
+    """
+    tokens = text_tokens(query)
+    min_tokens = max(2, int(RANKING_POLICY.get("name_address_min_query_tokens", 4)))
+    if len(tokens) < min_tokens:
+        return 0.0
+    if name_match_class(query, document) is not None:
+        return 0.0
+
+    name_tokens = text_tokens(
+        " ".join([document.get("search_label", ""), *(document.get("search_aliases") or [])])
+    )
+    addr_tokens = text_tokens(document.get("address", "") or "")
+    if not name_tokens or not addr_tokens:
+        return 0.0
+
+    name_set = set(name_tokens)
+    name_hit_idxs = [
+        index
+        for index, token in enumerate(tokens)
+        if _token_in_set(token, name_set, allow_prefix=(index == len(tokens) - 1))
+    ]
+    if not name_hit_idxs:
+        return 0.0
+
+    min_span = max(2, int(RANKING_POLICY.get("name_address_min_addr_span", 2)))
+    name_hit_set = set(name_hit_idxs)
+    best_span = 0
+    best_start = -1
+    for length in range(len(tokens), min_span - 1, -1):
+        for start in range(len(tokens) - length + 1):
+            span = tokens[start : start + length]
+            allow_prefix = start + length == len(tokens)
+            if not _contiguous_span_in_field(span, addr_tokens, allow_final_prefix=allow_prefix):
+                continue
+            # Span already explained as a name phrase → not address-side evidence.
+            if _contiguous_span_in_field(span, name_tokens, allow_final_prefix=False):
+                continue
+            # Need a real residual street phrase: ≥min_span query tokens in the
+            # span that the name side did not already cover (avoids «Phố»+«Bồ Đề»
+            # matching brand query «pho bo …» without the extra street tokens).
+            residual = sum(
+                1 for index in range(start, start + length) if index not in name_hit_set
+            )
+            if residual < min_span:
+                continue
+            best_span = length
+            best_start = start
+            break
+        if best_span:
+            break
+    if best_span < min_span:
+        return 0.0
+
+    covered = set(name_hit_idxs) | set(range(best_start, best_start + best_span))
+    return len(covered) / len(tokens)
+
+
+def prioritize_name_address(
+    query: str,
+    ranked: list[tuple[float, int, float | None, dict]],
+) -> list[tuple[float, int, float | None, dict]]:
+    """Promote candidates with name∩address evidence above partial one-field hits."""
+    if not ranked or not bool(RANKING_POLICY.get("name_address_priority", True)):
+        return ranked
+    min_tokens = max(2, int(RANKING_POLICY.get("name_address_min_query_tokens", 4)))
+    if len(text_tokens(query)) < min_tokens:
+        return ranked
+    threshold = min(1.0, max(0.0, float(RANKING_POLICY.get("name_address_min_evidence", 0.5))))
+    decorated = []
+    for score, rank, distance, doc in ranked:
+        evidence = name_address_evidence(query, doc)
+        decorated.append((1 if evidence >= threshold else 0, evidence, score, rank, distance, doc))
+    decorated.sort(
+        key=lambda row: (-row[0], -row[1], -row[2], row[3], row[5]["canonical_id"])
+    )
+    return [(score, rank, distance, doc) for _, _, score, rank, distance, doc in decorated]
+
+
+def _accented_tokens(value: str) -> list[str]:
+    return re.findall(r"[^\W_]+(?:[/-][^\W_]+)*", normalized_text(value))
+
+
+def query_has_accents(query: str) -> bool:
+    """True when stripping diacritics changes the query (user typed accents)."""
+    return bool(normalized_text(query)) and normalized_text(query) != fold(query)
+
+
+def accent_token_coverage(query: str, document: dict[str, Any]) -> float:
+    """Share of accent-preserving query tokens found in name/alias (not folded)."""
+    tokens = _accented_tokens(query)
+    if not tokens or not query_has_accents(query):
+        return 0.0
+    available = set(
+        _accented_tokens(
+            " ".join([document.get("search_label", ""), *(document.get("search_aliases") or [])])
+        )
+    )
+    if not available:
+        return 0.0
+    matched = 0.0
+    for index, token in enumerate(tokens):
+        if token in available:
+            matched += 1.0
+        elif index == len(tokens) - 1 and len(token) >= 2 and token.isalpha():
+            matched += 0.5 if any(item.startswith(token) for item in available) else 0.0
+    return matched / len(tokens)
+
+
+def prioritize_name_match_quality(
+    query: str,
+    ranked: list[tuple[float, int, float | None, dict]],
+) -> list[tuple[float, int, float | None, dict]]:
+    """Prefer contiguous name/alias phrase coverage over weak single-token fold hits.
+
+    Fixes both:
+    - accented «lăng chủ tịch» vs «Chùa Láng» (fold collision)
+    - unaccented «lang chu tich» vs «Chùa Láng» (3-token phrase vs 1-token hit)
+    When phrase/coverage tiers tie, keep prior geo/retrieval order.
+    """
+    if not ranked or not bool(RANKING_POLICY.get("name_match_quality_priority", True)):
+        return ranked
+    # Backward-compatible alias for the older accent-only flag.
+    if RANKING_POLICY.get("accent_match_priority") is False and (
+        RANKING_POLICY.get("name_match_quality_priority") is None
+    ):
+        return ranked
+    accented = query_has_accents(query)
+    decorated = []
+    for position, (score, rank, distance, doc) in enumerate(ranked):
+        match = name_match_class(query, doc)
+        level = int(match[0]) if match else 0
+        accent_hit = int(match[1]) if match and accented else 0
+        coverage = token_overlap(query, doc)
+        if accented:
+            coverage = max(coverage, accent_token_coverage(query, doc))
+        # `position` keeps post-geo order when phrase quality ties.
+        decorated.append((level, accent_hit, coverage, position, score, rank, distance, doc))
+    decorated.sort(
+        key=lambda row: (-row[0], -row[1], -row[2], row[3], -row[4], row[7]["canonical_id"])
+    )
+    return [(score, rank, distance, doc) for _, _, _, _, score, rank, distance, doc in decorated]
+
+
 def entity_key(document: dict[str, Any]) -> tuple[str, ...]:
     canonical = str(document["canonical_id"])
     category = str(document.get("category", ""))
@@ -332,18 +537,42 @@ def entity_key(document: dict[str, Any]) -> tuple[str, ...]:
     return ("entity", str(group), str(document.get("branch_id") or ""))
 
 
+def is_near_name_duplicate(kept: dict[str, Any], candidate: dict[str, Any], within_m: float) -> bool:
+    """Same folded label within `within_m`; keeps distinct branch_id only.
+
+    Access-point tags still collapse when the visible name matches and the points
+    are near — OSM often duplicates platforms/nodes for one place.
+    """
+    if within_m <= 0:
+        return False
+    left_branch, right_branch = kept.get("branch_id"), candidate.get("branch_id")
+    if (left_branch or right_branch) and left_branch != right_branch:
+        return False
+    if fold(kept.get("search_label", "")) != fold(candidate.get("search_label", "")):
+        return False
+    if not fold(kept.get("search_label", "")):
+        return False
+    left, right = kept.get("ranking_point"), candidate.get("ranking_point")
+    if not left or not right:
+        return False
+    return haversine(left, right) <= within_m
+
+
 def candidate_documents(ids: list[str], docs: list[dict[str, Any]]) -> list[dict[str, Any]]:
-    """Stable retrieval order, authoritative entity collapse, fixed Stage 1 budget."""
+    """Stable retrieval order, entity + nearby same-name collapse, fixed Stage 1 budget."""
     by_id = {doc["canonical_id"]: doc for doc in docs}
     seen = set()
     output = []
     budget = int(POLICY["retrieval"]["candidate_budget"])
+    within_m = float(RANKING_POLICY.get("deduplication", {}).get("normalized_name_within_m") or 0)
     for poi_id in ids:
         doc = by_id.get(poi_id)
         if doc is None:
             continue
         key = entity_key(doc)
         if key in seen:
+            continue
+        if within_m > 0 and any(is_near_name_duplicate(kept, doc, within_m) for kept in output):
             continue
         seen.add(key)
         output.append(doc)
@@ -352,21 +581,63 @@ def candidate_documents(ids: list[str], docs: list[dict[str, Any]]) -> list[dict
     return output
 
 
-def rank_candidates(query: str, docs: list[dict[str, Any]], evidence: dict,
-                    anchor: dict | None) -> list[tuple[float, int, float | None, dict]]:
-    """Query-only keeps retrieval order; personalized blends relevance + bounded geo.
+def name_match_class(query: str, doc: dict[str, Any]) -> tuple[int, int] | None:
+    """Conservative equivalence: contiguous name/alias phrase, not bag-of-words.
 
-    final = relevance_blend * text_relevance + geo_blend * exp(-distance/decay)
-    when an origin anchor exists. Structured tokens (e.g. B12) must be compatible
-    before geo applies. Exact name/alias stays protected. No category discard.
+    A numeric/code token must match in full. Address-only and fuzzy matches do
+    not establish enough equivalence to let distance override retrieval.
     """
+    query_tokens = text_tokens(query)
+    if not query_tokens:
+        return None
+    classes: list[tuple[int, int]] = []
+    names = [doc.get("search_label", ""), *(doc.get("search_aliases") or [])]
+    accented_query = normalized_text(query) != fold(query)
+    for name in names:
+        tokens = text_tokens(name)
+        if len(tokens) < len(query_tokens):
+            continue
+        for start in range(len(tokens) - len(query_tokens) + 1):
+            span = tokens[start : start + len(query_tokens)]
+            if span[:-1] != query_tokens[:-1]:
+                continue
+            last = query_tokens[-1]
+            complete = span[-1] == last
+            prefix = last.isalpha() and len(last) >= 2 and span[-1].startswith(last)
+            if not (complete or prefix):
+                continue
+            # Full name/alias > complete phrase > unfinished final token.
+            level = 3 if tokens == query_tokens else 2 if complete else 1
+            accent_tokens = re.findall(r"[^\W_]+(?:[/-][^\W_]+)*", normalized_text(name))
+            raw_query = re.findall(r"[^\W_]+(?:[/-][^\W_]+)*", normalized_text(query))
+            raw_span = accent_tokens[start : start + len(raw_query)]
+            accent_match = bool(
+                raw_span
+                and raw_span[:-1] == raw_query[:-1]
+                and (
+                    raw_span[-1] == raw_query[-1]
+                    if complete
+                    else raw_span[-1].startswith(raw_query[-1])
+                )
+            )
+            classes.append((level, int(accent_match) if accented_query else 0))
+    return max(classes) if classes else None
+
+
+def rank_candidates_v5(
+    query: str,
+    docs: list[dict[str, Any]],
+    evidence: dict,
+    anchor: dict | None,
+) -> list[tuple[float, int, float | None, dict]]:
+    """Personalized blend: relevance_blend * text_rel + geo_blend * exp(-d/decay)."""
     best = max((float(evidence[d["canonical_id"]]["rrf"] or 0) for d in docs), default=1.0) or 1.0
     retrieval_w = float(RANKING_POLICY.get("retrieval_weight", 0.65))
     overlap_w = float(RANKING_POLICY.get("name_token_overlap_weight", 0.35))
     relevance_blend = float(RANKING_POLICY.get("relevance_blend", 0.65))
     geo_blend = float(RANKING_POLICY.get("geo_blend", 0.35))
     decay = max(1.0, float(RANKING_POLICY.get("geo_decay_m", 5000)))
-    exact_bonus = float(RANKING_POLICY["exact_text_bonus"])
+    exact_bonus = float(RANKING_POLICY.get("exact_text_bonus", 0.04))
     protect_exact = bool(RANKING_POLICY.get("protect_exact_name_or_alias", True))
 
     ranked: list[tuple[float, int, float | None, dict]] = []
@@ -401,6 +672,60 @@ def rank_candidates(query: str, docs: list[dict[str, Any]], evidence: dict,
         score = relevance_blend * text_rel + geo_blend * geo
         ranked.append((score, rank, distance, doc))
     return sorted(ranked, key=lambda item: (-item[0], item[1], item[3]["canonical_id"]))
+
+
+def rank_candidates_v6(
+    query: str,
+    docs: list[dict[str, Any]],
+    evidence: dict,
+    anchor: dict | None,
+) -> list[tuple[float, int, float | None, dict]]:
+    """Rerank only equivalent-name slots near the retrieval head (geo-v6).
+
+    Outside this cohort, order and positions are unchanged. RRF is an ordinal
+    fusion score, not calibrated relevance: do not add distance to that score.
+    """
+    best = max((float(evidence[d["canonical_id"]]["rrf"] or 0) for d in docs), default=1.0) or 1.0
+    ranked: list[tuple[float, int, float | None, dict]] = []
+    for rank, doc in enumerate(docs, 1):
+        distance = haversine(anchor, doc["ranking_point"]) if anchor and doc.get("ranking_point") else None
+        score = float(evidence[doc["canonical_id"]]["rrf"] or 0) / best
+        ranked.append((score, rank, distance, doc))
+    if anchor is None or not ranked or ranked[0][2] is None:
+        return ranked
+    head_class = name_match_class(query, ranked[0][3])
+    if head_class is None:
+        return ranked
+    window = max(1, min(20, int(RANKING_POLICY.get("geo_equivalent_window", 10))))
+    floor = min(1.0, max(0.0, float(RANKING_POLICY.get("geo_min_retrieval_ratio", 0.5))))
+    slots = [
+        i
+        for i, row in enumerate(ranked[:window])
+        if row[2] is not None and row[0] >= floor and name_match_class(query, row[3]) == head_class
+    ]
+    if len(slots) < 2:
+        return ranked
+    band_m = max(100.0, float(RANKING_POLICY.get("geo_distance_band_m", 500)))
+    cohort = sorted((ranked[i] for i in slots), key=lambda row: (int(row[2] / band_m), row[1]))
+    for slot, row in zip(slots, cohort):
+        ranked[slot] = row
+    return ranked
+
+
+def rank_candidates(
+    query: str,
+    docs: list[dict[str, Any]],
+    evidence: dict,
+    anchor: dict | None,
+) -> list[tuple[float, int, float | None, dict]]:
+    """Dispatch Stage-2 geo by policy `geo_mode` (`v5` blend | `v6` cohort swap)."""
+    mode = str(RANKING_POLICY.get("geo_mode", "v6")).strip().lower()
+    if mode == "v5":
+        ranked = rank_candidates_v5(query, docs, evidence, anchor)
+    else:
+        ranked = rank_candidates_v6(query, docs, evidence, anchor)
+    ranked = prioritize_name_address(query, ranked)
+    return prioritize_name_match_quality(query, ranked)
 
 
 def haversine(left: dict[str, float], right: dict[str, float]) -> float:
@@ -561,6 +886,117 @@ def retrieve(query: str) -> tuple[list[str], str, dict[str, float], dict[str, di
     return ids, "hybrid_long_query", timings, evidence
 
 
+def nearby_name_rescue_body(
+    query: str,
+    anchor: dict[str, float],
+    *,
+    size: int,
+    radius_m: float,
+) -> dict[str, Any] | None:
+    """BBox + folded label/alias match. ranking_point is lat/lon doubles, not geo_point."""
+    folded = fold(query)
+    if len(folded) < 2:
+        return None
+    lat, lon = float(anchor["lat"]), float(anchor["lon"])
+    dlat = radius_m / 111_195.0
+    cos_lat = max(0.2, abs(math.cos(math.radians(lat))))
+    dlon = radius_m / (111_195.0 * cos_lat)
+    return {
+        "size": size,
+        "track_total_hits": False,
+        "_source": ["ranking_point", "search_label", "search_aliases"],
+        "query": {
+            "bool": {
+                "filter": [
+                    {"term": {"destination_searchable": True}},
+                    {"range": {"ranking_point.lat": {"gte": lat - dlat, "lte": lat + dlat}}},
+                    {"range": {"ranking_point.lon": {"gte": lon - dlon, "lte": lon + dlon}}},
+                ],
+                "should": [
+                    {"term": {"label_folded": folded}},
+                    {"prefix": {"label_folded": folded}},
+                    {"term": {"aliases_folded": folded}},
+                    {"prefix": {"aliases_folded": folded}},
+                ],
+                "minimum_should_match": 1,
+            }
+        },
+    }
+
+
+def merge_nearby_name_rescue(
+    query: str,
+    ids: list[str],
+    evidence: dict,
+    rescued: list[str],
+) -> tuple[list[str], dict, int]:
+    """Prepend nearby same-name hits so geo-v6 window can see them. Query-only unused."""
+    if not rescued:
+        return ids, evidence, 0
+    seen = set(ids)
+    new_ids = [poi_id for poi_id in rescued if poi_id not in seen]
+    if not new_ids:
+        return ids, evidence, 0
+    best = max((float(evidence[poi_id]["rrf"] or 0) for poi_id in ids if poi_id in evidence), default=0.0)
+    base = max(best, 1.0 / (RRF_CONSTANT + 1))
+    for index, poi_id in enumerate(new_ids):
+        evidence[poi_id] = {
+            "lexical_rank": None,
+            "dense_rank": None,
+            "rrf": base + (len(new_ids) - index) * 1e-6,
+            "nearby_rescue": True,
+        }
+    return new_ids + ids, evidence, len(new_ids)
+
+
+def fetch_nearby_name_rescue(query: str, anchor: dict[str, float]) -> tuple[list[str], float]:
+    """Return nearby POI ids with label/alias matching query, nearest first."""
+    cfg = RANKING_POLICY.get("nearby_name_rescue") or {}
+    if not bool(cfg.get("enabled", False)):
+        return [], 0.0
+    compact = compact_length(query)
+    if compact < int(cfg.get("min_query_chars", 3)):
+        return [], 0.0
+    radius_m = float(cfg.get("radius_m", 5000))
+    limit = max(1, int(cfg.get("limit", 15)))
+    fetch_size = max(limit, int(cfg.get("fetch_size", 40)))
+    body = nearby_name_rescue_body(query, anchor, size=fetch_size, radius_m=radius_m)
+    if body is None:
+        return [], 0.0
+    began = time.perf_counter()
+    response = runtime.client().request("POST", f"/{INDEX_NAME}/_search", body)
+    elapsed = (time.perf_counter() - began) * 1000
+    scored: list[tuple[float, str]] = []
+    for hit in response.get("hits", {}).get("hits", []):
+        source = hit.get("_source") or {}
+        point = source.get("ranking_point") or {}
+        if point.get("lat") is None or point.get("lon") is None:
+            continue
+        distance = haversine(anchor, point)
+        if distance > radius_m:
+            continue
+        doc = {
+            "search_label": source.get("search_label", ""),
+            "search_aliases": source.get("search_aliases") or [],
+            "address": "",
+            "canonical_id": hit["_id"],
+        }
+        # Keep exact/prefix name hits only — avoid weak cross-field noise inside bbox.
+        label_fold = fold(doc["search_label"])
+        q_fold = fold(query)
+        aliases_fold = [fold(a) for a in doc["search_aliases"]]
+        if not (
+            label_fold == q_fold
+            or label_fold.startswith(q_fold)
+            or any(a == q_fold or a.startswith(q_fold) for a in aliases_fold)
+            or name_match_class(query, doc) is not None
+        ):
+            continue
+        scored.append((distance, hit["_id"]))
+    scored.sort(key=lambda item: (item[0], item[1]))
+    return [poi_id for _, poi_id in scored[:limit]], elapsed
+
+
 def suggest(payload: SuggestRequest, personalized: bool) -> dict[str, Any]:
     if payload.expected_corpus_version != CORPUS_VERSION:
         raise HTTPException(409, detail={"code": "corpus_version_mismatch", "message": "Corpus version mismatch"})
@@ -571,8 +1007,14 @@ def suggest(payload: SuggestRequest, personalized: bool) -> dict[str, Any]:
         return response_payload(payload, [], None, {}, "empty_query", personalized, None)
     began = time.perf_counter()
     ids, route, timings, evidence = retrieve(query)
-    docs = candidate_documents(ids, runtime.documents(ids))
     anchor = resolve_anchor(payload.origin) if personalized else None
+    rescued_n = 0
+    if anchor is not None:
+        rescued_ids, timings["nearby_rescue"] = fetch_nearby_name_rescue(query, anchor)
+        ids, evidence, rescued_n = merge_nearby_name_rescue(query, ids, evidence, rescued_ids)
+        if rescued_n:
+            route = f"{route}+nearby_name_rescue:{rescued_n}"
+    docs = candidate_documents(ids, runtime.documents(ids))
     ranked = rank_candidates(query, docs, evidence, anchor)
     results = []
     for _, _, distance, doc in ranked[:payload.top_k]:

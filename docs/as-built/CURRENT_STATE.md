@@ -11,9 +11,9 @@ Cập nhật: 15/09/2026. Tài liệu này mô tả **code và artifact đang ch
 | Evaluation data | `hnq20k-stable-v1-eval1`, 20.000 queries | query manifest/validation |
 | OpenSearch index | `hanoi-poi-stable-v1-release1` | model release + Docker Compose |
 | Encoder | `e5-v4-finetuned`, 384d, context passage | model artifact + evaluation report |
-| Search policy | `search-policy-stable-demo-v5` | `apps/poi-search/api/search_policy.json` |
+| Search policy | `search-policy-stable-demo-v6` (`geo_mode=v6`, rollback `v5`) | `apps/poi-search/api/search_policy.json` |
 | Candidate policy | `safe-candidates-v5`, profile-specific | API `/v1/status` |
-| Context ranker | `heuristic-geo-v5` | API `/v1/status` |
+| Context ranker | `heuristic-geo-v6` (cohort swap); `heuristic-geo-v5` khi `geo_mode=v5` | API `/v1/status` |
 | Event/history store | `in-memory-demo-v1`; không có learned history | API process memory |
 
 ## 2. Luồng thực sự đang chạy
@@ -29,8 +29,11 @@ flowchart LR
     D --> C
     F --> C
     C -->|query-only| O["Giữ retrieval order"]
-    C -->|origin hợp lệ| G["Text relevance + bounded geo decay"]
-    G --> O
+    C -->|origin hợp lệ| G{"geo_mode"}
+    G -->|v6| V6["Hoán đổi cohort cùng lớp name/alias + band 500m"]
+    G -->|v5| V5["Text relevance + bounded geo decay"]
+    V6 --> O
+    V5 --> O
     O --> K["Top-K, mặc định UI=5"]
 ```
 
@@ -38,7 +41,9 @@ flowchart LR
 - Hybrid dùng RRF với trọng số hai nhánh bằng nhau. Query ngắn hơn 5 ký tự compact chạy lexical-only.
 - Candidate được collapse theo `entity_group_id` nhưng giữ branch/platform/access point riêng; budget cố định 50.
 - Query-only không dùng origin và giữ thứ tự Stage 1.
-- Personalized endpoint chỉ dùng origin hợp lệ. Điểm cuối là blend text relevance với `exp(-distance/5000)`; exact name/alias được bảo vệ, token có số phải tương thích trước khi nhận geo boost.
+- Personalized endpoint chỉ dùng origin hợp lệ.
+  - **geo-v6 (default):** giữ thứ tự Stage 1; chỉ hoán đổi các slot cùng lớp khớp name/alias với head trong window 10, RRF ratio ≥0.5, band 500 m. Không cộng distance vào RRF.
+  - **geo-v5 (rollback):** blend text relevance với `exp(-distance/5000)`; exact name/alias được bảo vệ, token có số phải tương thích trước khi nhận geo boost.
 - Hiện không có category hard-filter, learned correction, scope router nhiều lane, candidate rescue, time feature hoặc user-history ranker.
 
 ## 3. API và UI đã có

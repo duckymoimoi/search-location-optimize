@@ -1,5 +1,5 @@
 {
-  "policy_version": "search-policy-stable-demo-v5",
+  "policy_version": "search-policy-stable-demo-v6",
   "default_retrieval_profile": "hybrid",
   "retrieval": {
     "branch_depth": 50,
@@ -25,6 +25,10 @@
     {"pattern": "\\bthcs\\b", "replacement": "trung học cơ sở"}
   ],
   "ranking": {
+    "geo_mode": "v6",
+    "geo_equivalent_window": 10,
+    "geo_min_retrieval_ratio": 0.5,
+    "geo_distance_band_m": 500,
     "retrieval_weight": 0.65,
     "name_token_overlap_weight": 0.35,
     "relevance_blend": 0.65,
@@ -32,9 +36,22 @@
     "geo_decay_m": 5000,
     "exact_text_bonus": 0.04,
     "protect_exact_name_or_alias": true,
+    "name_address_priority": true,
+    "name_address_min_query_tokens": 4,
+    "name_address_min_evidence": 0.5,
+    "name_address_min_addr_span": 2,
+    "name_match_quality_priority": true,
+    "accent_match_priority": true,
     "deduplication": {
       "entity_group_id": true,
-      "normalized_name_within_m": 300
+      "normalized_name_within_m": 50
+    },
+    "nearby_name_rescue": {
+      "enabled": true,
+      "radius_m": 5000,
+      "limit": 15,
+      "min_query_chars": 3,
+      "fetch_size": 40
     }
   },
   "cors_origins": [
