@@ -51,3 +51,11 @@ HANOI_POI_STABLE_V1/hanoi_poi_stable_v1/pois_stable_v1.csv
 # Local / transient
 training/**/cache/
 **/sentencepiece.bpe.model
+
+# Kaggle run outputs (download from Kaggle; do not push embeddings/jsonl)
+training/kaggle/output_*/
+apps/poi-search/bench/results/
+
+# Stale Hanoi paths (removed from tree; keep ignore harmless)
+HANOI_POI_STABLE_V1/
+HANOI_QUERIES_20K/

@@ -1,0 +1,693 @@
+{
+  "created_at": "2026-09-16T03:38:53Z",
+  "corpus_version": "vn-poi-core-v1",
+  "source": "d:\\vsf\\training\\corpus_audit\\vietnam_poi_corpus_v1\\pois_core.parquet",
+  "source_sha256_12": "e5d75c4783f2",
+  "n": 186322,
+  "metrics": [
+    {
+      "metric": "rows",
+      "n": 186322,
+      "N": 186322,
+      "rate": 1.0,
+      "universe": "pois_core"
+    },
+    {
+      "metric": "poi_id_unique",
+      "n": 186322,
+      "N": 186322,
+      "rate": 1.0,
+      "universe": "pois_core"
+    },
+    {
+      "metric": "duplicate_poi_id_rows",
+      "n": 0,
+      "N": 186322,
+      "rate": 0.0,
+      "universe": "pois_core"
+    },
+    {
+      "metric": "empty_name",
+      "n": 0,
+      "N": 186322,
+      "rate": 0.0,
+      "universe": "pois_core"
+    },
+    {
+      "metric": "with_alias",
+      "n": 14216,
+      "N": 186322,
+      "rate": 0.076298,
+      "universe": "pois_core"
+    },
+    {
+      "metric": "missing_ranking_point",
+      "n": 0,
+      "N": 186322,
+      "rate": 0.0,
+      "universe": "pois_core"
+    },
+    {
+      "metric": "invalid_latlon",
+      "n": 0,
+      "N": 186322,
+      "rate": 0.0,
+      "universe": "pois_core"
+    },
+    {
+      "metric": "outside_vn_bbox",
+      "n": 31,
+      "N": 186322,
+      "rate": 0.000166,
+      "universe": "pois_core"
+    },
+    {
+      "metric": "address_status_missing",
+      "n": 98062,
+      "N": 186322,
+      "rate": 0.526304,
+      "universe": "pois_core"
+    },
+    {
+      "metric": "address_status_direct",
+      "n": 88260,
+      "N": 186322,
+      "rate": 0.473696,
+      "universe": "pois_core"
+    },
+    {
+      "metric": "housenumber_and_street_or_place",
+      "n": 77190,
+      "N": 186322,
+      "rate": 0.414283,
+      "universe": "pois_core"
+    },
+    {
+      "metric": "subdistrict_missing",
+      "n": 490,
+      "N": 186322,
+      "rate": 0.00263,
+      "universe": "pois_core"
+    },
+    {
+      "metric": "province_unknown",
+      "n": 333,
+      "N": 186322,
+      "rate": 0.001787,
+      "universe": "pois_core"
+    },
+    {
+      "metric": "with_brand",
+      "n": 8952,
+      "N": 186322,
+      "rate": 0.048046,
+      "universe": "pois_core"
+    },
+    {
+      "metric": "with_ref",
+      "n": 625,
+      "N": 186322,
+      "rate": 0.003354,
+      "universe": "pois_core"
+    },
+    {
+      "metric": "preserve_individual_access_point",
+      "n": 15674,
+      "N": 186322,
+      "rate": 0.084123,
+      "universe": "pois_core"
+    },
+    {
+      "metric": "category_public_transport_platform_or_stop",
+      "n": 15729,
+      "N": 186322,
+      "rate": 0.084418,
+      "universe": "pois_core"
+    },
+    {
+      "metric": "category_unknown",
+      "n": 0,
+      "N": 186322,
+      "rate": 0.0,
+      "universe": "pois_core"
+    },
+    {
+      "metric": "folded_name_groups_size_ge_2",
+      "n": 13312,
+      "N": 147946,
+      "rate": 0.089979,
+      "universe": "distinct_folded_names"
+    },
+    {
+      "metric": "pois_in_folded_name_groups_ge_2",
+      "n": 51688,
+      "N": 186322,
+      "rate": 0.277412,
+      "universe": "named_pois"
+    },
+    {
+      "metric": "folded_name_province_groups_ge_2",
+      "n": 11913,
+      "N": 157668,
+      "rate": 0.075558,
+      "universe": "distinct_folded_name_x_province"
+    },
+    {
+      "metric": "near_dup_pairs_same_fold_le_80m_excl_huge_groups",
+      "n": 8823,
+      "N": null,
+      "rate": null,
+      "universe": "pair_count_heuristic"
+    },
+    {
+      "metric": "node_way_same_fold_pairs_le_80m",
+      "n": 1508,
+      "N": null,
+      "rate": null,
+      "universe": "pair_count_heuristic"
+    }
+  ],
+  "osm_type_counts": {
+    "node": 122389,
+    "way": 63933
+  },
+  "address_status_counts": {
+    "direct": 88260,
+    "missing": 98062
+  },
+  "language_heuristic_counts": {
+    "vi_diacritic": 134129,
+    "latin_no_vi_diacritic": 48722,
+    "other": 161,
+    "has_digit": 3310
+  },
+  "category_top30_first_token": {
+    "address=": 51563,
+    "public_transport=platform": 15304,
+    "amenity=restaurant": 10704,
+    "amenity=cafe": 8255,
+    "amenity=school": 7858,
+    "amenity=place_of_worship": 6209,
+    "shop=convenience": 6128,
+    "tourism=hotel": 5664,
+    "building=yes": 4069,
+    "amenity=fuel": 3627,
+    "amenity=atm": 3086,
+    "building=apartments": 2858,
+    "amenity=bank": 2429,
+    "office=government": 2417,
+    "amenity=pharmacy": 2341,
+    "amenity=hospital": 1748,
+    "tourism=guest_house": 1732,
+    "amenity=kindergarten": 1558,
+    "amenity=marketplace": 1496,
+    "shop=clothes": 1484,
+    "leisure=park": 1391,
+    "amenity=fast_food": 1380,
+    "amenity=community_centre": 1322,
+    "tourism=attraction": 1290,
+    "shop=supermarket": 1265,
+    "shop=department_store": 1083,
+    "office=company": 1066,
+    "tourism=hostel": 986,
+    "amenity=townhall": 950,
+    "amenity=police": 900
+  },
+  "province_counts": {
+    "Thành phố Hồ Chí Minh": 53186,
+    "Hà Nội": 46692,
+    "Thành phố Đà Nẵng": 14598,
+    "Thành phố Bắc Ninh": 10396,
+    "Tỉnh Lâm Đồng": 6751,
+    "Thành phố Cần Thơ": 5594,
+    "Thành phố Đồng Nai": 5266,
+    "Thành phố Hải Phòng": 4555,
+    "Khánh Hòa": 4344,
+    "Tỉnh An Giang": 4123,
+    "Thành phố Huế": 2390,
+    "Tỉnh Ninh Bình": 2286,
+    "Tỉnh Hưng Yên": 2133,
+    "Tỉnh Tây Ninh": 2132,
+    "Tỉnh Đắk Lắk": 2099,
+    "Tỉnh Gia Lai": 2074,
+    "Tỉnh Đồng Tháp": 1900,
+    "Tỉnh Quảng Trị": 1756,
+    "Tỉnh Lào Cai": 1623,
+    "Tỉnh Vĩnh Long": 1540,
+    "Tỉnh Tuyên Quang": 1409,
+    "Tỉnh Quảng Ngãi": 1272,
+    "Thành phố Quảng Ninh": 1244,
+    "Tỉnh Phú Thọ": 1137,
+    "Tỉnh Nghệ An": 840,
+    "Hà Tĩnh": 807,
+    "Tỉnh Thanh Hóa": 766,
+    "Tỉnh Thái Nguyên": 754,
+    "Tỉnh Cao Bằng": 525,
+    "Tỉnh Lạng Sơn": 402,
+    "Tỉnh Cà Mau": 382,
+    "Tỉnh Lai Châu": 363,
+    "Tỉnh Sơn La": 347,
+    "(unknown)": 333,
+    "Tỉnh Điện Biên": 303
+  },
+  "name_length_chars": {
+    "min": 1,
+    "max": 166,
+    "mean": 18.89
+  },
+  "same_name_note": "folded_name groups are ambiguity candidates, not confirmed duplicates",
+  "near_dup_sample": [
+    {
+      "fold": "gia lam",
+      "poi_a": "osm:node/2685835182",
+      "poi_b": "osm:node/11279662341",
+      "distance_m": 7.1,
+      "kind": "same_fold_le_25m"
+    },
+    {
+      "fold": "gia lam",
+      "poi_a": "osm:node/2685835182",
+      "poi_b": "osm:node/11279662342",
+      "distance_m": 11.5,
+      "kind": "same_fold_le_25m"
+    },
+    {
+      "fold": "gia lam",
+      "poi_a": "osm:node/11279662341",
+      "poi_b": "osm:node/11279662342",
+      "distance_m": 4.4,
+      "kind": "same_fold_le_25m"
+    },
+    {
+      "fold": "ubnd phuong 17",
+      "poi_a": "osm:node/366459518",
+      "poi_b": "osm:node/11868138118",
+      "distance_m": 22.5,
+      "kind": "same_fold_le_25m"
+    },
+    {
+      "fold": "long bien",
+      "poi_a": "osm:node/445345254",
+      "poi_b": "osm:node/11260029394",
+      "distance_m": 7.9,
+      "kind": "same_fold_le_25m"
+    },
+    {
+      "fold": "vib",
+      "poi_a": "osm:node/4547532453",
+      "poi_b": "osm:node/4547532455",
+      "distance_m": 13.3,
+      "kind": "same_fold_le_25m"
+    },
+    {
+      "fold": "vib",
+      "poi_a": "osm:node/7056059367",
+      "poi_b": "osm:node/10816361965",
+      "distance_m": 10.9,
+      "kind": "same_fold_le_25m"
+    },
+    {
+      "fold": "vib",
+      "poi_a": "osm:node/7056059373",
+      "poi_b": "osm:node/7056059374",
+      "distance_m": 2.5,
+      "kind": "same_fold_le_25m"
+    },
+    {
+      "fold": "vib",
+      "poi_a": "osm:node/11104600818",
+      "poi_b": "osm:node/11104600821",
+      "distance_m": 4.8,
+      "kind": "same_fold_le_25m"
+    },
+    {
+      "fold": "mb bank",
+      "poi_a": "osm:node/2450217638",
+      "poi_b": "osm:node/5344389829",
+      "distance_m": 4.5,
+      "kind": "same_fold_le_25m"
+    },
+    {
+      "fold": "lpbank",
+      "poi_a": "osm:node/12615337071",
+      "poi_b": "osm:node/12615337073",
+      "distance_m": 1.5,
+      "kind": "same_fold_le_25m"
+    },
+    {
+      "fold": "lpbank",
+      "poi_a": "osm:node/13634068277",
+      "poi_b": "osm:way/1487234665",
+      "distance_m": 2.1,
+      "kind": "node_way"
+    },
+    {
+      "fold": "cho duong dong",
+      "poi_a": "osm:node/477604691",
+      "poi_b": "osm:way/1328291798",
+      "distance_m": 68.0,
+      "kind": "node_way"
+    },
+    {
+      "fold": "vcb",
+      "poi_a": "osm:node/4605036483",
+      "poi_b": "osm:way/369836850",
+      "distance_m": 8.3,
+      "kind": "node_way"
+    },
+    {
+      "fold": "hsbc",
+      "poi_a": "osm:node/2256217983",
+      "poi_b": "osm:node/4764044322",
+      "distance_m": 17.2,
+      "kind": "same_fold_le_25m"
+    },
+    {
+      "fold": "hsbc",
+      "poi_a": "osm:node/4603126389",
+      "poi_b": "osm:node/5311889621",
+      "distance_m": 9.4,
+      "kind": "same_fold_le_25m"
+    },
+    {
+      "fold": "hsbc",
+      "poi_a": "osm:node/6991435285",
+      "poi_b": "osm:node/7575207786",
+      "distance_m": 4.0,
+      "kind": "same_fold_le_25m"
+    },
+    {
+      "fold": "thap cham",
+      "poi_a": "osm:node/667360878",
+      "poi_b": "osm:node/11196150538",
+      "distance_m": 23.7,
+      "kind": "same_fold_le_25m"
+    },
+    {
+      "fold": "tuy hoa",
+      "poi_a": "osm:node/6576385313",
+      "poi_b": "osm:node/6576385473",
+      "distance_m": 5.3,
+      "kind": "same_fold_le_25m"
+    },
+    {
+      "fold": "tuy hoa",
+      "poi_a": "osm:node/6576385313",
+      "poi_b": "osm:node/7631626345",
+      "distance_m": 6.7,
+      "kind": "same_fold_le_25m"
+    },
+    {
+      "fold": "tuy hoa",
+      "poi_a": "osm:node/6576385313",
+      "poi_b": "osm:node/7631637538",
+      "distance_m": 11.4,
+      "kind": "same_fold_le_25m"
+    },
+    {
+      "fold": "tuy hoa",
+      "poi_a": "osm:node/6576385313",
+      "poi_b": "osm:node/7631672207",
+      "distance_m": 23.7,
+      "kind": "same_fold_le_25m"
+    },
+    {
+      "fold": "tuy hoa",
+      "poi_a": "osm:node/6576385473",
+      "poi_b": "osm:node/7631626345",
+      "distance_m": 11.9,
+      "kind": "same_fold_le_25m"
+    },
+    {
+      "fold": "tuy hoa",
+      "poi_a": "osm:node/6576385473",
+      "poi_b": "osm:node/7631637538",
+      "distance_m": 6.2,
+      "kind": "same_fold_le_25m"
+    },
+    {
+      "fold": "tuy hoa",
+      "poi_a": "osm:node/6576385473",
+      "poi_b": "osm:node/7631662050",
+      "distance_m": 23.2,
+      "kind": "same_fold_le_25m"
+    },
+    {
+      "fold": "tuy hoa",
+      "poi_a": "osm:node/7631626345",
+      "poi_b": "osm:node/7631637538",
+      "distance_m": 18.1,
+      "kind": "same_fold_le_25m"
+    },
+    {
+      "fold": "tuy hoa",
+      "poi_a": "osm:node/7631626345",
+      "poi_b": "osm:node/7631672207",
+      "distance_m": 17.1,
+      "kind": "same_fold_le_25m"
+    },
+    {
+      "fold": "tuy hoa",
+      "poi_a": "osm:node/7631637538",
+      "poi_b": "osm:node/7631662050",
+      "distance_m": 17.1,
+      "kind": "same_fold_le_25m"
+    },
+    {
+      "fold": "saigon bank - atm",
+      "poi_a": "osm:node/724829333",
+      "poi_b": "osm:node/2457607208",
+      "distance_m": 2.5,
+      "kind": "same_fold_le_25m"
+    },
+    {
+      "fold": "shb",
+      "poi_a": "osm:node/4708487790",
+      "poi_b": "osm:node/7135071494",
+      "distance_m": 12.0,
+      "kind": "same_fold_le_25m"
+    },
+    {
+      "fold": "shb",
+      "poi_a": "osm:node/5352258506",
+      "poi_b": "osm:node/5352258507",
+      "distance_m": 15.7,
+      "kind": "same_fold_le_25m"
+    },
+    {
+      "fold": "eximbank",
+      "poi_a": "osm:node/993037586",
+      "poi_b": "osm:node/993037607",
+      "distance_m": 7.4,
+      "kind": "same_fold_le_25m"
+    },
+    {
+      "fold": "eximbank",
+      "poi_a": "osm:node/13016769301",
+      "poi_b": "osm:node/13016769401",
+      "distance_m": 2.5,
+      "kind": "same_fold_le_25m"
+    },
+    {
+      "fold": "eximbank",
+      "poi_a": "osm:node/13420305162",
+      "poi_b": "osm:node/13540183121",
+      "distance_m": 5.2,
+      "kind": "same_fold_le_25m"
+    },
+    {
+      "fold": "eximbank",
+      "poi_a": "osm:node/13677995602",
+      "poi_b": "osm:node/13677995603",
+      "distance_m": 13.9,
+      "kind": "same_fold_le_25m"
+    },
+    {
+      "fold": "eximbank",
+      "poi_a": "osm:node/13715601201",
+      "poi_b": "osm:node/13715601202",
+      "distance_m": 4.2,
+      "kind": "same_fold_le_25m"
+    },
+    {
+      "fold": "bidv - pos",
+      "poi_a": "osm:node/724829523",
+      "poi_b": "osm:node/724829810",
+      "distance_m": 16.9,
+      "kind": "same_fold_le_25m"
+    },
+    {
+      "fold": "agribank - atm",
+      "poi_a": "osm:node/728153435",
+      "poi_b": "osm:node/728153563",
+      "distance_m": 4.6,
+      "kind": "same_fold_le_25m"
+    },
+    {
+      "fold": "viet capital bank",
+      "poi_a": "osm:node/6570781688",
+      "poi_b": "osm:node/6570781689",
+      "distance_m": 2.0,
+      "kind": "same_fold_le_25m"
+    },
+    {
+      "fold": "dong a - atm",
+      "poi_a": "osm:node/728153395",
+      "poi_b": "osm:node/728153459",
+      "distance_m": 8.6,
+      "kind": "same_fold_le_25m"
+    }
+  ],
+  "top_ambiguous_folded_names": [
+    {
+      "folded_name": "winmart+",
+      "n_pois": 1221,
+      "example_poi_ids": "osm:node/729406837, osm:node/1769477893, osm:node/4239089490, osm:node/4384877966, osm:node/4531037510"
+    },
+    {
+      "folded_name": "petrolimex",
+      "n_pois": 1119,
+      "example_poi_ids": "osm:node/446043006, osm:node/481837948, osm:node/481838137, osm:node/729604368, osm:node/729604588"
+    },
+    {
+      "folded_name": "a",
+      "n_pois": 664,
+      "example_poi_ids": "osm:node/4965375262, osm:node/4965375266, osm:node/4965375268, osm:node/4965375270, osm:node/4965375275"
+    },
+    {
+      "folded_name": "bidv",
+      "n_pois": 511,
+      "example_poi_ids": "osm:node/444394820, osm:node/444394977, osm:node/445275063, osm:node/446043809, osm:node/724828979"
+    },
+    {
+      "folded_name": "agribank",
+      "n_pois": 445,
+      "example_poi_ids": "osm:node/444394841, osm:node/444395022, osm:node/446044157, osm:node/481836260, osm:node/481836277"
+    },
+    {
+      "folded_name": "sua xe",
+      "n_pois": 435,
+      "example_poi_ids": "osm:node/4744465824, osm:node/12378510161, osm:node/12385051620, osm:node/12701542472, osm:node/12701549418"
+    },
+    {
+      "folded_name": "vietcombank",
+      "n_pois": 404,
+      "example_poi_ids": "osm:node/444227294, osm:node/444395007, osm:node/444668652, osm:node/446044221, osm:node/448841326"
+    },
+    {
+      "folded_name": "pv oil",
+      "n_pois": 366,
+      "example_poi_ids": "osm:node/729787624, osm:node/977780862, osm:node/1021091948, osm:node/1021091954, osm:node/1024567385"
+    },
+    {
+      "folded_name": "techcombank",
+      "n_pois": 331,
+      "example_poi_ids": "osm:node/443064263, osm:node/444394919, osm:node/481837601, osm:node/724828983, osm:node/724829024"
+    },
+    {
+      "folded_name": "vietinbank",
+      "n_pois": 330,
+      "example_poi_ids": "osm:node/444394786, osm:node/444394867, osm:node/444394975, osm:node/446044219, osm:node/481836344"
+    },
+    {
+      "folded_name": "vinfast",
+      "n_pois": 266,
+      "example_poi_ids": "osm:node/9424945491, osm:node/10023518306, osm:node/10310391815, osm:node/10916618777, osm:node/11171092437"
+    },
+    {
+      "folded_name": "highlands coffee",
+      "n_pois": 258,
+      "example_poi_ids": "osm:node/442977691, osm:node/729406744, osm:node/1710192560, osm:node/1969579862, osm:node/1970245474"
+    },
+    {
+      "folded_name": "pnj",
+      "n_pois": 242,
+      "example_poi_ids": "osm:node/3227626772, osm:node/3630424393, osm:node/3640168116, osm:node/3654066981, osm:node/5251604549"
+    },
+    {
+      "folded_name": "sacombank",
+      "n_pois": 218,
+      "example_poi_ids": "osm:node/724829060, osm:node/724829136, osm:node/724829296, osm:node/724829676, osm:node/724829703"
+    },
+    {
+      "folded_name": "circle k",
+      "n_pois": 211,
+      "example_poi_ids": "osm:node/724829580, osm:node/729604579, osm:node/1276258190, osm:node/1933276047, osm:node/1969579596"
+    },
+    {
+      "folded_name": "bach hoa xanh",
+      "n_pois": 207,
+      "example_poi_ids": "osm:node/5606336360, osm:node/5638025421, osm:node/6326608156, osm:node/6370262588, osm:node/7063598056"
+    },
+    {
+      "folded_name": "cua hang xang dau",
+      "n_pois": 168,
+      "example_poi_ids": "osm:node/729604638, osm:node/11445725144, osm:node/11445811761, osm:node/11445833346, osm:node/11445895640"
+    },
+    {
+      "folded_name": "tu doi pin vinfast",
+      "n_pois": 156,
+      "example_poi_ids": "osm:node/13658912837, osm:node/13658912838, osm:node/13658912839, osm:node/13658912840, osm:node/13658912841"
+    },
+    {
+      "folded_name": "winmart",
+      "n_pois": 133,
+      "example_poi_ids": "osm:node/442977400, osm:node/1778803400, osm:node/1817686618, osm:node/2647229839, osm:node/3150526966"
+    },
+    {
+      "folded_name": "tpbank livebank 24/7",
+      "n_pois": 126,
+      "example_poi_ids": "osm:node/1491048057, osm:node/10111821018, osm:node/12022604275, osm:node/12212544801, osm:node/12694082687"
+    },
+    {
+      "folded_name": "acb",
+      "n_pois": 124,
+      "example_poi_ids": "osm:node/724829156, osm:node/724829528, osm:node/724829567, osm:node/724829772, osm:node/724829862"
+    },
+    {
+      "folded_name": "lotteria",
+      "n_pois": 118,
+      "example_poi_ids": "osm:node/411918020, osm:node/729602633, osm:node/729602639, osm:node/729602662, osm:node/729602674"
+    },
+    {
+      "folded_name": "vpbank",
+      "n_pois": 108,
+      "example_poi_ids": "osm:node/446044135, osm:node/724829072, osm:node/724829160, osm:node/948325230, osm:node/1001774342"
+    },
+    {
+      "folded_name": "ks, a",
+      "n_pois": 101,
+      "example_poi_ids": "osm:node/5151193584, osm:node/5158659074, osm:node/5158659076, osm:node/5162759222, osm:node/5162759226"
+    },
+    {
+      "folded_name": "kfc",
+      "n_pois": 98,
+      "example_poi_ids": "osm:node/442913494, osm:node/481837568, osm:node/729602658, osm:node/729602660, osm:node/729602661"
+    },
+    {
+      "folded_name": "pharmacity",
+      "n_pois": 97,
+      "example_poi_ids": "osm:node/4559392591, osm:node/4965375504, osm:node/4991619470, osm:node/6758069582, osm:node/6770462388"
+    },
+    {
+      "folded_name": "tap hoa",
+      "n_pois": 95,
+      "example_poi_ids": "osm:node/4682943494, osm:node/4684692789, osm:node/4684711291, osm:node/4691616905, osm:node/4691715091"
+    },
+    {
+      "folded_name": "the gioi di dong",
+      "n_pois": 88,
+      "example_poi_ids": "osm:node/1778803900, osm:node/1783186913, osm:node/1810772439, osm:node/2494712806, osm:node/2494715831"
+    },
+    {
+      "folded_name": "the coffee house",
+      "n_pois": 77,
+      "example_poi_ids": "osm:node/946794525, osm:node/1769692429, osm:node/3247376711, osm:node/4274832592, osm:node/4274858294"
+    },
+    {
+      "folded_name": "starbucks",
+      "n_pois": 74,
+      "example_poi_ids": "osm:node/2141010788, osm:node/2340161840, osm:node/2616958820, osm:node/2616975924, osm:node/3193184663"
+    }
+  ]
+}

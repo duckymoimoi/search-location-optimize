@@ -1,0 +1,12 @@
+{
+  "policy": "brand_multipositive_only_as_authored",
+  "n_rows": 1080,
+  "n_cases": 180,
+  "n_multipositive_rows": 17,
+  "n_multipositive_cases": 12,
+  "multipositive_by_stratum": {
+    "brand_branch": 10,
+    "category_local": 7
+  },
+  "note": "Acceptable sets come from query_variants_v1. Do not auto-expand building_code. Brand multi-positive is intentional and sparse."
+}

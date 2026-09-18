@@ -1,49 +1,39 @@
-# Hanoi POI Search (runtime product)
+# POI Search — runtime (FE + BE)
 
-Runtime lives here. Training / eval stay under `training/`.
+App demo tìm địa điểm: FastAPI + React/MapLibre.  
+Corpus đánh giá hiện tại là **toàn quốc** (`vn-poi-core-v1`); stack Docker/index vẫn cần migrate (xem README gốc).
 
 ```text
 apps/poi-search/
   api/                 FastAPI + search_policy.json
-  web/                 Vite + React + MapLibre demo
-  models/              MODEL_RELEASE.json + current/ (junction to encoder)
-  bench/               smoke + latency/resource scripts
-  docker/              API image build files
+  web/                 Vite + React + MapLibre
+  models/              MODEL_RELEASE.json + current/ (junction encoder)
+  bench/               gold Stage-1 harness + smoke
+  docker/              Dockerfile.api
   docker-compose.yml   OpenSearch + hybrid/dense/lexical APIs
   scripts/             start.ps1, link_model.ps1
 ```
 
-## Quick start
+## Docker — phạm vi thực tế
+
+| Service | Docker? |
+|---|---|
+| OpenSearch | Yes |
+| API ×3 (hybrid / dense / lexical) | Yes |
+| Frontend | **No** — `npm run dev` trên host |
+
+Không có compose “all-in-one” FE+BE. Chi tiết + lệnh: [`../../README.md`](../../README.md).
+
+## Ports (khi chạy được)
+
+- Web: http://127.0.0.1:5173  
+- Hybrid: http://127.0.0.1:8000  
+- Dense: http://127.0.0.1:8001  
+- Lexical: http://127.0.0.1:8002  
+
+## Gold bench (không cần API)
 
 ```powershell
-cd apps\poi-search
-.\scripts\link_model.ps1
-.\scripts\start.ps1
+python bench\gold_stage1_selection_report.py
+python bench\gold_stage1_prefix_char_bench.py --expand-only
 ```
-
-Or:
-
-```powershell
-.\apps\poi-search\scripts\start.ps1
-```
-
-- Web: http://127.0.0.1:5173
-- Hybrid API: http://127.0.0.1:8000
-- Dense-only: http://127.0.0.1:8001
-- Lexical-only: http://127.0.0.1:8002
-
-## Smoke
-
-```powershell
-python apps\poi-search\bench\smoke_contract.py
-```
-
-## Model
-
-`models/current` must point at a folder containing `final_model/`. Default junction target is `artifacts/models/e5-v4-finetuned`. See [models/README.md](models/README.md).
-
-## Notes
-
-- API does **not** mount `training/stage1`.
-- OpenSearch index build (if missing) uses `training/stage1/opensearch_index.py` and the frozen vectors under `artifacts/indexes/` once; after that runtime only needs the Docker volume.
-- Project documentation is indexed from [`../../docs/README.md`](../../docs/README.md).

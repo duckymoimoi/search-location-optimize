@@ -1,0 +1,62 @@
+{
+  "schema_version": "vn-poi-core-v1",
+  "tables": {
+    "pois_core": {
+      "role": "retrieval_index_hot_path",
+      "fields": [
+        "poi_id",
+        "name",
+        "aliases",
+        "category",
+        "brand",
+        "ref",
+        "address.housenumber|street|place",
+        "address_text",
+        "address_status",
+        "province",
+        "subdistrict",
+        "province_region_id",
+        "subdistrict_region_id",
+        "ranking_point",
+        "destination_searchable",
+        "entity_group_id",
+        "branch_id",
+        "preserve_individual_access_point",
+        "osm_type",
+        "osm_id"
+      ]
+    },
+    "pois_access_enrichment": {
+      "role": "ridehail_sidecar_join_on_poi_id",
+      "fields": [
+        "poi_id",
+        "routing_point",
+        "routing_point_status",
+        "pickup_access_verified",
+        "pickup_access_evidence",
+        "pickup_access_policy_version",
+        "approachability_fallback",
+        "enrichment_source"
+      ],
+      "notes": [
+        "Not used in lexical/dense retrieval scoring.",
+        "UI/route preview may join after suggest.",
+        "Current snapshot: routing_point null, pickup_access_verified false for all rows.",
+        "Do not assume pickup_access_verified true/absent; do not treat ranking_point as verified pickup."
+      ]
+    },
+    "poi_regions": {
+      "role": "admin_membership_sidecar"
+    },
+    "search_documents": {
+      "role": "passage_text_for_encode_index"
+    }
+  },
+  "deferred_not_in_core": [
+    "origin_search_eligible",
+    "complex_id",
+    "context.container_*",
+    "context.nearby_street_*",
+    "address 22-field OSM struct"
+  ]
+}

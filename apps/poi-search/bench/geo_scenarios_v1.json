@@ -1,0 +1,94 @@
+{
+  "scenario_set_id": "geo-scenarios-v1",
+  "notes": [
+    "Small diagnostic set for geo-v6 / nearby_name_rescue. Not traffic-weighted gold.",
+    "Query-only controls share the same query without origin."
+  ],
+  "scenarios": [
+    {
+      "scenario_id": "school_ambiguous_near_first",
+      "family": "geo_ambiguous",
+      "query": "tiểu học đại",
+      "origin": {
+        "kind": "gps",
+        "point": {"lat": 20.9876529, "lon": 105.9336564},
+        "accuracy_m": 25.0,
+        "observed_at": "2026-09-15T10:00:00Z"
+      },
+      "intended_poi_id": "osm:way/1386515333",
+      "intended_name": "Trường Tiểu học Đại Hưng",
+      "expect": {
+        "personalized_rank_at_most": 3,
+        "must_beat_poi_ids": ["osm:way/973038815"]
+      },
+      "query_only_note": "Without origin, near school need not win."
+    },
+    {
+      "scenario_id": "school_explicit_far_preserved",
+      "family": "geo_explicit",
+      "query": "tiểu học đại mỗ",
+      "origin": {
+        "kind": "gps",
+        "point": {"lat": 20.9876529, "lon": 105.9336564},
+        "accuracy_m": 25.0,
+        "observed_at": "2026-09-15T10:00:00Z"
+      },
+      "intended_poi_id": "osm:way/973038815",
+      "intended_name": "Trường Tiểu học Đại Mỗ",
+      "expect": {
+        "personalized_rank_at_most": 2,
+        "must_beat_poi_ids": ["osm:way/1386515333"]
+      },
+      "query_only_note": "Explicit name should stay head even when origin is near Đại Hưng."
+    },
+    {
+      "scenario_id": "winmart_nearby_rescue",
+      "family": "nearby_rescue",
+      "query": "winmart",
+      "origin": {
+        "kind": "gps",
+        "point": {"lat": 21.0233096, "lon": 105.8094935},
+        "accuracy_m": 40.0,
+        "observed_at": "2026-09-15T10:00:00Z"
+      },
+      "intended_poi_id": "osm:node/10621408635",
+      "intended_name": "WinMart",
+      "expect": {
+        "personalized_rank_at_most": 5,
+        "distance_m_at_most": 500
+      },
+      "query_only_note": "Rescue may be required when RRF head is a far branch."
+    },
+    {
+      "scenario_id": "lang_chu_tich_phrase_over_fold",
+      "family": "text_priority",
+      "query": "lang chu tich",
+      "origin": {
+        "kind": "gps",
+        "point": {"lat": 20.9891, "lon": 105.9420},
+        "accuracy_m": 76.0,
+        "observed_at": "2026-09-15T10:00:00Z"
+      },
+      "intended_poi_id": "osm:way/37625751",
+      "intended_name": "Lăng Chủ tịch Hồ Chí Minh",
+      "expect": {
+        "personalized_rank_at_most": 1,
+        "must_beat_poi_ids": ["osm:node/1498111667"]
+      },
+      "query_only_note": "Phrase-quality should beat Chùa Láng fold collision with or without origin."
+    },
+    {
+      "scenario_id": "lang_accented_phrase",
+      "family": "text_priority",
+      "query": "lăng chủ tịch",
+      "origin": null,
+      "intended_poi_id": "osm:way/37625751",
+      "intended_name": "Lăng Chủ tịch Hồ Chí Minh",
+      "expect": {
+        "query_only_rank_at_most": 1,
+        "must_beat_poi_ids": ["osm:node/1498111667"]
+      },
+      "query_only_note": "Accented query-only control."
+    }
+  ]
+}

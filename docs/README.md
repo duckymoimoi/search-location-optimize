@@ -1,33 +1,35 @@
 # Tài liệu dự án
 
-Tài liệu được tách theo mục đích để tránh trộn trạng thái hiện tại với thiết kế tương lai.
+Tài liệu tách theo mục đích: trạng thái hiện tại vs thiết kế đích vs evidence tuần.
 
-## 1. Đang chạy — đọc trước
+## 1. Đang chạy / evidence
 
-- [Current state](as-built/CURRENT_STATE.md): phiên bản, luồng code thực tế và gap cần xử lý.
-- [Stage 1 evaluation](as-built/STAGE1_EVALUATION.md): bằng chứng lexical/dense/hybrid, ANN, typing và latency theo snapshot.
-- [Diagnostic & next-step plan](as-built/DIAGNOSTIC_NEGATIVES_GEO_PLAN.md): review runtime geo/parity và thứ tự P0–P5.
-- [Runtime product](../apps/poi-search/README.md): cách chạy FE/API/Docker và smoke test.
+- [Current state](as-built/CURRENT_STATE.md)
+- [Nationwide corpus direction](as-built/NATIONWIDE_CORPUS_DIRECTION.md)
+- [W1 evidence](deliveries/w1_evidence/README.md) — problem statement · EDA · taxonomy · DQ
+- [Tổng hợp task W1–W6](deliveries/SEARCH_2.0_TONG_HOP_TASK.md)
+- Runtime FE/API: [`apps/poi-search/README.md`](../apps/poi-search/README.md)
 
-## 2. Kiến trúc đích
+## 2. Kiến trúc & Stage 1
 
-- [System design](specs/SYSTEM_DESIGN.md)
-- [Technical spec](specs/TECHNICAL_SPEC.md)
-- [Training and retrieval protocol](specs/TRAINING_AND_RETRIEVAL_PROTOCOL.md)
-- [Origin-aware dense](specs/ORIGIN_AWARE_DENSE.md): thí nghiệm Stage 1 query+origin (O1/O2), chưa triển khai.
+- [SEARCH 2.0 vision](specs/search2.0.md)
+- [Stage 1 model selection protocol](specs/SEARCH_2.0_STAGE1_MODEL_SELECTION_PROTOCOL.md)
+- [Query variant standard](specs/SEARCH_2.0_STAGE1_QUERY_VARIANT_STANDARD.md)
+- [Skill: viết Stage-1 variants](../.cursor/skills/search20-stage1-query-variants/SKILL.md)
+- [Query variant rules v5](specs/SEARCH_2_0_QUERY_VARIANT_GENERATION_RULES_V5.md) (chi tiết)
+- [System design](specs/SYSTEM_DESIGN.md) · [Technical spec](specs/TECHNICAL_SPEC.md)
 
-Các tài liệu này mô tả hướng xây dựng. Một mục chỉ trở thành “đã triển khai” khi xuất hiện trong current state và có version/test tương ứng.
+## 3. Dữ liệu (SoT)
 
-## 3. Contract và nghiên cứu
+- [Data README](../data/README.md)
+- [`vn-poi-core-v1`](../data/vietnam/poi_corpus_v1/) — corpus toàn quốc ~186k
+- [`admin_regions_v1`](../data/vietnam/admin_regions_v1/)
+- [`gold_stage1_v1`](../data/vietnam/gold_stage1_v1/) — **180 POI · 1,080 queries locked**
 
-- [Contract package v1](contract-package-v1/README.md): OpenAPI, JSON Schema, config baseline, validation và Mermaid diagrams.
-- [Research and pilot history](research/README.md): rationale, bài báo, tech stack và thiết kế pilot v3.
+## 4. Khác
 
-## 4. Dữ liệu, artifact và vận hành
+- [Contract package v1](contract-package-v1/README.md)
+- [Research](research/README.md)
+- [Operations / structure](operations/PROJECT_STRUCTURE.md)
 
-- [Project structure and lifecycle](operations/PROJECT_STRUCTURE.md)
-- [Corpus schema/lineage](../HANOI_POI_STABLE_V1/hanoi_poi_stable_v1/README.md)
-- [Evaluation dataset manifest](../HANOI_QUERIES_20K/hanoi_queries_20k_stable_v1/manifest.json)
-- [Artifact inventory](../artifacts/README.md)
-
-Thứ tự xử lý mâu thuẫn: manifest/runtime code → `as-built/` → `specs/` → `research/`. Contract package v1 là baseline riêng; không mặc định đồng nhất với OpenAPI sinh từ FastAPI hiện tại.
+> Legacy Hanoi (`HANOI_POI_STABLE_V1`, `HANOI_QUERIES_20K`) và pilot-110 đã gỡ khỏi repo (2026-09-18).

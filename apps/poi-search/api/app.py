@@ -719,13 +719,28 @@ def rank_candidates(
     anchor: dict | None,
 ) -> list[tuple[float, int, float | None, dict]]:
     """Dispatch Stage-2 geo by policy `geo_mode` (`v5` blend | `v6` cohort swap)."""
+    return rank_candidates_traced(query, docs, evidence, anchor)["final"]
+
+
+def rank_candidates_traced(
+    query: str,
+    docs: list[dict[str, Any]],
+    evidence: dict,
+    anchor: dict | None,
+) -> dict[str, list[tuple[float, int, float | None, dict]]]:
+    """Same as rank_candidates, but keep intermediate lists for freeze diagnostics."""
     mode = str(RANKING_POLICY.get("geo_mode", "v6")).strip().lower()
     if mode == "v5":
-        ranked = rank_candidates_v5(query, docs, evidence, anchor)
+        after_geo = rank_candidates_v5(query, docs, evidence, anchor)
     else:
-        ranked = rank_candidates_v6(query, docs, evidence, anchor)
-    ranked = prioritize_name_address(query, ranked)
-    return prioritize_name_match_quality(query, ranked)
+        after_geo = rank_candidates_v6(query, docs, evidence, anchor)
+    after_name_address = prioritize_name_address(query, after_geo)
+    after_name_match = prioritize_name_match_quality(query, after_name_address)
+    return {
+        "after_geo": after_geo,
+        "after_name_address": after_name_address,
+        "final": after_name_match,
+    }
 
 
 def haversine(left: dict[str, float], right: dict[str, float]) -> float:
@@ -840,28 +855,55 @@ def resolve_anchor(origin: Origin | None) -> dict[str, float] | None:
     return docs[0]["ranking_point"]
 
 
-def retrieve(query: str) -> tuple[list[str], str, dict[str, float], dict[str, dict[str, float | None]]]:
+def retrieve(
+    query: str,
+) -> tuple[list[str], str, dict[str, float], dict[str, dict[str, float | None]]]:
+    result = retrieve_detailed(query)
+    return result["ids"], result["route"], result["timings"], result["evidence"]
+
+
+def retrieve_detailed(query: str) -> dict[str, Any]:
+    """Retrieve with explicit branch id lists for freeze/replay traces."""
     timings = {"encode": 0.0, "lexical": 0.0, "ann": 0.0, "fusion": 0.0}
+    lexical_ids: list[str] = []
+    dense_ids: list[str] = []
     if RETRIEVAL_PROFILE == "lexical_only" or (
         RETRIEVAL_PROFILE == "hybrid"
         and compact_length(query) < int(POLICY["retrieval"]["dense_min_compact_chars"])
     ):
-        ids, timings["lexical"] = runtime.lexical(query)
+        lexical_ids, timings["lexical"] = runtime.lexical(query)
+        ids = list(lexical_ids)
         evidence = {
             poi_id: {"lexical_rank": rank, "dense_rank": None, "rrf": 1 / (RRF_CONSTANT + rank)}
             for rank, poi_id in enumerate(ids, 1)
         }
-        return ids, "lexical_only" if RETRIEVAL_PROFILE == "lexical_only" else "lexical_short_query", timings, evidence
+        route = "lexical_only" if RETRIEVAL_PROFILE == "lexical_only" else "lexical_short_query"
+        return {
+            "ids": ids,
+            "route": route,
+            "timings": timings,
+            "evidence": evidence,
+            "lexical_ids": lexical_ids,
+            "dense_ids": dense_ids,
+        }
     if RETRIEVAL_PROFILE == "dense_only":
         began = time.perf_counter()
         vector = runtime.encode(query)
         timings["encode"] = (time.perf_counter() - began) * 1000
-        ids, timings["ann"] = runtime.dense(vector)
+        dense_ids, timings["ann"] = runtime.dense(vector)
+        ids = list(dense_ids)
         evidence = {
             poi_id: {"lexical_rank": None, "dense_rank": rank, "rrf": 1 / (RRF_CONSTANT + rank)}
             for rank, poi_id in enumerate(ids, 1)
         }
-        return ids, "dense_only", timings, evidence
+        return {
+            "ids": ids,
+            "route": "dense_only",
+            "timings": timings,
+            "evidence": evidence,
+            "lexical_ids": lexical_ids,
+            "dense_ids": dense_ids,
+        }
     lexical_future = runtime.pool.submit(runtime.lexical, query)
     began = time.perf_counter()
     vector = runtime.encode(query)
@@ -883,7 +925,14 @@ def retrieve(query: str) -> tuple[list[str], str, dict[str, float], dict[str, di
             "rrf": (1 / (RRF_CONSTANT + lexical_rank) if lexical_rank else 0)
             + (1 / (RRF_CONSTANT + dense_rank) if dense_rank else 0),
         }
-    return ids, "hybrid_long_query", timings, evidence
+    return {
+        "ids": ids,
+        "route": "hybrid_long_query",
+        "timings": timings,
+        "evidence": evidence,
+        "lexical_ids": lexical_ids,
+        "dense_ids": dense_ids,
+    }
 
 
 def nearby_name_rescue_body(
@@ -997,6 +1046,117 @@ def fetch_nearby_name_rescue(query: str, anchor: dict[str, float]) -> tuple[list
     return [poi_id for _, poi_id in scored[:limit]], elapsed
 
 
+def _result_rows(
+    ranked: list[tuple[float, int, float | None, dict]], top_k: int
+) -> list[dict[str, Any]]:
+    results = []
+    for _, _, distance, doc in ranked[:top_k]:
+        results.append({
+            "poi_id": doc["canonical_id"], "name": doc["search_label"], "rank": len(results) + 1,
+            "address_text": doc.get("address", ""), "context_text": doc.get("context_text", ""),
+            "ranking_point": doc["ranking_point"], "routing_point": doc.get("routing_point"),
+            "pickup_access_verified": doc.get("pickup_access_verified", False),
+            "ranking_distance_m": round(distance) if distance is not None else None,
+        })
+    return results
+
+
+def pipeline_trace(
+    query: str,
+    *,
+    origin: Origin | None,
+    personalized: bool,
+    top_k: int,
+) -> dict[str, Any]:
+    """Full suggest pipeline with stage id lists for freeze failure classification."""
+    timings: dict[str, float] = {"encode": 0.0, "lexical": 0.0, "ann": 0.0, "fusion": 0.0, "nearby_rescue": 0.0}
+    began = time.perf_counter()
+    retrieved = retrieve_detailed(query)
+    timings.update(retrieved["timings"])
+    ids = list(retrieved["ids"])
+    evidence = retrieved["evidence"]
+    route = retrieved["route"]
+    lexical_ids = list(retrieved["lexical_ids"])
+    dense_ids = list(retrieved["dense_ids"])
+    after_rrf = list(ids)
+    after_rescue = list(ids)
+    rescued_n = 0
+    rescued_ids: list[str] = []
+    anchor = resolve_anchor(origin) if personalized else None
+    if anchor is not None:
+        rescued_ids, timings["nearby_rescue"] = fetch_nearby_name_rescue(query, anchor)
+        ids, evidence, rescued_n = merge_nearby_name_rescue(query, ids, evidence, rescued_ids)
+        after_rescue = list(ids)
+        if rescued_n:
+            route = f"{route}+nearby_name_rescue:{rescued_n}"
+    docs = candidate_documents(ids, runtime.documents(ids))
+    after_dedup_cap = [doc["canonical_id"] for doc in docs]
+    stages = rank_candidates_traced(query, docs, evidence, anchor)
+    ranked = stages["final"]
+    results = _result_rows(ranked, top_k)
+    timings["total"] = (time.perf_counter() - began) * 1000
+
+    def ids_of(rows: list[tuple[float, int, float | None, dict]]) -> list[str]:
+        return [doc["canonical_id"] for _, _, _, doc in rows]
+
+    return {
+        "route": route,
+        "timings_ms": timings,
+        "profile": RETRIEVAL_PROFILE,
+        "policy_version": POLICY["policy_version"],
+        "geo_mode": str(RANKING_POLICY.get("geo_mode", "v6")),
+        "anchor": anchor,
+        "rescued_n": rescued_n,
+        "stages": {
+            "lexical": lexical_ids,
+            "dense": dense_ids,
+            "rrf": after_rrf,
+            "nearby_rescue_hits": rescued_ids,
+            "after_nearby_rescue": after_rescue,
+            "after_dedup_cap": after_dedup_cap,
+            "after_geo": ids_of(stages["after_geo"]),
+            "after_name_address": ids_of(stages["after_name_address"]),
+            "after_name_match_quality": ids_of(stages["final"]),
+            "final_top_k": [row["poi_id"] for row in results],
+        },
+        "results": results,
+        "candidate_count": len(docs),
+    }
+
+
+def classify_target_loss(target: str | None, stages: dict[str, list[str]], top_k: int = 5) -> str | None:
+    """Map missing intended POI to the earliest pipeline stage that dropped it."""
+    if not target:
+        return None
+    final = stages.get("final_top_k") or []
+    if target in final[:top_k]:
+        return None
+    lexical = stages.get("lexical") or []
+    dense = stages.get("dense") or []
+    rrf_ids = stages.get("rrf") or []
+    after_rescue = stages.get("after_nearby_rescue") or []
+    after_dedup = stages.get("after_dedup_cap") or []
+    after_geo = stages.get("after_geo") or []
+    after_addr = stages.get("after_name_address") or []
+    after_match = stages.get("after_name_match_quality") or []
+    in_retrieval = target in lexical or target in dense or target in rrf_ids
+    if not in_retrieval and target not in after_rescue:
+        return "retrieval_miss"
+    if target in after_rescue and target not in after_dedup:
+        return "lost_at_dedup_or_cap"
+    if target in after_dedup and target not in after_geo:
+        return "lost_at_geo"
+    if target in after_geo and target not in after_addr:
+        return "lost_at_name_address"
+    if target in after_addr and target not in after_match:
+        return "lost_at_name_match_quality"
+    if target in after_match and target not in final[:top_k]:
+        return "lost_below_top_k"
+    if target in after_match:
+        return "lost_below_top_k"
+    return "ranking_miss"
+
+
 def suggest(payload: SuggestRequest, personalized: bool) -> dict[str, Any]:
     if payload.expected_corpus_version != CORPUS_VERSION:
         raise HTTPException(409, detail={"code": "corpus_version_mismatch", "message": "Corpus version mismatch"})
@@ -1016,15 +1176,7 @@ def suggest(payload: SuggestRequest, personalized: bool) -> dict[str, Any]:
             route = f"{route}+nearby_name_rescue:{rescued_n}"
     docs = candidate_documents(ids, runtime.documents(ids))
     ranked = rank_candidates(query, docs, evidence, anchor)
-    results = []
-    for _, _, distance, doc in ranked[:payload.top_k]:
-        results.append({
-            "poi_id": doc["canonical_id"], "name": doc["search_label"], "rank": len(results) + 1,
-            "address_text": doc.get("address", ""), "context_text": doc.get("context_text", ""),
-            "ranking_point": doc["ranking_point"], "routing_point": doc.get("routing_point"),
-            "pickup_access_verified": doc.get("pickup_access_verified", False),
-            "ranking_distance_m": round(distance) if distance is not None else None,
-        })
+    results = _result_rows(ranked, payload.top_k)
     timings["total"] = (time.perf_counter() - began) * 1000
     exposure_id = f"exp-{uuid.uuid4()}" if results else None
     if exposure_id:
@@ -1101,6 +1253,18 @@ def origins(q: str = "", limit: int = 20) -> dict[str, Any]:
     return {"corpus_version": CORPUS_VERSION, "items": items, "next_cursor": None}
 
 
+class TraceSuggestRequest(StrictModel):
+    request_id: str
+    session_id: str
+    context_revision: int = Field(ge=1)
+    query: str = Field(max_length=200)
+    top_k: int = Field(default=50, ge=1, le=50)
+    expected_corpus_version: str
+    personalized: bool = False
+    origin: Origin | None = None
+    target_poi_id: str | None = None
+
+
 @app.post("/v1/suggest")
 def suggest_query_only(payload: SuggestRequest) -> dict[str, Any]:
     return suggest(payload, False)
@@ -1109,6 +1273,63 @@ def suggest_query_only(payload: SuggestRequest) -> dict[str, Any]:
 @app.post("/v1/suggest/personalized")
 def suggest_personalized(payload: SuggestRequest) -> dict[str, Any]:
     return suggest(payload, True)
+
+
+@app.post("/v1/debug/trace_suggest")
+def debug_trace_suggest(payload: TraceSuggestRequest) -> dict[str, Any]:
+    """Freeze/replay diagnostics only. Same pipeline as suggest; no exposure write."""
+    if payload.expected_corpus_version != CORPUS_VERSION:
+        raise HTTPException(409, detail={"code": "corpus_version_mismatch", "message": "Corpus version mismatch"})
+    if payload.session_id not in runtime.sessions:
+        raise HTTPException(401, detail={"code": "invalid_session", "message": "Unknown session"})
+    query = " ".join(payload.query.split())
+    if not query:
+        empty_stages = {
+            "lexical": [], "dense": [], "rrf": [], "nearby_rescue_hits": [],
+            "after_nearby_rescue": [], "after_dedup_cap": [], "after_geo": [],
+            "after_name_address": [], "after_name_match_quality": [], "final_top_k": [],
+        }
+        return {
+            "request_id": payload.request_id,
+            "route": "empty_query",
+            "stages": empty_stages,
+            "results": [],
+            "failure_class": None,
+            "target_ranks": {},
+        }
+    traced = pipeline_trace(
+        query,
+        origin=payload.origin,
+        personalized=payload.personalized,
+        top_k=payload.top_k,
+    )
+    stages = traced["stages"]
+    target = payload.target_poi_id
+    ranks = {}
+    if target:
+        for name, ids in stages.items():
+            if name == "nearby_rescue_hits":
+                continue
+            try:
+                ranks[name] = ids.index(target) + 1
+            except ValueError:
+                ranks[name] = None
+    return {
+        "request_id": payload.request_id,
+        "versions": versions(),
+        "route": traced["route"],
+        "timings_ms": traced["timings_ms"],
+        "profile": traced["profile"],
+        "policy_version": traced["policy_version"],
+        "geo_mode": traced["geo_mode"],
+        "rescued_n": traced["rescued_n"],
+        "candidate_count": traced["candidate_count"],
+        "stages": {key: value[:80] for key, value in stages.items()},
+        "results": traced["results"],
+        "target_poi_id": target,
+        "target_ranks": ranks,
+        "failure_class": classify_target_loss(target, stages, top_k=min(5, payload.top_k)),
+    }
 
 
 @app.post("/v1/exposures/displayed")

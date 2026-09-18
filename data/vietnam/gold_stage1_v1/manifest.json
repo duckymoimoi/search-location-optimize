@@ -1,0 +1,50 @@
+{
+  "dataset": "gold_stage1_v1",
+  "status": "queries_and_pois_locked",
+  "locked_at": "2026-09-18",
+  "n_target_pois": 180,
+  "case_id_range": "g150-001..g150-180",
+  "variants": "locked",
+  "corpus_version": "vn-poi-core-v1",
+  "address_policy": "all_cases_require_address_status=direct_and_housenumber_street",
+  "selection_seed": 20260917,
+  "standard": "docs/specs/SEARCH_2.0_STAGE1_QUERY_VARIANT_STANDARD.md",
+  "unit": "case_id",
+  "origin_used": false,
+  "legacy_excluded": "archive/pilot_110_origin_pair_v4 intended_poi_id",
+  "strata": {
+    "named_clear": 36,
+    "brand_branch": 36,
+    "address_street_building": 28,
+    "building_code": 22,
+    "category_local": 20,
+    "explicit_area_cross_region": 20,
+    "code_transit_landmark": 18
+  },
+  "notes": {
+    "vincom_brand_branch": 8,
+    "building_code_includes": "S3.xx Rainbow/Vinhomes, S4.02, Landmark72, Sapphire, Masteri, 17T8 Trung Hòa…"
+  },
+  "files": {
+    "target_pois_v1.csv": {
+      "role": "locked source of truth for target POIs",
+      "sha256": "b0ffa06253f69471dc80fbcb2398f3c5db70c8654624f37225a8d82c907a77cd"
+    },
+    "target_pois_v1.parquet": "same rows as csv",
+    "selection_report.md": "final balance snapshot",
+    "query_variants_v1.csv": {
+      "role": "locked gold queries",
+      "sha256": "3703931627d410f5fbda6540c89783e71bac4f1da4bdbb21c76188547961e5a4",
+      "n": 1080
+    },
+    "qrels_policy_v1.json": "brand multi-positive policy (sparse)"
+  },
+  "next": [
+    "author canonical + variants per SEARCH_2.0_STAGE1_QUERY_VARIANT_STANDARD",
+    "multi-positive acceptable_poi_ids for brand_branch / building_code collisions"
+  ],
+  "n_query_variants": 1080,
+  "variants_file": "query_variants_v1.csv",
+  "query_variants_v1_csv_sha256": "3703931627d410f5fbda6540c89783e71bac4f1da4bdbb21c76188547961e5a4",
+  "qrels_policy": "qrels_policy_v1.json"
+}

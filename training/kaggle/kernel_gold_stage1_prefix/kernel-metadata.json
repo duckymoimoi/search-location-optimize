@@ -1,0 +1,16 @@
+{
+  "id": "hiengchi/vn-poi-gold-stage1-prefix-char",
+  "title": "vn-poi-gold-stage1-prefix-char",
+  "code_file": "run_gold_stage1_prefix_char.py",
+  "language": "python",
+  "kernel_type": "script",
+  "is_private": "true",
+  "enable_gpu": "true",
+  "enable_internet": "true",
+  "dataset_sources": [
+    "hiengchi/vn-poi-gold-stage1-w1"
+  ],
+  "competition_sources": [],
+  "kernel_sources": [],
+  "model_sources": []
+}

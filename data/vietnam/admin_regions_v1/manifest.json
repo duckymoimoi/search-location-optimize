@@ -1,0 +1,59 @@
+{
+  "artifact": "vietnam_admin_regions_v1",
+  "admin_scheme_version": "vn-osm-pbf-260910-post2025-al4-al6",
+  "source_pbf": "d:\\vsf\\vietnam-260910.osm.pbf",
+  "source_pbf_bytes": 328214395,
+  "source_pbf_sha256": "867d3d6d721b50737b39eedf49fd3542254b7c31831485cce38f3bee4f8908b2",
+  "primary_admin_levels": [
+    2,
+    4,
+    6
+  ],
+  "relation_count": 8785,
+  "geometry_ok_count": 8632,
+  "assemble_status": {
+    "unclosed_rings:1": 149,
+    "ok_partial": 16,
+    "ok": 8616,
+    "unclosed_rings:2": 3,
+    "no_outer_ways": 1
+  },
+  "by_admin_level": {
+    "0": 1,
+    "2": 5,
+    "3": 1,
+    "4": 59,
+    "5": 7,
+    "6": 3396,
+    "8": 73,
+    "9": 5240,
+    "10": 3
+  },
+  "geometry_ok_by_admin_level": {
+    "0": 1,
+    "2": 3,
+    "3": 1,
+    "4": 36,
+    "5": 1,
+    "6": 3327,
+    "8": 30,
+    "9": 5233
+  },
+  "primary_geometry_ok": 3359,
+  "admin_level_4_primary_ok": 34,
+  "admin_level_6_ok": 3327,
+  "admin_level_6_with_parent4": 3322,
+  "skipped_relations_without_admin_level": 22,
+  "elapsed_s": 165.14,
+  "outputs": {
+    "region_catalog": "region_catalog.parquet",
+    "region_geometries": "region_geometries.parquet",
+    "preview_admin_level_4": "preview_admin_level_4.geojson"
+  },
+  "notes": [
+    "Keys are osm:relation/<id>, not display names.",
+    "Post-2025 VN OSM: province/city≈4, commune/ward≈6; district layer not primary.",
+    "parent_ids for level 6 = containing level-4 relation IDs via representative-point coverage.",
+    "Border relations from Geofabrik extract may appear; scheme_role marks outside-bbox cases."
+  ]
+}

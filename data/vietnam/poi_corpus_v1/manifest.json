@@ -1,0 +1,196 @@
+{
+  "corpus_version": "vn-poi-core-v1",
+  "policy_version": "nationwide-core-v1-no-dedup",
+  "admin_scheme_version": "vn-osm-pbf-260910-post2025-al4-al6",
+  "status": "raw_nationwide_core_not_deduped",
+  "source_pbf": "d:\\vsf\\vietnam-260910.osm.pbf",
+  "source_pbf_sha256": "867d3d6d721b50737b39eedf49fd3542254b7c31831485cce38f3bee4f8908b2",
+  "source_pbf_bytes": 328214395,
+  "statistics": {
+    "rows": 186322,
+    "destination_searchable": 186322,
+    "poi_regions_rows": 371823,
+    "extract": {
+      "intake": 228728,
+      "searchable": 186370,
+      "type_node": 122389,
+      "intake_not_searchable": 42358,
+      "label_from_address": 48075,
+      "searchable_dropped_no_label": 48,
+      "type_way": 63933
+    },
+    "admin_attach": {
+      "hit_level_4": 185989,
+      "hit_level_6": 185832,
+      "admin_complete": 185812,
+      "no_hit_level_4": 333,
+      "no_hit_level_6": 490,
+      "admin_none": 313,
+      "admin_province_only": 177,
+      "admin_ward_only": 20,
+      "overlap_level_6": 2
+    },
+    "by_province_top": [
+      [
+        "Thành phố Hồ Chí Minh",
+        53186
+      ],
+      [
+        "Hà Nội",
+        46692
+      ],
+      [
+        "Thành phố Đà Nẵng",
+        14598
+      ],
+      [
+        "Thành phố Bắc Ninh",
+        10396
+      ],
+      [
+        "Tỉnh Lâm Đồng",
+        6751
+      ],
+      [
+        "Thành phố Cần Thơ",
+        5594
+      ],
+      [
+        "Thành phố Đồng Nai",
+        5266
+      ],
+      [
+        "Thành phố Hải Phòng",
+        4555
+      ],
+      [
+        "Khánh Hòa",
+        4344
+      ],
+      [
+        "Tỉnh An Giang",
+        4123
+      ],
+      [
+        "Thành phố Huế",
+        2390
+      ],
+      [
+        "Tỉnh Ninh Bình",
+        2286
+      ],
+      [
+        "Tỉnh Hưng Yên",
+        2133
+      ],
+      [
+        "Tỉnh Tây Ninh",
+        2132
+      ],
+      [
+        "Tỉnh Đắk Lắk",
+        2099
+      ],
+      [
+        "Tỉnh Gia Lai",
+        2074
+      ],
+      [
+        "Tỉnh Đồng Tháp",
+        1900
+      ],
+      [
+        "Tỉnh Quảng Trị",
+        1756
+      ],
+      [
+        "Tỉnh Lào Cai",
+        1623
+      ],
+      [
+        "Tỉnh Vĩnh Long",
+        1540
+      ],
+      [
+        "Tỉnh Tuyên Quang",
+        1409
+      ],
+      [
+        "Tỉnh Quảng Ngãi",
+        1272
+      ],
+      [
+        "Thành phố Quảng Ninh",
+        1244
+      ],
+      [
+        "Tỉnh Phú Thọ",
+        1137
+      ],
+      [
+        "Tỉnh Nghệ An",
+        840
+      ],
+      [
+        "Hà Tĩnh",
+        807
+      ],
+      [
+        "Tỉnh Thanh Hóa",
+        766
+      ],
+      [
+        "Tỉnh Thái Nguyên",
+        754
+      ],
+      [
+        "Tỉnh Cao Bằng",
+        525
+      ],
+      [
+        "Tỉnh Lạng Sơn",
+        402
+      ],
+      [
+        "Tỉnh Cà Mau",
+        382
+      ],
+      [
+        "Tỉnh Lai Châu",
+        363
+      ],
+      [
+        "Tỉnh Sơn La",
+        347
+      ],
+      [
+        "(unknown)",
+        333
+      ],
+      [
+        "Tỉnh Điện Biên",
+        303
+      ]
+    ],
+    "elapsed_s": 316.31
+  },
+  "files": {
+    "pois_core.parquet": "e5d75c4783f27d86767ba5d0d46b2449dca19f709377b964672089b5226b658d",
+    "poi_regions.parquet": "a9981389b0159d3ad500bfd403d7902a4bbc8686832f64fec984d62145db9698",
+    "search_documents.parquet": "2af90fb4eca0675ef44fcf63f2a933438a44f4619d2736980bcf8f70621e0b72",
+    "schema_core.json": "c760e4270ece1f58fc18393aa605aa3385011bfa697f00547b813a7012e63cbb",
+    "pois_access_enrichment.parquet": "3bf876c010ed9639cad9c7dc115886a5565adc4680b57fb477b01952e8b0ebc9"
+  },
+  "compatibility": {
+    "hn_poi_stable_v1": "subset/regression only; national serving uses pois_core",
+    "api_note": "Retrieval reads pois_core only. Join pois_access_enrichment after suggest: routing_point may be null; pickup_access_verified is false until evidence exists — never assume true/absent as verified pickup."
+  },
+  "access_enrichment": {
+    "table": "pois_access_enrichment.parquet",
+    "rows": 186322,
+    "routing_point_populated": 0,
+    "pickup_access_verified_true": 0,
+    "policy": "sidecar_unverified_placeholder_not_in_retrieval",
+    "note": "All pickup_access_verified=false; routing_point null in this snapshot."
+  }
+}

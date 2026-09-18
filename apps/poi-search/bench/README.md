@@ -1,16 +1,25 @@
-# Bench / smoke (runtime checks)
+# Bench (SEARCH 2.0 gold)
 
-Scripts hit the local APIs. Results go to `results/` (gitignored).
+FE/API smoke vẫn dùng `smoke_contract.py` khi runtime local chạy.
+
+## Gold Stage 1 — model screen & prefix
 
 ```powershell
-cd apps\poi-search
-python bench\smoke_contract.py
-python bench\bench_api_runtime.py
-python bench\bench_quality_runtime_load.py
+# Aggregate Round-1 exact runs (sau khi download Kaggle output)
+python apps/poi-search/bench/gold_stage1_selection_report.py
+
+# Expand char-prefixes (Round 1b); dense chạy trên Kaggle
+python apps/poi-search/bench/gold_stage1_prefix_char_bench.py --expand-only
 ```
 
-Full report: `bench/results/QUALITY_RUNTIME_LOAD.md`
+Kaggle:
 
-Env:
+```powershell
+python training/kaggle/prepare_kaggle_gold_stage1_w1.py
+python -m kaggle kernels push -p training/kaggle/kernel_gold_stage1_w1
+python -m kaggle kernels push -p training/kaggle/kernel_gold_stage1_prefix
+```
 
-- `POI_API_BASE_URL` (default `http://127.0.0.1:8000`) for smoke
+Protocol: `docs/specs/SEARCH_2.0_STAGE1_MODEL_SELECTION_PROTOCOL.md`.
+
+Env smoke API: `POI_API_BASE_URL` (default `http://127.0.0.1:8000`).
