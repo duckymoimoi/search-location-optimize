@@ -1,16 +1,20 @@
 """Dependency-free algorithm tests. Does not simulate an OpenSearch analyzer/model."""
 import ast
 from collections import defaultdict
-from datetime import datetime, UTC
+from datetime import datetime, timedelta, UTC
 import json
 import math
 from pathlib import Path
 import re
+import sys
 from types import SimpleNamespace
 import time
 import unicodedata
 import unittest
 import uuid
+
+sys.path.insert(0, str(Path(__file__).parent))
+import demo_users
 
 ROOT = Path(__file__).parent
 SOURCE = ast.parse((ROOT / 'app.py').read_text(encoding='utf-8'))
@@ -27,7 +31,11 @@ for node in functions:
 module = ast.Module(body=[ast.ImportFrom(module='__future__', names=[ast.alias(name='annotations')], level=0), *functions], type_ignores=[])
 ns = dict(globals(), LEXICAL_CONFIG=POLICY['lexical'], RANKING_POLICY=POLICY['ranking'],
           BRANCH_DEPTH=50, RRF_CONSTANT=60, CORPUS_VERSION='hn-poi-stable-v1',
-          RETRIEVAL_PROFILE='hybrid', INDEX_NAME='test')
+          RETRIEVAL_PROFILE='hybrid', INDEX_NAME='test', POLICY=POLICY,
+          RELEASE_ID='test-release', MODEL_ID='test-model',
+          EMBEDDING_SPACE_ID='test-space', PASSAGE_BUILDER_VERSION='test-passage',
+          known_user=demo_users.known_user, history_snapshot=demo_users.history_snapshot,
+          append_selection=demo_users.append_selection, public_users=demo_users.public_users)
 exec(compile(ast.fix_missing_locations(module), str(ROOT / 'app.py'), 'exec'), ns)
 
 def doc(i, name='Bệnh viện 108', address='Trần Hưng Đạo', **kw):
@@ -42,6 +50,30 @@ class Algorithms(unittest.TestCase):
         for q in ['Hoàng Mai','cửa hàng Tiến','Việt Anh','Trương Định']:
             self.assertEqual(ns['expand_query'](q), q)
 
+    def test_dotted_code_stays_one_lexical_token(self):
+        self.assertEqual(ns['glue_code_spans']('s10.2'), 's102')
+        self.assertEqual(ns['glue_code_spans']('s1.02'), 's102')
+        self.assertEqual(ns['glue_code_spans']('s2-02'), 's202')
+        self.assertEqual(ns['glue_code_spans']('16/2 lê văn khương'), '16/2 lê văn khương')
+        self.assertEqual(ns['compact_length']('s10.2'), ns['compact_length']('s102'))
+        self.assertEqual(ns['compact_length']('s1.02'), ns['compact_length']('s1.02'.replace('.', '')))
+        self.assertEqual(ns['compact_length']('16/2'), 4)
+        for raw in ('s10.2', 's1.02', 's102'):
+            clauses = ns['lexical_body'](raw, 20)['query']['bool']['should']
+            analyzed = []
+            codes = []
+            for clause in clauses:
+                analyzed_query = (clause.get('multi_match') or clause.get('match_phrase') or {}).get('query')
+                if analyzed_query:
+                    analyzed.append(analyzed_query)
+                if 'codes_compact' in clause.get('terms', {}):
+                    codes = clause['terms']['codes_compact']
+            self.assertTrue(analyzed)
+            self.assertTrue(all(item == 's102' for item in analyzed))
+            self.assertIn('s102', codes)
+            self.assertNotIn('s10', codes)
+            self.assertNotIn('02', codes)
+
     def test_expansion_is_supplementary(self):
         body = json.dumps(ns['lexical_body']('bv 108', 50), ensure_ascii=False)
         self.assertIn('bv 108', body)
@@ -50,11 +82,69 @@ class Algorithms(unittest.TestCase):
             self.assertNotIn('fuzziness', clause.get('multi_match', {}))
 
     def test_minimum_should_match_by_token_count(self):
+        # Policy locks MSM at 1: a higher floor zeroed recall on multi-token gold queries.
         self.assertEqual(ns['lexical_body']('ga', 50)['query']['bool']['minimum_should_match'], 1)
         self.assertEqual(ns['lexical_body']('hàng bún', 50)['query']['bool']['minimum_should_match'], 1)
         self.assertEqual(
-            ns['lexical_body']('kfc hàng bún', 50)['query']['bool']['minimum_should_match'], 2
+            ns['lexical_body']('kfc hàng bún', 50)['query']['bool']['minimum_should_match'], 1
         )
+
+    def _lexical_parts(self, query):
+        should = ns['lexical_body'](query, 20)['query']['bool']['should']
+        bm25, phrases, codes, bonuses = [], [], [], []
+        for clause in should:
+            multi = clause.get('multi_match') or {}
+            if multi.get('query') and 'fuzziness' not in multi:
+                bm25.append(multi['query'])
+            for payload in (clause.get('match_phrase') or {}).values():
+                if isinstance(payload, dict) and payload.get('query'):
+                    phrases.append(payload['query'])
+            terms = clause.get('terms') or {}
+            if 'codes_compact' in terms:
+                codes.extend(terms['codes_compact'])
+            if 'constant_score' in clause:
+                bonuses.append(clause)
+        return bm25, phrases, codes, bonuses
+
+    def test_pure_number_does_not_enter_bm25_beside_letters(self):
+        bm25, phrases, codes, bonuses = self._lexical_parts('33 Lạc Trung')
+        self.assertTrue(bm25)
+        self.assertTrue(all(item == 'lac trung' for item in bm25))
+        self.assertIn('lac trung', phrases)
+        self.assertIn('33 Lạc Trung', phrases)
+        self.assertEqual(codes, [])
+        self.assertEqual(len(bonuses), 1)
+        self.assertEqual(bonuses[0]['constant_score']['boost'], 1.5)
+        # Letter-only and code-only queries keep the previous BM25 text.
+        letters, _, letter_codes, letter_bonuses = self._lexical_parts('hàng bún')
+        self.assertIn('hàng bún', letters)
+        self.assertEqual(letter_codes, [])
+        self.assertEqual(letter_bonuses, [])
+        code_bm25, _, code_keys, code_bonuses = self._lexical_parts('B12')
+        self.assertTrue(all(item == 'B12' for item in code_bm25))
+        self.assertEqual(code_keys, ['b12'])
+        self.assertEqual(code_bonuses, [])
+        # A slash number is a number, not a glued code.
+        slash_bm25, _, slash_codes, slash_bonuses = self._lexical_parts('16/2 lê văn khương')
+        self.assertTrue(all(item == 'le van khuong' for item in slash_bm25))
+        self.assertEqual(slash_codes, [])
+        self.assertEqual(len(slash_bonuses), 1)
+
+    def test_letter_span_outranks_bare_number(self):
+        street = doc(1, 'Cafe Mai', '12 Lạc Trung')
+        bare = doc(2, 'Shop 33', '45 Trần Phú')
+        both = doc(3, 'Nhà sách', '33 Lạc Trung')
+        syllable = doc(4, 'Trung tâm 33', 'Hai Bà Trưng')
+        docs = [bare, syllable, street, both]
+        ev = {'1': {'rrf': 0.2}, '2': {'rrf': 1.0}, '3': {'rrf': 0.3}, '4': {'rrf': 0.9}}
+        ids = [row[3]['canonical_id'] for row in ns['rank_candidates']('33 Lạc Trung', docs, ev, None)]
+        self.assertEqual(ids, ['3', '1', '4', '2'])
+        # Unfinished final letter still counts as the same span, ahead of the number.
+        prefix_ids = [
+            row[3]['canonical_id']
+            for row in ns['rank_candidates']('33 Lạc Tru', [bare, street], ev, None)
+        ]
+        self.assertEqual(prefix_ids, ['1', '2'])
 
     def test_name_address_evidence_brand_street(self):
         street = doc(1, 'Phố Bồ Đề', 'Phường Bồ Đề, Long Biên')
@@ -179,22 +269,159 @@ class Algorithms(unittest.TestCase):
     def test_suggest_shape_budget_and_raw_query(self):
         docs=[doc(i, f'POI {i}') for i in range(50)]
         captured=[]
-        old_retrieve=ns['retrieve']
-        ns['retrieve']=lambda q: (captured.append(q) or [d['canonical_id'] for d in docs], 'hybrid', {}, evidence(docs))
+        old_retrieve=ns['retrieve_detailed']
+        def retrieve_detailed(q):
+            captured.append(q)
+            return {'ids':[d['canonical_id'] for d in docs],'route':'hybrid','timings':{},
+                    'evidence':evidence(docs),'degraded_reasons':[]}
+        ns['retrieve_detailed']=retrieve_detailed
         ns['runtime']=SimpleNamespace(sessions={'s'},documents=lambda ids:docs,exposures={})
         payload=SimpleNamespace(expected_corpus_version='hn-poi-stable-v1',session_id='s',query='bv 108',
-             origin=None,top_k=5,request_id='r',context_revision=1,context_time=None)
+             origin=None,top_k=5,request_id='r',context_revision=1,context_time=None,demo_user_id=None)
         try:
             result=ns['suggest'](payload,False)
             self.assertEqual(captured,['bv 108'])
             self.assertEqual(result['candidate_count'],50)
             self.assertEqual(len(result['results']),5)
+            self.assertEqual(result['history_version'], None)
+            self.assertEqual(result['scope_summary']['mode'], 'global')
+            self.assertEqual(result['scope_summary']['coverage_id'], 'hn-poi-stable-v1')
+            self.assertEqual(result['degraded_reasons'], [])
             self.assertEqual(set(result), {'request_id','context_revision','exposure_id','selectable','versions',
                 'scope_summary','resolved_context_time','history_version','candidate_count','results','degraded_reasons','timings_ms'})
             self.assertEqual(set(result['results'][0]), {'poi_id','name','rank','address_text','context_text',
                 'ranking_point','routing_point','pickup_access_verified','ranking_distance_m'})
         finally:
-            ns['retrieve']=old_retrieve
+            ns['retrieve_detailed']=old_retrieve
+
+    def test_coverage_id_is_not_hanoi_literal(self):
+        source = (ROOT / 'app.py').read_text(encoding='utf-8')
+        self.assertNotIn('hanoi-osm-stable-v1', source)
+
+    def test_unknown_demo_user_forbidden(self):
+        ns['runtime']=SimpleNamespace(sessions={'s'},documents=lambda ids:[],exposures={})
+        payload=SimpleNamespace(expected_corpus_version='hn-poi-stable-v1',session_id='s',query='ga',
+             origin=None,top_k=5,request_id='r',context_revision=1,context_time=None,demo_user_id='no-such-user')
+        with self.assertRaises(HTTPException) as caught:
+            ns['suggest'](payload, True)
+        self.assertEqual(caught.exception.status_code, 403)
+        self.assertEqual(caught.exception.detail['code'], 'unknown_demo_user')
+
+    def test_query_only_ignores_origin_and_history(self):
+        docs=[doc(1,'Trường Tiểu học Đại Mỗ'), doc(2,'Trường Tiểu học Đại Hưng')]
+        old_retrieve=ns['retrieve_detailed']
+        ns['retrieve_detailed']=lambda q: {'ids':['1','2'],'route':'hybrid','timings':{},
+                                            'evidence':evidence(docs),'degraded_reasons':[]}
+        ns['runtime']=SimpleNamespace(sessions={'s'},documents=lambda ids:docs,exposures={})
+        origin=SimpleNamespace(kind='gps', poi_id=None, accuracy_m=10, observed_at=datetime.now(UTC),
+                               point=SimpleNamespace(model_dump=lambda: {'lat':21.0,'lon':105.8}))
+        payload=SimpleNamespace(expected_corpus_version='hn-poi-stable-v1',session_id='s',query='tiểu học đại',
+             origin=origin,top_k=5,request_id='r',context_revision=1,
+             context_time=datetime(2026,6,1,tzinfo=UTC), demo_user_id='demo-repeat')
+        try:
+            result=ns['suggest'](payload, False)
+        finally:
+            ns['retrieve_detailed']=old_retrieve
+        self.assertIsNone(result['history_version'])
+        self.assertEqual(result['scope_summary']['mode'], 'global')
+        self.assertEqual([row['poi_id'] for row in result['results']], ['1','2'])
+
+    def test_personalized_history_reorders_equivalent_names(self):
+        docs=[doc(1,'Trường Tiểu học Đại Mỗ'), doc(2,'Trường Tiểu học Đại Hưng')]
+        old_retrieve=ns['retrieve_detailed']
+        ns['retrieve_detailed']=lambda q: {'ids':['1','2'],'route':'hybrid','timings':{},
+                                            'evidence':evidence(docs),'degraded_reasons':[]}
+        ns['runtime']=SimpleNamespace(sessions={'s'},documents=lambda ids:docs,exposures={})
+        ns['history_snapshot']=lambda user, session, cutoff: {'history_version':'demo-history-v1:demo-repeat:live-0','poi_ids':['2']}
+        payload=SimpleNamespace(expected_corpus_version='hn-poi-stable-v1',session_id='s',query='tiểu học đại',
+             origin=None,top_k=5,request_id='r',context_revision=1,context_time=None,demo_user_id='demo-repeat')
+        try:
+            result=ns['suggest'](payload, True)
+        finally:
+            ns['history_snapshot']=demo_users.history_snapshot
+            ns['retrieve_detailed']=old_retrieve
+        self.assertEqual(result['history_version'], 'demo-history-v1:demo-repeat:live-0')
+        self.assertEqual([row['poi_id'] for row in result['results']], ['2','1'])
+
+    def test_history_does_not_override_explicit_name_or_code(self):
+        schools=[doc(1,'Trường Tiểu học Đại Mỗ'), doc(2,'Trường Tiểu học Đại Hưng')]
+        ranked=ns['rank_candidates']('tiểu học đại mỗ', schools, evidence(schools), None)
+        swapped=ns['apply_history_cohort']('tiểu học đại mỗ', ranked, ['2'])
+        self.assertEqual(swapped[0][3]['canonical_id'], '1')
+        codes=[doc(1,'Nhà B12','B12'), doc(2,'Nhà B1','')]
+        code_ranked=ns['rank_candidates']('B12', codes, evidence(codes), None)
+        code_swapped=ns['apply_history_cohort']('B12', code_ranked, ['2'])
+        self.assertEqual(code_swapped[0][3]['canonical_id'], '1')
+
+    def test_stale_or_inaccurate_gps_drops_anchor(self):
+        point=SimpleNamespace(model_dump=lambda: {'lat':21.0,'lon':105.8})
+        stale=SimpleNamespace(kind='gps', poi_id=None, accuracy_m=10,
+                              observed_at=datetime.now(UTC)-timedelta(seconds=180), point=point)
+        anchor, notes=ns['resolve_anchor'](stale)
+        self.assertIsNone(anchor)
+        self.assertEqual(notes, ['gps_stale'])
+        coarse=SimpleNamespace(kind='gps', poi_id=None, accuracy_m=350,
+                               observed_at=datetime.now(UTC), point=point)
+        anchor, notes=ns['resolve_anchor'](coarse)
+        self.assertIsNone(anchor)
+        self.assertEqual(notes, ['gps_accuracy'])
+        future=SimpleNamespace(kind='gps', poi_id=None, accuracy_m=10,
+                               observed_at=datetime.now(UTC)+timedelta(seconds=90), point=point)
+        with self.assertRaises(HTTPException) as caught:
+            ns['resolve_anchor'](future)
+        self.assertEqual(caught.exception.status_code, 422)
+
+    def test_demo_registry_hides_history(self):
+        users=demo_users.public_users()
+        self.assertEqual([user['demo_user_id'] for user in users], ['demo-cold','demo-repeat','demo-session'])
+        self.assertTrue(all(set(user)=={'demo_user_id','label'} for user in users))
+        snap=demo_users.history_snapshot('demo-cold','sess', datetime.now(UTC))
+        self.assertEqual(snap['poi_ids'], [])
+        self.assertTrue(snap['history_version'].startswith('demo-history-v1:demo-cold:live-0'))
+        version=demo_users.append_selection('sess-a','demo-session','osm:way/1', datetime.now(UTC))
+        self.assertTrue(version.endswith(':live-1'))
+        self.assertEqual(demo_users.history_snapshot('demo-session','sess-a', datetime.now(UTC))['poi_ids'], ['osm:way/1'])
+        self.assertEqual(demo_users.history_snapshot('demo-session','sess-b', datetime.now(UTC))['poi_ids'], [])
+        repeat=demo_users.history_snapshot('demo-repeat','sess-a', datetime.now(UTC))
+        self.assertEqual(repeat['poi_ids'][0], 'osm:way/1386515333')
+
+    def test_dense_failure_degrades_hybrid_only(self):
+        old_profile = ns['RETRIEVAL_PROFILE']
+        old_runtime = ns.get('runtime')
+
+        def install(profile, encode, lexical):
+            ns['RETRIEVAL_PROFILE'] = profile
+            ns['runtime'] = SimpleNamespace(
+                lexical=lexical,
+                encode=encode,
+                dense=lambda vector: (_ for _ in ()).throw(AssertionError('dense should not run')),
+                pool=SimpleNamespace(submit=lambda fn, query: SimpleNamespace(result=lambda: fn(query))),
+            )
+
+        try:
+            install('lexical_only', lambda query: None, lambda query: (['poi-a'], 1.0))
+            lexical_only = ns['retrieve_detailed']('vincom')
+            self.assertEqual(lexical_only['degraded_reasons'], [])
+            self.assertEqual(lexical_only['route'], 'lexical_only')
+
+            install('hybrid', lambda query: (_ for _ in ()).throw(RuntimeError('encoder')), lambda query: (['poi-a'], 1.0))
+            fallback = ns['retrieve_detailed']('vincom')
+            self.assertEqual(fallback['degraded_reasons'], ['dense_unavailable'])
+            self.assertEqual(fallback['ids'], ['poi-a'])
+            self.assertEqual(fallback['route'], 'hybrid_dense_fallback')
+
+            install(
+                'hybrid',
+                lambda query: (_ for _ in ()).throw(RuntimeError('encoder')),
+                lambda query: (_ for _ in ()).throw(RuntimeError('lexical')),
+            )
+            with self.assertRaises(HTTPException) as caught:
+                ns['retrieve_detailed']('vincom')
+            self.assertEqual(caught.exception.status_code, 503)
+        finally:
+            ns['RETRIEVAL_PROFILE'] = old_profile
+            if old_runtime is not None:
+                ns['runtime'] = old_runtime
 
     def test_selection_ownership(self):
         ns['runtime']=SimpleNamespace(exposures={'e':dict(session_id='owner',context_revision=1,displayed=True,shown_ids=['p'])},selections={})
@@ -249,6 +476,23 @@ class GeoReranking(unittest.TestCase):
         for d in self.docs:
             d['ranking_point'] = self.anchor.copy()
         self.assertEqual(self.ids('tiểu học đại'), ['1','2','3','4'])
+
+    def test_exponential_decay_orders_same_name_inside_one_band(self):
+        near = doc(2, 'Vincom')
+        far = doc(1, 'Vincom')
+        near['ranking_point'] = {'lat': 21.0 + 100 / 111_195, 'lon': 105.8}
+        far['ranking_point'] = {'lat': 21.0 + 400 / 111_195, 'lon': 105.8}
+        ev = {'1': {'rrf': 1.0}, '2': {'rrf': 0.9}}
+        ids = [row[3]['canonical_id'] for row in ns['rank_candidates']('vincom', [far, near], ev, self.anchor)]
+        self.assertEqual(ids, ['2', '1'])
+        self.assertGreater(ns['exponential_distance_points'](100), ns['exponential_distance_points'](400))
+
+    def test_decay_cap_cannot_pass_an_exact_tier(self):
+        cap = ns['exponential_distance_points'](0)
+        self.assertLess(cap, 1.0)
+        self.assertAlmostEqual(cap, 0.35)
+        # A full match tier is 1. The largest decay bonus stays strictly below it.
+        self.assertLess(cap, 1.0)
 
 if __name__ == '__main__':
     unittest.main()

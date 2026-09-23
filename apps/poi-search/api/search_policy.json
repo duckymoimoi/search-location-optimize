@@ -1,5 +1,5 @@
 {
-  "policy_version": "search-policy-stable-demo-v6",
+  "policy_version": "search-policy-stable-demo-v9",
   "default_retrieval_profile": "hybrid",
   "retrieval": {
     "branch_depth": 50,
@@ -9,13 +9,19 @@
     "dense_min_compact_chars": 5
   },
   "lexical": {
-    "exact": 16.0,
-    "alias_exact": 12.0,
-    "leading_prefix": 12.0,
-    "phrase": 6.0,
-    "prefix_field": 10.0,
+    "exact": 20.0,
+    "alias_exact": 16.0,
+    "phrase": 10.0,
+    "phrase_address": 6.0,
+    "cross_or": 5.0,
+    "best_or": 2.0,
+    "prefix_field": 8.0,
+    "leading_prefix": 10.0,
+    "code_compact": 14.0,
+    "minimum_should_match": 1,
+    "fuzzy": 0.0,
     "and_match": 3.0,
-    "fuzzy": 1.0
+    "number_bonus": 1.5
   },
   "warmup_queries": ["ga", "vincom", "phở bò nam định", "23 nguyễn trãi"],
   "query_rewrites": [
@@ -29,6 +35,7 @@
     "geo_equivalent_window": 10,
     "geo_min_retrieval_ratio": 0.5,
     "geo_distance_band_m": 500,
+    "geo_score_cap": 0.35,
     "retrieval_weight": 0.65,
     "name_token_overlap_weight": 0.35,
     "relevance_blend": 0.65,
@@ -59,5 +66,13 @@
     "http://127.0.0.1:5173",
     "http://localhost:5174",
     "http://127.0.0.1:5174"
+  ],
+  "notes": [
+    "v9 lexical: a pure number beside a letter span is constant_score number_bonus, not a BM25 term. codes_compact requires both a letter and a digit in one token.",
+    "v8 lexical: dotted/hyphenated alphanumeric spans are glued before the standard analyzer (s10.2 and s1.02 share s102). Slash is not glued.",
+    "v8 geo: equivalent-name cohort orders by cap*exp(-d/5000m). cap 0.35 < 1 match tier, so an exact far hit stays above a nearer partial.",
+    "v8: codes_compact keyword (alnum fold) so S2.02 matches s202 without hard-coded building patterns.",
+    "v7 lexical = gold iterate winner v4_photonish (docs/deliveries/w1_evidence/12_LEXICAL_ITERATE.md).",
+    "MSM=1; cross/best OR + context_text; fuzzy off. Hybrid R@1000 0.999 on gold_stage1_v1."
   ]
 }
