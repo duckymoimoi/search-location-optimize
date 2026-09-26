@@ -169,10 +169,11 @@ def session_metrics(ranks: list[int | None]) -> dict:
         fhc = next((t + 1 for t, h in enumerate(hits) if h), None)
         out["fhc"][k] = {"found": fhc is not None, "value": fhc}
         shc = None
-        for t0 in range(t_q):
-            if all(hits[s] for s in range(t0, min(t0 + SHC_W, t_q))):
-                shc = t0 + 1
-                break
+        if t_q >= SHC_W:
+            for t0 in range(0, t_q - SHC_W + 1):
+                if all(hits[s] for s in range(t0, t0 + SHC_W)):
+                    shc = t0 + 1
+                    break
         out["shc"][k] = {"found": shc is not None, "value": shc, "w": SHC_W}
         out["prefix_auc"][k] = sum(1 for h in hits if h) / t_q if t_q else 0.0
     return out

@@ -1,22 +1,35 @@
-FROM hanoi-opensearch-base:ubuntu24.04
+# syntax=docker/dockerfile:1.6
+FROM python:3.11-slim-bookworm
 
 ENV DEBIAN_FRONTEND=noninteractive
 ENV PYTHONDONTWRITEBYTECODE=1
 ENV PYTHONUNBUFFERED=1
-ENV PATH=/opt/venv/bin:$PATH
+ENV PIP_DISABLE_PIP_VERSION_CHECK=1
 
-RUN apt-get update \
-    && apt-get install -y --no-install-recommends ca-certificates python3 python3-pip python3-venv \
-    && rm -rf /var/lib/apt/lists/* \
-    && python3 -m venv /opt/venv
+RUN --mount=type=cache,target=/var/cache/apt,sharing=locked \
+    --mount=type=cache,target=/var/lib/apt,sharing=locked \
+    apt-get update \
+    && apt-get install -y --no-install-recommends ca-certificates \
+    && rm -rf /var/lib/apt/lists/*
 
 COPY api-requirements.txt /tmp/api-requirements.txt
-RUN pip install --no-cache-dir \
-      torch==2.11.0+cpu \
+RUN --mount=type=cache,target=/root/.cache/pip \
+    pip install \
+      torch==2.6.0+cpu \
       --index-url https://download.pytorch.org/whl/cpu \
-    && pip install --no-cache-dir -r /tmp/api-requirements.txt
+    && pip install -r /tmp/api-requirements.txt
 
-RUN useradd --uid 10001 --create-home --shell /usr/sbin/nologin api
+# Warm Hugging Face weights into the image for offline-ish first boot.
+ARG POI_MODEL_ID=intfloat/multilingual-e5-small
+ENV POI_MODEL_ID=${POI_MODEL_ID}
+ENV HF_HOME=/model-cache
+RUN --mount=type=cache,target=/root/.cache/huggingface \
+    python -c "from transformers import AutoModel, AutoTokenizer; \
+ mid='${POI_MODEL_ID}'; AutoTokenizer.from_pretrained(mid); AutoModel.from_pretrained(mid)"
+
+RUN useradd --uid 10001 --create-home --shell /usr/sbin/nologin api \
+    && mkdir -p /model-cache \
+    && chown -R 10001:10001 /model-cache
 USER 10001:10001
 WORKDIR /app/api
 

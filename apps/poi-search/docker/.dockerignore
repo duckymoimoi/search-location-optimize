@@ -1,3 +1,11 @@
 **
 !Dockerfile.api
+!Dockerfile.indexer
+!Dockerfile.search-dev
+!Dockerfile.web
 !api-requirements.txt
+!indexer-requirements.txt
+!search-dev-requirements.txt
+!search-dev-extra.txt
+!index_vn_poi.py
+!nginx.conf

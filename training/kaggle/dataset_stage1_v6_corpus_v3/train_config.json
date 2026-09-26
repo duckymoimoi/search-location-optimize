@@ -1,0 +1,23 @@
+{
+  "experiment": "stage1_v6_partial_e5_inbatch_pilot",
+  "dataset_version": "train_stage1_queries_v6_partial_2499_corpus_v3",
+  "corpus_version": "vn-poi-core-v3-semantic-address-dedup50",
+  "gold_dataset": "gold_stage1_v1_corpus_v2",
+  "model_id": "intfloat/multilingual-e5-small",
+  "query_prefix": "query: ",
+  "passage_prefix": "passage: ",
+  "max_query_tokens": 64,
+  "max_passage_tokens": 128,
+  "train_batch_size": 32,
+  "epochs": 3,
+  "learning_rate": 2e-05,
+  "weight_decay": 0.01,
+  "warmup_ratio": 0.06,
+  "max_grad_norm": 1.0,
+  "temperature_scale": 20.0,
+  "seed": 42,
+  "dev_case_fraction": 0.1,
+  "eval_depth": 1000,
+  "encode_batch_size": 48,
+  "note": "Pilot in-batch unique-target contrastive on authored v6 rows. No mined hard negatives, no prefix expansion, no brand-only track. Gold v2 is frozen comparison, not a tuning split."
+}

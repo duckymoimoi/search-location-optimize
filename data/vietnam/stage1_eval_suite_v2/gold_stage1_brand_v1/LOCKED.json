@@ -1,0 +1,12 @@
+{
+  "suite_id": "gold_stage1_brand_v1",
+  "release_id": "gold_stage1_brand_v1",
+  "status": "locked",
+  "locked_at_utc": "2026-09-26T02:45:39.421213+00:00",
+  "verdict": "PASS_WITH_ACCEPTED_ALIAS_SHORTFALL",
+  "n_queries": 248,
+  "n_families": 70,
+  "n_qrels": 6610,
+  "manifest_sha256": "4d3ddb25629108c328eaf33acfddd6c1e8891b4286ea0be6bd6cc68e29a368d8",
+  "alias_shortfall": "No verified-alias rows existed in source; none were invented."
+}

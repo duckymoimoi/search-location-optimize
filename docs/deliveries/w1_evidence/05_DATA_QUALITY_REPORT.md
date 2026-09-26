@@ -144,3 +144,25 @@ File: `qrels_policy_v1.json`.
 | Gold usable for model screening | **YES — frozen** |
 | Production-representative query mix | **NO** (không tuyên bố) |
 | Ready for W2 baselines | **YES** |
+
+---
+
+## 11. Addendum cleaning audit 23/09/2026
+
+Số liệu W1 ở trên là snapshot đã ghi nhận khi model screening. Audit bổ sung
+trên cùng SHA-256 `pois_core.parquet` được lưu tại
+[`poi_cleaning_audit.md`](../../../data/vietnam/poi_corpus_v1/eda/poi_cleaning_audit.md).
+Nó mở rộng DQ-03/04/05 thành các hàng review cụ thể:
+
+| Issue | Kết quả | Bước xử lý |
+|---|---:|---|
+| Tên đúng một ký tự | 1.122 POI; 703 có house+street/place | Không dùng bare name làm nhãn train/gold; review address-only và building code trước khi loại khỏi index |
+| Cùng tên + cùng full address ≤50 m | 1.920 cặp; 277 node–way | Adjudicate duplicate/entity equivalence; 549 cặp có street key 1–2 ký tự cần kiểm tra khóa |
+| Cùng full address >1 km | 2.044 cặp | 1.966 cặp có street key 1–2 ký tự; review 78 cặp còn lại trước, không tự sửa tọa độ |
+| Placeholder/generic name | 14/766 POI | Review theo category, address và discriminator |
+| Alias trùng name sau fold | 633 POI | Chuẩn hóa alias list, giữ official name |
+
+Gold v1 có 5 target, train 20k có 223 target và checkpoint 500 có 5 target
+trong queue trùng gần. Bất kỳ corpus clean release nào cũng cần migration map,
+rebuild index/embeddings và remap qrels; verdict W1 không được áp thẳng lên
+release đã clean.

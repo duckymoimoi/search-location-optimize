@@ -1,0 +1,600 @@
+{"query_id": "g150-001-q02", "mutation_evidence": ["early:Vietcombank→Vietcomban", "Hữu→Huu"]}
+{"query_id": "g150-001-q03", "mutation_evidence": ["early:Nguyễn→Nguyêxn", "Vietcombank→vietcomban", "token_order:Vietcombank CC2 Nguyễn Hữu Thọ→CC2 Nguyễn Hữu Thọ Vietcombank"]}
+{"query_id": "g150-001-q04", "mutation_evidence": ["early:Vietcombank→veitcombank", "space_merge:Nguyễn Hữu→nguyễnhữu", "Thọ→tho"]}
+{"query_id": "g150-002-q02", "mutation_evidence": ["early:Hồng→Hòng", "space_merge:Địa Trung→ĐịaTrung"]}
+{"query_id": "g150-002-q03", "mutation_evidence": ["early:Hồng→Hông", "Phú Quốc→phu quoc"]}
+{"query_id": "g150-002-q04", "mutation_evidence": ["early:Hồng Lam→HồngLam", "space_merge:Hồng Lam→HồngLam", "Trung→trug"]}
+{"query_id": "g150-003-q02", "mutation_evidence": ["early:Harley→Harely", "space_merge:Nguyễn Văn→NguyễnVăn"]}
+{"query_id": "g150-003-q03", "mutation_evidence": ["early:Harley→Har ley", "space_split_inside_token:Harley→Har ley", "Davidson→Davison", "Nguyễn→nguyen", "house_omission:800→omitted"]}
+{"query_id": "g150-003-q04", "mutation_evidence": ["early:Harley→Harly", "Nguyễn→Nguyên", "Linh→Lihn"]}
+{"query_id": "g150-004-q02", "mutation_evidence": ["early:Jollibee→Jolibee", "Đạo→Đao"]}
+{"query_id": "g150-004-q03", "mutation_evidence": ["early:Trần→Trna", "Jollibee→Jolibee", "token_order:Jollibee 393 Trần Hưng Đạo→393 Trần Hưng Đạo Jollibee"]}
+{"query_id": "g150-004-q04", "mutation_evidence": ["early:Jollibee→Jolilbee", "Đạo→Đao", "house_omission:393→omitted"]}
+{"query_id": "g150-005-q02", "mutation_evidence": ["early:Converse→Convrse", "Duẩn→Duân"]}
+{"query_id": "g150-005-q03", "mutation_evidence": ["early:Lê→Le6", "Converse→Convesre", "token_order:Converse 156 Lê Duẩn→156 Lê Duẩn Converse"]}
+{"query_id": "g150-005-q04", "mutation_evidence": ["early:Converse→Convese", "Lê→Le", "space_split_inside_token:Duẩn→Duâ n", "house_omission:156→omitted"]}
+{"query_id": "g150-006-q02", "mutation_evidence": ["early:Circle→Cirlce", "Hạ→Ha"]}
+{"query_id": "g150-006-q03", "mutation_evidence": ["early:Khương→Khuong", "Circle→Cirle", "token_order:Circle K 13 Khương Hạ→13 Khương Hạ Circle K"]}
+{"query_id": "g150-006-q04", "mutation_evidence": ["early:Circle→Cricle", "Hạ→Ha", "house_omission:13→omitted"]}
+{"query_id": "g150-007-q02", "mutation_evidence": ["early:Sheraton→Sheriton", "Phú→Phu"]}
+{"query_id": "g150-007-q03", "mutation_evidence": ["early:Sheraton→Shertaon", "space_merge:Trần Phú→TrầnPhú"]}
+{"query_id": "g150-007-q04", "mutation_evidence": ["early:Sheraton→Sheratn", "Trang→Trng"]}
+{"query_id": "g150-008-q02", "mutation_evidence": ["early:Hồng→Hòng", "space_merge:Cao Thắng→Caothang"]}
+{"query_id": "g150-008-q03", "mutation_evidence": ["early:Hồng→Hông", "Thắng→Thag", "house_omission:17A→omitted"]}
+{"query_id": "g150-008-q04", "mutation_evidence": ["early:Hồng Lam→HôngLam", "space_merge:Hồng Lam→HôngLam", "Cao→Cào"]}
+{"query_id": "g150-009-q02", "mutation_evidence": ["early:ACB→ACBB", "space_merge:Lạch Tray→LạchTray"]}
+{"query_id": "g150-009-q03", "mutation_evidence": ["early:Lạch→Lach", "ACB→ACV", "token_order:ACB 274B Lạch Tray→274B Lạch Tray ACB"]}
+{"query_id": "g150-009-q04", "mutation_evidence": ["early:ACB→ACBB", "Tray→Trya", "house_omission:274B→omitted"]}
+{"query_id": "g150-010-q02", "mutation_evidence": ["early:Cộng→Cộg", "Nguyễn→Nguyên"]}
+{"query_id": "g150-010-q03", "mutation_evidence": ["early:Cộng→Công", "Cà Phê→cafe", "Nguyễn→Nguyên", "house_omission:259/15→omitted"]}
+{"query_id": "g150-010-q04", "mutation_evidence": ["early:Cộng→Cộg", "space_merge:Cà Phê→CàPhê", "Thanh→Thah"]}
+{"query_id": "g150-011-q02", "mutation_evidence": ["early:HDBank→HDBan", "Đàn→Dàn"]}
+{"query_id": "g150-011-q03", "mutation_evidence": ["early:Xã→xa", "HDBank→HDBak", "token_order:HDBank 59 Xã Đàn→59 Xã Đàn HDBank"]}
+{"query_id": "g150-011-q04", "mutation_evidence": ["early:HDBank→HDBnak", "Đàn→Đan", "house_omission:59→omitted"]}
+{"query_id": "g150-012-q02", "mutation_evidence": ["early:Nguyên→Nguyê", "Hồng→Hông"]}
+{"query_id": "g150-012-q03", "mutation_evidence": ["early:Trung Nguyên→TrungNguyên", "space_merge:Trung Nguyên→TrungNguyên", "Hồng→hòng", "house_omission:172→omitted"]}
+{"query_id": "g150-012-q04", "mutation_evidence": ["early:Nguyên→Nguyêrn", "Diên→Dien"]}
+{"query_id": "g150-013-q02", "mutation_evidence": ["early:VIB→VIIB", "Tháng→thang"]}
+{"query_id": "g150-013-q03", "mutation_evidence": ["early:VIB→VIBB", "3 Tháng 2→3 tháng Hai", "house_omission:330→omitted"]}
+{"query_id": "g150-013-q04", "mutation_evidence": ["early:VIB→VIBV", "space_merge:3 Tháng 2→3tháng2"]}
+{"query_id": "g150-014-q02", "mutation_evidence": ["early:MSB→MSBB", "Tự→Tu"]}
+{"query_id": "g150-014-q03", "mutation_evidence": ["early:MSB→MSV", "Ngô Gia Tự Bắc Ninh→ngo gia tu bac ninh", "house_omission:274-276→omitted"]}
+{"query_id": "g150-014-q04", "mutation_evidence": ["early:MSB→MBS", "Tự→Tu"]}
+{"query_id": "g150-015-q02", "mutation_evidence": ["early:xăng→xăg", "Phú→Phu"]}
+{"query_id": "g150-015-q03", "mutation_evidence": ["early:Vĩnh Phú→VĩnhPhú", "space_merge:Vĩnh Phú→VĩnhPhú", "cây xăng:front→end", "house_omission:1084→omitted"]}
+{"query_id": "g150-015-q04", "mutation_evidence": ["early:xăng→săng", "Ngô→Ngo"]}
+{"query_id": "g150-016-q02", "mutation_evidence": ["early:WinMart→Wimart", "Đại→Đai"]}
+{"query_id": "g150-016-q03", "mutation_evidence": ["early:Đại→Dai", "WinMart→Winmat", "token_order:WinMart 163A Đại La→Đại La WinMart", "house_omission:163A→omitted"]}
+{"query_id": "g150-016-q04", "mutation_evidence": ["early:WinMart→Wimnart", "space_merge:Đại La→ĐạiLa"]}
+{"query_id": "g150-017-q02", "mutation_evidence": ["early:Honda→Hon da", "space_split_inside_token:Honda→Hon da", "Hải→Hai"]}
+{"query_id": "g150-017-q03", "mutation_evidence": ["early:Honda→Hodna", "đường→omitted", "house_omission:152→omitted"]}
+{"query_id": "g150-017-q04", "mutation_evidence": ["early:Honda→Hoda", "Đức→Đúc"]}
+{"query_id": "g150-018-q02", "mutation_evidence": ["early:Head→Headd", "Thảo→Thao", "house_omission:167→omitted"]}
+{"query_id": "g150-018-q03", "mutation_evidence": ["early:Head→Hed", "space_merge:Trần Quốc Thảo→TrầnQuốcThảo"]}
+{"query_id": "g150-018-q04", "mutation_evidence": ["early:Head→Heaad", "space_merge:Trần Quốc→TrầnQuốc"]}
+{"query_id": "g150-019-q02", "mutation_evidence": ["early:Sacombank→Sacom bank", "space_split_inside_token:Sacombank→Sacom bank", "Tháng→Thang"]}
+{"query_id": "g150-019-q03", "mutation_evidence": ["early:Tháng→Thagn", "Sacombank→Sacombak", "token_order:Sacombank 160 đường 3 Tháng 2 Cần Thơ→160 3 Tháng 2 Cần Thơ Sacombank"]}
+{"query_id": "g150-019-q04", "mutation_evidence": ["early:Sacombank→Sacombnk", "Tháng→thang", "Thơ→Tho", "house_omission:160→omitted"]}
+{"query_id": "g150-020-q02", "mutation_evidence": ["early:Hyatt→Hyat", "Đà Nẵng→omitted"]}
+{"query_id": "g150-020-q03", "mutation_evidence": ["early:Hyatt Regency→HyattRegency", "space_merge:Hyatt Regency→HyattRegency", "Trường→Trương", "Đà Nẵng→Da Nang"]}
+{"query_id": "g150-020-q04", "mutation_evidence": ["early:Hyatt→Hyyat", "Trường Sa Đà Nẵng→Truong Sa Da Nang"]}
+{"query_id": "g150-021-q02", "mutation_evidence": ["early:Samsung→Samsug", "Đàn→Dan"]}
+{"query_id": "g150-021-q03", "mutation_evidence": ["early:Samsung→Samsunng", "Xã Đàn→xa dan", "house_omission:438→omitted"]}
+{"query_id": "g150-021-q04", "mutation_evidence": ["early:Samsung→Samusng", "Đàn→Đan"]}
+{"query_id": "g150-022-q02", "mutation_evidence": ["early:Yamaha→Yamha", "Trần Quý Cáp→Tran Quy Cap"]}
+{"query_id": "g150-022-q03", "mutation_evidence": ["early:Yamaha→Ymaha", "Cáp→Cpa", "house_omission:1→omitted"]}
+{"query_id": "g150-022-q04", "mutation_evidence": ["early:Yamaha→Yamahha", "Cáp→Cap"]}
+{"query_id": "g150-023-q02", "mutation_evidence": ["early:ACB→ACBB", "Hoàng Diệu→Hoang Dieu"]}
+{"query_id": "g150-023-q03", "mutation_evidence": ["early:ACB→ACV", "Diệu→Diêu", "house_omission:14-16→omitted"]}
+{"query_id": "g150-023-q04", "mutation_evidence": ["early:ACB→ACBV", "Diệu→Diêu"]}
+{"query_id": "g150-024-q02", "mutation_evidence": ["early:Pharmacity→Pharmacty", "Lý Thường Kiệt→Ly Thuong Kiet"]}
+{"query_id": "g150-024-q03", "mutation_evidence": ["early:Lý→Ly", "Pharmacity→Pharmaciy", "Kiệt→Kiêt", "token_order:Pharmacity 376 Lý Thường Kiệt→376 Lý Thường Kiệt Pharmacity"]}
+{"query_id": "g150-024-q04", "mutation_evidence": ["early:Pharmacity→Pharmacitty", "Lý Thường Kiệt→Ly Thuong Kiet", "house_omission:376→omitted"]}
+{"query_id": "g150-025-q02", "mutation_evidence": ["early:Highlands→Highland", "Quyền→Quyen"]}
+{"query_id": "g150-025-q03", "mutation_evidence": ["early:Ngô→Ngo", "Highlands→Higlands", "token_order:Highlands 910A Ngô Quyền Đà Nẵng→910A Ngô Quyền Đà Nẵng Highlands"]}
+{"query_id": "g150-025-q04", "mutation_evidence": ["early:Highlands Coffee→HighlandsCoffe", "space_merge:Highlands Coffee→HighlandsCoffe", "Quyền→Quyên", "house_omission:910A→omitted"]}
+{"query_id": "g150-026-q02", "mutation_evidence": ["early:Highlands→Higlands", "Hô→Ho"]}
+{"query_id": "g150-026-q03", "mutation_evidence": ["early:Highlands→Highland", "space_merge:San Hô→Sanho", "Hô→ho"]}
+{"query_id": "g150-026-q04", "mutation_evidence": ["early:Highlands→Hihglands", "Hô→Ho"]}
+{"query_id": "g150-027-q02", "mutation_evidence": ["early:Yamaha→Yamah", "Đồng Khởi→Dong Khoi"]}
+{"query_id": "g150-027-q03", "mutation_evidence": ["early:Yamaha→Yahama", "Khởi→Khoi", "house_omission:43→omitted"]}
+{"query_id": "g150-027-q04", "mutation_evidence": ["early:Yamaha→Ymaha", "Hoàng→Hoang"]}
+{"query_id": "g150-028-q02", "mutation_evidence": ["early:Circle→Cirle", "Nguyễn→Nguyen"]}
+{"query_id": "g150-028-q03", "mutation_evidence": ["early:Circle K→CircleK", "space_merge:Circle K→CircleK", "Kim→Kìm", "house_omission:9→omitted"]}
+{"query_id": "g150-028-q04", "mutation_evidence": ["early:Circle→Cirlce", "Nguyễn→Nguyên"]}
+{"query_id": "g150-029-q02", "mutation_evidence": ["early:Trường→Trườg", "Hạ→Ha"]}
+{"query_id": "g150-029-q03", "mutation_evidence": ["early:Trường→Truogn", "Hạ→Ha", "house_omission:31→omitted"]}
+{"query_id": "g150-029-q04", "mutation_evidence": ["early:Trường→Truog", "Khương→Khươg"]}
+{"query_id": "g150-030-q02", "mutation_evidence": ["early:Vuon→Vuom", "Đinh→Dinh"]}
+{"query_id": "g150-030-q03", "mutation_evidence": ["early:Vuon Phap→VuonPhap", "space_merge:Vuon Phap→VuonPhap", "Hoàng→Hoan"]}
+{"query_id": "g150-030-q04", "mutation_evidence": ["early:Vuon→Voun", "Hoàng→Hoang"]}
+{"query_id": "g150-031-q02", "mutation_evidence": ["early:Tằm→Tầm", "Diễn→Diênn"]}
+{"query_id": "g150-031-q03", "mutation_evidence": ["early:Tằm→Tam", "Diễn→dieenx"]}
+{"query_id": "g150-031-q04", "mutation_evidence": ["early:Tằm→Tamm", "Ngô→Ngo", "house_omission:6→omitted"]}
+{"query_id": "g150-032-q02", "mutation_evidence": ["early:Bon's→Bons", "Hàm Nghi→Ham Nghi"]}
+{"query_id": "g150-032-q03", "mutation_evidence": ["early:Bon's→Bons", "vegan→vegam", "house_omission:127→omitted"]}
+{"query_id": "g150-032-q04", "mutation_evidence": ["early:Bon's vegan→Bonsvegan", "space_merge:Bons vegan→Bonsvegan", "Hàm Nghi→Ham Nghi"]}
+{"query_id": "g150-033-q02", "mutation_evidence": ["early:Dung→Dun", "Trần→Tran"]}
+{"query_id": "g150-033-q03", "mutation_evidence": ["early:Le→El", "Trần→Trna", "Phú→Phu1"]}
+{"query_id": "g150-033-q04", "mutation_evidence": ["early:Dung→Dugn", "Trần→Tran", "house_omission:32→omitted"]}
+{"query_id": "g150-034-q02", "mutation_evidence": ["early:Cổ→coor", "Nhuế→nhue"]}
+{"query_id": "g150-034-q03", "mutation_evidence": ["early:Cổ→Cô", "Nhuế→Nhuêj"]}
+{"query_id": "g150-034-q04", "mutation_evidence": ["early:Cổ→cor", "Nhuế→nhue"]}
+{"query_id": "g150-035-q02", "mutation_evidence": ["early:Kiên→Kienn", "Định→Dinh"]}
+{"query_id": "g150-035-q03", "mutation_evidence": ["early:Kiên Huyền→KienHuyen", "space_merge:Kiên Huyền→KienHuyen", "Nam Định→Nam Dinh"]}
+{"query_id": "g150-035-q04", "mutation_evidence": ["early:Kiên→Kiern", "Định→Dinh"]}
+{"query_id": "g150-036-q02", "mutation_evidence": ["early:Spring→Sprng", "dân cư số→dan cu so"]}
+{"query_id": "g150-036-q03", "mutation_evidence": ["early:Spring Hotel→SpringHotel", "space_merge:Spring Hotel→SpringHotel", "Khu dân cư→KDC", "house_omission:22→omitted"]}
+{"query_id": "g150-036-q04", "mutation_evidence": ["early:Spring→Sprign", "dân→dan"]}
+{"query_id": "g150-037-q02", "mutation_evidence": ["early:KOI→KIO", "Trần Hưng Đạo→Tran Hung Dao"]}
+{"query_id": "g150-037-q03", "mutation_evidence": ["early:KOI→KOY", "Đạo→Dao", "house_omission:181→omitted"]}
+{"query_id": "g150-037-q04", "mutation_evidence": ["early:KOI→KOII", "Trần Hưng Đạo→Tran Hung Dao"]}
+{"query_id": "g150-038-q02", "mutation_evidence": ["early:Sô→So", "Va→Vaa"]}
+{"query_id": "g150-038-q03", "mutation_evidence": ["early:Sô→So", "Art→Atr", "house_omission:111→omitted"]}
+{"query_id": "g150-038-q04", "mutation_evidence": ["early:Va→V a", "space_split_inside_token:Va→V a", "Trần→Trna"]}
+{"query_id": "g150-039-q02", "mutation_evidence": ["early:Mầm→Mâmn", "phân hiệu 1→PH1"]}
+{"query_id": "g150-039-q03", "mutation_evidence": ["early:Mầm non→Mầmnon", "space_merge:Mầm non→Mầmnon", "Lương Định Của→Luong Dinh Cua", "house_omission:27→omitted"]}
+{"query_id": "g150-039-q04", "mutation_evidence": ["early:Mầm→Mầmm", "Của→Cua"]}
+{"query_id": "g150-040-q02", "mutation_evidence": ["early:Bánh→Báh", "Nguyễn Trung Trực→Nguyen Trung Truc"]}
+{"query_id": "g150-040-q03", "mutation_evidence": ["early:Bánh→Bnah", "Trực→Truc", "house_omission:23→omitted"]}
+{"query_id": "g150-040-q04", "mutation_evidence": ["early:Bánh→Báhn", "Nguyễn→Nguyên"]}
+{"query_id": "g150-041-q02", "mutation_evidence": ["early:Hairstudio→Hairstudoi", "Trãi→Trai"]}
+{"query_id": "g150-041-q03", "mutation_evidence": ["early:Hairstudio→Hair Studio", "space_split_inside_token:Hairstudio→Hair Studio", "Nguyễn→Nguyên", "house_omission:139→omitted"]}
+{"query_id": "g150-041-q04", "mutation_evidence": ["early:Hairstudio→Hairtstudio", "Nguyễn Trãi→Nguyen Trai"]}
+{"query_id": "g150-042-q02", "mutation_evidence": ["early:BiTy's→Bittys", "Happy→Hapyp"]}
+{"query_id": "g150-042-q03", "mutation_evidence": ["early:BiTy's→Bitys", "space_merge:Happy Land→HappyLand", "house_omission:56→omitted"]}
+{"query_id": "g150-042-q04", "mutation_evidence": ["early:BiTy's→BiTys", "Happy→Hapy", "Bùi Minh Trực→Bui Minh Truc"]}
+{"query_id": "g150-043-q02", "mutation_evidence": ["early:At→Aat", "Nại Hiên Đông→Nai Hien Dong"]}
+{"query_id": "g150-043-q03", "mutation_evidence": ["early:At→Ar", "Hiên→Hien", "house_omission:3→omitted"]}
+{"query_id": "g150-043-q04", "mutation_evidence": ["early:At→Ta", "Đông→Dong"]}
+{"query_id": "g150-044-q02", "mutation_evidence": ["early:văn→vă", "Ỷ→Ý"]}
+{"query_id": "g150-044-q03", "mutation_evidence": ["early:Nhà văn hóa→NVH", "Ỷ→Y"]}
+{"query_id": "g150-044-q04", "mutation_evidence": ["early:Nhà→Nhá", "Ỷ→Y"]}
+{"query_id": "g150-045-q02", "mutation_evidence": ["early:BV→Bênh viện", "Cáp→Cap"]}
+{"query_id": "g150-045-q03", "mutation_evidence": ["early:Binh→Bim", "Quý→Quy"]}
+{"query_id": "g150-045-q04", "mutation_evidence": ["early:Binh Thuan→BinhThuan", "space_merge:Binh Thuan→BinhThuan", "Trần Quý Cáp→tran quy cap"]}
+{"query_id": "g150-046-q02", "mutation_evidence": ["early:Mì→Mi", "Seoul→Seou", "Tháng→thang"]}
+{"query_id": "g150-046-q03", "mutation_evidence": ["early:Mì Cay→MìCay", "space_merge:Mì Cay→MìCay", "Seoul→Seou", "house_omission:226D→omitted"]}
+{"query_id": "g150-046-q04", "mutation_evidence": ["early:Mì→Mìi", "space_merge:3 Tháng 2→3tháng2"]}
+{"query_id": "g150-047-q02", "mutation_evidence": ["early:Little→Litle", "Boutique→Boutiqe"]}
+{"query_id": "g150-047-q03", "mutation_evidence": ["early:Little→Litlte", "Lợi→Loi", "house_omission:36 Bis/2→omitted"]}
+{"query_id": "g150-047-q04", "mutation_evidence": ["early:Little→Littel", "Lợi→Loi"]}
+{"query_id": "g150-048-q02", "mutation_evidence": ["early:Nguyễn→nguyeenx", "Thoại→Thoai"]}
+{"query_id": "g150-048-q03", "mutation_evidence": ["early:Nguyễn→Nguyên", "Thoại→Thoi"]}
+{"query_id": "g150-048-q04", "mutation_evidence": ["early:Nguyễn→Nguyễ n", "space_split_inside_token:Nguyễn→Nguyễ n", "Văn→Van"]}
+{"query_id": "g150-049-q02", "mutation_evidence": ["early:Bánh→Banhh", "Trần Hưng Đạo→Tran Hung Dao"]}
+{"query_id": "g150-049-q03", "mutation_evidence": ["early:Bánh→Bnah", "Đạo→Dao", "house_omission:88b→omitted"]}
+{"query_id": "g150-049-q04", "mutation_evidence": ["early:Bánh→Báh", "Đạo→Dao"]}
+{"query_id": "g150-050-q02", "mutation_evidence": ["early:Hải→Hảii", "Mục→Muc"]}
+{"query_id": "g150-050-q03", "mutation_evidence": ["early:Hải→Hrai", "Mục→Muc", "house_omission:31→omitted"]}
+{"query_id": "g150-050-q04", "mutation_evidence": ["early:Hải→Hai", "Mục→Mucc"]}
+{"query_id": "g150-051-q02", "mutation_evidence": ["early:Asia→Asai", "đường→duong"]}
+{"query_id": "g150-051-q03", "mutation_evidence": ["early:Asia Outdoors→AsiaOutdoors", "space_merge:Asia Outdoors→AsiaOutdoors", "đường→d", "house_omission:210→omitted"]}
+{"query_id": "g150-051-q04", "mutation_evidence": ["early:Asia→Aisa", "đường→duong"]}
+{"query_id": "g150-052-q02", "mutation_evidence": ["early:Trung→Trug", "liên ấp→lien ap"]}
+{"query_id": "g150-052-q03", "mutation_evidence": ["early:Nam→Nma", "ấp→ap", "house_omission:118→omitted"]}
+{"query_id": "g150-052-q04", "mutation_evidence": ["early:Nam→Namm", "liên ấp→lien ap"]}
+{"query_id": "g150-053-q02", "mutation_evidence": ["early:Quận→Quân", "Nguyễn Công Trứ→Nguyen Cong Trur"]}
+{"query_id": "g150-053-q03", "mutation_evidence": ["early:Quận→Qunậ", "Trứ→Tru", "house_omission:127→omitted"]}
+{"query_id": "g150-053-q04", "mutation_evidence": ["early:Cố→coos", "Quận→quaanj", "Nguyễn Công Trứ→nguyen cong tru"]}
+{"query_id": "g150-054-q02", "mutation_evidence": ["early:Glee→Gle", "Foods→Fods"]}
+{"query_id": "g150-054-q03", "mutation_evidence": ["early:Glee→Gele", "Vương→Vuong", "house_omission:126→omitted"]}
+{"query_id": "g150-054-q04", "mutation_evidence": ["early:Glee→Gleee", "Triệu→Trieu"]}
+{"query_id": "g150-055-q02", "mutation_evidence": ["early:Thị→Thịi", "Nguyễn→Nguyên"]}
+{"query_id": "g150-055-q03", "mutation_evidence": ["early:Nấm→Nấ m", "space_split_inside_token:Nấm→Nấ m", "Lạc→Lac5", "house_omission:25→omitted"]}
+{"query_id": "g150-055-q04", "mutation_evidence": ["early:Thị→thij", "Nguyễn Lạc→nguyen lac"]}
+{"query_id": "g150-056-q02", "mutation_evidence": ["early:Cam→Camm", "đường→duong"]}
+{"query_id": "g150-056-q03", "mutation_evidence": ["early:Cam Xanh→CamXanh", "space_merge:Cam Xanh→CamXanh", "đường→d", "house_omission:31→omitted"]}
+{"query_id": "g150-056-q04", "mutation_evidence": ["early:Xanh→Xnah", "đường→duong"]}
+{"query_id": "g150-057-q02", "mutation_evidence": ["early:Nguyễn→Nguyễ", "Thị→Thi"]}
+{"query_id": "g150-057-q03", "mutation_evidence": ["early:THCS→Trường cấp 2", "Nguyễn→Nguyên", "house_omission:66/6→omitted"]}
+{"query_id": "g150-057-q04", "mutation_evidence": ["early:THCS Nguyễn→THCSNguyễn", "space_merge:THCS Nguyễn→THCSNguyễn", "Gấm→Gâm"]}
+{"query_id": "g150-058-q02", "mutation_evidence": ["early:cổ→coor", "Hưng→Hung"]}
+{"query_id": "g150-058-q03", "mutation_evidence": ["early:Nhà cổ→Nhàcổ", "space_merge:Nhà cổ→Nhàcổ", "Khai→Khia", "house_omission:4→omitted"]}
+{"query_id": "g150-058-q04", "mutation_evidence": ["early:Nhà→nhaf", "Nguyễn Thị Minh Khai→nguyen thi minh khai"]}
+{"query_id": "g150-059-q02", "mutation_evidence": ["early:Phở→phowr", "gà Lâm→ga lam", "Láng Hạ→lang ha"]}
+{"query_id": "g150-059-q03", "mutation_evidence": ["early:Phở→Phỡ", "Lâm→Lma", "house_omission:26→omitted"]}
+{"query_id": "g150-059-q04", "mutation_evidence": ["early:Phở→Phởr", "Hạ→Ha"]}
+{"query_id": "g150-060-q02", "mutation_evidence": ["early:Medic→Medik", "Việt→Viêt"]}
+{"query_id": "g150-060-q03", "mutation_evidence": ["early:Medic Đất→MedicĐất", "space_merge:Medic Đất→MedicĐất", "Long→Lon", "house_omission:2→omitted"]}
+{"query_id": "g150-060-q04", "mutation_evidence": ["early:Medic→Medi", "Nơ→No"]}
+{"query_id": "g150-061-q02", "mutation_evidence": ["early:Minh→Mihn", "Trần Hưng Đạo→Tran Hung Dao"]}
+{"query_id": "g150-061-q03", "mutation_evidence": ["early:Minh→Mnih", "Hưng→Hung", "house_omission:34→omitted"]}
+{"query_id": "g150-061-q04", "mutation_evidence": ["early:Anh→Ahn", "Đạo→Dao"]}
+{"query_id": "g150-062-q02", "mutation_evidence": ["early:Bernard→Bernad", "Đình Giót→Dinh Giot"]}
+{"query_id": "g150-062-q03", "mutation_evidence": ["early:khoa→koa", "Đình→Đihn", "house_omission:22→omitted"]}
+{"query_id": "g150-062-q04", "mutation_evidence": ["early:Bernard→Benard", "Y khoa Bernard→Benard y khoa", "Đình Giót→Dinh Giot"]}
+{"query_id": "g150-063-q02", "mutation_evidence": ["early:Thai→Thia", "Food→Fod"]}
+{"query_id": "g150-063-q03", "mutation_evidence": ["early:HQ Thai→HQThai", "space_merge:HQ Thai→HQThai", "Food→Fod", "house_omission:9→omitted"]}
+{"query_id": "g150-063-q04", "mutation_evidence": ["early:Thai→Thay", "Bái→Bai"]}
+{"query_id": "g150-064-q02", "mutation_evidence": ["early:Điểm→Điẻm", "Công→Cog", "Định Công Hạ→Dinh Cog Ha"]}
+{"query_id": "g150-064-q03", "mutation_evidence": ["early:Điểm→Điêm", "Công→Cnog", "house_omission:58→omitted"]}
+{"query_id": "g150-064-q04", "mutation_evidence": ["early:Điểm→Điêmm", "Hạ→Ha"]}
+{"query_id": "g150-065-q02", "mutation_evidence": ["early:thanh→thah", "Đông Nhì→Dong Nhi"]}
+{"query_id": "g150-065-q03", "mutation_evidence": ["early:thanh→tahnh", "Nhì→Nhi"]}
+{"query_id": "g150-065-q04", "mutation_evidence": ["early:thanh→than", "Đông→Dong"]}
+{"query_id": "g150-066-q02", "mutation_evidence": ["early:Ngày→Ngà", "hẻm14→hem14", "An→Am"]}
+{"query_id": "g150-066-q03", "mutation_evidence": ["early:Ngày của→Ngàycủa", "space_merge:Ngày của→Ngàycủa", "Gio→Gioo"]}
+{"query_id": "g150-066-q04", "mutation_evidence": ["early:Ngày→ngayf", "của Nắng→cuar nawngs", "hẻm14→hem14"]}
+{"query_id": "g150-067-q02", "mutation_evidence": ["early:Phố→Pho", "Phòng trà→omitted", "Diệu→Dieu"]}
+{"query_id": "g150-067-q03", "mutation_evidence": ["early:Phòng trà→Phòngtrà", "space_merge:Phòng trà→Phòngtrà", "Diệu→Diêu"]}
+{"query_id": "g150-067-q04", "mutation_evidence": ["early:Phòng→Phòg", "Trần→Tran"]}
+{"query_id": "g150-068-q02", "mutation_evidence": ["early:hẻm→hẻmm", "Âu Cơ→Au Co"]}
+{"query_id": "g150-068-q03", "mutation_evidence": ["early:hẻm 68→hẻm68", "space_merge:hẻm 68→hẻm68", "space_merge:kiệt 151→kiệt151"]}
+{"query_id": "g150-068-q04", "mutation_evidence": ["early:kiệt→kiệ", "Âu Cơ→Au Co"]}
+{"query_id": "g150-069-q02", "mutation_evidence": ["early:Đồng→Đôg", "Khởi→Khoi"]}
+{"query_id": "g150-069-q03", "mutation_evidence": ["early:Đồng Khởi→ĐồngKhơi", "space_merge:Đồng Khởi→ĐồngKhơi", "Khởi→Khơi"]}
+{"query_id": "g150-069-q04", "mutation_evidence": ["early:Đồng→Đông", "Khởi→Khoir"]}
+{"query_id": "g150-070-q02", "mutation_evidence": ["early:Nguyễn→Nguyễ", "Thị→Thi"]}
+{"query_id": "g150-070-q03", "mutation_evidence": ["early:Nguyễn→Nguễn", "Búp→Bup1"]}
+{"query_id": "g150-070-q04", "mutation_evidence": ["early:Nguyễn→nguyeenx", "Thị Búp→thi bup"]}
+{"query_id": "g150-071-q02", "mutation_evidence": ["early:Nguyễn→Nguyẽn", "Trang→Tran"]}
+{"query_id": "g150-071-q03", "mutation_evidence": ["early:Nguyễn Thị→NguyễnThị", "space_merge:Nguyễn Thị→NguyễnThị", "Khai→Khia"]}
+{"query_id": "g150-071-q04", "mutation_evidence": ["early:Nguyễn→Nguyền", "Minh→Mihn"]}
+{"query_id": "g150-072-q02", "mutation_evidence": ["early:Nguyễn→Nguyeen", "Chính→Chinh"]}
+{"query_id": "g150-072-q03", "mutation_evidence": ["early:Nguyễn→Nguyêxn", "Hoàng→Hoang2"]}
+{"query_id": "g150-072-q04", "mutation_evidence": ["early:Nguyễn→Nguyễnn", "Chính→Chinh"]}
+{"query_id": "g150-073-q02", "mutation_evidence": ["early:kiệt→kiet", "Ngô→Nho"]}
+{"query_id": "g150-073-q03", "mutation_evidence": ["early:kiệt→kiêtj", "Xuân→Xuan"]}
+{"query_id": "g150-073-q04", "mutation_evidence": ["early:kiệt→kiẹt", "Ngô→Nô", "Thu→Thư"]}
+{"query_id": "g150-074-q02", "mutation_evidence": ["early:Nguyễn→Nguyêxn", "Văn→Vna"]}
+{"query_id": "g150-074-q03", "mutation_evidence": ["early:Nguyễn Văn→NguyễnVăn", "space_merge:Nguyễn Văn→NguyễnVăn", "Linh→Lihn"]}
+{"query_id": "g150-074-q04", "mutation_evidence": ["early:Nguyễn→Nguyễnn", "Văn→Vă"]}
+{"query_id": "g150-075-q02", "mutation_evidence": ["early:Lạc→Lacj", "Quân→Quan"]}
+{"query_id": "g150-075-q03", "mutation_evidence": ["early:Lạc→Lạ c", "space_split_inside_token:Lạc→Lạ c", "Quân→Quan"]}
+{"query_id": "g150-075-q04", "mutation_evidence": ["early:Lạc→Lạcc", "Bình→Binh"]}
+{"query_id": "g150-076-q02", "mutation_evidence": ["early:ngách→ngac", "Cơ→Co"]}
+{"query_id": "g150-076-q03", "mutation_evidence": ["early:ngách→ngáchh", "space_merge:Âu Cơ→ÂuCơ"]}
+{"query_id": "g150-076-q04", "mutation_evidence": ["early:ngách→ngáhc", "Âu Cơ→Au Co"]}
+{"query_id": "g150-077-q02", "mutation_evidence": ["early:Phan→Phna", "Phùng→Phung"]}
+{"query_id": "g150-077-q03", "mutation_evidence": ["early:Phan→Pahn", "Thuận→Thua6n5"]}
+{"query_id": "g150-077-q04", "mutation_evidence": ["early:Phan→Phàn", "Phùng→Phùgn"]}
+{"query_id": "g150-078-q02", "mutation_evidence": ["early:Thành→Thnah", "Kinh→Kihn"]}
+{"query_id": "g150-078-q03", "mutation_evidence": ["early:Thành→Tành", "Kinh→Kihn"]}
+{"query_id": "g150-078-q04", "mutation_evidence": ["early:Thành→Thàhn", "Bắc→Băc"]}
+{"query_id": "g150-079-q02", "mutation_evidence": ["early:hẻm→hẻn", "kiệt→kiet"]}
+{"query_id": "g150-079-q03", "mutation_evidence": ["early:hẻm→hẽm", "kiệt→kiêtj"]}
+{"query_id": "g150-079-q04", "mutation_evidence": ["early:hẻm→hẻn", "space_merge:Cù Chính→CùChính"]}
+{"query_id": "g150-080-q02", "mutation_evidence": ["early:Hoàng→Hoàgn", "Sài→Sai"]}
+{"query_id": "g150-080-q03", "mutation_evidence": ["early:Hoàng→Hoagn", "Gòn→Gno"]}
+{"query_id": "g150-080-q04", "mutation_evidence": ["early:Hoàng→Hoàngg", "Gòn→Gon"]}
+{"query_id": "g150-081-q02", "mutation_evidence": ["early:Trích→Tríhc", "Sài→Sai"]}
+{"query_id": "g150-081-q03", "mutation_evidence": ["early:Trích→Trìch", "Sài→Sia"]}
+{"query_id": "g150-081-q04", "mutation_evidence": ["early:Trích→Tríhc", "Tây→Tâi"]}
+{"query_id": "g150-082-q02", "mutation_evidence": ["early:Lê→Le", "Đồng→Đôgn"]}
+{"query_id": "g150-082-q03", "mutation_evidence": ["early:Lê→Lề", "Thành→Thnah"]}
+{"query_id": "g150-082-q04", "mutation_evidence": ["early:Lê→Lề", "Thành→Thàhn"]}
+{"query_id": "g150-083-q02", "mutation_evidence": ["early:Như→Nhu", "Nguyệt→Nguyêtj"]}
+{"query_id": "g150-083-q03", "mutation_evidence": ["early:Như→Nhu", "Nguyệt→Nguyêjt"]}
+{"query_id": "g150-083-q04", "mutation_evidence": ["early:Nguyệt→Nguyẹt", "Ninh→Nihn"]}
+{"query_id": "g150-084-q02", "mutation_evidence": ["early:kiệt→kiet", "Trưng→Trưgn"]}
+{"query_id": "g150-084-q03", "mutation_evidence": ["early:kiệt→kiêtj", "Vương→Vuong"]}
+{"query_id": "g150-084-q04", "mutation_evidence": ["early:kiệt→kiẹt", "Vương→Vươgn"]}
+{"query_id": "g150-085-q02", "mutation_evidence": ["early:Tân→Tna", "Đông→Dong"]}
+{"query_id": "g150-085-q03", "mutation_evidence": ["early:Tân→Tâ n", "space_split_inside_token:Tân→Tâ n", "Đông→Dong"]}
+{"query_id": "g150-085-q04", "mutation_evidence": ["early:Tân→Tấn", "Đông→Đôgn"]}
+{"query_id": "g150-086-q02", "mutation_evidence": ["early:Mễ→Mê", "Thượng→Thuong"]}
+{"query_id": "g150-086-q03", "mutation_evidence": ["early:Mễ Trì→MễTrì", "space_merge:Mễ Trì→MễTrì", "Thượng→Thươgn"]}
+{"query_id": "g150-086-q04", "mutation_evidence": ["early:Mễ→Mẽ", "Liêm→Lieem"]}
+{"query_id": "g150-087-q02", "mutation_evidence": ["early:Trung→Trugn", "Tất→Tâts"]}
+{"query_id": "g150-087-q03", "mutation_evidence": ["early:Trung→Trugn", "Nguyễn→Nguyẽn"]}
+{"query_id": "g150-087-q04", "mutation_evidence": ["early:Nguyên→Nguyêrn", "Tất→Tât"]}
+{"query_id": "g150-088-q02", "mutation_evidence": ["early:dân→dan", "Kiều→Kiêuj"]}
+{"query_id": "g150-088-q03", "mutation_evidence": ["early:dân cư→dancư", "space_merge:dân cư→dancư", "Kiều→Kieu"]}
+{"query_id": "g150-088-q04", "mutation_evidence": ["early:dân→dâ n", "space_split_inside_token:dân→dâ n", "Kiều→Kieu"]}
+{"query_id": "g150-089-q02", "mutation_evidence": ["early:Đoàn→Doan", "Hài→Hia"]}
+{"query_id": "g150-089-q03", "mutation_evidence": ["early:Đoàn Như→ĐoànNhư", "space_merge:Đoàn Như→ĐoànNhư", "Chiếu→Chieeu"]}
+{"query_id": "g150-089-q04", "mutation_evidence": ["early:Đoàn→Đoan", "Xóm→Xomz"]}
+{"query_id": "g150-090-q02", "mutation_evidence": ["early:ngõ→ngo", "Ích→Íhc"]}
+{"query_id": "g150-090-q03", "mutation_evidence": ["early:ngõ→ngỏ", "space_merge:Ông Ích→ÔngÍch"]}
+{"query_id": "g150-090-q04", "mutation_evidence": ["early:ngõ→ngỏ", "Khiêm→Kheim"]}
+{"query_id": "g150-091-q02", "mutation_evidence": ["early:Bánh→Bnah", "Hằng→Hang"]}
+{"query_id": "g150-091-q03", "mutation_evidence": ["early:Bánh→Banh", "Hằng→Hagn"]}
+{"query_id": "g150-091-q04", "mutation_evidence": ["early:ướt→uớt", "Hằng→Hằg"]}
+{"query_id": "g150-092-q02", "mutation_evidence": ["early:BRGMart→BRGMatr", "Khai→Khia"]}
+{"query_id": "g150-092-q03", "mutation_evidence": ["early:BRGMart→BRG Mart", "space_split_inside_token:BRGMart→BRG Mart", "Khai→Khia"]}
+{"query_id": "g150-092-q04", "mutation_evidence": ["early:BRGMart→BRGMar", "Minh→Mnih"]}
+{"query_id": "g150-093-q02", "mutation_evidence": ["early:Bún→Bun", "Tuyết→Tuyêtj"]}
+{"query_id": "g150-093-q03", "mutation_evidence": ["early:Bún→Bun", "Tuyết→Tuyêjt"]}
+{"query_id": "g150-093-q04", "mutation_evidence": ["early:ngan→nagn", "Tây→Tay"]}
+{"query_id": "g150-094-q02", "mutation_evidence": ["early:Hotel→Hotle", "Nguyễn→Nguyẽn"]}
+{"query_id": "g150-094-q03", "mutation_evidence": ["early:Hotel→Hote", "Đình→Dinh"]}
+{"query_id": "g150-094-q04", "mutation_evidence": ["early:Hotel→Htoel", "Chiểu→Chieeur"]}
+{"query_id": "g150-095-q02", "mutation_evidence": ["early:Banh→Bnah", "Cay→Cy"]}
+{"query_id": "g150-095-q03", "mutation_evidence": ["early:Banh→Bah n", "space_split_inside_token:Banh→Bah n", "Cay→Cai", "house_omission:150e→omitted"]}
+{"query_id": "g150-095-q04", "mutation_evidence": ["early:Banh→Bahn", "Cay→Cai", "Kênh→Kên"]}
+{"query_id": "g150-096-q02", "mutation_evidence": ["early:Phở→Phơr", "Nguyệt→Nguyêtj"]}
+{"query_id": "g150-096-q03", "mutation_evidence": ["early:Phở→Phởr", "Nguyệt→Nguyêt", "house_omission:44→omitted"]}
+{"query_id": "g150-096-q04", "mutation_evidence": ["early:Phở→Pở", "Minh→Mihn"]}
+{"query_id": "g150-097-q02", "mutation_evidence": ["early:May→Mya", "Mã→Ma"]}
+{"query_id": "g150-097-q03", "mutation_evidence": ["early:May→Mey", "Mây→May6", "house_omission:107→omitted"]}
+{"query_id": "g150-097-q04", "mutation_evidence": ["early:May→Mai", "Mây→May"]}
+{"query_id": "g150-098-q02", "mutation_evidence": ["early:Hoành→Hoàhn", "Vui→Viu"]}
+{"query_id": "g150-098-q03", "mutation_evidence": ["early:Hoành thánh→Hoànhthánh", "space_merge:Hoành thánh→Hoànhthánh", "Vui→Viu", "house_omission:9→omitted"]}
+{"query_id": "g150-098-q04", "mutation_evidence": ["early:Hoành→Hoàn", "Vui→Viu"]}
+{"query_id": "g150-099-q02", "mutation_evidence": ["early:Lan→Lna", "Thám→Tham"]}
+{"query_id": "g150-099-q03", "mutation_evidence": ["early:Lan→Lna", "Thám→Thma", "house_omission:424→omitted"]}
+{"query_id": "g150-099-q04", "mutation_evidence": ["early:Anh→Ahn", "Hoàng→Hoang"]}
+{"query_id": "g150-100-q02", "mutation_evidence": ["early:The→Teh", "Center→Cneter"]}
+{"query_id": "g150-100-q03", "mutation_evidence": ["early:The Adora→TheAdora", "space_merge:The Adora→TheAdora", "Hoàng→Hoagn", "house_omission:431→omitted"]}
+{"query_id": "g150-100-q04", "mutation_evidence": ["early:Adora→Adroa", "Văn→Vna"]}
+{"query_id": "g150-101-q02", "mutation_evidence": ["early:Blackbird→Blackbrid", "Coffee→Cofee"]}
+{"query_id": "g150-101-q03", "mutation_evidence": ["early:Blackbird→Blakbird", "Ông→O6ng", "house_omission:63B→omitted"]}
+{"query_id": "g150-101-q04", "mutation_evidence": ["early:Blackbird→Blakcbird", "space_split_inside_token:Lãn→Lã n"]}
+{"query_id": "g150-102-q02", "mutation_evidence": ["early:Mai→Mãi", "Chiểu→Chieeur"]}
+{"query_id": "g150-102-q03", "mutation_evidence": ["early:Sao Mai→SaoMai", "space_merge:Sao Mai→SaoMai", "Chiểu→Chieeu", "house_omission:18C→omitted"]}
+{"query_id": "g150-102-q04", "mutation_evidence": ["early:Mai→Mia", "Nguyễn→Nguyẽn"]}
+{"query_id": "g150-103-q02", "mutation_evidence": ["early:Tân→Tna", "Châu→Chau"]}
+{"query_id": "g150-103-q03", "mutation_evidence": ["early:Tân→Tan", "Hưng→Hưgn", "house_omission:141→omitted"]}
+{"query_id": "g150-103-q04", "mutation_evidence": ["early:Tân→Tấn", "Văn→Vna"]}
+{"query_id": "g150-104-q02", "mutation_evidence": ["early:Nhật→Nhậ t", "space_split_inside_token:Nhật→Nhậ t", "Chính→Chinh"]}
+{"query_id": "g150-104-q03", "mutation_evidence": ["early:Nhật Phương→NhậtPhương", "space_merge:Nhật Phương→NhậtPhương", "Chính→Chín", "house_omission:45→omitted"]}
+{"query_id": "g150-104-q04", "mutation_evidence": ["early:Nhật→Nhât", "Phương→Phươgn"]}
+{"query_id": "g150-105-q02", "mutation_evidence": ["early:Trung→Trugn", "Hưng→Hưgn"]}
+{"query_id": "g150-105-q03", "mutation_evidence": ["early:Trần→Trân", "Hưng→Hưgn", "house_omission:157→omitted"]}
+{"query_id": "g150-105-q04", "mutation_evidence": ["early:Trần→Trân", "Hưng→Hưgn"]}
+{"query_id": "g150-106-q02", "mutation_evidence": ["early:Typika→Tyipka", "Nhạc→Nhac"]}
+{"query_id": "g150-106-q03", "mutation_evidence": ["early:Typika→Tyipka", "Nhạc→Nhac", "house_omission:18→omitted"]}
+{"query_id": "g150-106-q04", "mutation_evidence": ["early:Typika→Typkia", "Nhạc→Nhậc"]}
+{"query_id": "g150-107-q02", "mutation_evidence": ["early:Vinh→Vihn", "Hưng→Hưgn"]}
+{"query_id": "g150-107-q03", "mutation_evidence": ["early:Vinh→Vihn", "Hưng→Hung", "house_omission:43/9→omitted"]}
+{"query_id": "g150-107-q04", "mutation_evidence": ["early:Sơn→Sơm", "Hưng→Hưgn"]}
+{"query_id": "g150-108-q02", "mutation_evidence": ["early:Tiểu→Tiể u", "space_split_inside_token:Tiểu→Tiể u", "Đạo→Đao"]}
+{"query_id": "g150-108-q03", "mutation_evidence": ["early:Tiểu→Tiêur", "Hòa→Hoa", "house_omission:15→omitted"]}
+{"query_id": "g150-108-q04", "mutation_evidence": ["early:Tiểu→Tiêu", "Minh→Mihn"]}
+{"query_id": "g150-109-q02", "mutation_evidence": ["early:KOMBO→KOMOB", "Thạch→Thahc"]}
+{"query_id": "g150-109-q03", "mutation_evidence": ["early:KOMBO→KOMOB", "Phạm→Pham", "house_omission:108A1→omitted"]}
+{"query_id": "g150-109-q04", "mutation_evidence": ["early:KOMBO→KOBMO", "Ngọc→Ngoc"]}
+{"query_id": "g150-110-q02", "mutation_evidence": ["early:Lakeview→Lakeveiw", "Homestay→Homstay"]}
+{"query_id": "g150-110-q03", "mutation_evidence": ["early:Lakeview→Lakeviwe", "Đống→Dong", "house_omission:42→omitted"]}
+{"query_id": "g150-110-q04", "mutation_evidence": ["early:Lakeview→Lakevieu", "Đa→Da"]}
+{"query_id": "g150-111-q02", "mutation_evidence": ["early:Machine→Machien", "Trứ→Trư"]}
+{"query_id": "g150-111-q03", "mutation_evidence": ["early:Machine→Machi ne", "space_split_inside_token:Machine→Machi ne", "Công→Cong", "house_omission:7→omitted"]}
+{"query_id": "g150-111-q04", "mutation_evidence": ["early:Machine→Macihne", "Công→Cnog"]}
+{"query_id": "g150-112-q02", "mutation_evidence": ["early:Tiểu→Tiêur", "Nhì→Nhi"]}
+{"query_id": "g150-112-q03", "mutation_evidence": ["early:Tiểu→Tieeur", "Nhì→Nhi", "house_omission:1→omitted"]}
+{"query_id": "g150-112-q04", "mutation_evidence": ["early:Tiểu→Tiêủ", "Thắng→Thnăg"]}
+{"query_id": "g150-113-q02", "mutation_evidence": ["early:sách→sahc", "Ngọc→Ngoc"]}
+{"query_id": "g150-113-q03", "mutation_evidence": ["early:Nhà→Nhaf", "Bình→Binh", "house_omission:24a→omitted"]}
+{"query_id": "g150-113-q04", "mutation_evidence": ["early:Nhà→Nha", "Ngọc→Ngco"]}
+{"query_id": "g150-114-q02", "mutation_evidence": ["early:Trung→Trugn", "Đình→Đihn"]}
+{"query_id": "g150-114-q03", "mutation_evidence": ["early:Chu→Chuv", "Đình→Dinh", "house_omission:70→omitted"]}
+{"query_id": "g150-114-q04", "mutation_evidence": ["early:Chu→Cuh", "Lý→Ly"]}
+{"query_id": "g150-115-q02", "mutation_evidence": ["early:Long→Logn", "Hưng→Hưgn"]}
+{"query_id": "g150-115-q03", "mutation_evidence": ["early:Long Châu→LongChâu", "space_merge:Long Châu→LongChâu", "Hưng→Hưgn"]}
+{"query_id": "g150-115-q04", "mutation_evidence": ["early:Châu→Chua", "Trần→Trân"]}
+{"query_id": "g150-116-q02", "mutation_evidence": ["early:Sữa→Sữ a", "space_split_inside_token:Sữa→Sữ a", "Tuấn→Tuan"]}
+{"query_id": "g150-116-q03", "mutation_evidence": ["early:Sữa chua→Sữachua", "space_merge:Sữa chua→Sữachua", "Phạm→Pham", "house_omission:26→omitted"]}
+{"query_id": "g150-116-q04", "mutation_evidence": ["early:Sữa→Sưa", "Tuấn→Tuâsn"]}
+{"query_id": "g150-117-q02", "mutation_evidence": ["early:Mầm→Màm", "Nguyễn→Nguyễnn"]}
+{"query_id": "g150-117-q03", "mutation_evidence": ["early:Mầm non→Mầmnon", "space_merge:Mầm non→Mầmnon", "Chiểu→Chiêur", "house_omission:108→omitted"]}
+{"query_id": "g150-117-q04", "mutation_evidence": ["early:Mầm→Mằm", "Ngoan→Ngoa"]}
+{"query_id": "g150-118-q02", "mutation_evidence": ["early:Tiểu→Tiêur", "Bạt→Bat"]}
+{"query_id": "g150-118-q03", "mutation_evidence": ["early:Tiểu học→Tiểuhọc", "space_merge:Tiểu học→Tiểuhọc", "Tăng→Tnăg", "house_omission:3→omitted"]}
+{"query_id": "g150-118-q04", "mutation_evidence": ["early:Tiểu→Tiêu", "Lợi→Lơij"]}
+{"query_id": "g150-119-q02", "mutation_evidence": ["early:Mega→Mgea", "Quốc→Quôc"]}
+{"query_id": "g150-119-q03", "mutation_evidence": ["early:Mega Market→MegaMarket", "space_merge:Mega Market→MegaMarket", "Quốc→Quôcs", "house_omission:1086→omitted"]}
+{"query_id": "g150-119-q04", "mutation_evidence": ["early:Market→Markt", "Quốc→Quôc"]}
+{"query_id": "g150-120-q02", "mutation_evidence": ["early:Mầm→Màm", "Tăng→Tnăg"]}
+{"query_id": "g150-120-q03", "mutation_evidence": ["early:Mầm non→Mầmnon", "space_merge:Mầm non→Mầmnon", "Hoàng→Hoagn", "house_omission:11→omitted"]}
+{"query_id": "g150-120-q04", "mutation_evidence": ["early:non→nno", "Dương→Dươgn"]}
+{"query_id": "g150-121-q02", "mutation_evidence": ["early:Phúc→Phuc", "Long→Logn", "Khải→Khai"]}
+{"query_id": "g150-121-q03", "mutation_evidence": ["early:Phúc Long→PhúcLong", "space_merge:Phúc Long→PhúcLong", "Quang→Qunag", "house_omission:46→omitted"]}
+{"query_id": "g150-121-q04", "mutation_evidence": ["early:Phúc→Phú", "Quang→Qunag"]}
+{"query_id": "g150-122-q02", "mutation_evidence": ["early:Trà→Tra", "Giấy→Giâys"]}
+{"query_id": "g150-122-q03", "mutation_evidence": ["early:Trà Sữa→TràSữa", "space_merge:Trà Sữa→TràSữa", "Chu→Cuh", "house_omission:128→omitted"]}
+{"query_id": "g150-122-q04", "mutation_evidence": ["early:Trà→Tàr", "Trinh→Trihn"]}
+{"query_id": "g150-123-q02", "mutation_evidence": ["early:Trung→Trugn", "Nguyễn→Nguyẽn"]}
+{"query_id": "g150-123-q03", "mutation_evidence": ["early:THPT Chu→THPTChu", "space_merge:THPT Chu→THPTChu", "Bằng→Bằgn", "house_omission:250→omitted"]}
+{"query_id": "g150-123-q04", "mutation_evidence": ["early:Chu→Cuh", "Lương→Lươgn"]}
+{"query_id": "g150-124-q02", "mutation_evidence": ["early:Tiểu→Tiêur", "Thạnh→Thahnj"]}
+{"query_id": "g150-124-q03", "mutation_evidence": ["early:Tiểu học→Tiểuhọc", "space_merge:Tiểu học→Tiểuhọc", "Thạnh→Thahj", "house_omission:2→omitted"]}
+{"query_id": "g150-124-q04", "mutation_evidence": ["early:Tiểu→Tiêu", "Chu→Cuh"]}
+{"query_id": "g150-125-q02", "mutation_evidence": ["early:Nhà thuốc→Nha thuoc", "Anh→Ahn"]}
+{"query_id": "g150-125-q03", "mutation_evidence": ["early:Nhà thuốc→Nhàthuốc", "space_merge:Nhà thuốc→Nhàthuốc", "Thái→Tháo", "house_omission:19→omitted"]}
+{"query_id": "g150-125-q04", "mutation_evidence": ["early:thuốc→thuóc", "Lan→Lna"]}
+{"query_id": "g150-126-q02", "mutation_evidence": ["early:Minh→Mihn", "Nguyễn→Nguyẽn"]}
+{"query_id": "g150-126-q03", "mutation_evidence": ["early:Minh Châu→MinhChâu", "space_merge:Minh Châu→MinhChâu", "Châu→Chua", "house_omission:8→omitted"]}
+{"query_id": "g150-126-q04", "mutation_evidence": ["early:Minh→Mình", "Nguyễn→Nguyêxn"]}
+{"query_id": "g150-127-q02", "mutation_evidence": ["early:Ngọc→Ngco", "Hưng→Hung"]}
+{"query_id": "g150-127-q03", "mutation_evidence": ["early:Ngọc Trầm→NgọcTrầm", "space_merge:Ngọc Trầm→NgọcTrầm", "Trần→Trna", "house_omission:1→omitted"]}
+{"query_id": "g150-127-q04", "mutation_evidence": ["early:Trầm→Tràm", "Hưng→Hưgn"]}
+{"query_id": "g150-128-q02", "mutation_evidence": ["early:Tường→Tườgn", "Tất→Tât"]}
+{"query_id": "g150-128-q03", "mutation_evidence": ["early:Tường Vy→TườngVy", "space_merge:Tường Vy→TườngVy", "Thành→Thahnh", "house_omission:06→omitted"]}
+{"query_id": "g150-128-q04", "mutation_evidence": ["early:Tường→Tưòng", "Tất→Tâts"]}
+{"query_id": "g150-129-q02", "mutation_evidence": ["early:Vinfast→Vinfats", "Xương→Xươgn"]}
+{"query_id": "g150-129-q03", "mutation_evidence": ["early:Vinfast→Vinfas", "space_merge:Xương Giang→XươngGiang"]}
+{"query_id": "g150-129-q04", "mutation_evidence": ["early:Vinfast→Vinfạst", "Giang→Giagn"]}
+{"query_id": "g150-130-q02", "mutation_evidence": ["early:Thanh→Thnah", "Kháng→Khang"]}
+{"query_id": "g150-130-q03", "mutation_evidence": ["early:Thanh Thảo→ThanhThảo", "space_merge:Thanh Thảo→ThanhThảo", "Thúc→Thúhc", "house_omission:170A→omitted"]}
+{"query_id": "g150-130-q04", "mutation_evidence": ["early:Thanh→Thành", "Kháng→Khagn"]}
+{"query_id": "g150-131-q02", "mutation_evidence": ["early:TH→HT", "Thiều→Thieeu"]}
+{"query_id": "g150-131-q03", "mutation_evidence": ["early:TH True→THTrue", "space_merge:TH True→THTrue", "Nguyễn→Nguyẽn", "house_omission:119→omitted"]}
+{"query_id": "g150-131-q04", "mutation_evidence": ["early:True→Tue", "Thiều→Thieeu"]}
+{"query_id": "g150-132-q02", "mutation_evidence": ["early:Tuấn→Tuasn", "Chiểu→Chieeur"]}
+{"query_id": "g150-132-q03", "mutation_evidence": ["early:Tuấn Thảo→TuấnThảo", "space_merge:Tuấn Thảo→TuấnThảo", "Đình→Dình", "house_omission:45D→omitted"]}
+{"query_id": "g150-132-q04", "mutation_evidence": ["early:Tuấn→Tuâsn", "Nguyễn→Nguyẽn"]}
+{"query_id": "g150-133-q02", "mutation_evidence": ["early:Bến→Bén", "Quốc→Quôcj"]}
+{"query_id": "g150-133-q03", "mutation_evidence": ["early:Bến xe→Bếnxe", "space_merge:Bến xe→Bếnxe", "Quốc→Quoc", "house_omission:4→omitted"]}
+{"query_id": "g150-133-q04", "mutation_evidence": ["early:Bến→Bên", "Biên→Bieen"]}
+{"query_id": "g150-134-q02", "mutation_evidence": ["early:Bến→Bén", "Bưởi→Bưởij"]}
+{"query_id": "g150-134-q03", "mutation_evidence": ["early:Bến xe→Bếnxe", "space_merge:Bến xe→Bếnxe", "Gia→Gai", "house_omission:5→omitted"]}
+{"query_id": "g150-134-q04", "mutation_evidence": ["early:Bến→Bens", "Bưởi→Bươi"]}
+{"query_id": "g150-135-q02", "mutation_evidence": ["early:Đình→Đihn", "Thuyết→Thuyêt"]}
+{"query_id": "g150-135-q03", "mutation_evidence": ["early:Đình Hà→ĐìnhHà", "space_merge:Đình Hà→ĐìnhHà", "Thuyết→Thuyêt"]}
+{"query_id": "g150-135-q04", "mutation_evidence": ["early:Đình→Đìhn", "Thất→Thâst"]}
+{"query_id": "g150-136-q02", "mutation_evidence": ["early:Trung→Trugn", "Hàm→Ham"]}
+{"query_id": "g150-136-q03", "mutation_evidence": ["early:Trung tâm→Trungtâm", "space_merge:Trung tâm→Trungtâm", "Tiến→Tiên", "house_omission:122 (199)→omitted"]}
+{"query_id": "g150-136-q04", "mutation_evidence": ["early:Trung→Trug", "Kè→Ke"]}
+{"query_id": "g150-137-q02", "mutation_evidence": ["early:Đình→Đihn", "Chấp→Chap"]}
+{"query_id": "g150-137-q03", "mutation_evidence": ["early:Đình làng→Đìnhlàng", "space_merge:Đình làng→Đìnhlàng", "Hữu→Huu"]}
+{"query_id": "g150-137-q04", "mutation_evidence": ["early:làng→làgn", "Chấp→Chap"]}
+{"query_id": "g150-138-q02", "mutation_evidence": ["early:Dinh→Dihn", "Vương→Vuơng"]}
+{"query_id": "g150-138-q03", "mutation_evidence": ["early:Dinh III→DinhIII", "space_merge:Dinh III→DinhIII", "Triệu→Trieu", "house_omission:1→omitted"]}
+{"query_id": "g150-138-q04", "mutation_evidence": ["early:Dinh→Dhin", "Việt→Viet"]}
+{"query_id": "g150-139-q02", "mutation_evidence": ["early:Đình→Đihn", "Cơ→Co"]}
+{"query_id": "g150-139-q03", "mutation_evidence": ["early:Đình Y→ĐìnhY", "space_merge:Đình Y→ĐìnhY", "Âu→Au", "house_omission:59→omitted"]}
+{"query_id": "g150-139-q04", "mutation_evidence": ["early:Đình→Đìhn", "Cơ→Cơj"]}
+{"query_id": "g150-140-q02", "mutation_evidence": ["early:Hanh→Hnah", "Châu→Chau"]}
+{"query_id": "g150-140-q03", "mutation_evidence": ["early:Hanh cafe→Hanhcafe", "space_merge:Hanh cafe→Hanhcafe", "Trang→Trnag", "house_omission:108→omitted"]}
+{"query_id": "g150-140-q04", "mutation_evidence": ["early:cafe→cfae", "Châu→Chau"]}
+{"query_id": "g150-141-q02", "mutation_evidence": ["early:Chùa→Chù a", "space_split_inside_token:Chùa→Chù a", "Bảo→Bao"]}
+{"query_id": "g150-141-q03", "mutation_evidence": ["early:Chùa Báo→ChùaBáo", "space_merge:Chùa Báo→ChùaBáo", "Quốc→Quoc"]}
+{"query_id": "g150-141-q04", "mutation_evidence": ["early:Chùa→Chua", "Báo→Baos"]}
+{"query_id": "g150-142-q02", "mutation_evidence": ["early:Phuong→Phuogn", "Hưng→Hung"]}
+{"query_id": "g150-142-q03", "mutation_evidence": ["early:Phuong Nam→PhuongNam", "space_merge:Phuong Nam→PhuongNam", "Đạo→Dao", "house_omission:14→omitted"]}
+{"query_id": "g150-142-q04", "mutation_evidence": ["early:Phuong→Phuog", "Express→Exrpess"]}
+{"query_id": "g150-143-q02", "mutation_evidence": ["early:Nhà→Nha", "vàng→vagn"]}
+{"query_id": "g150-143-q03", "mutation_evidence": ["early:Nhà dát→Nhàdát", "space_merge:Nhà dát→Nhàdát", "vàng→vang", "house_omission:18→omitted"]}
+{"query_id": "g150-143-q04", "mutation_evidence": ["early:Nhà→Nhaf", "dát→dast"]}
+{"query_id": "g150-144-q02", "mutation_evidence": ["early:Bến→Bens", "Duẩn→Duan"]}
+{"query_id": "g150-144-q03", "mutation_evidence": ["early:Bến xe→Bếnxe", "space_merge:Bến xe→Bếnxe", "Duẩn→Duan", "house_omission:1→omitted"]}
+{"query_id": "g150-144-q04", "mutation_evidence": ["early:Bến→Bên", "Ranh→Rhan"]}
+{"query_id": "g150-145-q02", "mutation_evidence": ["early:Chùa→Chua", "Liên→Lieen"]}
+{"query_id": "g150-145-q03", "mutation_evidence": ["early:Chùa Liên→ChùaLiên", "space_merge:Chùa Liên→ChùaLiên", "Chơn→Chon", "house_omission:289→omitted"]}
+{"query_id": "g150-145-q04", "mutation_evidence": ["early:Chùa→Chù", "Như→Nhu"]}
+{"query_id": "g150-146-q02", "mutation_evidence": ["early:Bến→Bens", "Thành→Thanh"]}
+{"query_id": "g150-146-q03", "mutation_evidence": ["early:Bến xe→Bếnxe", "space_merge:Bến xe→Bếnxe", "Thành→Thanh", "house_omission:01→omitted"]}
+{"query_id": "g150-146-q04", "mutation_evidence": ["early:Bến→Bên", "Hiến→Hieens"]}
+{"query_id": "g150-147-q02", "mutation_evidence": ["early:Chè→Che", "Hương→Hươgn"]}
+{"query_id": "g150-147-q03", "mutation_evidence": ["early:Chè cô→Chècô", "space_merge:Chè cô→Chècô", "Đà→Da", "house_omission:142→omitted"]}
+{"query_id": "g150-147-q04", "mutation_evidence": ["early:Chè→Ché", "Hương→Hươn"]}
+{"query_id": "g150-148-q02", "mutation_evidence": ["early:Chùa→Chua", "Phổ→Phoor"]}
+{"query_id": "g150-148-q03", "mutation_evidence": ["early:Chùa Phổ→ChùaPhổ", "space_merge:Chùa Phổ→ChùaPhổ", "Châu→Chau", "house_omission:340→omitted"]}
+{"query_id": "g150-148-q04", "mutation_evidence": ["early:Chùa→Chù", "Trinh→Trihn"]}
+{"query_id": "g150-149-q02", "mutation_evidence": ["early:Bến→Bens", "quốc lộ→quoc lo"]}
+{"query_id": "g150-149-q03", "mutation_evidence": ["early:Bến xe→Bếnxe", "space_merge:Bến xe→Bếnxe", "Long→Logn", "house_omission:113→omitted"]}
+{"query_id": "g150-149-q04", "mutation_evidence": ["early:Bến→Bên", "Long→Logn"]}
+{"query_id": "g150-150-q02", "mutation_evidence": ["early:Bến→Bens", "Hành→Hanh"]}
+{"query_id": "g150-150-q03", "mutation_evidence": ["early:Bến xe→Bếnxe", "space_merge:Bến xe→Bếnxe", "Hành→Hanh", "house_omission:207→omitted"]}
+{"query_id": "g150-150-q04", "mutation_evidence": ["early:Bến→Bên", "Bình→Bihn"]}
+{"query_id": "g150-151-q02", "mutation_evidence": ["early:Rainbow→Rianbow", "Grand→Grnad"]}
+{"query_id": "g150-151-q03", "mutation_evidence": ["early:Nguyễn→Nguyêxn", "Xiển→Xien"]}
+{"query_id": "g150-151-q04", "mutation_evidence": ["early:Rainbow→Ranibow", "Xiển→Xiên"]}
+{"query_id": "g150-152-q02", "mutation_evidence": ["early:Rainbow→Raibnow", "Park→Pak"]}
+{"query_id": "g150-152-q03", "mutation_evidence": ["early:Nguyễn→Nguyen", "Xiển→Xieen"]}
+{"query_id": "g150-152-q04", "mutation_evidence": ["early:Rainbow→Rianbow", "Nguyễn→Nguyêxn"]}
+{"query_id": "g150-153-q02", "mutation_evidence": ["early:Rainbow→Ranibow", "Grand→Gran"]}
+{"query_id": "g150-153-q03", "mutation_evidence": ["early:Vinhomes→Vinhome", "Grand→Grnad"]}
+{"query_id": "g150-153-q04", "mutation_evidence": ["early:Rainbow→Rianbow", "space_split_inside_token:Xiển→Xiể n"]}
+{"query_id": "g150-154-q02", "mutation_evidence": ["early:Trung→Trun", "Chính→Chinh"]}
+{"query_id": "g150-154-q03", "mutation_evidence": ["early:Hoàng→Hoagn", "Đạo→Dao"]}
+{"query_id": "g150-154-q04", "mutation_evidence": ["early:Trung→Trugn", "Chính→Chinh"]}
+{"query_id": "g150-155-q02", "mutation_evidence": ["early:Trung→Trugn", "Chính→Chinh"]}
+{"query_id": "g150-155-q03", "mutation_evidence": ["early:Lê→Le", "Lương→Luong"]}
+{"query_id": "g150-155-q04", "mutation_evidence": ["early:Trung→Trug", "Chính→Chinh"]}
+{"query_id": "g150-156-q02", "mutation_evidence": ["early:Trung→Trug", "Chính→Chinh"]}
+{"query_id": "g150-156-q03", "mutation_evidence": ["early:Lê→Le", "Văn→Van"]}
+{"query_id": "g150-156-q04", "mutation_evidence": ["early:Trung→Truhg", "Chính→Chinh"]}
+{"query_id": "g150-157-q02", "mutation_evidence": ["early:Hoàng→Hoàgn", "Thúy→Thuy"]}
+{"query_id": "g150-157-q03", "mutation_evidence": ["early:Trung Hòa→TrungHòa", "space_merge:Trung Hòa→TrungHòa", "Nhân→Nhan"]}
+{"query_id": "g150-157-q04", "mutation_evidence": ["early:Hoàng→Hoang", "Thúy→Thuy", "Trung→Trugn"]}
+{"query_id": "g150-158-q02", "mutation_evidence": ["early:Masteri→Mastrei", "Phú→Phu"]}
+{"query_id": "g150-158-q03", "mutation_evidence": ["early:Xa Lộ→Xalộ", "space_merge:Xa Lộ→Xalộ", "Nội→Noi"]}
+{"query_id": "g150-158-q04", "mutation_evidence": ["early:Masteri→Mastrei", "Lộ→Lô"]}
+{"query_id": "g150-159-q02", "mutation_evidence": ["early:Vinhomes→Vinhmoes", "Grand→Gran"]}
+{"query_id": "g150-159-q03", "mutation_evidence": ["early:Rainbow→Ranibow", "Xiển→Xien", "Grand→omitted"]}
+{"query_id": "g150-159-q04", "mutation_evidence": ["early:Vinhomes Grand→VinhomesGrand", "space_merge:Vinhomes Grand→VinhomesGrand", "Nguyễn→Nguyẽn"]}
+{"query_id": "g150-160-q02", "mutation_evidence": ["early:Đại→Đai", "Việt→Vietj"]}
+{"query_id": "g150-160-q03", "mutation_evidence": ["early:Đại→Địa", "Việt→Vietj"]}
+{"query_id": "g150-160-q04", "mutation_evidence": ["early:Đại→Địa", "Tây→Tay"]}
+{"query_id": "g150-161-q02", "mutation_evidence": ["early:Tòa→Toa", "Khuê→Kheu"]}
+{"query_id": "g150-161-q03", "mutation_evidence": ["early:Thụy→Thuy", "Hồ→Hô"]}
+{"query_id": "g150-161-q04", "mutation_evidence": ["early:Tòa→Tào", "Khuê→Kheu"]}
+{"query_id": "g150-162-q02", "mutation_evidence": ["early:Landmark72→Lnadmark72", "Phạm→Pham"]}
+{"query_id": "g150-162-q03", "mutation_evidence": ["early:Phạm→Pham", "Hùng→Hung"]}
+{"query_id": "g150-162-q04", "mutation_evidence": ["early:Landmark→Ladnmark", "Hùng→Hugn"]}
+{"query_id": "g150-163-q02", "mutation_evidence": ["early:Sapphire→Saphpire", "Bà→Ba"]}
+{"query_id": "g150-163-q03", "mutation_evidence": ["early:Sapphire→Sapphie", "Triệu→Trieu"]}
+{"query_id": "g150-163-q04", "mutation_evidence": ["early:Sapphire→Sappihre", "Triệu→Trieu"]}
+{"query_id": "g150-164-q02", "mutation_evidence": ["early:Vincom→Vnicom", "Mã→Ma"]}
+{"query_id": "g150-164-q03", "mutation_evidence": ["early:Vincom Metropolis→VincomMetropolis", "space_merge:Vincom Metropolis→VincomMetropolis", "Liễu→Lĩeu", "house_omission:447→omitted"]}
+{"query_id": "g150-164-q04", "mutation_evidence": ["early:Vincom→Vincon", "Kim→Kmi"]}
+{"query_id": "g150-165-q02", "mutation_evidence": ["early:Vincom→Vnicom", "Royal→Royla"]}
+{"query_id": "g150-165-q03", "mutation_evidence": ["early:Vincom Royal→VincomRoyal", "space_merge:Vincom Royal→VincomRoyal", "Trãi→Trai", "house_omission:72A→omitted"]}
+{"query_id": "g150-165-q04", "mutation_evidence": ["early:Vincom→Vincon", "City→Ctiy"]}
+{"query_id": "g150-166-q02", "mutation_evidence": ["early:Topaz→Toapz", "Pearl→Peal"]}
+{"query_id": "g150-166-q03", "mutation_evidence": ["early:Topaz→Toapz", "Nguyễn→Nguyẽn"]}
+{"query_id": "g150-166-q04", "mutation_evidence": ["early:Tower→Towe", "Cảnh→Canh"]}
+{"query_id": "g150-167-q02", "mutation_evidence": ["early:Vincom→Vnicom", "Phạm→Pham"]}
+{"query_id": "g150-167-q03", "mutation_evidence": ["early:Vincom Bắc→VincomBắc", "space_merge:Vincom Bắc→VincomBắc", "Đồng→Dong", "house_omission:234→omitted"]}
+{"query_id": "g150-167-q04", "mutation_evidence": ["early:Vincom→Vincon", "Liêm→Liem"]}
+{"query_id": "g150-168-q02", "mutation_evidence": ["early:Carillon→Cariloln", "Nguyệt→Nguyêt"]}
+{"query_id": "g150-168-q03", "mutation_evidence": ["early:Carillon 7→Carillon7", "space_merge:Carillon 7→Carillon7", "Lương→Luong"]}
+{"query_id": "g150-168-q04", "mutation_evidence": ["early:Carillon→Carilon", "Minh→Mihn"]}
+{"query_id": "g150-169-q02", "mutation_evidence": ["early:Sacomreal→Sacomrael", "Bích→Bich"]}
+{"query_id": "g150-169-q03", "mutation_evidence": ["early:Sacomreal→Sacomrel", "Lũy→Luy"]}
+{"query_id": "g150-169-q04", "mutation_evidence": ["early:Sacomreal→Sacomrel", "Bán→Bna"]}
+{"query_id": "g150-170-q02", "mutation_evidence": ["early:Vincom→Vnicom", "Thánh→Thanh"]}
+{"query_id": "g150-170-q03", "mutation_evidence": ["early:Vincom Đồng→VincomĐồng", "space_merge:Vincom Đồng→VincomĐồng", "Tôn→Ton", "house_omission:72→omitted"]}
+{"query_id": "g150-170-q04", "mutation_evidence": ["early:Vincom→Vincon", "Tôn→Tno"]}
+{"query_id": "g150-171-q02", "mutation_evidence": ["early:Carillon→Cariloln", "Lũy→Luy"]}
+{"query_id": "g150-171-q03", "mutation_evidence": ["early:Carillon 5→Carillon5", "space_merge:Carillon 5→Carillon5", "Bán→Bna"]}
+{"query_id": "g150-171-q04", "mutation_evidence": ["early:Carillon→Carilon", "Bán→Bna"]}
+{"query_id": "g150-172-q02", "mutation_evidence": ["early:The→Teh", "Giót→Giot"]}
+{"query_id": "g150-172-q03", "mutation_evidence": ["early:The Six8→TheSix8", "space_merge:The Six8→TheSix8", "Đình→Dinh"]}
+{"query_id": "g150-172-q04", "mutation_evidence": ["early:The→Th", "Phan→Phna"]}
+{"query_id": "g150-173-q02", "mutation_evidence": ["early:Vincom→Vnicom", "Giáp→Giap"]}
+{"query_id": "g150-173-q03", "mutation_evidence": ["early:Vincom Thảo→VincomThảo", "space_merge:Vincom Thảo→VincomThảo", "Nguyên→Nguyen", "house_omission:159-161→omitted"]}
+{"query_id": "g150-173-q04", "mutation_evidence": ["early:Vincom→Vincon", "Điền→Điên"]}
+{"query_id": "g150-174-q02", "mutation_evidence": ["early:Vincom→Vnicom", "Ngân→Ngan"]}
+{"query_id": "g150-174-q03", "mutation_evidence": ["early:Vincom Thủ→VincomThủ", "space_merge:Vincom Thủ→VincomThủ", "Văn→Van", "house_omission:216→omitted"]}
+{"query_id": "g150-174-q04", "mutation_evidence": ["early:Vincom→Vincon", "Đức→Đưc"]}
+{"query_id": "g150-175-q02", "mutation_evidence": ["early:Vinhomes→Vinhmoes", "Metropolis→Metropoli"]}
+{"query_id": "g150-175-q03", "mutation_evidence": ["early:Vinhomes→Vinhome", "Metropolis→Metropoils", "house_omission:447→omitted"]}
+{"query_id": "g150-175-q04", "mutation_evidence": ["early:Metropolis→Metroplis", "Mã→Ma"]}
+{"query_id": "g150-176-q02", "mutation_evidence": ["early:Saigon→Saigno", "Pearl→Peal"]}
+{"query_id": "g150-176-q03", "mutation_evidence": ["early:Sapphire2→Saphire2", "Nguyễn→Nguyẽn", "house_omission:92→omitted"]}
+{"query_id": "g150-176-q04", "mutation_evidence": ["early:Saigon→Saiogn", "Cảnh→Canh"]}
+{"query_id": "g150-177-q02", "mutation_evidence": ["early:Masteri→Mastrei", "Phú→Phu"]}
+{"query_id": "g150-177-q03", "mutation_evidence": ["early:Masteri An→MasteriAn", "space_merge:Masteri An→MasteriAn", "Phú→Phu"]}
+{"query_id": "g150-177-q04", "mutation_evidence": ["early:Masteri→Masteir", "Nội→Nôi"]}
+{"query_id": "g150-178-q02", "mutation_evidence": ["early:Vincom→Vnicom", "Hùng→Hung"]}
+{"query_id": "g150-178-q03", "mutation_evidence": ["early:Vincom Huế→VincomHuế", "space_merge:Vincom Huế→VincomHuế", "Vương→Vuong", "house_omission:50A→omitted"]}
+{"query_id": "g150-178-q04", "mutation_evidence": ["early:Vincom→Vincon", "Vương→Vươgn"]}
+{"query_id": "g150-179-q02", "mutation_evidence": ["early:Vincom→Vnicom", "Cần Thơ→Can Tho"]}
+{"query_id": "g150-179-q03", "mutation_evidence": ["early:Vincom Hùng→VincomHùng", "space_merge:Vincom Hùng→VincomHùng", "Thơ→Tho", "house_omission:2→omitted"]}
+{"query_id": "g150-179-q04", "mutation_evidence": ["early:Vincom→Vincon", "Vương→Vươgn"]}
+{"query_id": "g150-180-q02", "mutation_evidence": ["early:Viettel→Vietel", "Lắk→Lak"]}
+{"query_id": "g150-180-q03", "mutation_evidence": ["early:Viettel Đắk→ViettelĐắk", "space_merge:Viettel Đắk→ViettelĐắk", "Trọng→Trong", "house_omission:48→omitted"]}
+{"query_id": "g150-180-q04", "mutation_evidence": ["early:Viettel→Viettle", "Đắk→Đăk"]}
+{"query_id": "g200-181-q02", "mutation_evidence": ["early:Yên→Yne", "Thái→Thai"]}
+{"query_id": "g200-181-q03", "mutation_evidence": ["early:Yên Thái→YênThái", "space_merge:Yên Thái→YênThái", "Hoàn→Hoan"]}
+{"query_id": "g200-181-q04", "mutation_evidence": ["early:Thái→Thia", "Kiếm→Kiem"]}
+{"query_id": "g200-182-q02", "mutation_evidence": ["early:Lý→Ly", "Thường→Thưogn"]}
+{"query_id": "g200-182-q03", "mutation_evidence": ["early:Lý Thường→LýThường", "space_merge:Lý Thường→LýThường", "Hới→Hoi"]}
+{"query_id": "g200-182-q04", "mutation_evidence": ["early:Thường→Thươgn", "Đồng→Đnog"]}
+{"query_id": "g200-183-q02", "mutation_evidence": ["early:hẻm→hem", "Tân→Tna"]}
+{"query_id": "g200-183-q03", "mutation_evidence": ["early:hẻm 484→hẻm484", "space_merge:hẻm 484→hẻm484", "Quý→Quy"]}
+{"query_id": "g200-183-q04", "mutation_evidence": ["early:hẻm→hẽm", "Tân→Tna"]}
+{"query_id": "g200-184-q02", "mutation_evidence": ["early:Leontina→Leontian", "Thuận→Thuan"]}
+{"query_id": "g200-184-q03", "mutation_evidence": ["early:Leontina Apartment→LeontinaApartment", "space_merge:Leontina Apartment→LeontinaApartment", "Đức→Duc"]}
+{"query_id": "g200-184-q04", "mutation_evidence": ["early:Leontina→Leontna", "Đức→Đưc"]}
+{"query_id": "g200-185-q02", "mutation_evidence": ["early:Chung→Chugn", "Nhàn→Nhan"]}
+{"query_id": "g200-185-q03", "mutation_evidence": ["early:Chung→Cung", "Nhàn→Nhan"]}
+{"query_id": "g200-185-q04", "mutation_evidence": ["early:Chung→Cung", "Thanh→Thnah"]}
+{"query_id": "g200-186-q02", "mutation_evidence": ["early:Chung→Chugn", "Sen→Sne"]}
+{"query_id": "g200-186-q03", "mutation_evidence": ["early:Chung→Chun", "Hiệu→Hieu"]}
+{"query_id": "g200-186-q04", "mutation_evidence": ["early:Chung→Chun", "Hiệu→Hieeu"]}
+{"query_id": "g200-187-q02", "mutation_evidence": ["early:Topaz→Toapz", "Residence→Residnce"]}
+{"query_id": "g200-187-q03", "mutation_evidence": ["early:Topaz→Toapz", "Thắng→Thang"]}
+{"query_id": "g200-187-q04", "mutation_evidence": ["early:Residence→Resdience", "Tân→Tan"]}
+{"query_id": "g200-188-q02", "mutation_evidence": ["early:Chung→Chugn", "cư→cu"]}
+{"query_id": "g200-188-q03", "mutation_evidence": ["early:Chung→Cung", "Tháng→Thang", "house_omission:601/48→omitted"]}
+{"query_id": "g200-188-q04", "mutation_evidence": ["early:Chung→Cung", "Mạng→Mạgn"]}
+{"query_id": "g200-189-q02", "mutation_evidence": ["early:Bò→Bof", "Giấy→Giaay"]}
+{"query_id": "g200-189-q03", "mutation_evidence": ["early:Bò nầm→Bònầm", "space_merge:Bò nầm→Bònầm", "Giấy→Giay", "house_omission:34→omitted"]}
+{"query_id": "g200-189-q04", "mutation_evidence": ["early:nầm→nam", "Hàng→Hagn"]}
+{"query_id": "g200-190-q02", "mutation_evidence": ["early:Kafa→Kfaa", "Toàn→Toan"]}
+{"query_id": "g200-190-q03", "mutation_evidence": ["early:Kafa→Kaf a", "space_split_inside_token:Kafa→Kaf a", "Khánh→Khanh", "house_omission:118→omitted"]}
+{"query_id": "g200-190-q04", "mutation_evidence": ["early:Kafa→Kaf", "Khánh→Khán"]}
+{"query_id": "g200-191-q02", "mutation_evidence": ["early:Chùa→Chua", "Vạn→Vna"]}
+{"query_id": "g200-191-q03", "mutation_evidence": ["early:Chùa Vạn→ChùaVạn", "space_merge:Chùa Vạn→ChùaVạn", "Nghĩa→Nghia", "house_omission:14→omitted"]}
+{"query_id": "g200-191-q04", "mutation_evidence": ["early:Chùa→Chù", "Thục→Thuc"]}
+{"query_id": "g200-192-q02", "mutation_evidence": ["early:Intimex→Intiemx", "Vinh→Vihn"]}
+{"query_id": "g200-192-q03", "mutation_evidence": ["early:Intimex Trường→IntimexTrường", "space_merge:Intimex Trường→IntimexTrường", "Vinh→Vihn"]}
+{"query_id": "g200-192-q04", "mutation_evidence": ["early:Intimex→Intimx", "Trường→Trương"]}
+{"query_id": "g200-193-q02", "mutation_evidence": ["early:CGV→CVG", "Hưng→Hung"]}
+{"query_id": "g200-193-q03", "mutation_evidence": ["early:CGV 119→CGV119", "space_merge:CGV 119→CGV119", "Trần→Tran"]}
+{"query_id": "g200-193-q04", "mutation_evidence": ["early:CGV→CGB", "Trần→Trna", "house_omission:119→omitted"]}
+{"query_id": "g200-194-q02", "mutation_evidence": ["early:WinMart→WimMart", "Phạm→Pham"]}
+{"query_id": "g200-194-q03", "mutation_evidence": ["early:WinMart→Win Mart", "space_split_inside_token:WinMart→Win Mart", "Ngọc→Ngoc", "house_omission:2→omitted"]}
+{"query_id": "g200-194-q04", "mutation_evidence": ["early:WinMart→WniMart", "Thạch→Thahc"]}
+{"query_id": "g200-195-q02", "mutation_evidence": ["early:Bến→Bens", "Viềng→Vieng"]}
+{"query_id": "g200-195-q03", "mutation_evidence": ["early:Bến phà→Bếnphà", "space_merge:Bến phà→Bếnphà", "Viềng→Viêng"]}
+{"query_id": "g200-195-q04", "mutation_evidence": ["early:Bến→Bên", "Viềng→Viêgn"]}
+{"query_id": "g200-196-q02", "mutation_evidence": ["early:Hoàn→Hòan", "Nguyễn→Nguyêxn"]}
+{"query_id": "g200-196-q03", "mutation_evidence": ["early:Hoàn Mỹ→HoànMỹ", "space_merge:Hoàn Mỹ→HoànMỹ", "Linh→Lihn", "house_omission:291→omitted"]}
+{"query_id": "g200-196-q04", "mutation_evidence": ["early:Mỹ→Mỳ", "Linh→Lihn"]}
+{"query_id": "g200-197-q02", "mutation_evidence": ["early:Lotteria→Lotterai", "Thông→Thong"]}
+{"query_id": "g200-197-q03", "mutation_evidence": ["early:Lotteria→Lotte ria", "space_split_inside_token:Lotteria→Lotte ria", "Nguyễn→Nguyẽn", "house_omission:01→omitted"]}
+{"query_id": "g200-197-q04", "mutation_evidence": ["early:Lotteria→Loteria", "Thông→Thogn"]}
+{"query_id": "g200-198-q02", "mutation_evidence": ["early:Vietcombank→Vietcombnak", "Chùa→Chua"]}
+{"query_id": "g200-198-q03", "mutation_evidence": ["early:Vietcombank→Vietcom bank", "space_split_inside_token:Vietcombank→Vietcom bank", "Bộc→Bôc", "house_omission:7→omitted"]}
+{"query_id": "g200-198-q04", "mutation_evidence": ["early:Vietcombank→Vietcomban", "Bộc→Bôc"]}
+{"query_id": "g200-199-q02", "mutation_evidence": ["early:Đại→Đai", "Cần→Cna"]}
+{"query_id": "g200-199-q03", "mutation_evidence": ["early:Đại học→Đạihọc", "space_merge:Đại học→Đạihọc", "Thơ→Tho"]}
+{"query_id": "g200-199-q04", "mutation_evidence": ["early:học→hoc", "Tháng→Thnag"]}
+{"query_id": "g200-200-q02", "mutation_evidence": ["early:Đại→Đai", "Mở→Mơr"]}
+{"query_id": "g200-200-q03", "mutation_evidence": ["early:Đại học→Đạihọc", "space_merge:Đại học→Đạihọc", "Tần→Tan", "house_omission:97→omitted"]}
+{"query_id": "g200-200-q04", "mutation_evidence": ["early:học→hoc", "Văn→Vna"]}

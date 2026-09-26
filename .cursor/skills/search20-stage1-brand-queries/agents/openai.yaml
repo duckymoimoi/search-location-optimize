@@ -1,0 +1,4 @@
+interface:
+  display_name: "SEARCH 2.0 Brand Training Queries"
+  short_description: "Build brand groups and brand-only train queries"
+  default_prompt: "Use $search20-stage1-brand-queries to build reviewed brand groups and brand-level training queries."

@@ -44,7 +44,6 @@ export function ResultList({
             onMouseLeave={() => onHover(null)}
             onClick={() => onSelect(r.poi_id)}
           >
-            <span className="result-rank">{r.rank}</span>
             <span className="result-body">
               <span className="result-name-row">
                 <span className="result-name">{r.name}</span>

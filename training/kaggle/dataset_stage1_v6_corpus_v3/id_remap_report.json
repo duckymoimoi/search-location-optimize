@@ -1,0 +1,217 @@
+{
+  "excluded_cases": {
+    "train20k-02003": "intended osm:node/5608881031 was merge_duplicate into osm:node/5608880680 (PNJ Phường Bình Thới); query identity is PNJ Hòa Bình. Do not train the wrong branch."
+  },
+  "events": [
+    {
+      "variant_id": "train20k-00772-v01",
+      "field": "acceptable_poi_ids",
+      "source": "osm:node/3168924675",
+      "canonical": "osm:way/207445585",
+      "action": "merge_duplicate"
+    },
+    {
+      "variant_id": "train20k-00772-v01",
+      "field": "acceptable_poi_ids",
+      "source": "osm:way/207445586",
+      "canonical": "osm:way/207445585",
+      "action": "merge_duplicate"
+    },
+    {
+      "variant_id": "train20k-00772-v02",
+      "field": "acceptable_poi_ids",
+      "source": "osm:node/3168924675",
+      "canonical": "osm:way/207445585",
+      "action": "merge_duplicate"
+    },
+    {
+      "variant_id": "train20k-00772-v02",
+      "field": "acceptable_poi_ids",
+      "source": "osm:way/207445586",
+      "canonical": "osm:way/207445585",
+      "action": "merge_duplicate"
+    },
+    {
+      "variant_id": "train20k-00772-v03",
+      "field": "acceptable_poi_ids",
+      "source": "osm:node/3168924675",
+      "canonical": "osm:way/207445585",
+      "action": "merge_duplicate"
+    },
+    {
+      "variant_id": "train20k-00772-v03",
+      "field": "acceptable_poi_ids",
+      "source": "osm:way/207445586",
+      "canonical": "osm:way/207445585",
+      "action": "merge_duplicate"
+    },
+    {
+      "variant_id": "train20k-00772-v04",
+      "field": "acceptable_poi_ids",
+      "source": "osm:node/3168924675",
+      "canonical": "osm:way/207445585",
+      "action": "merge_duplicate"
+    },
+    {
+      "variant_id": "train20k-00772-v04",
+      "field": "acceptable_poi_ids",
+      "source": "osm:way/207445586",
+      "canonical": "osm:way/207445585",
+      "action": "merge_duplicate"
+    },
+    {
+      "variant_id": "train20k-00772-v05",
+      "field": "acceptable_poi_ids",
+      "source": "osm:node/3168924675",
+      "canonical": "osm:way/207445585",
+      "action": "merge_duplicate"
+    },
+    {
+      "variant_id": "train20k-00772-v05",
+      "field": "acceptable_poi_ids",
+      "source": "osm:way/207445586",
+      "canonical": "osm:way/207445585",
+      "action": "merge_duplicate"
+    },
+    {
+      "variant_id": "train20k-00772-v06",
+      "field": "acceptable_poi_ids",
+      "source": "osm:node/3168924675",
+      "canonical": "osm:way/207445585",
+      "action": "merge_duplicate"
+    },
+    {
+      "variant_id": "train20k-00772-v06",
+      "field": "acceptable_poi_ids",
+      "source": "osm:way/207445586",
+      "canonical": "osm:way/207445585",
+      "action": "merge_duplicate"
+    },
+    {
+      "variant_id": "train20k-01095-v01",
+      "field": "acceptable_poi_ids",
+      "source": "osm:node/11847381505",
+      "canonical": "osm:node/11847381476",
+      "action": "merge_duplicate"
+    },
+    {
+      "variant_id": "train20k-01095-v02",
+      "field": "acceptable_poi_ids",
+      "source": "osm:node/11847381505",
+      "canonical": "osm:node/11847381476",
+      "action": "merge_duplicate"
+    },
+    {
+      "variant_id": "train20k-01095-v03",
+      "field": "acceptable_poi_ids",
+      "source": "osm:node/11847381505",
+      "canonical": "osm:node/11847381476",
+      "action": "merge_duplicate"
+    },
+    {
+      "variant_id": "train20k-01095-v04",
+      "field": "acceptable_poi_ids",
+      "source": "osm:node/11847381505",
+      "canonical": "osm:node/11847381476",
+      "action": "merge_duplicate"
+    },
+    {
+      "variant_id": "train20k-01095-v05",
+      "field": "acceptable_poi_ids",
+      "source": "osm:node/11847381505",
+      "canonical": "osm:node/11847381476",
+      "action": "merge_duplicate"
+    },
+    {
+      "variant_id": "train20k-01095-v06",
+      "field": "acceptable_poi_ids",
+      "source": "osm:node/11847381505",
+      "canonical": "osm:node/11847381476",
+      "action": "merge_duplicate"
+    },
+    {
+      "variant_id": "train20k-01358-v01",
+      "field": "acceptable_poi_ids",
+      "source": "osm:node/12613132601",
+      "canonical": "osm:node/12613140501",
+      "action": "merge_duplicate"
+    },
+    {
+      "variant_id": "train20k-01358-v02",
+      "field": "acceptable_poi_ids",
+      "source": "osm:node/12613132601",
+      "canonical": "osm:node/12613140501",
+      "action": "merge_duplicate"
+    },
+    {
+      "variant_id": "train20k-01358-v03",
+      "field": "acceptable_poi_ids",
+      "source": "osm:node/12613132601",
+      "canonical": "osm:node/12613140501",
+      "action": "merge_duplicate"
+    },
+    {
+      "variant_id": "train20k-01358-v04",
+      "field": "acceptable_poi_ids",
+      "source": "osm:node/12613132601",
+      "canonical": "osm:node/12613140501",
+      "action": "merge_duplicate"
+    },
+    {
+      "variant_id": "train20k-01358-v05",
+      "field": "acceptable_poi_ids",
+      "source": "osm:node/12613132601",
+      "canonical": "osm:node/12613140501",
+      "action": "merge_duplicate"
+    },
+    {
+      "variant_id": "train20k-01358-v06",
+      "field": "acceptable_poi_ids",
+      "source": "osm:node/12613132601",
+      "canonical": "osm:node/12613140501",
+      "action": "merge_duplicate"
+    },
+    {
+      "variant_id": "train20k-02106-v01",
+      "field": "acceptable_poi_ids",
+      "source": "osm:way/1419194434",
+      "canonical": "osm:node/13041512665",
+      "action": "merge_duplicate"
+    },
+    {
+      "variant_id": "train20k-02106-v02",
+      "field": "acceptable_poi_ids",
+      "source": "osm:way/1419194434",
+      "canonical": "osm:node/13041512665",
+      "action": "merge_duplicate"
+    },
+    {
+      "variant_id": "train20k-02106-v03",
+      "field": "acceptable_poi_ids",
+      "source": "osm:way/1419194434",
+      "canonical": "osm:node/13041512665",
+      "action": "merge_duplicate"
+    },
+    {
+      "variant_id": "train20k-02106-v04",
+      "field": "acceptable_poi_ids",
+      "source": "osm:way/1419194434",
+      "canonical": "osm:node/13041512665",
+      "action": "merge_duplicate"
+    },
+    {
+      "variant_id": "train20k-02106-v05",
+      "field": "acceptable_poi_ids",
+      "source": "osm:way/1419194434",
+      "canonical": "osm:node/13041512665",
+      "action": "merge_duplicate"
+    },
+    {
+      "variant_id": "train20k-02106-v06",
+      "field": "acceptable_poi_ids",
+      "source": "osm:way/1419194434",
+      "canonical": "osm:node/13041512665",
+      "action": "merge_duplicate"
+    }
+  ]
+}

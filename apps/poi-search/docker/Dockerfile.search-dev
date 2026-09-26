@@ -1,0 +1,25 @@
+# Search-dev = stage1-api (torch/transformers already local) + bench extras.
+# Avoids re-downloading ~2GB torch. Requires: docker images vn-poi/stage1-api:0.1.0-local
+#
+#   docker compose -f docker-compose.yml build api   # once, if missing
+#   docker compose -f docker-compose.search-dev.yml build
+
+# syntax=docker/dockerfile:1.6
+ARG BASE_IMAGE=vn-poi/stage1-api:0.1.0-local
+FROM ${BASE_IMAGE}
+
+USER root
+ENV HF_HOME=/model-cache \
+    POI_MODEL_ID=intfloat/multilingual-e5-small
+
+COPY search-dev-extra.txt /tmp/search-dev-extra.txt
+RUN --mount=type=cache,target=/root/.cache/pip \
+    pip install -r /tmp/search-dev-extra.txt \
+    && rm -f /tmp/search-dev-extra.txt
+
+RUN mkdir -p /repo /model-cache \
+    && chown -R 10001:10001 /repo /model-cache
+
+WORKDIR /repo
+USER 10001:10001
+CMD ["sleep", "infinity"]

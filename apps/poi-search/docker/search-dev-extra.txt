@@ -1,0 +1,4 @@
+# Extra deps on top of vn-poi/stage1-api (torch + transformers already present).
+pandas==2.2.3
+pyarrow==20.0.0
+rank_bm25==0.2.2

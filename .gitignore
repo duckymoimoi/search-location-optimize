@@ -56,6 +56,13 @@ training/**/cache/
 training/kaggle/output_*/
 apps/poi-search/bench/results/
 
+# Local derived / authoring dumps (GitHub keeps the current locked set only)
+artifacts/embeddings/
+artifacts/results/
+artifacts/archive/
+data/vietnam/train_stage1_queries_v6/staging/
+*.v2bak
+
 # Stale Hanoi paths (removed from tree; keep ignore harmless)
 HANOI_POI_STABLE_V1/
 HANOI_QUERIES_20K/

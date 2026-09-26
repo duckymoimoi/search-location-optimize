@@ -1,0 +1,2321 @@
+{
+  "created_at_utc": "2026-09-26T02:43:16.882496+00:00",
+  "verdict": "PASS",
+  "errors": [],
+  "warnings": [],
+  "sources": {
+    "family_split": {
+      "path": "D:/vsf/data/vietnam/train_stage1_brand_splits_v1/family_split.json",
+      "sha256": "96bec897c99126fb21585c425740f8d35ffe44413c5ff16ac7df2f592a8e4d42",
+      "bytes": 70337
+    },
+    "queries": {
+      "path": "D:/vsf/data/vietnam/train_stage1_brand_queries_v3/brand_intent_queries_v3.parquet",
+      "sha256": "ee90db546db3d2d5f5c78247a44b4e6db06674abd4880d5d88de1dd0c644d3f3",
+      "bytes": 30106
+    },
+    "packet": {
+      "path": "D:/vsf/data/vietnam/train_stage1_brand_queries_v3/brand_authoring_packet_v3.jsonl",
+      "sha256": "6bc9296bf0432ef30db8a9d444ab7686162bcb63e628cd73f0cc9fc0b6c79012",
+      "bytes": 673888
+    },
+    "membership": {
+      "path": "D:/vsf/data/vietnam/train_stage1_brand_membership_v3/manifest.json",
+      "sha256": "1afc277d909a75fa0bf46173c9691324d53762ba869a00c53bb42397adb29364",
+      "bytes": 2451
+    },
+    "train_v6": {
+      "path": "D:/vsf/data/vietnam/train_stage1_queries_v6/query_variants.csv",
+      "sha256": "aafea7af07cd36a35b5f8ea262dba191b226d0403dd44016c398315580693561",
+      "bytes": 11798521
+    },
+    "gold_poi": {
+      "path": "D:/vsf/data/vietnam/stage1_eval_suite_v2/gold_stage1_v2_1/manifest.json",
+      "sha256": "965079a861fd19a0209a793ef372bae7a5272c00e69ce7a73b9e1722f7fa012e",
+      "bytes": 3240
+    }
+  },
+  "stats": {
+    "families": {
+      "dev": 35,
+      "test": 70,
+      "train": 215
+    },
+    "cross_split_collisions": 0,
+    "gold_text_collisions": 0,
+    "train_brand_gold_member_ids": 21,
+    "train_families_without_non_gold_positive": [],
+    "exposure": {
+      "brand_query_heldout_branch_seen": 129,
+      "brand_query_heldout_branch_unseen": 191,
+      "cold_brand": 0
+    }
+  },
+  "gold_text_hits": [],
+  "cross_split": [],
+  "exposure_by_family": {
+    "brand:scb": {
+      "split": "dev",
+      "exposure_class": "brand_query_heldout_branch_unseen",
+      "n_members": 21,
+      "n_members_in_poi_train": 0,
+      "n_gold_members": 0
+    },
+    "brand:hdbank": {
+      "split": "dev",
+      "exposure_class": "brand_query_heldout_branch_seen",
+      "n_members": 37,
+      "n_members_in_poi_train": 7,
+      "n_gold_members": 1
+    },
+    "brand:mbbank": {
+      "split": "dev",
+      "exposure_class": "brand_query_heldout_branch_seen",
+      "n_members": 34,
+      "n_members_in_poi_train": 3,
+      "n_gold_members": 0
+    },
+    "brand:7_eleven": {
+      "split": "dev",
+      "exposure_class": "brand_query_heldout_branch_seen",
+      "n_members": 46,
+      "n_members_in_poi_train": 2,
+      "n_gold_members": 0
+    },
+    "brand:mcdonald_s": {
+      "split": "dev",
+      "exposure_class": "brand_query_heldout_branch_seen",
+      "n_members": 27,
+      "n_members_in_poi_train": 27,
+      "n_gold_members": 0
+    },
+    "brand:vietabank": {
+      "split": "dev",
+      "exposure_class": "brand_query_heldout_branch_seen",
+      "n_members": 16,
+      "n_members_in_poi_train": 1,
+      "n_gold_members": 0
+    },
+    "brand:jysk": {
+      "split": "dev",
+      "exposure_class": "brand_query_heldout_branch_seen",
+      "n_members": 5,
+      "n_members_in_poi_train": 1,
+      "n_gold_members": 0
+    },
+    "brand:baoviet_bank": {
+      "split": "dev",
+      "exposure_class": "brand_query_heldout_branch_unseen",
+      "n_members": 7,
+      "n_members_in_poi_train": 0,
+      "n_gold_members": 0
+    },
+    "brand:giordano": {
+      "split": "dev",
+      "exposure_class": "brand_query_heldout_branch_unseen",
+      "n_members": 5,
+      "n_members_in_poi_train": 0,
+      "n_gold_members": 0
+    },
+    "brand:novotel": {
+      "split": "dev",
+      "exposure_class": "brand_query_heldout_branch_seen",
+      "n_members": 6,
+      "n_members_in_poi_train": 1,
+      "n_gold_members": 0
+    },
+    "brand:oppo": {
+      "split": "dev",
+      "exposure_class": "brand_query_heldout_branch_unseen",
+      "n_members": 5,
+      "n_members_in_poi_train": 0,
+      "n_gold_members": 0
+    },
+    "brand:petro": {
+      "split": "dev",
+      "exposure_class": "brand_query_heldout_branch_unseen",
+      "n_members": 5,
+      "n_members_in_poi_train": 0,
+      "n_gold_members": 0
+    },
+    "brand:peugeot": {
+      "split": "dev",
+      "exposure_class": "brand_query_heldout_branch_unseen",
+      "n_members": 5,
+      "n_members_in_poi_train": 0,
+      "n_gold_members": 0
+    },
+    "brand:total": {
+      "split": "dev",
+      "exposure_class": "brand_query_heldout_branch_unseen",
+      "n_members": 12,
+      "n_members_in_poi_train": 0,
+      "n_gold_members": 0
+    },
+    "brand:totalenergies": {
+      "split": "dev",
+      "exposure_class": "brand_query_heldout_branch_seen",
+      "n_members": 9,
+      "n_members_in_poi_train": 4,
+      "n_gold_members": 0
+    },
+    "brand:vinaphone": {
+      "split": "dev",
+      "exposure_class": "brand_query_heldout_branch_seen",
+      "n_members": 12,
+      "n_members_in_poi_train": 1,
+      "n_gold_members": 0
+    },
+    "brand:dong_a": {
+      "split": "dev",
+      "exposure_class": "brand_query_heldout_branch_seen",
+      "n_members": 11,
+      "n_members_in_poi_train": 1,
+      "n_gold_members": 0
+    },
+    "brand:ktm": {
+      "split": "dev",
+      "exposure_class": "brand_query_heldout_branch_seen",
+      "n_members": 2,
+      "n_members_in_poi_train": 1,
+      "n_gold_members": 0
+    },
+    "brand:mhb": {
+      "split": "dev",
+      "exposure_class": "brand_query_heldout_branch_unseen",
+      "n_members": 2,
+      "n_members_in_poi_train": 0,
+      "n_gold_members": 0
+    },
+    "brand:banana_republic": {
+      "split": "dev",
+      "exposure_class": "brand_query_heldout_branch_seen",
+      "n_members": 2,
+      "n_members_in_poi_train": 1,
+      "n_gold_members": 0
+    },
+    "brand:breadtalk": {
+      "split": "dev",
+      "exposure_class": "brand_query_heldout_branch_unseen",
+      "n_members": 4,
+      "n_members_in_poi_train": 0,
+      "n_gold_members": 0
+    },
+    "brand:eva_de_eva": {
+      "split": "dev",
+      "exposure_class": "brand_query_heldout_branch_unseen",
+      "n_members": 2,
+      "n_members_in_poi_train": 0,
+      "n_gold_members": 0
+    },
+    "brand:gap": {
+      "split": "dev",
+      "exposure_class": "brand_query_heldout_branch_seen",
+      "n_members": 3,
+      "n_members_in_poi_train": 3,
+      "n_gold_members": 0
+    },
+    "brand:harley_davidson": {
+      "split": "dev",
+      "exposure_class": "brand_query_heldout_branch_unseen",
+      "n_members": 3,
+      "n_members_in_poi_train": 0,
+      "n_gold_members": 1
+    },
+    "brand:hocmonpetro": {
+      "split": "dev",
+      "exposure_class": "brand_query_heldout_branch_unseen",
+      "n_members": 2,
+      "n_members_in_poi_train": 0,
+      "n_gold_members": 0
+    },
+    "brand:independant": {
+      "split": "dev",
+      "exposure_class": "brand_query_heldout_branch_unseen",
+      "n_members": 3,
+      "n_members_in_poi_train": 0,
+      "n_gold_members": 0
+    },
+    "brand:marriott": {
+      "split": "dev",
+      "exposure_class": "brand_query_heldout_branch_unseen",
+      "n_members": 2,
+      "n_members_in_poi_train": 0,
+      "n_gold_members": 0
+    },
+    "brand:petro_28": {
+      "split": "dev",
+      "exposure_class": "brand_query_heldout_branch_seen",
+      "n_members": 4,
+      "n_members_in_poi_train": 2,
+      "n_gold_members": 0
+    },
+    "brand:sen": {
+      "split": "dev",
+      "exposure_class": "brand_query_heldout_branch_unseen",
+      "n_members": 3,
+      "n_members_in_poi_train": 0,
+      "n_gold_members": 0
+    },
+    "brand:sports_authority": {
+      "split": "dev",
+      "exposure_class": "brand_query_heldout_branch_unseen",
+      "n_members": 2,
+      "n_members_in_poi_train": 0,
+      "n_gold_members": 0
+    },
+    "brand:the_alley": {
+      "split": "dev",
+      "exposure_class": "brand_query_heldout_branch_unseen",
+      "n_members": 3,
+      "n_members_in_poi_train": 0,
+      "n_gold_members": 0
+    },
+    "brand:wuling": {
+      "split": "dev",
+      "exposure_class": "brand_query_heldout_branch_unseen",
+      "n_members": 2,
+      "n_members_in_poi_train": 0,
+      "n_gold_members": 0
+    },
+    "brand:hientrang": {
+      "split": "dev",
+      "exposure_class": "brand_query_heldout_branch_unseen",
+      "n_members": 1,
+      "n_members_in_poi_train": 0,
+      "n_gold_members": 0
+    },
+    "brand:circle_k": {
+      "split": "dev",
+      "exposure_class": "brand_query_heldout_branch_seen",
+      "n_members": 201,
+      "n_members_in_poi_train": 18,
+      "n_gold_members": 2
+    },
+    "brand:pharmacity": {
+      "split": "dev",
+      "exposure_class": "brand_query_heldout_branch_seen",
+      "n_members": 96,
+      "n_members_in_poi_train": 16,
+      "n_gold_members": 1
+    },
+    "brand:msb": {
+      "split": "test",
+      "exposure_class": "brand_query_heldout_branch_seen",
+      "n_members": 20,
+      "n_members_in_poi_train": 3,
+      "n_gold_members": 1
+    },
+    "brand:eximbank": {
+      "split": "test",
+      "exposure_class": "brand_query_heldout_branch_seen",
+      "n_members": 77,
+      "n_members_in_poi_train": 6,
+      "n_gold_members": 0
+    },
+    "brand:seabank": {
+      "split": "test",
+      "exposure_class": "brand_query_heldout_branch_seen",
+      "n_members": 65,
+      "n_members_in_poi_train": 8,
+      "n_gold_members": 0
+    },
+    "brand:starbucks": {
+      "split": "test",
+      "exposure_class": "brand_query_heldout_branch_seen",
+      "n_members": 75,
+      "n_members_in_poi_train": 11,
+      "n_gold_members": 0
+    },
+    "brand:vietbank": {
+      "split": "test",
+      "exposure_class": "brand_query_heldout_branch_unseen",
+      "n_members": 20,
+      "n_members_in_poi_train": 0,
+      "n_gold_members": 0
+    },
+    "brand:petro_vietnam": {
+      "split": "test",
+      "exposure_class": "brand_query_heldout_branch_unseen",
+      "n_members": 22,
+      "n_members_in_poi_train": 0,
+      "n_gold_members": 0
+    },
+    "brand:pizza_hut": {
+      "split": "test",
+      "exposure_class": "brand_query_heldout_branch_seen",
+      "n_members": 60,
+      "n_members_in_poi_train": 9,
+      "n_gold_members": 0
+    },
+    "brand:toyota": {
+      "split": "test",
+      "exposure_class": "brand_query_heldout_branch_seen",
+      "n_members": 26,
+      "n_members_in_poi_train": 3,
+      "n_gold_members": 0
+    },
+    "brand:vinfast": {
+      "split": "test",
+      "exposure_class": "brand_query_heldout_branch_seen",
+      "n_members": 28,
+      "n_members_in_poi_train": 3,
+      "n_gold_members": 0
+    },
+    "brand:caltex": {
+      "split": "test",
+      "exposure_class": "brand_query_heldout_branch_seen",
+      "n_members": 8,
+      "n_members_in_poi_train": 1,
+      "n_gold_members": 0
+    },
+    "brand:mediamart": {
+      "split": "test",
+      "exposure_class": "brand_query_heldout_branch_unseen",
+      "n_members": 16,
+      "n_members_in_poi_train": 0,
+      "n_gold_members": 0
+    },
+    "brand:phuong_nam": {
+      "split": "test",
+      "exposure_class": "brand_query_heldout_branch_unseen",
+      "n_members": 7,
+      "n_members_in_poi_train": 0,
+      "n_gold_members": 0
+    },
+    "brand:home": {
+      "split": "test",
+      "exposure_class": "brand_query_heldout_branch_seen",
+      "n_members": 5,
+      "n_members_in_poi_train": 1,
+      "n_gold_members": 0
+    },
+    "brand:swp": {
+      "split": "test",
+      "exposure_class": "brand_query_heldout_branch_unseen",
+      "n_members": 6,
+      "n_members_in_poi_train": 0,
+      "n_gold_members": 0
+    },
+    "brand:apple": {
+      "split": "test",
+      "exposure_class": "brand_query_heldout_branch_unseen",
+      "n_members": 5,
+      "n_members_in_poi_train": 0,
+      "n_gold_members": 0
+    },
+    "brand:big_c": {
+      "split": "test",
+      "exposure_class": "brand_query_heldout_branch_seen",
+      "n_members": 14,
+      "n_members_in_poi_train": 1,
+      "n_gold_members": 0
+    },
+    "brand:chevrolet": {
+      "split": "test",
+      "exposure_class": "brand_query_heldout_branch_seen",
+      "n_members": 5,
+      "n_members_in_poi_train": 5,
+      "n_gold_members": 0
+    },
+    "brand:comeco": {
+      "split": "test",
+      "exposure_class": "brand_query_heldout_branch_seen",
+      "n_members": 5,
+      "n_members_in_poi_train": 2,
+      "n_gold_members": 0
+    },
+    "brand:dairy_queen": {
+      "split": "test",
+      "exposure_class": "brand_query_heldout_branch_unseen",
+      "n_members": 9,
+      "n_members_in_poi_train": 0,
+      "n_gold_members": 0
+    },
+    "brand:domino_s": {
+      "split": "test",
+      "exposure_class": "brand_query_heldout_branch_unseen",
+      "n_members": 17,
+      "n_members_in_poi_train": 0,
+      "n_gold_members": 0
+    },
+    "brand:ford": {
+      "split": "test",
+      "exposure_class": "brand_query_heldout_branch_seen",
+      "n_members": 10,
+      "n_members_in_poi_train": 1,
+      "n_gold_members": 0
+    },
+    "brand:fujimart": {
+      "split": "test",
+      "exposure_class": "brand_query_heldout_branch_unseen",
+      "n_members": 9,
+      "n_members_in_poi_train": 0,
+      "n_gold_members": 0
+    },
+    "brand:mango": {
+      "split": "test",
+      "exposure_class": "brand_query_heldout_branch_seen",
+      "n_members": 6,
+      "n_members_in_poi_train": 1,
+      "n_gold_members": 0
+    },
+    "brand:miniso": {
+      "split": "test",
+      "exposure_class": "brand_query_heldout_branch_unseen",
+      "n_members": 12,
+      "n_members_in_poi_train": 0,
+      "n_gold_members": 0
+    },
+    "brand:mobifone": {
+      "split": "test",
+      "exposure_class": "brand_query_heldout_branch_unseen",
+      "n_members": 12,
+      "n_members_in_poi_train": 0,
+      "n_gold_members": 0
+    },
+    "brand:petec": {
+      "split": "test",
+      "exposure_class": "brand_query_heldout_branch_unseen",
+      "n_members": 6,
+      "n_members_in_poi_train": 0,
+      "n_gold_members": 0
+    },
+    "brand:samsung": {
+      "split": "test",
+      "exposure_class": "brand_query_heldout_branch_unseen",
+      "n_members": 9,
+      "n_members_in_poi_train": 0,
+      "n_gold_members": 1
+    },
+    "brand:suzuki": {
+      "split": "test",
+      "exposure_class": "brand_query_heldout_branch_seen",
+      "n_members": 6,
+      "n_members_in_poi_train": 1,
+      "n_gold_members": 0
+    },
+    "brand:the_coffee_bean_tea_leaf": {
+      "split": "test",
+      "exposure_class": "brand_query_heldout_branch_seen",
+      "n_members": 15,
+      "n_members_in_poi_train": 2,
+      "n_gold_members": 0
+    },
+    "brand:triumph": {
+      "split": "test",
+      "exposure_class": "brand_query_heldout_branch_unseen",
+      "n_members": 8,
+      "n_members_in_poi_train": 0,
+      "n_gold_members": 0
+    },
+    "brand:tru_by_hilton": {
+      "split": "test",
+      "exposure_class": "brand_query_heldout_branch_unseen",
+      "n_members": 8,
+      "n_members_in_poi_train": 0,
+      "n_gold_members": 0
+    },
+    "brand:yves_rocher": {
+      "split": "test",
+      "exposure_class": "brand_query_heldout_branch_unseen",
+      "n_members": 5,
+      "n_members_in_poi_train": 0,
+      "n_gold_members": 0
+    },
+    "brand:hong_lam": {
+      "split": "test",
+      "exposure_class": "brand_query_heldout_branch_seen",
+      "n_members": 14,
+      "n_members_in_poi_train": 1,
+      "n_gold_members": 2
+    },
+    "brand:tin_nghia": {
+      "split": "test",
+      "exposure_class": "brand_query_heldout_branch_seen",
+      "n_members": 4,
+      "n_members_in_poi_train": 4,
+      "n_gold_members": 0
+    },
+    "brand:fmc": {
+      "split": "test",
+      "exposure_class": "brand_query_heldout_branch_unseen",
+      "n_members": 3,
+      "n_members_in_poi_train": 0,
+      "n_gold_members": 0
+    },
+    "brand:hp": {
+      "split": "test",
+      "exposure_class": "brand_query_heldout_branch_unseen",
+      "n_members": 3,
+      "n_members_in_poi_train": 0,
+      "n_gold_members": 0
+    },
+    "brand:psp": {
+      "split": "test",
+      "exposure_class": "brand_query_heldout_branch_unseen",
+      "n_members": 3,
+      "n_members_in_poi_train": 0,
+      "n_gold_members": 0
+    },
+    "brand:audi": {
+      "split": "test",
+      "exposure_class": "brand_query_heldout_branch_unseen",
+      "n_members": 2,
+      "n_members_in_poi_train": 0,
+      "n_gold_members": 0
+    },
+    "brand:buffalo_wild_wings": {
+      "split": "test",
+      "exposure_class": "brand_query_heldout_branch_unseen",
+      "n_members": 2,
+      "n_members_in_poi_train": 0,
+      "n_gold_members": 0
+    },
+    "brand:calvin_klein": {
+      "split": "test",
+      "exposure_class": "brand_query_heldout_branch_unseen",
+      "n_members": 2,
+      "n_members_in_poi_train": 0,
+      "n_gold_members": 0
+    },
+    "brand:citi_fruit": {
+      "split": "test",
+      "exposure_class": "brand_query_heldout_branch_unseen",
+      "n_members": 3,
+      "n_members_in_poi_train": 0,
+      "n_gold_members": 0
+    },
+    "brand:coco_island": {
+      "split": "test",
+      "exposure_class": "brand_query_heldout_branch_unseen",
+      "n_members": 2,
+      "n_members_in_poi_train": 0,
+      "n_gold_members": 0
+    },
+    "brand:coffee_time": {
+      "split": "test",
+      "exposure_class": "brand_query_heldout_branch_unseen",
+      "n_members": 4,
+      "n_members_in_poi_train": 0,
+      "n_gold_members": 0
+    },
+    "brand:eneos": {
+      "split": "test",
+      "exposure_class": "brand_query_heldout_branch_seen",
+      "n_members": 4,
+      "n_members_in_poi_train": 4,
+      "n_gold_members": 0
+    },
+    "brand:fila": {
+      "split": "test",
+      "exposure_class": "brand_query_heldout_branch_unseen",
+      "n_members": 2,
+      "n_members_in_poi_train": 0,
+      "n_gold_members": 0
+    },
+    "brand:four_seasons": {
+      "split": "test",
+      "exposure_class": "brand_query_heldout_branch_unseen",
+      "n_members": 2,
+      "n_members_in_poi_train": 0,
+      "n_gold_members": 0
+    },
+    "brand:hilton_garden_inn": {
+      "split": "test",
+      "exposure_class": "brand_query_heldout_branch_seen",
+      "n_members": 2,
+      "n_members_in_poi_train": 1,
+      "n_gold_members": 0
+    },
+    "brand:ibis": {
+      "split": "test",
+      "exposure_class": "brand_query_heldout_branch_unseen",
+      "n_members": 2,
+      "n_members_in_poi_train": 0,
+      "n_gold_members": 0
+    },
+    "brand:intercontinental": {
+      "split": "test",
+      "exposure_class": "brand_query_heldout_branch_unseen",
+      "n_members": 4,
+      "n_members_in_poi_train": 0,
+      "n_gold_members": 0
+    },
+    "brand:jaguar": {
+      "split": "test",
+      "exposure_class": "brand_query_heldout_branch_unseen",
+      "n_members": 3,
+      "n_members_in_poi_train": 0,
+      "n_gold_members": 0
+    },
+    "brand:lexus": {
+      "split": "test",
+      "exposure_class": "brand_query_heldout_branch_unseen",
+      "n_members": 2,
+      "n_members_in_poi_train": 0,
+      "n_gold_members": 0
+    },
+    "brand:nesta_hotel": {
+      "split": "test",
+      "exposure_class": "brand_query_heldout_branch_unseen",
+      "n_members": 4,
+      "n_members_in_poi_train": 0,
+      "n_gold_members": 0
+    },
+    "brand:paris_baguette": {
+      "split": "test",
+      "exposure_class": "brand_query_heldout_branch_seen",
+      "n_members": 3,
+      "n_members_in_poi_train": 1,
+      "n_gold_members": 0
+    },
+    "brand:piaggio": {
+      "split": "test",
+      "exposure_class": "brand_query_heldout_branch_unseen",
+      "n_members": 2,
+      "n_members_in_poi_train": 0,
+      "n_gold_members": 0
+    },
+    "brand:pizza_inn": {
+      "split": "test",
+      "exposure_class": "brand_query_heldout_branch_unseen",
+      "n_members": 2,
+      "n_members_in_poi_train": 0,
+      "n_gold_members": 0
+    },
+    "brand:radisson": {
+      "split": "test",
+      "exposure_class": "brand_query_heldout_branch_unseen",
+      "n_members": 3,
+      "n_members_in_poi_train": 0,
+      "n_gold_members": 0
+    },
+    "brand:saigon_tourist": {
+      "split": "test",
+      "exposure_class": "brand_query_heldout_branch_unseen",
+      "n_members": 2,
+      "n_members_in_poi_train": 0,
+      "n_gold_members": 0
+    },
+    "brand:six_senses": {
+      "split": "test",
+      "exposure_class": "brand_query_heldout_branch_seen",
+      "n_members": 2,
+      "n_members_in_poi_train": 1,
+      "n_gold_members": 0
+    },
+    "brand:the_body_shop": {
+      "split": "test",
+      "exposure_class": "brand_query_heldout_branch_unseen",
+      "n_members": 3,
+      "n_members_in_poi_train": 0,
+      "n_gold_members": 0
+    },
+    "brand:tops_market": {
+      "split": "test",
+      "exposure_class": "brand_query_heldout_branch_unseen",
+      "n_members": 4,
+      "n_members_in_poi_train": 0,
+      "n_gold_members": 0
+    },
+    "brand:vissan": {
+      "split": "test",
+      "exposure_class": "brand_query_heldout_branch_unseen",
+      "n_members": 2,
+      "n_members_in_poi_train": 0,
+      "n_gold_members": 0
+    },
+    "brand:wyndham": {
+      "split": "test",
+      "exposure_class": "brand_query_heldout_branch_unseen",
+      "n_members": 2,
+      "n_members_in_poi_train": 0,
+      "n_gold_members": 0
+    },
+    "brand:movenpick": {
+      "split": "test",
+      "exposure_class": "brand_query_heldout_branch_unseen",
+      "n_members": 3,
+      "n_members_in_poi_train": 0,
+      "n_gold_members": 0
+    },
+    "brand:nhua_binh_minh": {
+      "split": "test",
+      "exposure_class": "brand_query_heldout_branch_unseen",
+      "n_members": 2,
+      "n_members_in_poi_train": 0,
+      "n_gold_members": 0
+    },
+    "brand:thanh_pho_oil": {
+      "split": "test",
+      "exposure_class": "brand_query_heldout_branch_unseen",
+      "n_members": 3,
+      "n_members_in_poi_train": 0,
+      "n_gold_members": 0
+    },
+    "brand:bidv": {
+      "split": "test",
+      "exposure_class": "brand_query_heldout_branch_seen",
+      "n_members": 528,
+      "n_members_in_poi_train": 111,
+      "n_gold_members": 0
+    },
+    "brand:techcombank": {
+      "split": "test",
+      "exposure_class": "brand_query_heldout_branch_seen",
+      "n_members": 398,
+      "n_members_in_poi_train": 27,
+      "n_gold_members": 0
+    },
+    "brand:tpbank": {
+      "split": "test",
+      "exposure_class": "brand_query_heldout_branch_seen",
+      "n_members": 178,
+      "n_members_in_poi_train": 13,
+      "n_gold_members": 0
+    },
+    "brand:highlands_coffee": {
+      "split": "test",
+      "exposure_class": "brand_query_heldout_branch_seen",
+      "n_members": 256,
+      "n_members_in_poi_train": 22,
+      "n_gold_members": 2
+    },
+    "brand:honda": {
+      "split": "test",
+      "exposure_class": "brand_query_heldout_branch_seen",
+      "n_members": 172,
+      "n_members_in_poi_train": 29,
+      "n_gold_members": 2
+    },
+    "brand:hsbc": {
+      "split": "train",
+      "exposure_class": "brand_query_heldout_branch_seen",
+      "n_members": 44,
+      "n_members_in_poi_train": 2,
+      "n_gold_members": 0
+    },
+    "brand:ocb": {
+      "split": "train",
+      "exposure_class": "brand_query_heldout_branch_seen",
+      "n_members": 28,
+      "n_members_in_poi_train": 4,
+      "n_gold_members": 0
+    },
+    "brand:shb": {
+      "split": "train",
+      "exposure_class": "brand_query_heldout_branch_seen",
+      "n_members": 68,
+      "n_members_in_poi_train": 1,
+      "n_gold_members": 0
+    },
+    "brand:vib": {
+      "split": "train",
+      "exposure_class": "brand_query_heldout_branch_seen",
+      "n_members": 63,
+      "n_members_in_poi_train": 4,
+      "n_gold_members": 1
+    },
+    "brand:abbank": {
+      "split": "train",
+      "exposure_class": "brand_query_heldout_branch_seen",
+      "n_members": 31,
+      "n_members_in_poi_train": 24,
+      "n_gold_members": 0
+    },
+    "brand:co_op_food": {
+      "split": "train",
+      "exposure_class": "brand_query_heldout_branch_seen",
+      "n_members": 22,
+      "n_members_in_poi_train": 1,
+      "n_gold_members": 0
+    },
+    "brand:ding_tea": {
+      "split": "train",
+      "exposure_class": "brand_query_heldout_branch_seen",
+      "n_members": 21,
+      "n_members_in_poi_train": 2,
+      "n_gold_members": 0
+    },
+    "brand:dongabank": {
+      "split": "train",
+      "exposure_class": "brand_query_heldout_branch_seen",
+      "n_members": 67,
+      "n_members_in_poi_train": 2,
+      "n_gold_members": 0
+    },
+    "brand:familymart": {
+      "split": "train",
+      "exposure_class": "brand_query_heldout_branch_seen",
+      "n_members": 70,
+      "n_members_in_poi_train": 7,
+      "n_gold_members": 0
+    },
+    "brand:maritime_bank": {
+      "split": "train",
+      "exposure_class": "brand_query_heldout_branch_unseen",
+      "n_members": 26,
+      "n_members_in_poi_train": 0,
+      "n_gold_members": 0
+    },
+    "brand:ministop": {
+      "split": "train",
+      "exposure_class": "brand_query_heldout_branch_seen",
+      "n_members": 43,
+      "n_members_in_poi_train": 3,
+      "n_gold_members": 0
+    },
+    "brand:nam_a_bank": {
+      "split": "train",
+      "exposure_class": "brand_query_heldout_branch_seen",
+      "n_members": 26,
+      "n_members_in_poi_train": 25,
+      "n_gold_members": 0
+    },
+    "brand:pvcombank": {
+      "split": "train",
+      "exposure_class": "brand_query_heldout_branch_seen",
+      "n_members": 36,
+      "n_members_in_poi_train": 32,
+      "n_gold_members": 0
+    },
+    "brand:vikki_bank": {
+      "split": "train",
+      "exposure_class": "brand_query_heldout_branch_seen",
+      "n_members": 37,
+      "n_members_in_poi_train": 36,
+      "n_gold_members": 0
+    },
+    "brand:vinmart": {
+      "split": "train",
+      "exposure_class": "brand_query_heldout_branch_unseen",
+      "n_members": 23,
+      "n_members_in_poi_train": 0,
+      "n_gold_members": 0
+    },
+    "brand:dien_may_xanh": {
+      "split": "train",
+      "exposure_class": "brand_query_heldout_branch_seen",
+      "n_members": 63,
+      "n_members_in_poi_train": 4,
+      "n_gold_members": 0
+    },
+    "brand:trung_nguyen": {
+      "split": "train",
+      "exposure_class": "brand_query_heldout_branch_seen",
+      "n_members": 43,
+      "n_members_in_poi_train": 42,
+      "n_gold_members": 1
+    },
+    "brand:gs25": {
+      "split": "train",
+      "exposure_class": "brand_query_heldout_branch_seen",
+      "n_members": 72,
+      "n_members_in_poi_train": 6,
+      "n_gold_members": 0
+    },
+    "brand:vdb": {
+      "split": "train",
+      "exposure_class": "brand_query_heldout_branch_seen",
+      "n_members": 20,
+      "n_members_in_poi_train": 20,
+      "n_gold_members": 0
+    },
+    "brand:jollibee": {
+      "split": "train",
+      "exposure_class": "brand_query_heldout_branch_seen",
+      "n_members": 36,
+      "n_members_in_poi_train": 36,
+      "n_gold_members": 1
+    },
+    "brand:mipec": {
+      "split": "train",
+      "exposure_class": "brand_query_heldout_branch_seen",
+      "n_members": 21,
+      "n_members_in_poi_train": 1,
+      "n_gold_members": 0
+    },
+    "brand:mipecorp": {
+      "split": "train",
+      "exposure_class": "brand_query_heldout_branch_unseen",
+      "n_members": 50,
+      "n_members_in_poi_train": 0,
+      "n_gold_members": 0
+    },
+    "brand:mixue_ice_cream_tea": {
+      "split": "train",
+      "exposure_class": "brand_query_heldout_branch_seen",
+      "n_members": 31,
+      "n_members_in_poi_train": 2,
+      "n_gold_members": 0
+    },
+    "brand:saigon_petro": {
+      "split": "train",
+      "exposure_class": "brand_query_heldout_branch_seen",
+      "n_members": 33,
+      "n_members_in_poi_train": 3,
+      "n_gold_members": 0
+    },
+    "brand:the_pizza_company": {
+      "split": "train",
+      "exposure_class": "brand_query_heldout_branch_seen",
+      "n_members": 22,
+      "n_members_in_poi_train": 2,
+      "n_gold_members": 0
+    },
+    "brand:viettel": {
+      "split": "train",
+      "exposure_class": "brand_query_heldout_branch_seen",
+      "n_members": 29,
+      "n_members_in_poi_train": 2,
+      "n_gold_members": 0
+    },
+    "brand:viettel_store": {
+      "split": "train",
+      "exposure_class": "brand_query_heldout_branch_seen",
+      "n_members": 44,
+      "n_members_in_poi_train": 7,
+      "n_gold_members": 0
+    },
+    "brand:vinamilk": {
+      "split": "train",
+      "exposure_class": "brand_query_heldout_branch_seen",
+      "n_members": 33,
+      "n_members_in_poi_train": 1,
+      "n_gold_members": 0
+    },
+    "brand:yamaha": {
+      "split": "train",
+      "exposure_class": "brand_query_heldout_branch_seen",
+      "n_members": 37,
+      "n_members_in_poi_train": 6,
+      "n_gold_members": 2
+    },
+    "brand:cong_ca_phe": {
+      "split": "train",
+      "exposure_class": "brand_query_heldout_branch_seen",
+      "n_members": 44,
+      "n_members_in_poi_train": 11,
+      "n_gold_members": 1
+    },
+    "brand:ngan_hang_chinh_sach_xa_hoi": {
+      "split": "train",
+      "exposure_class": "brand_query_heldout_branch_seen",
+      "n_members": 28,
+      "n_members_in_poi_train": 28,
+      "n_gold_members": 0
+    },
+    "brand:vrb": {
+      "split": "train",
+      "exposure_class": "brand_query_heldout_branch_seen",
+      "n_members": 10,
+      "n_members_in_poi_train": 1,
+      "n_gold_members": 0
+    },
+    "brand:k_market": {
+      "split": "train",
+      "exposure_class": "brand_query_heldout_branch_seen",
+      "n_members": 18,
+      "n_members_in_poi_train": 1,
+      "n_gold_members": 0
+    },
+    "brand:k_mart": {
+      "split": "train",
+      "exposure_class": "brand_query_heldout_branch_unseen",
+      "n_members": 12,
+      "n_members_in_poi_train": 0,
+      "n_gold_members": 0
+    },
+    "brand:kienlongbank": {
+      "split": "train",
+      "exposure_class": "brand_query_heldout_branch_unseen",
+      "n_members": 10,
+      "n_members_in_poi_train": 0,
+      "n_gold_members": 0
+    },
+    "brand:mixue": {
+      "split": "train",
+      "exposure_class": "brand_query_heldout_branch_unseen",
+      "n_members": 13,
+      "n_members_in_poi_train": 0,
+      "n_gold_members": 0
+    },
+    "brand:ocean_bank": {
+      "split": "train",
+      "exposure_class": "brand_query_heldout_branch_unseen",
+      "n_members": 19,
+      "n_members_in_poi_train": 0,
+      "n_gold_members": 0
+    },
+    "brand:shinhan_bank": {
+      "split": "train",
+      "exposure_class": "brand_query_heldout_branch_seen",
+      "n_members": 16,
+      "n_members_in_poi_train": 14,
+      "n_gold_members": 0
+    },
+    "brand:tous_les_jours": {
+      "split": "train",
+      "exposure_class": "brand_query_heldout_branch_seen",
+      "n_members": 18,
+      "n_members_in_poi_train": 18,
+      "n_gold_members": 0
+    },
+    "brand:vinmart_plus": {
+      "split": "train",
+      "exposure_class": "brand_query_heldout_branch_seen",
+      "n_members": 13,
+      "n_members_in_poi_train": 2,
+      "n_gold_members": 0
+    },
+    "brand:nhu_y": {
+      "split": "train",
+      "exposure_class": "brand_query_heldout_branch_unseen",
+      "n_members": 10,
+      "n_members_in_poi_train": 0,
+      "n_gold_members": 0
+    },
+    "brand:sua_chua_tran_chau_ha_long": {
+      "split": "train",
+      "exposure_class": "brand_query_heldout_branch_seen",
+      "n_members": 6,
+      "n_members_in_poi_train": 1,
+      "n_gold_members": 1
+    },
+    "brand:bmw": {
+      "split": "train",
+      "exposure_class": "brand_query_heldout_branch_unseen",
+      "n_members": 9,
+      "n_members_in_poi_train": 0,
+      "n_gold_members": 0
+    },
+    "brand:fpt": {
+      "split": "train",
+      "exposure_class": "brand_query_heldout_branch_unseen",
+      "n_members": 5,
+      "n_members_in_poi_train": 0,
+      "n_gold_members": 0
+    },
+    "brand:h_m": {
+      "split": "train",
+      "exposure_class": "brand_query_heldout_branch_unseen",
+      "n_members": 7,
+      "n_members_in_poi_train": 0,
+      "n_gold_members": 0
+    },
+    "brand:mr_diy": {
+      "split": "train",
+      "exposure_class": "brand_query_heldout_branch_unseen",
+      "n_members": 5,
+      "n_members_in_poi_train": 0,
+      "n_gold_members": 0
+    },
+    "brand:ncb": {
+      "split": "train",
+      "exposure_class": "brand_query_heldout_branch_unseen",
+      "n_members": 7,
+      "n_members_in_poi_train": 0,
+      "n_gold_members": 0
+    },
+    "brand:sym": {
+      "split": "train",
+      "exposure_class": "brand_query_heldout_branch_unseen",
+      "n_members": 5,
+      "n_members_in_poi_train": 0,
+      "n_gold_members": 0
+    },
+    "brand:abc_pharmacy": {
+      "split": "train",
+      "exposure_class": "brand_query_heldout_branch_unseen",
+      "n_members": 5,
+      "n_members_in_poi_train": 0,
+      "n_gold_members": 0
+    },
+    "brand:adidas": {
+      "split": "train",
+      "exposure_class": "brand_query_heldout_branch_unseen",
+      "n_members": 18,
+      "n_members_in_poi_train": 0,
+      "n_gold_members": 0
+    },
+    "brand:aldo": {
+      "split": "train",
+      "exposure_class": "brand_query_heldout_branch_unseen",
+      "n_members": 5,
+      "n_members_in_poi_train": 0,
+      "n_gold_members": 0
+    },
+    "brand:bac_a_bank": {
+      "split": "train",
+      "exposure_class": "brand_query_heldout_branch_unseen",
+      "n_members": 16,
+      "n_members_in_poi_train": 0,
+      "n_gold_members": 0
+    },
+    "brand:bitcoinvn": {
+      "split": "train",
+      "exposure_class": "brand_query_heldout_branch_unseen",
+      "n_members": 5,
+      "n_members_in_poi_train": 0,
+      "n_gold_members": 0
+    },
+    "brand:burger_king": {
+      "split": "train",
+      "exposure_class": "brand_query_heldout_branch_unseen",
+      "n_members": 17,
+      "n_members_in_poi_train": 0,
+      "n_gold_members": 0
+    },
+    "brand:canifa": {
+      "split": "train",
+      "exposure_class": "brand_query_heldout_branch_seen",
+      "n_members": 12,
+      "n_members_in_poi_train": 1,
+      "n_gold_members": 0
+    },
+    "brand:cellphones": {
+      "split": "train",
+      "exposure_class": "brand_query_heldout_branch_unseen",
+      "n_members": 7,
+      "n_members_in_poi_train": 0,
+      "n_gold_members": 0
+    },
+    "brand:crocs": {
+      "split": "train",
+      "exposure_class": "brand_query_heldout_branch_seen",
+      "n_members": 6,
+      "n_members_in_poi_train": 1,
+      "n_gold_members": 0
+    },
+    "brand:dds_petro": {
+      "split": "train",
+      "exposure_class": "brand_query_heldout_branch_unseen",
+      "n_members": 7,
+      "n_members_in_poi_train": 0,
+      "n_gold_members": 0
+    },
+    "brand:decathlon": {
+      "split": "train",
+      "exposure_class": "brand_query_heldout_branch_seen",
+      "n_members": 6,
+      "n_members_in_poi_train": 1,
+      "n_gold_members": 0
+    },
+    "brand:ecco": {
+      "split": "train",
+      "exposure_class": "brand_query_heldout_branch_seen",
+      "n_members": 5,
+      "n_members_in_poi_train": 5,
+      "n_gold_members": 0
+    },
+    "brand:fahasa": {
+      "split": "train",
+      "exposure_class": "brand_query_heldout_branch_seen",
+      "n_members": 10,
+      "n_members_in_poi_train": 1,
+      "n_gold_members": 0
+    },
+    "brand:giant": {
+      "split": "train",
+      "exposure_class": "brand_query_heldout_branch_unseen",
+      "n_members": 6,
+      "n_members_in_poi_train": 0,
+      "n_gold_members": 0
+    },
+    "brand:go": {
+      "split": "train",
+      "exposure_class": "brand_query_heldout_branch_unseen",
+      "n_members": 11,
+      "n_members_in_poi_train": 0,
+      "n_gold_members": 0
+    },
+    "brand:gong_cha": {
+      "split": "train",
+      "exposure_class": "brand_query_heldout_branch_seen",
+      "n_members": 6,
+      "n_members_in_poi_train": 1,
+      "n_gold_members": 0
+    },
+    "brand:gpbank": {
+      "split": "train",
+      "exposure_class": "brand_query_heldout_branch_unseen",
+      "n_members": 13,
+      "n_members_in_poi_train": 0,
+      "n_gold_members": 0
+    },
+    "brand:guardian": {
+      "split": "train",
+      "exposure_class": "brand_query_heldout_branch_unseen",
+      "n_members": 5,
+      "n_members_in_poi_train": 0,
+      "n_gold_members": 0
+    },
+    "brand:hai_linh": {
+      "split": "train",
+      "exposure_class": "brand_query_heldout_branch_unseen",
+      "n_members": 5,
+      "n_members_in_poi_train": 0,
+      "n_gold_members": 0
+    },
+    "brand:hilton": {
+      "split": "train",
+      "exposure_class": "brand_query_heldout_branch_unseen",
+      "n_members": 6,
+      "n_members_in_poi_train": 0,
+      "n_gold_members": 0
+    },
+    "brand:hyundai": {
+      "split": "train",
+      "exposure_class": "brand_query_heldout_branch_seen",
+      "n_members": 18,
+      "n_members_in_poi_train": 2,
+      "n_gold_members": 0
+    },
+    "brand:kia": {
+      "split": "train",
+      "exposure_class": "brand_query_heldout_branch_unseen",
+      "n_members": 11,
+      "n_members_in_poi_train": 0,
+      "n_gold_members": 0
+    },
+    "brand:king_bbq": {
+      "split": "train",
+      "exposure_class": "brand_query_heldout_branch_unseen",
+      "n_members": 10,
+      "n_members_in_poi_train": 0,
+      "n_gold_members": 0
+    },
+    "brand:levi_s": {
+      "split": "train",
+      "exposure_class": "brand_query_heldout_branch_unseen",
+      "n_members": 8,
+      "n_members_in_poi_train": 0,
+      "n_gold_members": 0
+    },
+    "brand:lock_lock": {
+      "split": "train",
+      "exposure_class": "brand_query_heldout_branch_unseen",
+      "n_members": 5,
+      "n_members_in_poi_train": 0,
+      "n_gold_members": 0
+    },
+    "brand:lotte_department_store": {
+      "split": "train",
+      "exposure_class": "brand_query_heldout_branch_seen",
+      "n_members": 10,
+      "n_members_in_poi_train": 2,
+      "n_gold_members": 0
+    },
+    "brand:lpbank": {
+      "split": "train",
+      "exposure_class": "brand_query_heldout_branch_unseen",
+      "n_members": 12,
+      "n_members_in_poi_train": 0,
+      "n_gold_members": 0
+    },
+    "brand:mazda": {
+      "split": "train",
+      "exposure_class": "brand_query_heldout_branch_seen",
+      "n_members": 8,
+      "n_members_in_poi_train": 1,
+      "n_gold_members": 0
+    },
+    "brand:mercedes_benz": {
+      "split": "train",
+      "exposure_class": "brand_query_heldout_branch_seen",
+      "n_members": 7,
+      "n_members_in_poi_train": 1,
+      "n_gold_members": 0
+    },
+    "brand:mitsubishi": {
+      "split": "train",
+      "exposure_class": "brand_query_heldout_branch_seen",
+      "n_members": 5,
+      "n_members_in_poi_train": 1,
+      "n_gold_members": 0
+    },
+    "brand:nike": {
+      "split": "train",
+      "exposure_class": "brand_query_heldout_branch_seen",
+      "n_members": 7,
+      "n_members_in_poi_train": 7,
+      "n_gold_members": 0
+    },
+    "brand:nissan": {
+      "split": "train",
+      "exposure_class": "brand_query_heldout_branch_unseen",
+      "n_members": 5,
+      "n_members_in_poi_train": 0,
+      "n_gold_members": 0
+    },
+    "brand:pandora": {
+      "split": "train",
+      "exposure_class": "brand_query_heldout_branch_unseen",
+      "n_members": 5,
+      "n_members_in_poi_train": 0,
+      "n_gold_members": 0
+    },
+    "brand:pepper_lunch": {
+      "split": "train",
+      "exposure_class": "brand_query_heldout_branch_seen",
+      "n_members": 5,
+      "n_members_in_poi_train": 1,
+      "n_gold_members": 0
+    },
+    "brand:petimex": {
+      "split": "train",
+      "exposure_class": "brand_query_heldout_branch_unseen",
+      "n_members": 12,
+      "n_members_in_poi_train": 0,
+      "n_gold_members": 0
+    },
+    "brand:popeyes": {
+      "split": "train",
+      "exposure_class": "brand_query_heldout_branch_unseen",
+      "n_members": 12,
+      "n_members_in_poi_train": 0,
+      "n_gold_members": 0
+    },
+    "brand:public_bank_vietnam": {
+      "split": "train",
+      "exposure_class": "brand_query_heldout_branch_unseen",
+      "n_members": 5,
+      "n_members_in_poi_train": 0,
+      "n_gold_members": 0
+    },
+    "brand:royaltea": {
+      "split": "train",
+      "exposure_class": "brand_query_heldout_branch_unseen",
+      "n_members": 6,
+      "n_members_in_poi_train": 0,
+      "n_gold_members": 0
+    },
+    "brand:samsonite": {
+      "split": "train",
+      "exposure_class": "brand_query_heldout_branch_unseen",
+      "n_members": 8,
+      "n_members_in_poi_train": 0,
+      "n_gold_members": 0
+    },
+    "brand:shell": {
+      "split": "train",
+      "exposure_class": "brand_query_heldout_branch_unseen",
+      "n_members": 5,
+      "n_members_in_poi_train": 0,
+      "n_gold_members": 0
+    },
+    "brand:skechers": {
+      "split": "train",
+      "exposure_class": "brand_query_heldout_branch_unseen",
+      "n_members": 9,
+      "n_members_in_poi_train": 0,
+      "n_gold_members": 0
+    },
+    "brand:sts_petro": {
+      "split": "train",
+      "exposure_class": "brand_query_heldout_branch_unseen",
+      "n_members": 10,
+      "n_members_in_poi_train": 0,
+      "n_gold_members": 0
+    },
+    "brand:texas_chicken": {
+      "split": "train",
+      "exposure_class": "brand_query_heldout_branch_seen",
+      "n_members": 10,
+      "n_members_in_poi_train": 3,
+      "n_gold_members": 0
+    },
+    "brand:thalexim_petro": {
+      "split": "train",
+      "exposure_class": "brand_query_heldout_branch_unseen",
+      "n_members": 19,
+      "n_members_in_poi_train": 0,
+      "n_gold_members": 0
+    },
+    "brand:uniqlo": {
+      "split": "train",
+      "exposure_class": "brand_query_heldout_branch_seen",
+      "n_members": 12,
+      "n_members_in_poi_train": 2,
+      "n_gold_members": 0
+    },
+    "brand:vans": {
+      "split": "train",
+      "exposure_class": "brand_query_heldout_branch_unseen",
+      "n_members": 6,
+      "n_members_in_poi_train": 0,
+      "n_gold_members": 0
+    },
+    "brand:viet_capital_bank": {
+      "split": "train",
+      "exposure_class": "brand_query_heldout_branch_unseen",
+      "n_members": 6,
+      "n_members_in_poi_train": 0,
+      "n_gold_members": 0
+    },
+    "brand:vietnam_airlines": {
+      "split": "train",
+      "exposure_class": "brand_query_heldout_branch_unseen",
+      "n_members": 10,
+      "n_members_in_poi_train": 0,
+      "n_gold_members": 0
+    },
+    "brand:vincom": {
+      "split": "train",
+      "exposure_class": "brand_query_heldout_branch_seen",
+      "n_members": 14,
+      "n_members_in_poi_train": 2,
+      "n_gold_members": 2
+    },
+    "brand:western_union": {
+      "split": "train",
+      "exposure_class": "brand_query_heldout_branch_seen",
+      "n_members": 7,
+      "n_members_in_poi_train": 1,
+      "n_gold_members": 0
+    },
+    "brand:wyndham_garden": {
+      "split": "train",
+      "exposure_class": "brand_query_heldout_branch_unseen",
+      "n_members": 5,
+      "n_members_in_poi_train": 0,
+      "n_gold_members": 0
+    },
+    "brand:zara": {
+      "split": "train",
+      "exposure_class": "brand_query_heldout_branch_unseen",
+      "n_members": 5,
+      "n_members_in_poi_train": 0,
+      "n_gold_members": 0
+    },
+    "brand:long_chau": {
+      "split": "train",
+      "exposure_class": "brand_query_heldout_branch_unseen",
+      "n_members": 9,
+      "n_members_in_poi_train": 0,
+      "n_gold_members": 0
+    },
+    "brand:melia": {
+      "split": "train",
+      "exposure_class": "brand_query_heldout_branch_seen",
+      "n_members": 6,
+      "n_members_in_poi_train": 1,
+      "n_gold_members": 0
+    },
+    "brand:pho_24": {
+      "split": "train",
+      "exposure_class": "brand_query_heldout_branch_seen",
+      "n_members": 5,
+      "n_members_in_poi_train": 5,
+      "n_gold_members": 0
+    },
+    "brand:flc": {
+      "split": "train",
+      "exposure_class": "brand_query_heldout_branch_unseen",
+      "n_members": 2,
+      "n_members_in_poi_train": 0,
+      "n_gold_members": 0
+    },
+    "brand:ktc": {
+      "split": "train",
+      "exposure_class": "brand_query_heldout_branch_unseen",
+      "n_members": 4,
+      "n_members_in_poi_train": 0,
+      "n_gold_members": 0
+    },
+    "brand:mbv": {
+      "split": "train",
+      "exposure_class": "brand_query_heldout_branch_unseen",
+      "n_members": 2,
+      "n_members_in_poi_train": 0,
+      "n_gold_members": 0
+    },
+    "brand:oyo": {
+      "split": "train",
+      "exposure_class": "brand_query_heldout_branch_seen",
+      "n_members": 2,
+      "n_members_in_poi_train": 1,
+      "n_gold_members": 0
+    },
+    "brand:pv": {
+      "split": "train",
+      "exposure_class": "brand_query_heldout_branch_unseen",
+      "n_members": 2,
+      "n_members_in_poi_train": 0,
+      "n_gold_members": 0
+    },
+    "brand:s_e_g": {
+      "split": "train",
+      "exposure_class": "brand_query_heldout_branch_unseen",
+      "n_members": 2,
+      "n_members_in_poi_train": 0,
+      "n_gold_members": 0
+    },
+    "brand:sts": {
+      "split": "train",
+      "exposure_class": "brand_query_heldout_branch_unseen",
+      "n_members": 3,
+      "n_members_in_poi_train": 0,
+      "n_gold_members": 0
+    },
+    "brand:ttc": {
+      "split": "train",
+      "exposure_class": "brand_query_heldout_branch_unseen",
+      "n_members": 3,
+      "n_members_in_poi_train": 0,
+      "n_gold_members": 0
+    },
+    "brand:yadea": {
+      "split": "train",
+      "exposure_class": "brand_query_heldout_branch_unseen",
+      "n_members": 3,
+      "n_members_in_poi_train": 0,
+      "n_gold_members": 0
+    },
+    "brand:adidas_originals": {
+      "split": "train",
+      "exposure_class": "brand_query_heldout_branch_unseen",
+      "n_members": 2,
+      "n_members_in_poi_train": 0,
+      "n_gold_members": 0
+    },
+    "brand:airbnb": {
+      "split": "train",
+      "exposure_class": "brand_query_heldout_branch_unseen",
+      "n_members": 2,
+      "n_members_in_poi_train": 0,
+      "n_gold_members": 0
+    },
+    "brand:an_phu_hotel": {
+      "split": "train",
+      "exposure_class": "brand_query_heldout_branch_unseen",
+      "n_members": 2,
+      "n_members_in_poi_train": 0,
+      "n_gold_members": 0
+    },
+    "brand:atm_vietin_bank": {
+      "split": "train",
+      "exposure_class": "brand_query_heldout_branch_unseen",
+      "n_members": 4,
+      "n_members_in_poi_train": 0,
+      "n_gold_members": 0
+    },
+    "brand:bata": {
+      "split": "train",
+      "exposure_class": "brand_query_heldout_branch_unseen",
+      "n_members": 2,
+      "n_members_in_poi_train": 0,
+      "n_gold_members": 0
+    },
+    "brand:bb_q_chicken": {
+      "split": "train",
+      "exposure_class": "brand_query_heldout_branch_unseen",
+      "n_members": 3,
+      "n_members_in_poi_train": 0,
+      "n_gold_members": 0
+    },
+    "brand:bell1": {
+      "split": "train",
+      "exposure_class": "brand_query_heldout_branch_unseen",
+      "n_members": 2,
+      "n_members_in_poi_train": 0,
+      "n_gold_members": 0
+    },
+    "brand:bikini_bottom_express": {
+      "split": "train",
+      "exposure_class": "brand_query_heldout_branch_unseen",
+      "n_members": 2,
+      "n_members_in_poi_train": 0,
+      "n_gold_members": 0
+    },
+    "brand:boost_juice": {
+      "split": "train",
+      "exposure_class": "brand_query_heldout_branch_unseen",
+      "n_members": 1,
+      "n_members_in_poi_train": 0,
+      "n_gold_members": 0
+    },
+    "brand:carl_s_jr": {
+      "split": "train",
+      "exposure_class": "brand_query_heldout_branch_unseen",
+      "n_members": 2,
+      "n_members_in_poi_train": 0,
+      "n_gold_members": 0
+    },
+    "brand:castrol": {
+      "split": "train",
+      "exposure_class": "brand_query_heldout_branch_seen",
+      "n_members": 3,
+      "n_members_in_poi_train": 1,
+      "n_gold_members": 0
+    },
+    "brand:chanel": {
+      "split": "train",
+      "exposure_class": "brand_query_heldout_branch_unseen",
+      "n_members": 2,
+      "n_members_in_poi_train": 0,
+      "n_gold_members": 0
+    },
+    "brand:citibank": {
+      "split": "train",
+      "exposure_class": "brand_query_heldout_branch_seen",
+      "n_members": 2,
+      "n_members_in_poi_train": 1,
+      "n_gold_members": 0
+    },
+    "brand:coco": {
+      "split": "train",
+      "exposure_class": "brand_query_heldout_branch_seen",
+      "n_members": 3,
+      "n_members_in_poi_train": 1,
+      "n_gold_members": 0
+    },
+    "brand:commonwealth_bank": {
+      "split": "train",
+      "exposure_class": "brand_query_heldout_branch_seen",
+      "n_members": 2,
+      "n_members_in_poi_train": 1,
+      "n_gold_members": 0
+    },
+    "brand:converse": {
+      "split": "train",
+      "exposure_class": "brand_query_heldout_branch_seen",
+      "n_members": 4,
+      "n_members_in_poi_train": 2,
+      "n_gold_members": 1
+    },
+    "brand:crowne_plaza": {
+      "split": "train",
+      "exposure_class": "brand_query_heldout_branch_unseen",
+      "n_members": 3,
+      "n_members_in_poi_train": 0,
+      "n_gold_members": 0
+    },
+    "brand:dynasty_house": {
+      "split": "train",
+      "exposure_class": "brand_query_heldout_branch_unseen",
+      "n_members": 2,
+      "n_members_in_poi_train": 0,
+      "n_gold_members": 0
+    },
+    "brand:engu_pouches": {
+      "split": "train",
+      "exposure_class": "brand_query_heldout_branch_unseen",
+      "n_members": 2,
+      "n_members_in_poi_train": 0,
+      "n_gold_members": 0
+    },
+    "brand:h_mart": {
+      "split": "train",
+      "exposure_class": "brand_query_heldout_branch_unseen",
+      "n_members": 4,
+      "n_members_in_poi_train": 0,
+      "n_gold_members": 0
+    },
+    "brand:haidilao_hot_pot": {
+      "split": "train",
+      "exposure_class": "brand_query_heldout_branch_seen",
+      "n_members": 2,
+      "n_members_in_poi_train": 1,
+      "n_gold_members": 0
+    },
+    "brand:hk_oil": {
+      "split": "train",
+      "exposure_class": "brand_query_heldout_branch_unseen",
+      "n_members": 2,
+      "n_members_in_poi_train": 0,
+      "n_gold_members": 0
+    },
+    "brand:holiday_inn": {
+      "split": "train",
+      "exposure_class": "brand_query_heldout_branch_unseen",
+      "n_members": 2,
+      "n_members_in_poi_train": 0,
+      "n_gold_members": 0
+    },
+    "brand:hotel_indigo": {
+      "split": "train",
+      "exposure_class": "brand_query_heldout_branch_seen",
+      "n_members": 4,
+      "n_members_in_poi_train": 1,
+      "n_gold_members": 0
+    },
+    "brand:hotraco": {
+      "split": "train",
+      "exposure_class": "brand_query_heldout_branch_unseen",
+      "n_members": 2,
+      "n_members_in_poi_train": 0,
+      "n_gold_members": 0
+    },
+    "brand:hugo_boss": {
+      "split": "train",
+      "exposure_class": "brand_query_heldout_branch_unseen",
+      "n_members": 4,
+      "n_members_in_poi_train": 0,
+      "n_gold_members": 0
+    },
+    "brand:hyatt_regency": {
+      "split": "train",
+      "exposure_class": "brand_query_heldout_branch_unseen",
+      "n_members": 4,
+      "n_members_in_poi_train": 0,
+      "n_gold_members": 1
+    },
+    "brand:ippudo": {
+      "split": "train",
+      "exposure_class": "brand_query_heldout_branch_unseen",
+      "n_members": 2,
+      "n_members_in_poi_train": 0,
+      "n_gold_members": 0
+    },
+    "brand:jw_marriott": {
+      "split": "train",
+      "exposure_class": "brand_query_heldout_branch_seen",
+      "n_members": 4,
+      "n_members_in_poi_train": 1,
+      "n_gold_members": 0
+    },
+    "brand:kai_coffee": {
+      "split": "train",
+      "exposure_class": "brand_query_heldout_branch_unseen",
+      "n_members": 2,
+      "n_members_in_poi_train": 0,
+      "n_gold_members": 0
+    },
+    "brand:lotte_hotels_resorts": {
+      "split": "train",
+      "exposure_class": "brand_query_heldout_branch_unseen",
+      "n_members": 2,
+      "n_members_in_poi_train": 0,
+      "n_gold_members": 0
+    },
+    "brand:loving_hut": {
+      "split": "train",
+      "exposure_class": "brand_query_heldout_branch_seen",
+      "n_members": 4,
+      "n_members_in_poi_train": 4,
+      "n_gold_members": 0
+    },
+    "brand:lush": {
+      "split": "train",
+      "exposure_class": "brand_query_heldout_branch_unseen",
+      "n_members": 2,
+      "n_members_in_poi_train": 0,
+      "n_gold_members": 0
+    },
+    "brand:marugame_seimen": {
+      "split": "train",
+      "exposure_class": "brand_query_heldout_branch_unseen",
+      "n_members": 2,
+      "n_members_in_poi_train": 0,
+      "n_gold_members": 0
+    },
+    "brand:mercure": {
+      "split": "train",
+      "exposure_class": "brand_query_heldout_branch_seen",
+      "n_members": 3,
+      "n_members_in_poi_train": 1,
+      "n_gold_members": 0
+    },
+    "brand:miya_jewellery_clothes": {
+      "split": "train",
+      "exposure_class": "brand_query_heldout_branch_unseen",
+      "n_members": 2,
+      "n_members_in_poi_train": 0,
+      "n_gold_members": 0
+    },
+    "brand:mothercare": {
+      "split": "train",
+      "exposure_class": "brand_query_heldout_branch_unseen",
+      "n_members": 2,
+      "n_members_in_poi_train": 0,
+      "n_gold_members": 0
+    },
+    "brand:nam_an_market": {
+      "split": "train",
+      "exposure_class": "brand_query_heldout_branch_unseen",
+      "n_members": 2,
+      "n_members_in_poi_train": 0,
+      "n_gold_members": 0
+    },
+    "brand:new_balance": {
+      "split": "train",
+      "exposure_class": "brand_query_heldout_branch_seen",
+      "n_members": 4,
+      "n_members_in_poi_train": 1,
+      "n_gold_members": 0
+    },
+    "brand:nsh_petro": {
+      "split": "train",
+      "exposure_class": "brand_query_heldout_branch_unseen",
+      "n_members": 2,
+      "n_members_in_poi_train": 0,
+      "n_gold_members": 0
+    },
+    "brand:omoda_jaecoo": {
+      "split": "train",
+      "exposure_class": "brand_query_heldout_branch_unseen",
+      "n_members": 2,
+      "n_members_in_poi_train": 0,
+      "n_gold_members": 0
+    },
+    "brand:parkson": {
+      "split": "train",
+      "exposure_class": "brand_query_heldout_branch_unseen",
+      "n_members": 2,
+      "n_members_in_poi_train": 0,
+      "n_gold_members": 0
+    },
+    "brand:pega": {
+      "split": "train",
+      "exposure_class": "brand_query_heldout_branch_unseen",
+      "n_members": 2,
+      "n_members_in_poi_train": 0,
+      "n_gold_members": 0
+    },
+    "brand:petrolinex": {
+      "split": "train",
+      "exposure_class": "brand_query_heldout_branch_unseen",
+      "n_members": 2,
+      "n_members_in_poi_train": 0,
+      "n_gold_members": 0
+    },
+    "brand:phinholic": {
+      "split": "train",
+      "exposure_class": "brand_query_heldout_branch_seen",
+      "n_members": 2,
+      "n_members_in_poi_train": 1,
+      "n_gold_members": 0
+    },
+    "brand:pierre_cardin": {
+      "split": "train",
+      "exposure_class": "brand_query_heldout_branch_unseen",
+      "n_members": 3,
+      "n_members_in_poi_train": 0,
+      "n_gold_members": 0
+    },
+    "brand:porsche": {
+      "split": "train",
+      "exposure_class": "brand_query_heldout_branch_unseen",
+      "n_members": 2,
+      "n_members_in_poi_train": 0,
+      "n_gold_members": 0
+    },
+    "brand:pullman": {
+      "split": "train",
+      "exposure_class": "brand_query_heldout_branch_unseen",
+      "n_members": 4,
+      "n_members_in_poi_train": 0,
+      "n_gold_members": 0
+    },
+    "brand:puma": {
+      "split": "train",
+      "exposure_class": "brand_query_heldout_branch_unseen",
+      "n_members": 4,
+      "n_members_in_poi_train": 0,
+      "n_gold_members": 0
+    },
+    "brand:quiksilver": {
+      "split": "train",
+      "exposure_class": "brand_query_heldout_branch_unseen",
+      "n_members": 1,
+      "n_members_in_poi_train": 0,
+      "n_gold_members": 0
+    },
+    "brand:reebok": {
+      "split": "train",
+      "exposure_class": "brand_query_heldout_branch_unseen",
+      "n_members": 2,
+      "n_members_in_poi_train": 0,
+      "n_gold_members": 0
+    },
+    "brand:roygent_parks": {
+      "split": "train",
+      "exposure_class": "brand_query_heldout_branch_unseen",
+      "n_members": 2,
+      "n_members_in_poi_train": 0,
+      "n_gold_members": 0
+    },
+    "brand:ruby_hotel": {
+      "split": "train",
+      "exposure_class": "brand_query_heldout_branch_unseen",
+      "n_members": 3,
+      "n_members_in_poi_train": 0,
+      "n_gold_members": 0
+    },
+    "brand:satra": {
+      "split": "train",
+      "exposure_class": "brand_query_heldout_branch_unseen",
+      "n_members": 4,
+      "n_members_in_poi_train": 0,
+      "n_gold_members": 0
+    },
+    "brand:sheraton": {
+      "split": "train",
+      "exposure_class": "brand_query_heldout_branch_unseen",
+      "n_members": 4,
+      "n_members_in_poi_train": 0,
+      "n_gold_members": 1
+    },
+    "brand:shiseido": {
+      "split": "train",
+      "exposure_class": "brand_query_heldout_branch_unseen",
+      "n_members": 3,
+      "n_members_in_poi_train": 0,
+      "n_gold_members": 0
+    },
+    "brand:silk_path": {
+      "split": "train",
+      "exposure_class": "brand_query_heldout_branch_seen",
+      "n_members": 2,
+      "n_members_in_poi_train": 1,
+      "n_gold_members": 0
+    },
+    "brand:skyline_coffee": {
+      "split": "train",
+      "exposure_class": "brand_query_heldout_branch_unseen",
+      "n_members": 2,
+      "n_members_in_poi_train": 0,
+      "n_gold_members": 0
+    },
+    "brand:sony": {
+      "split": "train",
+      "exposure_class": "brand_query_heldout_branch_unseen",
+      "n_members": 4,
+      "n_members_in_poi_train": 0,
+      "n_gold_members": 0
+    },
+    "brand:standard_chartered": {
+      "split": "train",
+      "exposure_class": "brand_query_heldout_branch_seen",
+      "n_members": 2,
+      "n_members_in_poi_train": 1,
+      "n_gold_members": 0
+    },
+    "brand:subaru": {
+      "split": "train",
+      "exposure_class": "brand_query_heldout_branch_unseen",
+      "n_members": 3,
+      "n_members_in_poi_train": 0,
+      "n_gold_members": 0
+    },
+    "brand:swarovski": {
+      "split": "train",
+      "exposure_class": "brand_query_heldout_branch_unseen",
+      "n_members": 2,
+      "n_members_in_poi_train": 0,
+      "n_gold_members": 0
+    },
+    "brand:tan": {
+      "split": "train",
+      "exposure_class": "brand_query_heldout_branch_unseen",
+      "n_members": 2,
+      "n_members_in_poi_train": 0,
+      "n_gold_members": 0
+    },
+    "brand:tcp_station": {
+      "split": "train",
+      "exposure_class": "brand_query_heldout_branch_unseen",
+      "n_members": 3,
+      "n_members_in_poi_train": 0,
+      "n_gold_members": 0
+    },
+    "brand:td_oil": {
+      "split": "train",
+      "exposure_class": "brand_query_heldout_branch_unseen",
+      "n_members": 2,
+      "n_members_in_poi_train": 0,
+      "n_gold_members": 0
+    },
+    "brand:thom_s_sourdough_bakery_coffee": {
+      "split": "train",
+      "exposure_class": "brand_query_heldout_branch_unseen",
+      "n_members": 3,
+      "n_members_in_poi_train": 0,
+      "n_gold_members": 0
+    },
+    "brand:tommy_hilfiger": {
+      "split": "train",
+      "exposure_class": "brand_query_heldout_branch_unseen",
+      "n_members": 3,
+      "n_members_in_poi_train": 0,
+      "n_gold_members": 0
+    },
+    "brand:upharma": {
+      "split": "train",
+      "exposure_class": "brand_query_heldout_branch_unseen",
+      "n_members": 2,
+      "n_members_in_poi_train": 0,
+      "n_gold_members": 0
+    },
+    "brand:valentino": {
+      "split": "train",
+      "exposure_class": "brand_query_heldout_branch_unseen",
+      "n_members": 3,
+      "n_members_in_poi_train": 0,
+      "n_gold_members": 0
+    },
+    "brand:victoria_s_secret": {
+      "split": "train",
+      "exposure_class": "brand_query_heldout_branch_unseen",
+      "n_members": 2,
+      "n_members_in_poi_train": 0,
+      "n_gold_members": 0
+    },
+    "brand:viet_phong": {
+      "split": "train",
+      "exposure_class": "brand_query_heldout_branch_unseen",
+      "n_members": 3,
+      "n_members_in_poi_train": 0,
+      "n_gold_members": 0
+    },
+    "brand:vinpearl": {
+      "split": "train",
+      "exposure_class": "brand_query_heldout_branch_unseen",
+      "n_members": 3,
+      "n_members_in_poi_train": 0,
+      "n_gold_members": 0
+    },
+    "brand:volkswagen": {
+      "split": "train",
+      "exposure_class": "brand_query_heldout_branch_unseen",
+      "n_members": 2,
+      "n_members_in_poi_train": 0,
+      "n_gold_members": 0
+    },
+    "brand:volvo": {
+      "split": "train",
+      "exposure_class": "brand_query_heldout_branch_unseen",
+      "n_members": 2,
+      "n_members_in_poi_train": 0,
+      "n_gold_members": 0
+    },
+    "brand:wayne_s_coffee": {
+      "split": "train",
+      "exposure_class": "brand_query_heldout_branch_unseen",
+      "n_members": 3,
+      "n_members_in_poi_train": 0,
+      "n_gold_members": 0
+    },
+    "brand:xiaomi": {
+      "split": "train",
+      "exposure_class": "brand_query_heldout_branch_unseen",
+      "n_members": 3,
+      "n_members_in_poi_train": 0,
+      "n_gold_members": 0
+    },
+    "brand:an_ngoc_dien": {
+      "split": "train",
+      "exposure_class": "brand_query_heldout_branch_seen",
+      "n_members": 3,
+      "n_members_in_poi_train": 1,
+      "n_gold_members": 0
+    },
+    "brand:bia_hoi_ha_noi": {
+      "split": "train",
+      "exposure_class": "brand_query_heldout_branch_unseen",
+      "n_members": 2,
+      "n_members_in_poi_train": 0,
+      "n_gold_members": 0
+    },
+    "brand:hoang_minh_chau": {
+      "split": "train",
+      "exposure_class": "brand_query_heldout_branch_unseen",
+      "n_members": 2,
+      "n_members_in_poi_train": 0,
+      "n_gold_members": 0
+    },
+    "brand:muong_thanh": {
+      "split": "train",
+      "exposure_class": "brand_query_heldout_branch_unseen",
+      "n_members": 4,
+      "n_members_in_poi_train": 0,
+      "n_gold_members": 0
+    },
+    "brand:ngoc_khanh": {
+      "split": "train",
+      "exposure_class": "brand_query_heldout_branch_unseen",
+      "n_members": 2,
+      "n_members_in_poi_train": 0,
+      "n_gold_members": 0
+    },
+    "brand:ngoc_minh_anh": {
+      "split": "train",
+      "exposure_class": "brand_query_heldout_branch_unseen",
+      "n_members": 2,
+      "n_members_in_poi_train": 0,
+      "n_gold_members": 0
+    },
+    "brand:paris_gateaux": {
+      "split": "train",
+      "exposure_class": "brand_query_heldout_branch_unseen",
+      "n_members": 3,
+      "n_members_in_poi_train": 0,
+      "n_gold_members": 0
+    },
+    "brand:ta_ca_phe": {
+      "split": "train",
+      "exposure_class": "brand_query_heldout_branch_unseen",
+      "n_members": 2,
+      "n_members_in_poi_train": 0,
+      "n_gold_members": 0
+    },
+    "brand:tong_daily": {
+      "split": "train",
+      "exposure_class": "brand_query_heldout_branch_unseen",
+      "n_members": 2,
+      "n_members_in_poi_train": 0,
+      "n_gold_members": 0
+    },
+    "brand:acb": {
+      "split": "train",
+      "exposure_class": "brand_query_heldout_branch_seen",
+      "n_members": 132,
+      "n_members_in_poi_train": 9,
+      "n_gold_members": 2
+    },
+    "brand:mb": {
+      "split": "train",
+      "exposure_class": "brand_query_heldout_branch_seen",
+      "n_members": 147,
+      "n_members_in_poi_train": 20,
+      "n_gold_members": 0
+    },
+    "brand:agribank": {
+      "split": "train",
+      "exposure_class": "brand_query_heldout_branch_seen",
+      "n_members": 490,
+      "n_members_in_poi_train": 59,
+      "n_gold_members": 0
+    },
+    "brand:sacombank": {
+      "split": "train",
+      "exposure_class": "brand_query_heldout_branch_seen",
+      "n_members": 214,
+      "n_members_in_poi_train": 29,
+      "n_gold_members": 1
+    },
+    "brand:saigonbank": {
+      "split": "train",
+      "exposure_class": "brand_query_heldout_branch_unseen",
+      "n_members": 81,
+      "n_members_in_poi_train": 0,
+      "n_gold_members": 0
+    },
+    "brand:vietcombank": {
+      "split": "train",
+      "exposure_class": "brand_query_heldout_branch_seen",
+      "n_members": 436,
+      "n_members_in_poi_train": 89,
+      "n_gold_members": 2
+    },
+    "brand:vietinbank": {
+      "split": "train",
+      "exposure_class": "brand_query_heldout_branch_seen",
+      "n_members": 375,
+      "n_members_in_poi_train": 41,
+      "n_gold_members": 0
+    },
+    "brand:vpbank": {
+      "split": "train",
+      "exposure_class": "brand_query_heldout_branch_seen",
+      "n_members": 182,
+      "n_members_in_poi_train": 15,
+      "n_gold_members": 0
+    },
+    "brand:winmart": {
+      "split": "train",
+      "exposure_class": "brand_query_heldout_branch_seen",
+      "n_members": 128,
+      "n_members_in_poi_train": 17,
+      "n_gold_members": 2
+    },
+    "brand:winmart_plus": {
+      "split": "train",
+      "exposure_class": "brand_query_heldout_branch_seen",
+      "n_members": 1221,
+      "n_members_in_poi_train": 158,
+      "n_gold_members": 0
+    },
+    "brand:bach_hoa_xanh": {
+      "split": "train",
+      "exposure_class": "brand_query_heldout_branch_seen",
+      "n_members": 172,
+      "n_members_in_poi_train": 21,
+      "n_gold_members": 0
+    },
+    "brand:the_gioi_di_dong": {
+      "split": "train",
+      "exposure_class": "brand_query_heldout_branch_seen",
+      "n_members": 85,
+      "n_members_in_poi_train": 7,
+      "n_gold_members": 0
+    },
+    "brand:kfc": {
+      "split": "train",
+      "exposure_class": "brand_query_heldout_branch_seen",
+      "n_members": 100,
+      "n_members_in_poi_train": 8,
+      "n_gold_members": 0
+    },
+    "brand:pnj": {
+      "split": "train",
+      "exposure_class": "brand_query_heldout_branch_seen",
+      "n_members": 239,
+      "n_members_in_poi_train": 34,
+      "n_gold_members": 0
+    },
+    "brand:lotteria": {
+      "split": "train",
+      "exposure_class": "brand_query_heldout_branch_seen",
+      "n_members": 119,
+      "n_members_in_poi_train": 12,
+      "n_gold_members": 1
+    },
+    "brand:petrolimex": {
+      "split": "train",
+      "exposure_class": "brand_query_heldout_branch_seen",
+      "n_members": 1318,
+      "n_members_in_poi_train": 167,
+      "n_gold_members": 0
+    },
+    "brand:pv_oil": {
+      "split": "train",
+      "exposure_class": "brand_query_heldout_branch_seen",
+      "n_members": 460,
+      "n_members_in_poi_train": 58,
+      "n_gold_members": 1
+    },
+    "brand:the_coffee_house": {
+      "split": "train",
+      "exposure_class": "brand_query_heldout_branch_seen",
+      "n_members": 84,
+      "n_members_in_poi_train": 10,
+      "n_gold_members": 0
+    }
+  },
+  "train_brand_mask_gold_ids": [
+    "osm:node/10799322370",
+    "osm:node/11204387971",
+    "osm:node/11533456837",
+    "osm:node/11569613664",
+    "osm:node/13575063123",
+    "osm:node/3301809365",
+    "osm:node/411918020",
+    "osm:node/4171931890",
+    "osm:node/444227294",
+    "osm:node/5595959521",
+    "osm:node/5920056999",
+    "osm:node/6325568187",
+    "osm:node/6947229585",
+    "osm:node/8987527027",
+    "osm:way/1457546056",
+    "osm:way/164333086",
+    "osm:way/206245067",
+    "osm:way/570572174",
+    "osm:way/683697190",
+    "osm:way/693404962",
+    "osm:way/776829700"
+  ]
+}

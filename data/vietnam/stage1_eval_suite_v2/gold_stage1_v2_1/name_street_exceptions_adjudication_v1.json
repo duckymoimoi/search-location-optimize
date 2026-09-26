@@ -1,0 +1,8 @@
+{
+  "status": "accepted",
+  "decision_date": "2026-09-26",
+  "decision_source": "user_instruction_in_conversation",
+  "source_packet_sha256": "389329707128d70cceaadc39faa54b130bef08106e9bdc67e5932999f6dc8496",
+  "case_ids": ["g150-035", "g150-115", "g150-129"],
+  "reason": "Do not create a false singleton positive for a malformed source street or for multiple distinct same-name locations on one street. Keep these three as documented exceptions to the name-plus-street/no-house coverage requirement."
+}

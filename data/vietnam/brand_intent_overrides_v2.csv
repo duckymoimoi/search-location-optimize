@@ -1,0 +1,3 @@
+source_intent_id,decision,target_intent_id,note
+brand:atm_bidv:atm,merge,brand:bidv:atm,ATM BIDV là các điểm ATM của BIDV; hợp nhất positive pool
+brand:can_ho_dich_vu_va_khach_san:hotel,exclude,,Descriptor generic không phải brand

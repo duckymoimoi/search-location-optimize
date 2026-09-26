@@ -1,0 +1,16 @@
+{
+  "verdict": "PASS",
+  "errors": [],
+  "warnings": [],
+  "stats": {
+    "queries": 782,
+    "qrels": 24653,
+    "families": 215,
+    "roles": {
+      "brand_error": 266,
+      "canonical_brand": 259,
+      "namespace_qualified": 257
+    },
+    "split": "train"
+  }
+}

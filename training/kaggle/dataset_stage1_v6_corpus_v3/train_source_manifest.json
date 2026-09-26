@@ -1,0 +1,77 @@
+{
+  "dataset": "train_stage1_queries_v6",
+  "status": "PARTIAL_PUBLISHED",
+  "contract_version": "v6",
+  "operator_taxonomy_version": "v6",
+  "generator_version": "manual_authored_v6",
+  "physical_schema_version": "1.2",
+  "target_count": 19891,
+  "created_at_utc": "2026-09-21T08:20:00Z",
+  "sources": {
+    "target_pois": {
+      "path": "data/vietnam/train_stage1_20k/target_pois_20k.parquet",
+      "sha256": "cc209cad9af14ad77ee01c71cf139f48594bc6cbe3ce900dc7d607782b827857"
+    },
+    "poi_corpus": {
+      "path": "data/vietnam/poi_corpus_v2/pois.parquet",
+      "sha256": "613e05ac0f896b56ec0306d5db69c9145f146c2de6fe4eab6883f6ddf5ca2244"
+    },
+    "gold_exclusion": {
+      "path": "data/vietnam/gold_stage1_v1_corpus_v2/target_pois.parquet",
+      "sha256": "dede14a535e73e2320dc8236f5b6e74aeb55b00ada6d1f67528bf7441cd471f7"
+    },
+    "brand_groups": {
+      "path": "data/vietnam/train_stage1_brand_v1/manifest.json",
+      "sha256": "4258399d0adc46872b761c0e77786120eb619d18a4f2cc13f920bec05758fd86"
+    },
+    "brand_lookup": {
+      "path": "data/vietnam/train_stage1_brand_lookup_v2/manifest.json",
+      "sha256": "368178c3d3abd22713e73c3d1bba641b0a0cf72b454626bd9d2c9d5c511452f4"
+    },
+    "gold_qrels": {
+      "path": "data/vietnam/gold_stage1_v1_corpus_v2/query_variants.parquet",
+      "sha256": "b66e5f5a8c6d230bc4a14083e4ad30667edabf6fa23ea935c542e0757ff22883"
+    }
+  },
+  "contracts": {
+    "skill": "data-external:.cursor/skills/search20-stage1-query-variants/SKILL.md",
+    "operators": "data-external:.cursor/skills/search20-stage1-query-variants/operators.md",
+    "serializer": "tools/serialize_stage1_v6.py",
+    "validator": "tools/validate_stage1_train_v6.py",
+    "packet_builder": "tools/build_stage1_authoring_packet.py"
+  },
+  "output_layout": {
+    "packets": "data/vietnam/train_stage1_queries_v6/packets/",
+    "staging": "data/vietnam/train_stage1_queries_v6/staging/",
+    "batches": "data/vietnam/train_stage1_queries_v6/batches/",
+    "reports": "data/vietnam/train_stage1_queries_v6/reports/"
+  },
+  "current_counts": {
+    "authored_pois": 2500,
+    "query_rows": 15000,
+    "published_batches": 5
+  },
+  "mutation_policy": "Do not place legacy v3/v5 rows in this workspace. Publish only v6 artifacts after deterministic and semantic review.",
+  "note": "Published train table is locked 003–007 (2500 POI · 15,000 query) on poi_corpus_v2. Remaining 20k pool is still open. 001/002 QA staging is excluded.",
+  "published_at_utc": "2026-09-24T08:45:06Z",
+  "published_train_table": {
+    "csv": {
+      "path": "query_variants.csv",
+      "sha256": "99e5d7b298c493816dd83e786558fed06d954f82fc1319bdcbbfe82e15f6a64d",
+      "bytes": 4978766
+    },
+    "parquet": {
+      "path": "query_variants.parquet",
+      "sha256": "7e369f4c2e6ac33b0c991444abefd2b87ea34dd076998fa81a9b60b3143844dc",
+      "bytes": 585124
+    },
+    "sources": [
+      "staging/003_hard_noise_500",
+      "staging/004_coverage_501_1000",
+      "staging/005_coverage_1001_1500",
+      "staging/006_coverage_1501_2002",
+      "staging/007_coverage_2003_2504"
+    ],
+    "note": "Locked 003–007 after contiguous case_id compact: 00001–02500. 001/002 QA staging excluded."
+  }
+}

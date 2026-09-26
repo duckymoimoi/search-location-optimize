@@ -1,0 +1,34 @@
+{
+  "status": "source_only_name_street_no_house_audit",
+  "named_pois_with_house_and_street": 136,
+  "covered_cases": 131,
+  "exception_cases": [
+    {
+      "case_id": "g150-001",
+      "reason": "CC2 is a unit/code, not an ordinary house number; bank and ATM share the street."
+    },
+    {
+      "case_id": "g150-026",
+      "reason": "SH16-130 is a shop-unit code retained as an identity discriminator."
+    },
+    {
+      "case_id": "g150-035",
+      "reason": "Source street is the malformed 'Hồ Tùng Mâuj'; verify the source before authoring a street query."
+    },
+    {
+      "case_id": "g150-115",
+      "reason": "Several Long Châu branches share Trần Hưng Đạo in Bắc Ninh, including a train target; no house-free singleton label is supported."
+    },
+    {
+      "case_id": "g150-129",
+      "reason": "Several VinFast charging stations share Xương Giang in Bắc Giang; no house-free singleton label is supported."
+    }
+  ],
+  "needs_adjudication_cases": [
+    "g150-035",
+    "g150-115",
+    "g150-129"
+  ],
+  "unresolved_cases": [],
+  "tag_validation_errors": []
+}

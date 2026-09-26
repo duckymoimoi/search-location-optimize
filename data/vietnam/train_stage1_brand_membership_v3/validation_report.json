@@ -1,0 +1,15 @@
+{
+  "verdict": "PASS",
+  "errors": [],
+  "warnings": [],
+  "stats": {
+    "membership_rows": 12714,
+    "accepted_rows": 11124,
+    "accepted_unique_poi": 10929,
+    "accepted_families": 322,
+    "dropped_adjudicated": 1,
+    "gold_overlap": 34,
+    "corpus_v3_rows": 179209,
+    "corpus_path": "D:/vsf/data/vietnam/poi_corpus_v3/pois_core.parquet"
+  }
+}

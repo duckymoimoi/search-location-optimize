@@ -1,5 +1,9 @@
 # Hướng corpus & DB toàn quốc (SEARCH 2.0)
 
+> **Snapshot hướng đi ngày 2026-09-16.** Corpus và runtime toàn quốc đã được nối
+> sau tài liệu này; các dòng coi Hà Nội là demo runtime cũ chỉ là lineage. Xem
+> [`CURRENT_STATE.md`](CURRENT_STATE.md) cho trạng thái hiện hành.
+
 Ngày: 2026-09-16  
 **Sản phẩm dữ liệu = Việt Nam** (ride-hailing). Hà Nội chỉ còn pilot eval / demo runtime cũ.  
 **Artifact data** nằm dưới `data/vietnam/` — không để trong `training/`.

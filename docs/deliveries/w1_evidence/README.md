@@ -13,6 +13,13 @@
 | 3 | [`03_QUERY_POI_TAXONOMY.md`](03_QUERY_POI_TAXONOMY.md) | Strata · families · operators · tags |
 | 4 | [`04_ERROR_TAXONOMY.md`](04_ERROR_TAXONOMY.md) | E0–E4 map sang metric |
 | 5 | [`05_DATA_QUALITY_REPORT.md`](05_DATA_QUALITY_REPORT.md) | DQ gates + issue register |
+| 6 | [`06_ROUND1_MODEL_GATE.md`](06_ROUND1_MODEL_GATE.md) | Round-1 model screen (provisional) |
+| 7 | [`07_MODEL_CATALOG_AND_RESULTS.md`](07_MODEL_CATALOG_AND_RESULTS.md) | Catalog model + Round-1 / Round-1b Kaggle (SoT kết quả) |
+| 8 | [`08_LEXICAL_RESCUE_DIAGNOSTIC.md`](08_LEXICAL_RESCUE_DIAGNOSTIC.md) | Overlap mE5–BM25 · lexical rescue · oracle hybrid ceiling |
+| 9 | [`09_ME5_MISS_CASES_BY_LENGTH.md`](09_ME5_MISS_CASES_BY_LENGTH.md) | Miss@100 mE5 + top hits · quan hệ độ dài query |
+| 10 | [`10_LEXICAL_L1_LOCAL.md`](10_LEXICAL_L1_LOCAL.md) | Lexical L1 local A/B (fielded BM25 vs baseline) |
+| 11 | [`11_ES_LEXICAL_POLICY.md`](11_ES_LEXICAL_POLICY.md) | ES + search_policy trên gold · MSM ablation · related work |
+| 12 | [`12_LEXICAL_ITERATE.md`](12_LEXICAL_ITERATE.md) | Iterate lexical structure · lex + hybrid RRF mỗi bước · winner v4 |
 
 **Query EDA đầy đủ (SoT):** [`data/vietnam/gold_stage1_v1/EDA_GOLD_STAGE1_QUERY_VARIANTS.md`](../../../data/vietnam/gold_stage1_v1/EDA_GOLD_STAGE1_QUERY_VARIANTS.md)  
 **Vision / kiến trúc:** [`docs/specs/search2.0.md`](../../specs/search2.0.md)

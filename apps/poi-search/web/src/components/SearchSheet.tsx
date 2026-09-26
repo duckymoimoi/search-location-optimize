@@ -3,6 +3,8 @@ import type { Result } from '../types/api'
 import { formatDistance } from '../lib/geo'
 import { resultSubtitle } from '../lib/resultSubtitle'
 
+type Field = 'origin' | 'destination'
+
 type Props = {
   open: boolean
   query: string
@@ -10,16 +12,18 @@ type Props = {
   results: Result[]
   hoveredId: string | null
   selectedId: string | null
-  gpsLabel: string
-  gpsOk: boolean
-  onOpen: () => void
+  activeField: Field
+  originLabel: string
+  destinationLabel: string
+  originIsCurrent: boolean
+  onActivate: (field: Field) => void
+  onSelectCurrentLocation: () => void
   onClose: () => void
   onQueryChange: (v: string) => void
   onCompositionStart: () => void
   onCompositionEnd: (v: string) => void
   onHover: (id: string | null) => void
   onSelect: (id: string) => void
-  onRecenterGps: () => void
 }
 
 export function SearchSheet({
@@ -29,68 +33,88 @@ export function SearchSheet({
   results,
   hoveredId,
   selectedId,
-  gpsLabel,
-  gpsOk,
-  onOpen,
+  activeField,
+  originLabel,
+  destinationLabel,
+  originIsCurrent,
+  onActivate,
+  onSelectCurrentLocation,
   onClose,
   onQueryChange,
   onCompositionStart,
   onCompositionEnd,
   onHover,
   onSelect,
-  onRecenterGps,
 }: Props) {
   const inputRef = useRef<HTMLInputElement | null>(null)
 
   useEffect(() => {
     if (open) inputRef.current?.focus()
-  }, [open])
+  }, [open, activeField])
+
+  const fields: { id: Field; label: string; value: string }[] = [
+    { id: 'origin', label: 'Điểm đi', value: originLabel },
+    { id: 'destination', label: 'Điểm đến', value: destinationLabel },
+  ]
 
   return (
     <div className={`search-sheet${open ? ' is-open' : ''}`}>
-      <div className="search-bar">
-        {open ? (
-          <button type="button" className="search-icon-btn" onClick={onClose} aria-label="Đóng">
-            ←
-          </button>
-        ) : (
-          <span className="search-icon" aria-hidden>
-            ⌕
-          </span>
-        )}
-        <input
-          ref={inputRef}
-          className="search-input"
-          value={query}
-          placeholder="Tìm địa điểm, địa chỉ…"
-          onFocus={onOpen}
-          onClick={onOpen}
-          onChange={(e) => onQueryChange(e.target.value)}
-          onCompositionStart={onCompositionStart}
-          onCompositionEnd={(e) => onCompositionEnd((e.target as HTMLInputElement).value)}
-        />
-        {query ? (
-          <button
-            type="button"
-            className="search-icon-btn"
-            aria-label="Xóa"
-            onClick={() => onQueryChange('')}
-          >
-            ×
-          </button>
-        ) : null}
+      <div className="place-fields">
+        {fields.map((field) => {
+          const editing = open && activeField === field.id
+          return (
+            <div
+              key={field.id}
+              className={`place-field${editing ? ' is-active' : ''}`}
+              onClick={() => onActivate(field.id)}
+            >
+              <span className={`place-dot ${field.id}`} aria-hidden />
+              {editing ? (
+                <input
+                  ref={inputRef}
+                  className="place-input"
+                  value={query}
+                  aria-label={field.label}
+                  placeholder={field.id === 'origin' ? 'Điểm đi' : 'Điểm đến'}
+                  onClick={(event) => event.stopPropagation()}
+                  onChange={(e) => onQueryChange(e.target.value)}
+                  onCompositionStart={onCompositionStart}
+                  onCompositionEnd={(e) => onCompositionEnd((e.target as HTMLInputElement).value)}
+                />
+              ) : (
+                <span className="place-value">{field.value}</span>
+              )}
+              {editing ? (
+                <button
+                  type="button"
+                  className="place-clear"
+                  aria-label="Đóng"
+                  onClick={(event) => {
+                    event.stopPropagation()
+                    onClose()
+                  }}
+                >
+                  ×
+                </button>
+              ) : null}
+            </div>
+          )
+        })}
       </div>
 
       {open ? (
         <div className="search-body">
-          <div className="search-gps-row">
-            <span className={gpsOk ? 'gps-ok' : 'gps-bad'}>{gpsLabel}</span>
-            <button type="button" className="linkish" onClick={onRecenterGps}>
-              Dùng vị trí hiện tại
+          {activeField === 'origin' ? (
+            <button
+              type="button"
+              className={`result-item current-location${originIsCurrent ? ' is-selected' : ''}`}
+              onClick={onSelectCurrentLocation}
+            >
+              <span className="result-name">Vị trí hiện tại</span>
             </button>
-          </div>
+          ) : null}
           {loading ? <div className="result-empty">Đang tìm…</div> : null}
-          {!loading && open && !query.trim() ? (
+          {!loading && !query.trim() && activeField === 'destination' ? (
             <div className="result-empty">Gõ tên địa điểm để xem gợi ý.</div>
           ) : null}
           {!loading && query.trim() && !results.length ? (
@@ -111,7 +135,6 @@ export function SearchSheet({
                     onMouseLeave={() => onHover(null)}
                     onClick={() => onSelect(r.poi_id)}
                   >
-                    <span className="result-rank">{r.rank}</span>
                     <span className="result-body">
                       <span className="result-name-row">
                         <span className="result-name">{r.name}</span>

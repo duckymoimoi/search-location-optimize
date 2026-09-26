@@ -3,12 +3,23 @@ $ErrorActionPreference = "Stop"
 $ProductRoot = (Resolve-Path (Join-Path $PSScriptRoot "..")).Path
 $RepoRoot = (Resolve-Path (Join-Path $ProductRoot "..\..")).Path
 $Compose = Join-Path $ProductRoot "docker-compose.yml"
-$IndexName = "hanoi-poi-stable-v1-release1"
-$LinkModel = Join-Path $PSScriptRoot "link_model.ps1"
+$IndexName = "vn-poi-core-v3-me5-small"
+$ExpectedRows = 179209
+$EmbDir = Join-Path $RepoRoot "artifacts\embeddings\me5_small_v3"
+$EmbNpy = Join-Path $EmbDir "corpus_embeddings.npy"
+$EmbIds = Join-Path $EmbDir "poi_ids.parquet"
 
-& $LinkModel
+if (-not (Test-Path $EmbNpy) -or -not (Test-Path $EmbIds) -or -not (Test-Path (Join-Path $EmbDir "manifest.json"))) {
+    throw "Missing v3 embeddings; run python apps/poi-search/scripts/migrate_me5_embeddings_v3.py"
+}
 
-docker compose -f $Compose up -d opensearch
+Push-Location $ProductRoot
+try {
+    # Reuse images — do not rebuild API/ES (torch/HF pulls are huge).
+    docker compose -f $Compose up -d --no-build elasticsearch
+} finally {
+    Pop-Location
+}
 
 $ready = $false
 for ($attempt = 0; $attempt -lt 90; $attempt++) {
@@ -17,45 +28,42 @@ for ($attempt = 0; $attempt -lt 90; $attempt++) {
         $ready = $true
         break
     } catch {
-        Start-Sleep -Seconds 1
+        Start-Sleep -Seconds 2
     }
 }
-if (-not $ready) { throw "OpenSearch did not become ready" }
+if (-not $ready) { throw "Elasticsearch did not become ready on :9200" }
 
-$count = 0
+$env:RECREATE_INDEX = if ($env:RECREATE_INDEX) { $env:RECREATE_INDEX } else { "0" }
+Push-Location $ProductRoot
 try {
-    $count = (Invoke-RestMethod "http://127.0.0.1:9200/$IndexName/_count").count
-} catch {
-    $count = 0
+    docker compose -f $Compose run --rm indexer
+    if ($LASTEXITCODE -ne 0) { throw "indexer failed (build once: docker compose build indexer)" }
+    docker compose -f $Compose up -d --no-build --force-recreate api
+    if ($LASTEXITCODE -ne 0) { throw "api failed (build once: docker compose build api)" }
+} finally {
+    Pop-Location
 }
 
-if ($count -ne 45692) {
-    $Dense = Join-Path $RepoRoot "artifacts\indexes\hanoi-poi-stable-v1-release1"
-    python (Join-Path $RepoRoot "training\stage1\opensearch_index.py") `
-        --bundle (Join-Path $RepoRoot "HANOI_POI_STABLE_V1\hanoi_poi_stable_v1") `
-        --artifacts $Dense `
-        --output (Join-Path $RepoRoot "training\stage1\benchmark_stable_v1\opensearch_release1") `
-        --index $IndexName `
-        --stable-corpus `
-        --embeddings (Join-Path $Dense "corpus_context_embeddings.npy") `
-        --id-map (Join-Path $Dense "corpus_context_ids.parquet") `
-        --m 32 --ef-construction 512 --bulk-size 200
-}
+# FE: build and recreate the self-contained nginx image.
+& (Join-Path $PSScriptRoot "refresh-web.ps1")
 
-docker compose -f $Compose up -d api api-dense api-lexical
-
-$Frontend = Join-Path $ProductRoot "web"
-if (-not (Test-Path (Join-Path $Frontend "node_modules"))) {
-    npm --prefix $Frontend install
+$apiReady = $false
+for ($attempt = 0; $attempt -lt 60; $attempt++) {
+    try {
+        $health = Invoke-RestMethod "http://127.0.0.1:8000/health"
+        if ($health.status -eq "ok") {
+            $apiReady = $true
+            break
+        }
+    } catch {
+    }
+    Start-Sleep -Seconds 5
 }
-$ViteLog = Join-Path $Frontend "vite.log"
-$env:VITE_USE_MOCK = "0"
-Start-Process -FilePath "cmd.exe" `
-    -ArgumentList "/c", "set VITE_USE_MOCK=0&& npm run dev -- --host 127.0.0.1 > `"$ViteLog`" 2>&1" `
-    -WorkingDirectory $Frontend -WindowStyle Hidden
+if (-not $apiReady) { Write-Warning "API not healthy yet — check docker logs vn-poi-stage1-api" }
 
 Write-Output "POI Search web:  http://127.0.0.1:5173"
 Write-Output "API hybrid:      http://127.0.0.1:8000/health"
-Write-Output "API dense-only:  http://127.0.0.1:8001/health"
-Write-Output "API lexical:     http://127.0.0.1:8002/health"
+Write-Output "Elasticsearch:   http://127.0.0.1:9200/$IndexName/_count"
 Write-Output "Smoke:           python apps/poi-search/bench/smoke_contract.py"
+Write-Output "FE refresh: .\scripts\refresh-web.ps1"
+Write-Output "Rebuild index:   `$env:RECREATE_INDEX=1; .\scripts\start.ps1"

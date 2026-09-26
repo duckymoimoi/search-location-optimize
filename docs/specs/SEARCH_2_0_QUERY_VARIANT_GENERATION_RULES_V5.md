@@ -1,5 +1,13 @@
 # SEARCH 2.0 — Query Variant & Noise Generation Rules v5
 
+> **Trạng thái: legacy/reference.** Đây không còn là contract authoring hàng
+> ngày. Query train v6 dùng
+> `.cursor/skills/search20-stage1-query-variants/SKILL.md`; brand dùng skill
+> riêng. Digit/ref/code vẫn bất biến trong pack POI. Numeric typo và fallback
+> địa chỉ dùng
+> [`ADDRESS_NUMERIC_FALLBACK.md`](ADDRESS_NUMERIC_FALLBACK.md). Không sửa nội
+> dung lịch sử phía dưới để giả rằng V5 đã sinh các artifact mới.
+
 > **Status:** Design draft (English, full operator detail)  
 > **Authoring standard (use this to expand gold):** [`SEARCH_2.0_STAGE1_QUERY_VARIANT_STANDARD.md`](./SEARCH_2.0_STAGE1_QUERY_VARIANT_STANDARD.md)  
 > **Scope:** Stage 1 text retrieval only  
@@ -1039,4 +1047,3 @@ External literature defines plausible failure/variant families. It must **not** 
 > 3. its transformation is explicitly labeled,
 > 4. it can be traced to a clean human-reviewed query,
 > 5. it does not require origin/time/history to determine correctness.
-

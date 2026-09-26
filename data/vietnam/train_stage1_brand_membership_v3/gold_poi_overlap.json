@@ -1,0 +1,247 @@
+{
+  "n_gold_targets": 200,
+  "n_overlap_source_ids": 34,
+  "n_overlap_v3_ids": 34,
+  "n_families": 25,
+  "extra_entity_equivalent_accepted": [],
+  "rows": [
+    {
+      "poi_id": "osm:node/10799322370",
+      "entity_group_id": "osm:node/10799322370",
+      "brand_family_id": "brand:yamaha",
+      "brand_group_id": "brand:yamaha:retail",
+      "name": "26"
+    },
+    {
+      "poi_id": "osm:node/11204387971",
+      "entity_group_id": "osm:node/11204387971",
+      "brand_family_id": "brand:vincom",
+      "brand_group_id": "brand:vincom:retail",
+      "name": "166"
+    },
+    {
+      "poi_id": "osm:node/11299136721",
+      "entity_group_id": "osm:node/11299136721",
+      "brand_family_id": "brand:samsung",
+      "brand_group_id": "brand:samsung:retail",
+      "name": "20"
+    },
+    {
+      "poi_id": "osm:node/11372720369",
+      "entity_group_id": "osm:node/11372720369",
+      "brand_family_id": "brand:highlands_coffee",
+      "brand_group_id": "brand:highlands_coffee:cafe",
+      "name": "25"
+    },
+    {
+      "poi_id": "osm:node/11533456837",
+      "entity_group_id": "osm:node/11533456837",
+      "brand_family_id": "brand:acb",
+      "brand_group_id": "brand:acb:bank",
+      "name": "8"
+    },
+    {
+      "poi_id": "osm:node/11569613664",
+      "entity_group_id": "osm:node/11569613664",
+      "brand_family_id": "brand:sua_chua_tran_chau_ha_long",
+      "brand_group_id": "brand:sua_chua_tran_chau_ha_long:restaurant",
+      "name": "115"
+    },
+    {
+      "poi_id": "osm:node/12584520697",
+      "entity_group_id": "osm:node/12584520697",
+      "brand_family_id": "brand:honda",
+      "brand_group_id": "brand:honda:retail",
+      "name": "16"
+    },
+    {
+      "poi_id": "osm:node/12833589502",
+      "entity_group_id": "osm:node/12833589502",
+      "brand_family_id": "brand:hdbank",
+      "brand_group_id": "brand:hdbank:bank",
+      "name": "10"
+    },
+    {
+      "poi_id": "osm:node/12917522273",
+      "entity_group_id": "osm:node/12917522273",
+      "brand_family_id": "brand:msb",
+      "brand_group_id": "brand:msb:bank",
+      "name": "13"
+    },
+    {
+      "poi_id": "osm:node/13155788995",
+      "entity_group_id": "osm:node/13155788995",
+      "brand_family_id": "brand:pharmacity",
+      "brand_group_id": "brand:pharmacity:pharmacy",
+      "name": "23"
+    },
+    {
+      "poi_id": "osm:node/13575063123",
+      "entity_group_id": "osm:node/13575063123",
+      "brand_family_id": "brand:trung_nguyen",
+      "brand_group_id": "brand:trung_nguyen:cafe",
+      "name": "11"
+    },
+    {
+      "poi_id": "osm:node/14104855301",
+      "entity_group_id": "osm:node/14104855301",
+      "brand_family_id": "brand:highlands_coffee",
+      "brand_group_id": "brand:highlands_coffee:cafe",
+      "name": "24"
+    },
+    {
+      "poi_id": "osm:node/3301809365",
+      "entity_group_id": "osm:node/3301809365",
+      "brand_family_id": "brand:vib",
+      "brand_group_id": "brand:vib:bank",
+      "name": "12"
+    },
+    {
+      "poi_id": "osm:node/411918020",
+      "entity_group_id": "osm:node/411918020",
+      "brand_family_id": "brand:lotteria",
+      "brand_group_id": "brand:lotteria:restaurant",
+      "name": "196"
+    },
+    {
+      "poi_id": "osm:node/4171931890",
+      "entity_group_id": "osm:node/4171931890",
+      "brand_family_id": "brand:vincom",
+      "brand_group_id": "brand:vincom:retail",
+      "name": "164"
+    },
+    {
+      "poi_id": "osm:node/444227294",
+      "entity_group_id": "osm:node/444227294",
+      "brand_family_id": "brand:vietcombank",
+      "brand_group_id": "brand:vietcombank:bank",
+      "name": "197"
+    },
+    {
+      "poi_id": "osm:node/5436848722",
+      "entity_group_id": "osm:node/5436848722",
+      "brand_family_id": "brand:harley_davidson",
+      "brand_group_id": "brand:harley_davidson:retail",
+      "name": "2"
+    },
+    {
+      "poi_id": "osm:node/5595959521",
+      "entity_group_id": "osm:node/5595959521",
+      "brand_family_id": "brand:winmart",
+      "brand_group_id": "brand:winmart:supermarket",
+      "name": "193"
+    },
+    {
+      "poi_id": "osm:node/5920056999",
+      "entity_group_id": "osm:node/5920056999",
+      "brand_family_id": "brand:cong_ca_phe",
+      "brand_group_id": "brand:cong_ca_phe:cafe",
+      "name": "9"
+    },
+    {
+      "poi_id": "osm:node/6315680990",
+      "entity_group_id": "osm:node/6315680990",
+      "brand_family_id": "brand:honda",
+      "brand_group_id": "brand:honda:retail",
+      "name": "17"
+    },
+    {
+      "poi_id": "osm:node/6325568187",
+      "entity_group_id": "osm:node/6325568187",
+      "brand_family_id": "brand:converse",
+      "brand_group_id": "brand:converse:retail",
+      "name": "4"
+    },
+    {
+      "poi_id": "osm:node/6947229585",
+      "entity_group_id": "osm:node/6947229585",
+      "brand_family_id": "brand:jollibee",
+      "brand_group_id": "brand:jollibee:restaurant",
+      "name": "3"
+    },
+    {
+      "poi_id": "osm:node/8005555185",
+      "entity_group_id": "osm:node/8005555185",
+      "brand_family_id": "brand:hong_lam",
+      "brand_group_id": "brand:hong_lam:retail",
+      "name": "7"
+    },
+    {
+      "poi_id": "osm:node/8679558960",
+      "entity_group_id": "osm:node/8679558960",
+      "brand_family_id": "brand:hong_lam",
+      "brand_group_id": "brand:hong_lam:retail",
+      "name": "1"
+    },
+    {
+      "poi_id": "osm:node/8897049818",
+      "entity_group_id": "osm:node/8897049818",
+      "brand_family_id": "brand:circle_k",
+      "brand_group_id": "brand:circle_k:convenience_store",
+      "name": "5"
+    },
+    {
+      "poi_id": "osm:node/8987527027",
+      "entity_group_id": "osm:node/8987527027",
+      "brand_family_id": "brand:vietcombank",
+      "brand_group_id": "brand:vietcombank:bank",
+      "name": "0"
+    },
+    {
+      "poi_id": "osm:way/1435603858",
+      "entity_group_id": "osm:way/1435603858",
+      "brand_family_id": "brand:circle_k",
+      "brand_group_id": "brand:circle_k:convenience_store",
+      "name": "27"
+    },
+    {
+      "poi_id": "osm:way/1457546056",
+      "entity_group_id": "osm:way/1457546056",
+      "brand_family_id": "brand:sacombank",
+      "brand_group_id": "brand:sacombank:bank",
+      "name": "18"
+    },
+    {
+      "poi_id": "osm:way/164333086",
+      "entity_group_id": "osm:way/164333086",
+      "brand_family_id": "brand:hyatt_regency",
+      "brand_group_id": "brand:hyatt_regency:hotel",
+      "name": "19"
+    },
+    {
+      "poi_id": "osm:way/206245067",
+      "entity_group_id": "osm:way/206245067",
+      "brand_family_id": "brand:sheraton",
+      "brand_group_id": "brand:sheraton:hotel",
+      "name": "6"
+    },
+    {
+      "poi_id": "osm:way/570572174",
+      "entity_group_id": "osm:way/570572174",
+      "brand_family_id": "brand:winmart",
+      "brand_group_id": "brand:winmart:supermarket",
+      "name": "15"
+    },
+    {
+      "poi_id": "osm:way/683697190",
+      "entity_group_id": "osm:way/683697190",
+      "brand_family_id": "brand:acb",
+      "brand_group_id": "brand:acb:bank",
+      "name": "22"
+    },
+    {
+      "poi_id": "osm:way/693404962",
+      "entity_group_id": "osm:way/693404962",
+      "brand_family_id": "brand:pv_oil",
+      "brand_group_id": "brand:pv_oil:fuel",
+      "name": "14"
+    },
+    {
+      "poi_id": "osm:way/776829700",
+      "entity_group_id": "osm:way/776829700",
+      "brand_family_id": "brand:yamaha",
+      "brand_group_id": "brand:yamaha:retail",
+      "name": "21"
+    }
+  ]
+}

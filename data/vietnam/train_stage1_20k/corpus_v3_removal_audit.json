@@ -1,0 +1,510 @@
+{
+  "source_rows": 19939,
+  "retained_rows": 19890,
+  "removed_count": 49,
+  "removed_by_action": {
+    "merge_duplicate": 38,
+    "drop_junk_or_foreign": 11
+  },
+  "removed_by_reason": {
+    "both_no_address": 18,
+    "one_street_compatible": 11,
+    "same_house_and_street": 7,
+    "pure_non_latin_Cyrillic": 9,
+    "osm_fixme_todo": 1,
+    "one_house_street_compatible": 2,
+    "obstacle_osm_note": 1
+  },
+  "removed_items": [
+    {
+      "case_id": "train20k-00552",
+      "poi_id": "osm:node/4437430509",
+      "name": "Petrolimex",
+      "category": "amenity=fuel",
+      "province": "Tỉnh Thanh Hóa",
+      "action": "merge_duplicate",
+      "reason": "both_no_address",
+      "canonical_poi_id": "osm:node/4385128392"
+    },
+    {
+      "case_id": "train20k-02005",
+      "poi_id": "osm:node/5608881031",
+      "name": "PNJ",
+      "category": "shop=jewelry",
+      "province": "Thành phố Hồ Chí Minh",
+      "action": "merge_duplicate",
+      "reason": "both_no_address",
+      "canonical_poi_id": "osm:node/5608880680"
+    },
+    {
+      "case_id": "train20k-02654",
+      "poi_id": "osm:node/1997671828",
+      "name": "Sacombank",
+      "category": "amenity=atm",
+      "province": "Thành phố Đà Nẵng",
+      "action": "merge_duplicate",
+      "reason": "one_street_compatible",
+      "canonical_poi_id": "osm:node/5110691330"
+    },
+    {
+      "case_id": "train20k-02986",
+      "poi_id": "osm:node/6315690589",
+      "name": "Nam A Bank",
+      "category": "amenity=bank",
+      "province": "Thành phố Hồ Chí Minh",
+      "action": "merge_duplicate",
+      "reason": "one_street_compatible",
+      "canonical_poi_id": "osm:node/6078439993"
+    },
+    {
+      "case_id": "train20k-03238",
+      "poi_id": "osm:node/13584947816",
+      "name": "TPBank",
+      "category": "amenity=atm",
+      "province": "Khánh Hòa",
+      "action": "merge_duplicate",
+      "reason": "both_no_address",
+      "canonical_poi_id": "osm:node/13584947815"
+    },
+    {
+      "case_id": "train20k-03375",
+      "poi_id": "osm:way/458865826",
+      "name": "Nhà thờ Chúa Hiển Linh",
+      "category": "address=",
+      "province": "Thành phố Hồ Chí Minh",
+      "action": "merge_duplicate",
+      "reason": "same_house_and_street",
+      "canonical_poi_id": "osm:way/458865827"
+    },
+    {
+      "case_id": "train20k-04167",
+      "poi_id": "osm:way/464560371",
+      "name": "Vietcombank",
+      "category": "amenity=bank|building=yes",
+      "province": "Tỉnh Quảng Ngãi",
+      "action": "merge_duplicate",
+      "reason": "both_no_address",
+      "canonical_poi_id": "osm:node/11297515398"
+    },
+    {
+      "case_id": "train20k-04514",
+      "poi_id": "osm:node/11289662869",
+      "name": "Косметолог Хошимин Вьетнам",
+      "category": "shop=beauty",
+      "province": "Thành phố Hồ Chí Minh",
+      "action": "drop_junk_or_foreign",
+      "reason": "pure_non_latin_Cyrillic",
+      "canonical_poi_id": null
+    },
+    {
+      "case_id": "train20k-04947",
+      "poi_id": "osm:node/10816361965",
+      "name": "VIB",
+      "category": "amenity=atm",
+      "province": "Hà Nội",
+      "action": "merge_duplicate",
+      "reason": "one_street_compatible",
+      "canonical_poi_id": "osm:node/7056059367"
+    },
+    {
+      "case_id": "train20k-05030",
+      "poi_id": "osm:way/840583729",
+      "name": "Trường Tiểu học Tô Hoàng",
+      "category": "address=|building=school",
+      "province": "Hà Nội",
+      "action": "merge_duplicate",
+      "reason": "same_house_and_street",
+      "canonical_poi_id": "osm:way/858190902"
+    },
+    {
+      "case_id": "train20k-06428",
+      "poi_id": "osm:node/4882083521",
+      "name": "basil homestay",
+      "category": "tourism=hostel",
+      "province": "Thành phố Đà Nẵng",
+      "action": "merge_duplicate",
+      "reason": "same_house_and_street",
+      "canonical_poi_id": "osm:node/4683527446"
+    },
+    {
+      "case_id": "train20k-06726",
+      "poi_id": "osm:node/5032079022",
+      "name": "Евгений",
+      "category": "leisure=sports_centre",
+      "province": "Tỉnh Lâm Đồng",
+      "action": "drop_junk_or_foreign",
+      "reason": "pure_non_latin_Cyrillic",
+      "canonical_poi_id": null
+    },
+    {
+      "case_id": "train20k-07874",
+      "poi_id": "osm:way/704159170",
+      "name": "Trường Tiểu Học Ngọc Lâm",
+      "category": "building=school",
+      "province": "Hà Nội",
+      "action": "merge_duplicate",
+      "reason": "one_street_compatible",
+      "canonical_poi_id": "osm:way/704159169"
+    },
+    {
+      "case_id": "train20k-08149",
+      "poi_id": "osm:node/7168467586",
+      "name": "Камрань",
+      "category": "amenity=bus_station|public_transport=station",
+      "province": "Khánh Hòa",
+      "action": "drop_junk_or_foreign",
+      "reason": "pure_non_latin_Cyrillic",
+      "canonical_poi_id": null
+    },
+    {
+      "case_id": "train20k-08309",
+      "poi_id": "osm:way/901873607",
+      "name": "Ủy Ban Nhân Dân Thành Phố Quy Nhơn",
+      "category": "building=yes",
+      "province": "Tỉnh Gia Lai",
+      "action": "merge_duplicate",
+      "reason": "one_street_compatible",
+      "canonical_poi_id": "osm:node/1527934294"
+    },
+    {
+      "case_id": "train20k-08800",
+      "poi_id": "osm:node/13091726432",
+      "name": "Viettel",
+      "category": "shop=mobile_phone",
+      "province": "Thành phố Đà Nẵng",
+      "action": "merge_duplicate",
+      "reason": "both_no_address",
+      "canonical_poi_id": "osm:node/12888751701"
+    },
+    {
+      "case_id": "train20k-09266",
+      "poi_id": "osm:node/13432480001",
+      "name": "32 КВАДРАТА рюмочная",
+      "category": "amenity=bar",
+      "province": "Khánh Hòa",
+      "action": "drop_junk_or_foreign",
+      "reason": "pure_non_latin_Cyrillic",
+      "canonical_poi_id": null
+    },
+    {
+      "case_id": "train20k-09422",
+      "poi_id": "osm:node/728153463",
+      "name": "Agribank - ATM",
+      "category": "amenity=atm",
+      "province": "Thành phố Đà Nẵng",
+      "action": "merge_duplicate",
+      "reason": "both_no_address",
+      "canonical_poi_id": "osm:node/728153399"
+    },
+    {
+      "case_id": "train20k-10084",
+      "poi_id": "osm:node/1021091876",
+      "name": "Sacombank",
+      "category": "amenity=atm",
+      "province": "Tỉnh Quảng Trị",
+      "action": "merge_duplicate",
+      "reason": "both_no_address",
+      "canonical_poi_id": "osm:node/1021091724"
+    },
+    {
+      "case_id": "train20k-10275",
+      "poi_id": "osm:node/13638578776",
+      "name": "Vietcombank",
+      "category": "amenity=atm",
+      "province": "Thành phố Huế",
+      "action": "merge_duplicate",
+      "reason": "both_no_address",
+      "canonical_poi_id": "osm:node/11290988869"
+    },
+    {
+      "case_id": "train20k-10530",
+      "poi_id": "osm:node/13747985601",
+      "name": "WinMart⁺",
+      "category": "shop=grocery",
+      "province": "Thành phố Đà Nẵng",
+      "action": "merge_duplicate",
+      "reason": "both_no_address",
+      "canonical_poi_id": "osm:node/13428118102"
+    },
+    {
+      "case_id": "train20k-10565",
+      "poi_id": "osm:node/6357895245",
+      "name": "Agribank",
+      "category": "amenity=atm",
+      "province": "Tỉnh Quảng Trị",
+      "action": "merge_duplicate",
+      "reason": "both_no_address",
+      "canonical_poi_id": "osm:node/6357894815"
+    },
+    {
+      "case_id": "train20k-10786",
+      "poi_id": "osm:node/4729139066",
+      "name": "Petrolimex",
+      "category": "amenity=fuel",
+      "province": "Tỉnh Quảng Trị",
+      "action": "merge_duplicate",
+      "reason": "both_no_address",
+      "canonical_poi_id": "osm:node/4698852890"
+    },
+    {
+      "case_id": "train20k-11086",
+      "poi_id": "osm:node/13890569004",
+      "name": "Сусанин.",
+      "category": "amenity=cafe",
+      "province": "Khánh Hòa",
+      "action": "drop_junk_or_foreign",
+      "reason": "pure_non_latin_Cyrillic",
+      "canonical_poi_id": null
+    },
+    {
+      "case_id": "train20k-11117",
+      "poi_id": "osm:node/13015057801",
+      "name": "VPBank",
+      "category": "amenity=bank",
+      "province": "Tỉnh Lâm Đồng",
+      "action": "merge_duplicate",
+      "reason": "both_no_address",
+      "canonical_poi_id": "osm:node/12603211301"
+    },
+    {
+      "case_id": "train20k-11126",
+      "poi_id": "osm:node/8680939217",
+      "name": "Closed War Bunker",
+      "category": "tourism=attraction",
+      "province": "Thành phố Đà Nẵng",
+      "action": "drop_junk_or_foreign",
+      "reason": "osm_fixme_todo",
+      "canonical_poi_id": null
+    },
+    {
+      "case_id": "train20k-11329",
+      "poi_id": "osm:way/1540326750",
+      "name": "TPBank",
+      "category": "amenity=bank|building=yes",
+      "province": "Thành phố Hồ Chí Minh",
+      "action": "merge_duplicate",
+      "reason": "one_street_compatible",
+      "canonical_poi_id": "osm:node/14024825888"
+    },
+    {
+      "case_id": "train20k-11535",
+      "poi_id": "osm:node/11894187994",
+      "name": "Đối diện Bưu điện Cửa Đại",
+      "category": "public_transport=platform",
+      "province": "Thành phố Đà Nẵng",
+      "action": "merge_duplicate",
+      "reason": "both_no_address",
+      "canonical_poi_id": "osm:node/11894187990"
+    },
+    {
+      "case_id": "train20k-11914",
+      "poi_id": "osm:node/12435161746",
+      "name": "Công an phường An Phú",
+      "category": "public_transport=platform",
+      "province": "Thành phố Hồ Chí Minh",
+      "action": "merge_duplicate",
+      "reason": "both_no_address",
+      "canonical_poi_id": "osm:node/1275863733"
+    },
+    {
+      "case_id": "train20k-12160",
+      "poi_id": "osm:node/5263727126",
+      "name": "WinMart",
+      "category": "shop=supermarket",
+      "province": "Thành phố Cần Thơ",
+      "action": "merge_duplicate",
+      "reason": "one_street_compatible",
+      "canonical_poi_id": "osm:node/5245298960"
+    },
+    {
+      "case_id": "train20k-12393",
+      "poi_id": "osm:node/10736242969",
+      "name": "Vietinbank",
+      "category": "amenity=atm",
+      "province": "Thành phố Đà Nẵng",
+      "action": "merge_duplicate",
+      "reason": "both_no_address",
+      "canonical_poi_id": "osm:node/6469538786"
+    },
+    {
+      "case_id": "train20k-13537",
+      "poi_id": "osm:node/5430822321",
+      "name": "Chùa Sùng Đức",
+      "category": "amenity=place_of_worship",
+      "province": "Thành phố Hồ Chí Minh",
+      "action": "merge_duplicate",
+      "reason": "one_street_compatible",
+      "canonical_poi_id": "osm:way/680569931"
+    },
+    {
+      "case_id": "train20k-13693",
+      "poi_id": "osm:node/4185674916",
+      "name": "FPT Shop",
+      "category": "shop=mobile_phone",
+      "province": "Tỉnh Tây Ninh",
+      "action": "merge_duplicate",
+      "reason": "both_no_address",
+      "canonical_poi_id": "osm:node/4177554492"
+    },
+    {
+      "case_id": "train20k-14034",
+      "poi_id": "osm:node/13276792979",
+      "name": "ố 28-34, pasteur, phường nguyễn thái bình, quận 1, tp. hcm",
+      "category": "address=",
+      "province": "Thành phố Hồ Chí Minh",
+      "action": "merge_duplicate",
+      "reason": "same_house_and_street",
+      "canonical_poi_id": "osm:node/13197998956"
+    },
+    {
+      "case_id": "train20k-14886",
+      "poi_id": "osm:node/5309359321",
+      "name": "HDBank",
+      "category": "amenity=bank",
+      "province": "Thành phố Hải Phòng",
+      "action": "merge_duplicate",
+      "reason": "one_street_compatible",
+      "canonical_poi_id": "osm:node/2481939960"
+    },
+    {
+      "case_id": "train20k-15051",
+      "poi_id": "osm:node/5475266321",
+      "name": "Quoy Nhon Sports Bar",
+      "category": "amenity=bar",
+      "province": "Tỉnh Gia Lai",
+      "action": "merge_duplicate",
+      "reason": "same_house_and_street",
+      "canonical_poi_id": "osm:node/5473141021"
+    },
+    {
+      "case_id": "train20k-15214",
+      "poi_id": "osm:node/4437480891",
+      "name": "Petrolimex",
+      "category": "amenity=fuel",
+      "province": "Tỉnh Nghệ An",
+      "action": "merge_duplicate",
+      "reason": "both_no_address",
+      "canonical_poi_id": "osm:node/4385153293"
+    },
+    {
+      "case_id": "train20k-15309",
+      "poi_id": "osm:way/543431354",
+      "name": "Nhà Thờ",
+      "category": "address=|building=yes",
+      "province": "Thành phố Cần Thơ",
+      "action": "merge_duplicate",
+      "reason": "one_house_street_compatible",
+      "canonical_poi_id": "osm:node/5253408677"
+    },
+    {
+      "case_id": "train20k-16329",
+      "poi_id": "osm:node/4839879521",
+      "name": "Bridge and waterfall closed with barbwire",
+      "category": "tourism=attraction",
+      "province": "Tỉnh Đắk Lắk",
+      "action": "drop_junk_or_foreign",
+      "reason": "obstacle_osm_note",
+      "canonical_poi_id": null
+    },
+    {
+      "case_id": "train20k-16420",
+      "poi_id": "osm:way/306551281",
+      "name": "Trường Tiểu học Nguyễn Trung Trực",
+      "category": "amenity=school",
+      "province": "Thành phố Hồ Chí Minh",
+      "action": "merge_duplicate",
+      "reason": "one_street_compatible",
+      "canonical_poi_id": "osm:node/11846011869"
+    },
+    {
+      "case_id": "train20k-16692",
+      "poi_id": "osm:node/7330393286",
+      "name": "VPBank",
+      "category": "amenity=bank",
+      "province": "Khánh Hòa",
+      "action": "merge_duplicate",
+      "reason": "one_street_compatible",
+      "canonical_poi_id": "osm:node/6680818485"
+    },
+    {
+      "case_id": "train20k-16855",
+      "poi_id": "osm:node/6560996043",
+      "name": "95 Đường Ngũ Hành Sơn",
+      "category": "address=",
+      "province": "Thành phố Đà Nẵng",
+      "action": "merge_duplicate",
+      "reason": "same_house_and_street",
+      "canonical_poi_id": "osm:node/5762591953"
+    },
+    {
+      "case_id": "train20k-17190",
+      "poi_id": "osm:node/1629553041",
+      "name": "BIDV",
+      "category": "amenity=atm",
+      "province": "Khánh Hòa",
+      "action": "merge_duplicate",
+      "reason": "one_house_street_compatible",
+      "canonical_poi_id": "osm:node/2070423177"
+    },
+    {
+      "case_id": "train20k-17192",
+      "poi_id": "osm:node/6439962015",
+      "name": "Vietcombank",
+      "category": "amenity=bank",
+      "province": "Tỉnh Quảng Trị",
+      "action": "merge_duplicate",
+      "reason": "both_no_address",
+      "canonical_poi_id": "osm:node/2733843737"
+    },
+    {
+      "case_id": "train20k-17964",
+      "poi_id": "osm:node/6496962385",
+      "name": "Церковь",
+      "category": "amenity=place_of_worship",
+      "province": "Tỉnh Quảng Trị",
+      "action": "drop_junk_or_foreign",
+      "reason": "pure_non_latin_Cyrillic",
+      "canonical_poi_id": null
+    },
+    {
+      "case_id": "train20k-17991",
+      "poi_id": "osm:node/10709321405",
+      "name": "Русский",
+      "category": "amenity=car_rental",
+      "province": "Thành phố Đà Nẵng",
+      "action": "drop_junk_or_foreign",
+      "reason": "pure_non_latin_Cyrillic",
+      "canonical_poi_id": null
+    },
+    {
+      "case_id": "train20k-18035",
+      "poi_id": "osm:node/6117199886",
+      "name": "поворот в Нац.парк",
+      "category": "tourism=attraction",
+      "province": "Tỉnh An Giang",
+      "action": "drop_junk_or_foreign",
+      "reason": "pure_non_latin_Cyrillic",
+      "canonical_poi_id": null
+    },
+    {
+      "case_id": "train20k-18300",
+      "poi_id": "osm:node/5309536621",
+      "name": "iColors Dalat Hostel",
+      "category": "tourism=hostel",
+      "province": "Tỉnh Lâm Đồng",
+      "action": "merge_duplicate",
+      "reason": "same_house_and_street",
+      "canonical_poi_id": "osm:node/5269212221"
+    },
+    {
+      "case_id": "train20k-19827",
+      "poi_id": "osm:node/13275149548",
+      "name": "ХУТОРОК",
+      "category": "amenity=restaurant",
+      "province": "Khánh Hòa",
+      "action": "drop_junk_or_foreign",
+      "reason": "pure_non_latin_Cyrillic",
+      "canonical_poi_id": null
+    }
+  ]
+}

@@ -1,6 +1,6 @@
 # Thiết kế hệ thống tìm kiếm địa điểm gọi xe — v1
 
-Revision: 15/09/2026. Đây là **thiết kế đích**, không phải mô tả nguyên trạng code. Demo hiện có Stage 1 hybrid và `heuristic-geo-v5`; chưa triển khai đầy đủ router/history/learned Stage 2. Đọc [trạng thái as-built](../as-built/CURRENT_STATE.md), [đặc tả kỹ thuật](TECHNICAL_SPEC.md) và [training/nâng cấp retrieval](TRAINING_AND_RETRIEVAL_PROTOCOL.md). API đang chạy được giữ nguyên khi cải thiện thuật toán; contract mở rộng chỉ có hiệu lực sau khi được triển khai và tạo release/version rõ ràng.
+Revision: 23/09/2026. Đây là **thiết kế đích**, không phải mô tả nguyên trạng code. Demo hiện có Stage 1 hybrid và `heuristic-geo-v6`; chưa triển khai đầy đủ router/history/learned Stage 2 hoặc address-numeric resolver. Đọc [trạng thái as-built](../as-built/CURRENT_STATE.md), [đặc tả kỹ thuật](TECHNICAL_SPEC.md), [training/nâng cấp retrieval](TRAINING_AND_RETRIEVAL_PROTOCOL.md), [bộ đánh giá Stage 1](STAGE1_EVALUATION_SUITE.md) và [address/numeric fallback](ADDRESS_NUMERIC_FALLBACK.md). API đang chạy được giữ nguyên khi cải thiện thuật toán; contract mở rộng chỉ có hiệu lực sau khi được triển khai và tạo release/version rõ ràng.
 
 ## Quyết định retrieval hiện hành
 
@@ -8,12 +8,16 @@ Hybrid lexical + E5 single-vector + RRF đủ làm baseline triển khai, chưa 
 
 ```mermaid
 flowchart TD
-    Q["Query và scope"] --> L["Lexical"]
-    Q --> D["Single-vector dense"]
+    Q["Query và scope"] --> A["Address evidence và lexical fallback plan"]
+    M["Address membership sidecar"] --> A
+    A --> L["Lexical / structured"]
+    A --> D["Single-vector dense: original query"]
     L --> F["RRF và fixed candidate budget"]
     D --> F
+    A --> E["Address-scope expansion khi fallback"]
+    E --> F
     F --> T["Text adapter: identity mặc định"]
-    T --> C["Context: geo-v5 hiện tại hoặc v6/learned đã qua gate"]
+    T --> C["Context: geo-v6 hiện tại hoặc learned đã qua gate"]
     X["Origin, time, history hợp lệ"] --> C
     C --> O["Top-K"]
 ```
@@ -33,14 +37,17 @@ MVP không tạo booking, không cam kết điểm đón tiếp cận được, 
 | Artifact | Trạng thái |
 |---|---|
 | PBF Việt Nam `vietnam-260910.osm.pbf` | Snapshot 10/09/2026; hash nguồn trong corpus manifest |
-| `hn-poi-stable-v1` | 46.792 POI; 45.692 searchable; 8.131 origin demo; 0 pickup verified |
-| `hnq20k-stable-v1-eval1` | 20.000 query; 20.000/20.000 intended targets searchable; 4 qrel phụ không searchable đã bị loại; 22 query lỗi address evidence được giữ diagnostic nhưng loại khỏi supervised/main |
-| E5 fine-tuned v4 | Đã đánh giá exact và ANN trên corpus stable/passage context; thắng E5 zero-shot trên main retrieval, chưa chứng minh gain autocomplete |
-| Demo runtime | FastAPI + OpenSearch + React/MapLibre; hybrid/dense/lexical profiles; geo-v5, event state in-memory, Goong route tùy cấu hình |
-| Corpus searchable toàn quốc | Chưa extract/đếm theo policy mới; không giả định hàng chục triệu POI |
+| `vn-poi-core-v1` | 186.322 POI searchable toàn quốc; trạng thái `raw_nationwide_core_not_deduped`; admin và access enrichment là sidecar |
+| `gold_stage1_v1` | 180 case · 1.080 query khóa; evaluation snapshot, không phải train set 20k |
+| `train_stage1_queries_v6` | Workspace target 20k; checkpoint `003_hard_noise_500` có 500 POI · 3.000 query đã validate/lock cục bộ |
+| Brand membership/lookup | `train_stage1_brand_v1` và `train_stage1_brand_lookup_v2` đã khóa; brand query là track riêng |
+| Stage 1 evaluation suite v2 | Target contract gồm POI/autocomplete, brand group và address scope; chưa build/lock |
+| Address membership/numeric fallback | Chưa build/ship; lexical fallback contract nằm tại `ADDRESS_NUMERIC_FALLBACK.md` |
+| Dense baseline | `intfloat/multilingual-e5-small` 384d đang dùng cho nationwide demo; fine-tune mới chưa được promote |
+| Demo runtime | FastAPI + Elasticsearch 9 + React/MapLibre; hybrid lexical+dense+RRF, geo-v6 mặc định (v5 regression), Goong route tùy cấu hình |
 | Golden có context, learned Stage 2 | Chưa hoàn thành |
 
-18 cột POI và các struct của stable v1 được giữ nguyên. Corpus quốc gia sẽ có version mới và sidecar địa lý; không thêm tùy tiện trường vào POI chính. Pipeline quốc gia phải mở rộng extraction/enrichment theo toàn bộ hình học nguồn, không chỉ bỏ điều kiện Hà Nội khỏi script vốn dùng evidence Hà Nội.
+POI core được giữ ổn định; brand, address membership và access/routing enrichment là sidecar có manifest/version riêng. Không thêm tùy tiện trường train, resolver hoặc fallback vào bảng POI chính. Pipeline quốc gia phải giữ provenance và coverage; không suy một địa chỉ có thật chỉ từ việc POI khác cùng đường có số gần đó.
 
 ## 2. Ba khối logic trên đường search
 
@@ -54,12 +61,13 @@ Model Stage 1 là query-only. Trong pipeline thực tế, **candidate set sau sc
 
 ## 3. Kiến trúc triển khai
 
-MVP là modular monolith: một Python API chứa router, retrieval orchestration, encoder adapter, feature builder và ranker adapter. OpenSearch phục vụ lexical/ANN; PostgreSQL lưu exposures, selections và history. UI React + TypeScript + MapLibre. ETL/train/eval là jobs riêng, không chạy chung trong phép đo serving.
+MVP là modular monolith: một Python API điều phối router, address resolver, retrieval, encoder, feature builder và ranker qua các module thuần có contract riêng. Elasticsearch phục vụ lexical/ANN; PostgreSQL lưu exposures, selections và history. UI React + TypeScript + MapLibre. ETL/train/eval và việc build membership sidecar là jobs riêng, không chạy chung trong phép đo serving. `app.py` là wrapper/orchestrator, không phải nơi sở hữu schema, normalizer, membership hoặc label policy.
 
 ```mermaid
 flowchart TD
     U["UI: nhập và chọn điểm"] --> A["Search API"]
-    A --> S["OpenSearch"]
+    A --> S["Elasticsearch"]
+    A --> D["Address resolver + membership snapshot"]
     A --> M["Encoder và ranker adapters"]
     A --> H["PostgreSQL: history và events"]
     J["Jobs: corpus, train, index"] --> S
@@ -68,7 +76,7 @@ flowchart TD
     A --> R["Route preview adapter"]
 ```
 
-Chọn PostgreSQL ngay để tránh đổi contract ghi sự kiện khi thêm worker; PostGIS, Redis, Kafka, Kubernetes và model RPC riêng chưa là dependency của MVP. Exact dense evaluator dùng vector matrix/chunks ngoài OpenSearch. ANN được thêm vào serving sau khi có mốc chất lượng exact.
+Chọn PostgreSQL ngay để tránh đổi contract ghi sự kiện khi thêm worker; PostGIS, Redis, Kafka, Kubernetes và model RPC riêng chưa là dependency của MVP. Exact dense evaluator dùng vector matrix/chunks ngoài Elasticsearch. ANN được thêm vào serving sau khi có mốc chất lượng exact.
 
 ## 4. Luồng dữ liệu offline
 
@@ -98,6 +106,13 @@ flowchart TD
 6. Dedup bảo thủ theo bằng chứng node/way; giữ branch, platform, entrance khi policy yêu cầu. Không merge chỉ vì trùng tên/bán kính gần.
 7. Tạo `poi_regions.parquet` qua point-in-polygon; sử dụng relation ID và admin scheme version, không dùng tên phường làm khóa. Lưu tập membership khi overlap, không chọn phần tử theo thứ tự STRtree. Unknown membership không làm POI biến mất khỏi nhánh toàn quốc.
 8. Publish immutable corpus. Hà Nội là subset theo boundary của corpus quốc gia; nếu policy/data khác stable v1, lưu migration map và report, không ép số lượng phải bằng bản cũ.
+
+Sau khi publish corpus, build `address_scope_members_v1.parquet` như sidecar từ
+street/admin/complex evidence đã pin. Mọi absence chỉ là
+`number_unseen_in_catalog`; không ghi “địa chỉ không tồn tại”. Schema và rules
+phân loại house number/alley/unit/code nằm trong
+[`ADDRESS_NUMERIC_FALLBACK.md`](ADDRESS_NUMERIC_FALLBACK.md), không nằm trong ETL
+POI core hoặc API app.
 
 Job ETL phải chạy được theo checkpoint/batch, có exclusion report và đủ bằng chứng rerun. Không load toàn bộ PBF/geometry/vectors quốc gia vào list Python không giới hạn.
 
@@ -129,7 +144,7 @@ sequenceDiagram
     A->>H: idempotent selection event
 ```
 
-Ở profile mặc định, query encoder gọi tối đa một lần/request, reuse vector giữa các scope. Nếu bật late-interaction thí nghiệm, encoder bổ sung của nó phải được khai báo và tính đầy đủ latency; không tuyên bố profile đó chỉ có một lần encode. Khi route lexical-only, Stage 2 không gọi encoder lại để che chi phí. Feature missing được biểu diễn bằng mask.
+Ở profile mặc định, query encoder gọi tối đa một lần/request và luôn nhận original query. Address resolver chỉ tạo lexical fallback view; không rewrite dense query hoặc gọi encoder lần hai. Nếu bật late-interaction thí nghiệm, encoder bổ sung của nó phải được khai báo và tính đầy đủ latency; không tuyên bố profile đó chỉ có một lần encode. Khi route lexical-only, Stage 2 không gọi encoder lại để che chi phí. Feature missing được biểu diễn bằng mask.
 
 ### Scope policy v1
 
@@ -148,19 +163,20 @@ Một geo filter chỉ giảm tập ứng viên logic; không tự bảo đảm 
 - Chuỗi gốc được giữ để hiển thị/audit. NFKC, khoảng trắng, lowercase và accent-fold tạo các biểu diễn riêng; giữ dấu `/`, số nhà, mã. Không tự sửa query có dấu thành tên khác.
 - Lexical gồm exact/name, alias, accent-folded, prefix và address/ref fields. Prefix 1–2 ký tự ưu tiên lexical; query dài/lỗi/ngữ nghĩa chạy hybrid. Structured query vẫn giữ field-aware lexical. Các route là config thử nghiệm, không dùng nhãn dataset để routing.
 - E5-small là model khởi đầu; POI encode offline, query encode online. RRF dùng thứ hạng, không cộng BM25 và cosine trực tiếp.
+- Address resolver phân biệt exact observed, unseen-in-catalog, valid collision, ambiguous và unresolved. Chỉ span số/mã đã phân loại mới được bỏ khỏi lexical fallback view; không strip mọi digit bằng regex. Dense giữ original query. Address-only unseen dùng scope fallback, còn strong POI identity + numeric conflict vẫn giữ POI mang tên đúng trong candidates nhưng không gọi exact address.
 - Baseline chất lượng chạy lexical / exact dense / hybrid exact ở final K=5/20/50. Serving ANN được đo loss so với exact sau đó.
 
 ### Candidate assembly và Stage 2
 
 Trong mỗi lane: lexical depth=100, dense depth=100, RRF c=60 với weights 1/1; dedup theo poi_id. Lanes có thể trả cùng POI: dùng max lane score đã chuẩn hóa, không cộng lợi thế vì POI xuất hiện hai lần.
 
-Candidate budget cuối N=50. Chọn tối đa 5 POI có evidence địa chỉ/mã có namespace rõ; tiếp đến tối đa 10 global candidates chưa chọn; tiếp đến primary, rồi global remainder cho đủ 50. Nếu không có primary, lấy global top-50. “Bảo vệ explicit” không áp dụng cho exact brand/name nhiều chi nhánh; nó bảo vệ không bị loại khỏi candidates, không bắt buộc đứng top-1.
+Candidate budget cuối N=50. Chọn tối đa 5 POI có evidence địa chỉ/mã có namespace rõ; tiếp đến tối đa 10 global candidates chưa chọn; tiếp đến primary, rồi global remainder cho đủ 50. Nếu không có primary, lấy global top-50. Trong lexical address fallback, expansion cùng street/complex dùng budget đã đăng ký và không chèn target từ qrels. “Bảo vệ explicit” không áp dụng cho exact brand/name nhiều chi nhánh; nó bảo vệ không bị loại khỏi candidates, không bắt buộc đứng top-1.
 
 Stage 2 rescue được thử ngay trong plan: tối đa 5 geo và 5 history candidates mới, mỗi source retrieve tối đa 20. Chỉ nhận candidate khớp query evidence hoặc compatibility rule đã khóa, không lấy nearest/history bất kể query. Thay tối đa 10 slots thấp nhất không được bảo vệ; giữ protected explicit và global reserved, N không đổi. Không nhân đôi cùng một nguồn geo đã có: đo marginal rescue trên candidates sau router.
 
-Ranker ladder: Stage 1 order → **geo-v5 hiện hành** → **geo-v6 dự kiến** theo nhóm tên tương đương → LightGBM LambdaMART → AggregateMLP → attention khi có bằng chứng. Geo-v5 blend text relevance với distance decay khi có origin và bảo vệ exact name/alias; nó chưa dùng history/time. Geo-v6 là thí nghiệm khác: không cộng distance vào RRF, chỉ hoán đổi slots cùng lớp khớp trong window cấu hình. Không gọi v6 là hiện hành trước khi code, fixture và benchmark được publish. Attention phải được so với baseline có cùng thông tin; encoder frozen ở vòng Stage 2 đầu tiên.
+Ranker ladder: Stage 1 order → **geo-v6 hiện hành** theo nhóm tên tương đương → LightGBM LambdaMART → AggregateMLP → attention khi có bằng chứng. Geo-v5 blend text relevance với distance decay được giữ làm regression comparator, không phải policy mặc định. Geo-v6 không cộng distance vào RRF, chỉ hoán đổi slots cùng lớp khớp trong window cấu hình; việc đã có code/unit fixture không thay thế benchmark uplift. Attention phải được so với baseline có cùng thông tin; encoder frozen ở vòng Stage 2 đầu tiên.
 
-Guardrails dùng evidence rõ: mismatch số nhà/street/ref hoặc vùng explicit không được history/nearby tự ghi đè. Khi parser không chắc, không áp hard constraint. Chưa có log thật thì learned ranker được ghi rõ synthetic-trained; không gọi việc đổi kết quả theo user là đã hiểu hành vi thật.
+Guardrails dùng evidence rõ: exact observed number/street/ref hoặc vùng explicit không được history/nearby tự ghi đè. Numeric conflict không tự biến source POI thành positive: strong identity có thể cứu POI theo tên; address-only phải fallback theo scope; valid collision phải giữ ambiguity. Khi parser không chắc, không áp hard constraint. Chưa có log thật thì learned ranker được ghi rõ synthetic-trained; không gọi việc đổi kết quả theo user là đã hiểu hành vi thật.
 
 ## 6. Model training và serving song song
 
@@ -202,6 +218,9 @@ Exposure/selection logs chỉ là quan sát có thiên lệch hiển thị; khô
 | Track | Điều kiện | Metric chính |
 |---|---|---|
 | Stage 1 độc lập | Fixed corpus/scope, không router/context | CandidateHit@20/50, Hit@1/5, MRR@10 trên query đủ định danh |
+| Brand group | Bare brand/alias/namespace đã khóa | Any-compatible hit, compatible coverage, group MRR |
+| Address exact | Number/code observed trong resolved scope | Hit@1/5, MRR@10, exact preservation |
+| Address fallback | Unseen/conflict theo contract; không hidden single target | AddressScopeHit@K, SameStreetHit@K, wrong-street hijack, rescue/harm |
 | Autocomplete | Session/prefix có qrels thích hợp | Hit@5, MRR@5, prefix-length slices, ký tự tối thiểu target vào top-K |
 | Ambiguity | Nhiều địa điểm phù hợp | Any-compatible hit và known-compatible recall; không bắt đoán một branch |
 | IME | Raw keys chưa engine-verified | Diagnostic, không quality gate |
@@ -212,7 +231,7 @@ Exposure/selection logs chỉ là quan sát có thiên lệch hiển thị; khô
 
 Corpus càng lớn, positive/negative càng cần theo đúng query: một branch ngoài Hà Nội vẫn có thể phù hợp với query “Highlands”. Train positive có thể vẫn ở Hà Nội; hard negatives lấy toàn quốc nhưng phải loại known-compatible/entity siblings, không mặc định mọi object mới là negative. Stage 1 không được học “gần origin” từ nhãn single-target khi input không có origin.
 
-Giữ test của `hnq20k-stable-v1-eval1` như frozen comparison/regression set. Architecture holdout 20K đã được data-QA nên không gọi là untouched blind. Golden context tạo sau: khóa scenario/label trước khi mở model output; gồm origin-sensitive/invariant, null-origin, explicit far destination, time/user intervention. Có thể bắt đầu 100–150 diagnostic pairs và 2.000–5.000 synthetic pairs để phủ điều kiện; không suy số mẫu lớn là bằng chứng thực tế.
+Giữ `gold_stage1_v1` như frozen comparison/regression set W1; không dùng nó để tune lại policy sau khi đã xem kết quả. Workspace train 20k và checkpoint 500 không phải architecture holdout hoặc human-gold. Target đánh giá chung gồm `gold_stage1_v2`, `gold_stage1_brand_v1` và `address_scope_eval_v1` theo `STAGE1_EVALUATION_SUITE.md`; từng suite phải khóa label trước khi mở model output. Golden context tạo sau: gồm origin-sensitive/invariant, null-origin, explicit far destination, time/user intervention. Có thể bắt đầu 100–150 diagnostic pairs và 2.000–5.000 synthetic pairs để phủ điều kiện; không suy số mẫu lớn là bằng chứng thực tế.
 
 Sampler origin có sorted IDs, RNG/version/seed, pool hash, distance strata `[0,1), [1,3), [3,10), [10,30), >=30 km`, null-origin riêng; origin/target/candidates cùng corpus. Target-distance-bin chỉ là audit, không phải feature. Audit target-is-nearest trên comparison pool query-compatible độc lập với retrieval.
 
@@ -220,7 +239,7 @@ Chọn cấu hình bằng dev; khóa trước comparison/holdout. Paired cluster
 
 ## 8. Performance, failure và cập nhật
 
-Mục tiêu ban đầu để đo: API Stage 1 p95 ≤100 ms; personalized p95 ≤150 ms, p99 ≤300 ms ở profile 10 QPS, 8 vCPU/32 GiB, một API worker/model instance, OpenSearch local single-node, không chạy ETL/train đồng thời. Đây là budget thử nghiệm, không SLA hoặc benchmark đã có. Client debounce 120 ms đo riêng; không cộng p95 các bước thành p95 tổng.
+Mục tiêu ban đầu để đo: API Stage 1 p95 ≤100 ms; personalized p95 ≤150 ms, p99 ≤300 ms ở profile 10 QPS, 8 vCPU/32 GiB, một API worker/model instance, Elasticsearch local single-node, không chạy ETL/train đồng thời. Đây là budget thử nghiệm, không SLA hoặc benchmark đã có. Client debounce 120 ms đo riêng; không cộng p95 các bước thành p95 tổng.
 
 Server deadline 180 ms; branch deadline và admission control mô tả trong config. Khi model/search branch hết hạn, trả fallback hợp lệ với degraded flags; không kéo dài vô hạn để đủ 5 POI. Không có dependency nào trả kết quả hợp lệ thì 503. Query hợp lệ nhưng không match trả 200 với empty results. Track timeout, cache, route và query length riêng.
 
@@ -248,9 +267,9 @@ Bốn nghiên cứu bổ sung, giới hạn bằng chứng, training/mining cont
 
 E5-small có embedding 384 chiều; retrieval dùng prefix query/passsage tương ứng, pooling và normalization phải khớp giữa train và inference. [Model card chính thức E5-small](https://huggingface.co/intfloat/multilingual-e5-small/raw/main/README.md).
 
-Filtered vector search cần đặt filter đúng cơ chế của engine; post-filter có thể thiếu top-K dù vùng còn nhiều POI phù hợp. [OpenSearch filtering vector search](https://docs.opensearch.org/latest/vector-search/filter-search-knn/index/).
+Filtered vector search cần đặt filter đúng cơ chế của engine; post-filter có thể thiếu top-K dù vùng còn nhiều POI phù hợp. [Elasticsearch kNN pre-filter và post-filter](https://www.elastic.co/docs/reference/query-languages/query-dsl/query-dsl-knn-query).
 
-Edge n-gram dùng ở index, search analyzer đơn giản hơn; cần field full-name để không mất query vượt max_gram. [OpenSearch edge n-gram](https://docs.opensearch.org/latest/analyzers/tokenizers/edge-n-gram/).
+Edge n-gram dùng ở index, search analyzer đơn giản hơn; cần field full-name để không mất query vượt max_gram. [Elasticsearch edge n-gram](https://www.elastic.co/guide/en/elasticsearch/reference/current/analysis-edgengram-tokenizer.html).
 
 LambdaMART triển khai bằng LGBMRanker với group theo request; không chia candidate rows của một request qua nhiều splits. [LightGBM LGBMRanker](https://lightgbm.readthedocs.io/en/stable/pythonapi/lightgbm.LGBMRanker.html).
 

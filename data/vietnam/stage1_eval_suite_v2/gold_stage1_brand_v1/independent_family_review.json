@@ -1,0 +1,2488 @@
+{
+  "policy": "Structural review of canonical, namespace, alias evidence, and v3 member set. No invented aliases.",
+  "n_families": 70,
+  "n_verified_alias_queries": 0,
+  "alias_shortfall_adjudicated": true,
+  "rows": [
+    {
+      "brand_family_id": "brand:apple",
+      "brand_group_id": "brand:apple:retail",
+      "brand_canonical": "Apple",
+      "namespace": "retail",
+      "n_positive": 5,
+      "verified_aliases": [],
+      "requires_namespace_token": false,
+      "review_status": "accepted_structural"
+    },
+    {
+      "brand_family_id": "brand:apple",
+      "brand_group_id": "brand:apple:retail",
+      "brand_canonical": "Apple",
+      "namespace": "retail",
+      "n_positive": 5,
+      "verified_aliases": [],
+      "requires_namespace_token": false,
+      "review_status": "accepted_structural"
+    },
+    {
+      "brand_family_id": "brand:apple",
+      "brand_group_id": "brand:apple:retail",
+      "brand_canonical": "Apple",
+      "namespace": "retail",
+      "n_positive": 5,
+      "verified_aliases": [],
+      "requires_namespace_token": false,
+      "review_status": "accepted_structural"
+    },
+    {
+      "brand_family_id": "brand:audi",
+      "brand_group_id": "brand:audi:retail",
+      "brand_canonical": "Audi",
+      "namespace": "retail",
+      "n_positive": 2,
+      "verified_aliases": [],
+      "requires_namespace_token": false,
+      "review_status": "accepted_structural"
+    },
+    {
+      "brand_family_id": "brand:audi",
+      "brand_group_id": "brand:audi:retail",
+      "brand_canonical": "Audi",
+      "namespace": "retail",
+      "n_positive": 2,
+      "verified_aliases": [],
+      "requires_namespace_token": false,
+      "review_status": "accepted_structural"
+    },
+    {
+      "brand_family_id": "brand:audi",
+      "brand_group_id": "brand:audi:retail",
+      "brand_canonical": "Audi",
+      "namespace": "retail",
+      "n_positive": 2,
+      "verified_aliases": [],
+      "requires_namespace_token": false,
+      "review_status": "accepted_structural"
+    },
+    {
+      "brand_family_id": "brand:bidv",
+      "brand_group_id": "brand:bidv:atm",
+      "brand_canonical": "BIDV",
+      "namespace": "atm",
+      "n_positive": 382,
+      "verified_aliases": [],
+      "requires_namespace_token": true,
+      "review_status": "accepted_structural"
+    },
+    {
+      "brand_family_id": "brand:bidv",
+      "brand_group_id": "brand:bidv:atm",
+      "brand_canonical": "BIDV",
+      "namespace": "atm",
+      "n_positive": 382,
+      "verified_aliases": [],
+      "requires_namespace_token": true,
+      "review_status": "accepted_structural"
+    },
+    {
+      "brand_family_id": "brand:bidv",
+      "brand_group_id": "brand:bidv:bank",
+      "brand_canonical": "BIDV",
+      "namespace": "bank",
+      "n_positive": 185,
+      "verified_aliases": [],
+      "requires_namespace_token": true,
+      "review_status": "accepted_structural"
+    },
+    {
+      "brand_family_id": "brand:bidv",
+      "brand_group_id": "brand:bidv:bank",
+      "brand_canonical": "BIDV",
+      "namespace": "bank",
+      "n_positive": 185,
+      "verified_aliases": [],
+      "requires_namespace_token": true,
+      "review_status": "accepted_structural"
+    },
+    {
+      "brand_family_id": "brand:bidv",
+      "brand_group_id": "brand:bidv:bank",
+      "brand_canonical": "BIDV",
+      "namespace": "bank",
+      "n_positive": 185,
+      "verified_aliases": [],
+      "requires_namespace_token": true,
+      "review_status": "accepted_structural"
+    },
+    {
+      "brand_family_id": "brand:big_c",
+      "brand_group_id": "brand:big_c:supermarket",
+      "brand_canonical": "Big C",
+      "namespace": "supermarket",
+      "n_positive": 14,
+      "verified_aliases": [],
+      "requires_namespace_token": false,
+      "review_status": "accepted_structural"
+    },
+    {
+      "brand_family_id": "brand:big_c",
+      "brand_group_id": "brand:big_c:supermarket",
+      "brand_canonical": "Big C",
+      "namespace": "supermarket",
+      "n_positive": 14,
+      "verified_aliases": [],
+      "requires_namespace_token": false,
+      "review_status": "accepted_structural"
+    },
+    {
+      "brand_family_id": "brand:big_c",
+      "brand_group_id": "brand:big_c:supermarket",
+      "brand_canonical": "Big C",
+      "namespace": "supermarket",
+      "n_positive": 14,
+      "verified_aliases": [],
+      "requires_namespace_token": false,
+      "review_status": "accepted_structural"
+    },
+    {
+      "brand_family_id": "brand:big_c",
+      "brand_group_id": "brand:big_c:supermarket",
+      "brand_canonical": "Big C",
+      "namespace": "supermarket",
+      "n_positive": 14,
+      "verified_aliases": [],
+      "requires_namespace_token": false,
+      "review_status": "accepted_structural"
+    },
+    {
+      "brand_family_id": "brand:buffalo_wild_wings",
+      "brand_group_id": "brand:buffalo_wild_wings:restaurant",
+      "brand_canonical": "Buffalo Wild Wings",
+      "namespace": "restaurant",
+      "n_positive": 2,
+      "verified_aliases": [],
+      "requires_namespace_token": false,
+      "review_status": "accepted_structural"
+    },
+    {
+      "brand_family_id": "brand:buffalo_wild_wings",
+      "brand_group_id": "brand:buffalo_wild_wings:restaurant",
+      "brand_canonical": "Buffalo Wild Wings",
+      "namespace": "restaurant",
+      "n_positive": 2,
+      "verified_aliases": [],
+      "requires_namespace_token": false,
+      "review_status": "accepted_structural"
+    },
+    {
+      "brand_family_id": "brand:buffalo_wild_wings",
+      "brand_group_id": "brand:buffalo_wild_wings:restaurant",
+      "brand_canonical": "Buffalo Wild Wings",
+      "namespace": "restaurant",
+      "n_positive": 2,
+      "verified_aliases": [],
+      "requires_namespace_token": false,
+      "review_status": "accepted_structural"
+    },
+    {
+      "brand_family_id": "brand:caltex",
+      "brand_group_id": "brand:caltex:fuel",
+      "brand_canonical": "Caltex",
+      "namespace": "fuel",
+      "n_positive": 5,
+      "verified_aliases": [],
+      "requires_namespace_token": true,
+      "review_status": "accepted_structural"
+    },
+    {
+      "brand_family_id": "brand:caltex",
+      "brand_group_id": "brand:caltex:fuel",
+      "brand_canonical": "Caltex",
+      "namespace": "fuel",
+      "n_positive": 5,
+      "verified_aliases": [],
+      "requires_namespace_token": true,
+      "review_status": "accepted_structural"
+    },
+    {
+      "brand_family_id": "brand:caltex",
+      "brand_group_id": "brand:caltex:fuel",
+      "brand_canonical": "Caltex",
+      "namespace": "fuel",
+      "n_positive": 5,
+      "verified_aliases": [],
+      "requires_namespace_token": true,
+      "review_status": "accepted_structural"
+    },
+    {
+      "brand_family_id": "brand:caltex",
+      "brand_group_id": "brand:caltex:fuel",
+      "brand_canonical": "Caltex",
+      "namespace": "fuel",
+      "n_positive": 5,
+      "verified_aliases": [],
+      "requires_namespace_token": true,
+      "review_status": "accepted_structural"
+    },
+    {
+      "brand_family_id": "brand:caltex",
+      "brand_group_id": "brand:caltex:retail",
+      "brand_canonical": "Caltex",
+      "namespace": "retail",
+      "n_positive": 3,
+      "verified_aliases": [],
+      "requires_namespace_token": true,
+      "review_status": "accepted_structural"
+    },
+    {
+      "brand_family_id": "brand:caltex",
+      "brand_group_id": "brand:caltex:retail",
+      "brand_canonical": "Caltex",
+      "namespace": "retail",
+      "n_positive": 3,
+      "verified_aliases": [],
+      "requires_namespace_token": true,
+      "review_status": "accepted_structural"
+    },
+    {
+      "brand_family_id": "brand:caltex",
+      "brand_group_id": "brand:caltex:retail",
+      "brand_canonical": "Caltex",
+      "namespace": "retail",
+      "n_positive": 3,
+      "verified_aliases": [],
+      "requires_namespace_token": true,
+      "review_status": "accepted_structural"
+    },
+    {
+      "brand_family_id": "brand:caltex",
+      "brand_group_id": "brand:caltex:retail",
+      "brand_canonical": "Caltex",
+      "namespace": "retail",
+      "n_positive": 3,
+      "verified_aliases": [],
+      "requires_namespace_token": true,
+      "review_status": "accepted_structural"
+    },
+    {
+      "brand_family_id": "brand:calvin_klein",
+      "brand_group_id": "brand:calvin_klein:retail",
+      "brand_canonical": "Calvin Klein",
+      "namespace": "retail",
+      "n_positive": 2,
+      "verified_aliases": [],
+      "requires_namespace_token": false,
+      "review_status": "accepted_structural"
+    },
+    {
+      "brand_family_id": "brand:calvin_klein",
+      "brand_group_id": "brand:calvin_klein:retail",
+      "brand_canonical": "Calvin Klein",
+      "namespace": "retail",
+      "n_positive": 2,
+      "verified_aliases": [],
+      "requires_namespace_token": false,
+      "review_status": "accepted_structural"
+    },
+    {
+      "brand_family_id": "brand:calvin_klein",
+      "brand_group_id": "brand:calvin_klein:retail",
+      "brand_canonical": "Calvin Klein",
+      "namespace": "retail",
+      "n_positive": 2,
+      "verified_aliases": [],
+      "requires_namespace_token": false,
+      "review_status": "accepted_structural"
+    },
+    {
+      "brand_family_id": "brand:chevrolet",
+      "brand_group_id": "brand:chevrolet:retail",
+      "brand_canonical": "Chevrolet",
+      "namespace": "retail",
+      "n_positive": 5,
+      "verified_aliases": [],
+      "requires_namespace_token": false,
+      "review_status": "accepted_structural"
+    },
+    {
+      "brand_family_id": "brand:chevrolet",
+      "brand_group_id": "brand:chevrolet:retail",
+      "brand_canonical": "Chevrolet",
+      "namespace": "retail",
+      "n_positive": 5,
+      "verified_aliases": [],
+      "requires_namespace_token": false,
+      "review_status": "accepted_structural"
+    },
+    {
+      "brand_family_id": "brand:chevrolet",
+      "brand_group_id": "brand:chevrolet:retail",
+      "brand_canonical": "Chevrolet",
+      "namespace": "retail",
+      "n_positive": 5,
+      "verified_aliases": [],
+      "requires_namespace_token": false,
+      "review_status": "accepted_structural"
+    },
+    {
+      "brand_family_id": "brand:citi_fruit",
+      "brand_group_id": "brand:citi_fruit:retail",
+      "brand_canonical": "Citi Fruit",
+      "namespace": "retail",
+      "n_positive": 3,
+      "verified_aliases": [],
+      "requires_namespace_token": false,
+      "review_status": "accepted_structural"
+    },
+    {
+      "brand_family_id": "brand:citi_fruit",
+      "brand_group_id": "brand:citi_fruit:retail",
+      "brand_canonical": "Citi Fruit",
+      "namespace": "retail",
+      "n_positive": 3,
+      "verified_aliases": [],
+      "requires_namespace_token": false,
+      "review_status": "accepted_structural"
+    },
+    {
+      "brand_family_id": "brand:citi_fruit",
+      "brand_group_id": "brand:citi_fruit:retail",
+      "brand_canonical": "Citi Fruit",
+      "namespace": "retail",
+      "n_positive": 3,
+      "verified_aliases": [],
+      "requires_namespace_token": false,
+      "review_status": "accepted_structural"
+    },
+    {
+      "brand_family_id": "brand:coco_island",
+      "brand_group_id": "brand:coco_island:hotel",
+      "brand_canonical": "Coco Island",
+      "namespace": "hotel",
+      "n_positive": 2,
+      "verified_aliases": [],
+      "requires_namespace_token": false,
+      "review_status": "accepted_structural"
+    },
+    {
+      "brand_family_id": "brand:coco_island",
+      "brand_group_id": "brand:coco_island:hotel",
+      "brand_canonical": "Coco Island",
+      "namespace": "hotel",
+      "n_positive": 2,
+      "verified_aliases": [],
+      "requires_namespace_token": false,
+      "review_status": "accepted_structural"
+    },
+    {
+      "brand_family_id": "brand:coco_island",
+      "brand_group_id": "brand:coco_island:hotel",
+      "brand_canonical": "Coco Island",
+      "namespace": "hotel",
+      "n_positive": 2,
+      "verified_aliases": [],
+      "requires_namespace_token": false,
+      "review_status": "accepted_structural"
+    },
+    {
+      "brand_family_id": "brand:coffee_time",
+      "brand_group_id": "brand:coffee_time:cafe",
+      "brand_canonical": "Coffee Time",
+      "namespace": "cafe",
+      "n_positive": 4,
+      "verified_aliases": [],
+      "requires_namespace_token": false,
+      "review_status": "accepted_structural"
+    },
+    {
+      "brand_family_id": "brand:coffee_time",
+      "brand_group_id": "brand:coffee_time:cafe",
+      "brand_canonical": "Coffee Time",
+      "namespace": "cafe",
+      "n_positive": 4,
+      "verified_aliases": [],
+      "requires_namespace_token": false,
+      "review_status": "accepted_structural"
+    },
+    {
+      "brand_family_id": "brand:coffee_time",
+      "brand_group_id": "brand:coffee_time:cafe",
+      "brand_canonical": "Coffee Time",
+      "namespace": "cafe",
+      "n_positive": 4,
+      "verified_aliases": [],
+      "requires_namespace_token": false,
+      "review_status": "accepted_structural"
+    },
+    {
+      "brand_family_id": "brand:comeco",
+      "brand_group_id": "brand:comeco:fuel",
+      "brand_canonical": "Comeco",
+      "namespace": "fuel",
+      "n_positive": 5,
+      "verified_aliases": [],
+      "requires_namespace_token": false,
+      "review_status": "accepted_structural"
+    },
+    {
+      "brand_family_id": "brand:comeco",
+      "brand_group_id": "brand:comeco:fuel",
+      "brand_canonical": "Comeco",
+      "namespace": "fuel",
+      "n_positive": 5,
+      "verified_aliases": [],
+      "requires_namespace_token": false,
+      "review_status": "accepted_structural"
+    },
+    {
+      "brand_family_id": "brand:comeco",
+      "brand_group_id": "brand:comeco:fuel",
+      "brand_canonical": "Comeco",
+      "namespace": "fuel",
+      "n_positive": 5,
+      "verified_aliases": [],
+      "requires_namespace_token": false,
+      "review_status": "accepted_structural"
+    },
+    {
+      "brand_family_id": "brand:dairy_queen",
+      "brand_group_id": "brand:dairy_queen:restaurant",
+      "brand_canonical": "Dairy Queen",
+      "namespace": "restaurant",
+      "n_positive": 9,
+      "verified_aliases": [],
+      "requires_namespace_token": false,
+      "review_status": "accepted_structural"
+    },
+    {
+      "brand_family_id": "brand:dairy_queen",
+      "brand_group_id": "brand:dairy_queen:restaurant",
+      "brand_canonical": "Dairy Queen",
+      "namespace": "restaurant",
+      "n_positive": 9,
+      "verified_aliases": [],
+      "requires_namespace_token": false,
+      "review_status": "accepted_structural"
+    },
+    {
+      "brand_family_id": "brand:dairy_queen",
+      "brand_group_id": "brand:dairy_queen:restaurant",
+      "brand_canonical": "Dairy Queen",
+      "namespace": "restaurant",
+      "n_positive": 9,
+      "verified_aliases": [],
+      "requires_namespace_token": false,
+      "review_status": "accepted_structural"
+    },
+    {
+      "brand_family_id": "brand:domino_s",
+      "brand_group_id": "brand:domino_s:restaurant",
+      "brand_canonical": "Domino's",
+      "namespace": "restaurant",
+      "n_positive": 17,
+      "verified_aliases": [],
+      "requires_namespace_token": false,
+      "review_status": "accepted_structural"
+    },
+    {
+      "brand_family_id": "brand:domino_s",
+      "brand_group_id": "brand:domino_s:restaurant",
+      "brand_canonical": "Domino's",
+      "namespace": "restaurant",
+      "n_positive": 17,
+      "verified_aliases": [],
+      "requires_namespace_token": false,
+      "review_status": "accepted_structural"
+    },
+    {
+      "brand_family_id": "brand:domino_s",
+      "brand_group_id": "brand:domino_s:restaurant",
+      "brand_canonical": "Domino's",
+      "namespace": "restaurant",
+      "n_positive": 17,
+      "verified_aliases": [],
+      "requires_namespace_token": false,
+      "review_status": "accepted_structural"
+    },
+    {
+      "brand_family_id": "brand:domino_s",
+      "brand_group_id": "brand:domino_s:restaurant",
+      "brand_canonical": "Domino's",
+      "namespace": "restaurant",
+      "n_positive": 17,
+      "verified_aliases": [],
+      "requires_namespace_token": false,
+      "review_status": "accepted_structural"
+    },
+    {
+      "brand_family_id": "brand:eneos",
+      "brand_group_id": "brand:eneos:fuel",
+      "brand_canonical": "Eneos",
+      "namespace": "fuel",
+      "n_positive": 4,
+      "verified_aliases": [],
+      "requires_namespace_token": false,
+      "review_status": "accepted_structural"
+    },
+    {
+      "brand_family_id": "brand:eneos",
+      "brand_group_id": "brand:eneos:fuel",
+      "brand_canonical": "Eneos",
+      "namespace": "fuel",
+      "n_positive": 4,
+      "verified_aliases": [],
+      "requires_namespace_token": false,
+      "review_status": "accepted_structural"
+    },
+    {
+      "brand_family_id": "brand:eneos",
+      "brand_group_id": "brand:eneos:fuel",
+      "brand_canonical": "Eneos",
+      "namespace": "fuel",
+      "n_positive": 4,
+      "verified_aliases": [],
+      "requires_namespace_token": false,
+      "review_status": "accepted_structural"
+    },
+    {
+      "brand_family_id": "brand:eximbank",
+      "brand_group_id": "brand:eximbank:atm",
+      "brand_canonical": "Eximbank",
+      "namespace": "atm",
+      "n_positive": 36,
+      "verified_aliases": [],
+      "requires_namespace_token": true,
+      "review_status": "accepted_structural"
+    },
+    {
+      "brand_family_id": "brand:eximbank",
+      "brand_group_id": "brand:eximbank:atm",
+      "brand_canonical": "Eximbank",
+      "namespace": "atm",
+      "n_positive": 36,
+      "verified_aliases": [],
+      "requires_namespace_token": true,
+      "review_status": "accepted_structural"
+    },
+    {
+      "brand_family_id": "brand:eximbank",
+      "brand_group_id": "brand:eximbank:atm",
+      "brand_canonical": "Eximbank",
+      "namespace": "atm",
+      "n_positive": 36,
+      "verified_aliases": [],
+      "requires_namespace_token": true,
+      "review_status": "accepted_structural"
+    },
+    {
+      "brand_family_id": "brand:eximbank",
+      "brand_group_id": "brand:eximbank:bank",
+      "brand_canonical": "Eximbank",
+      "namespace": "bank",
+      "n_positive": 47,
+      "verified_aliases": [],
+      "requires_namespace_token": true,
+      "review_status": "accepted_structural"
+    },
+    {
+      "brand_family_id": "brand:eximbank",
+      "brand_group_id": "brand:eximbank:bank",
+      "brand_canonical": "Eximbank",
+      "namespace": "bank",
+      "n_positive": 47,
+      "verified_aliases": [],
+      "requires_namespace_token": true,
+      "review_status": "accepted_structural"
+    },
+    {
+      "brand_family_id": "brand:eximbank",
+      "brand_group_id": "brand:eximbank:bank",
+      "brand_canonical": "Eximbank",
+      "namespace": "bank",
+      "n_positive": 47,
+      "verified_aliases": [],
+      "requires_namespace_token": true,
+      "review_status": "accepted_structural"
+    },
+    {
+      "brand_family_id": "brand:eximbank",
+      "brand_group_id": "brand:eximbank:bank",
+      "brand_canonical": "Eximbank",
+      "namespace": "bank",
+      "n_positive": 47,
+      "verified_aliases": [],
+      "requires_namespace_token": true,
+      "review_status": "accepted_structural"
+    },
+    {
+      "brand_family_id": "brand:fila",
+      "brand_group_id": "brand:fila:retail",
+      "brand_canonical": "Fila",
+      "namespace": "retail",
+      "n_positive": 2,
+      "verified_aliases": [],
+      "requires_namespace_token": false,
+      "review_status": "accepted_structural"
+    },
+    {
+      "brand_family_id": "brand:fila",
+      "brand_group_id": "brand:fila:retail",
+      "brand_canonical": "Fila",
+      "namespace": "retail",
+      "n_positive": 2,
+      "verified_aliases": [],
+      "requires_namespace_token": false,
+      "review_status": "accepted_structural"
+    },
+    {
+      "brand_family_id": "brand:fila",
+      "brand_group_id": "brand:fila:retail",
+      "brand_canonical": "Fila",
+      "namespace": "retail",
+      "n_positive": 2,
+      "verified_aliases": [],
+      "requires_namespace_token": false,
+      "review_status": "accepted_structural"
+    },
+    {
+      "brand_family_id": "brand:fmc",
+      "brand_group_id": "brand:fmc:fuel",
+      "brand_canonical": "FMC",
+      "namespace": "fuel",
+      "n_positive": 3,
+      "verified_aliases": [],
+      "requires_namespace_token": false,
+      "review_status": "accepted_structural"
+    },
+    {
+      "brand_family_id": "brand:fmc",
+      "brand_group_id": "brand:fmc:fuel",
+      "brand_canonical": "FMC",
+      "namespace": "fuel",
+      "n_positive": 3,
+      "verified_aliases": [],
+      "requires_namespace_token": false,
+      "review_status": "accepted_structural"
+    },
+    {
+      "brand_family_id": "brand:ford",
+      "brand_group_id": "brand:ford:retail",
+      "brand_canonical": "Ford",
+      "namespace": "retail",
+      "n_positive": 10,
+      "verified_aliases": [],
+      "requires_namespace_token": false,
+      "review_status": "accepted_structural"
+    },
+    {
+      "brand_family_id": "brand:ford",
+      "brand_group_id": "brand:ford:retail",
+      "brand_canonical": "Ford",
+      "namespace": "retail",
+      "n_positive": 10,
+      "verified_aliases": [],
+      "requires_namespace_token": false,
+      "review_status": "accepted_structural"
+    },
+    {
+      "brand_family_id": "brand:ford",
+      "brand_group_id": "brand:ford:retail",
+      "brand_canonical": "Ford",
+      "namespace": "retail",
+      "n_positive": 10,
+      "verified_aliases": [],
+      "requires_namespace_token": false,
+      "review_status": "accepted_structural"
+    },
+    {
+      "brand_family_id": "brand:four_seasons",
+      "brand_group_id": "brand:four_seasons:hotel",
+      "brand_canonical": "Four Seasons",
+      "namespace": "hotel",
+      "n_positive": 2,
+      "verified_aliases": [],
+      "requires_namespace_token": false,
+      "review_status": "accepted_structural"
+    },
+    {
+      "brand_family_id": "brand:four_seasons",
+      "brand_group_id": "brand:four_seasons:hotel",
+      "brand_canonical": "Four Seasons",
+      "namespace": "hotel",
+      "n_positive": 2,
+      "verified_aliases": [],
+      "requires_namespace_token": false,
+      "review_status": "accepted_structural"
+    },
+    {
+      "brand_family_id": "brand:four_seasons",
+      "brand_group_id": "brand:four_seasons:hotel",
+      "brand_canonical": "Four Seasons",
+      "namespace": "hotel",
+      "n_positive": 2,
+      "verified_aliases": [],
+      "requires_namespace_token": false,
+      "review_status": "accepted_structural"
+    },
+    {
+      "brand_family_id": "brand:fujimart",
+      "brand_group_id": "brand:fujimart:supermarket",
+      "brand_canonical": "FujiMart",
+      "namespace": "supermarket",
+      "n_positive": 9,
+      "verified_aliases": [],
+      "requires_namespace_token": false,
+      "review_status": "accepted_structural"
+    },
+    {
+      "brand_family_id": "brand:fujimart",
+      "brand_group_id": "brand:fujimart:supermarket",
+      "brand_canonical": "FujiMart",
+      "namespace": "supermarket",
+      "n_positive": 9,
+      "verified_aliases": [],
+      "requires_namespace_token": false,
+      "review_status": "accepted_structural"
+    },
+    {
+      "brand_family_id": "brand:fujimart",
+      "brand_group_id": "brand:fujimart:supermarket",
+      "brand_canonical": "FujiMart",
+      "namespace": "supermarket",
+      "n_positive": 9,
+      "verified_aliases": [],
+      "requires_namespace_token": false,
+      "review_status": "accepted_structural"
+    },
+    {
+      "brand_family_id": "brand:fujimart",
+      "brand_group_id": "brand:fujimart:supermarket",
+      "brand_canonical": "FujiMart",
+      "namespace": "supermarket",
+      "n_positive": 9,
+      "verified_aliases": [],
+      "requires_namespace_token": false,
+      "review_status": "accepted_structural"
+    },
+    {
+      "brand_family_id": "brand:highlands_coffee",
+      "brand_group_id": "brand:highlands_coffee:cafe",
+      "brand_canonical": "Highlands Coffee",
+      "namespace": "cafe",
+      "n_positive": 256,
+      "verified_aliases": [],
+      "requires_namespace_token": false,
+      "review_status": "accepted_structural"
+    },
+    {
+      "brand_family_id": "brand:highlands_coffee",
+      "brand_group_id": "brand:highlands_coffee:cafe",
+      "brand_canonical": "Highlands Coffee",
+      "namespace": "cafe",
+      "n_positive": 256,
+      "verified_aliases": [],
+      "requires_namespace_token": false,
+      "review_status": "accepted_structural"
+    },
+    {
+      "brand_family_id": "brand:highlands_coffee",
+      "brand_group_id": "brand:highlands_coffee:cafe",
+      "brand_canonical": "Highlands Coffee",
+      "namespace": "cafe",
+      "n_positive": 256,
+      "verified_aliases": [],
+      "requires_namespace_token": false,
+      "review_status": "accepted_structural"
+    },
+    {
+      "brand_family_id": "brand:hilton_garden_inn",
+      "brand_group_id": "brand:hilton_garden_inn:hotel",
+      "brand_canonical": "Hilton Garden Inn",
+      "namespace": "hotel",
+      "n_positive": 2,
+      "verified_aliases": [],
+      "requires_namespace_token": false,
+      "review_status": "accepted_structural"
+    },
+    {
+      "brand_family_id": "brand:hilton_garden_inn",
+      "brand_group_id": "brand:hilton_garden_inn:hotel",
+      "brand_canonical": "Hilton Garden Inn",
+      "namespace": "hotel",
+      "n_positive": 2,
+      "verified_aliases": [],
+      "requires_namespace_token": false,
+      "review_status": "accepted_structural"
+    },
+    {
+      "brand_family_id": "brand:hilton_garden_inn",
+      "brand_group_id": "brand:hilton_garden_inn:hotel",
+      "brand_canonical": "Hilton Garden Inn",
+      "namespace": "hotel",
+      "n_positive": 2,
+      "verified_aliases": [],
+      "requires_namespace_token": false,
+      "review_status": "accepted_structural"
+    },
+    {
+      "brand_family_id": "brand:home",
+      "brand_group_id": "brand:home:hotel",
+      "brand_canonical": "@HOME",
+      "namespace": "hotel",
+      "n_positive": 5,
+      "verified_aliases": [],
+      "requires_namespace_token": false,
+      "review_status": "accepted_structural"
+    },
+    {
+      "brand_family_id": "brand:home",
+      "brand_group_id": "brand:home:hotel",
+      "brand_canonical": "@HOME",
+      "namespace": "hotel",
+      "n_positive": 5,
+      "verified_aliases": [],
+      "requires_namespace_token": false,
+      "review_status": "accepted_structural"
+    },
+    {
+      "brand_family_id": "brand:home",
+      "brand_group_id": "brand:home:hotel",
+      "brand_canonical": "@HOME",
+      "namespace": "hotel",
+      "n_positive": 5,
+      "verified_aliases": [],
+      "requires_namespace_token": false,
+      "review_status": "accepted_structural"
+    },
+    {
+      "brand_family_id": "brand:honda",
+      "brand_group_id": "brand:honda:retail",
+      "brand_canonical": "Honda",
+      "namespace": "retail",
+      "n_positive": 172,
+      "verified_aliases": [],
+      "requires_namespace_token": false,
+      "review_status": "accepted_structural"
+    },
+    {
+      "brand_family_id": "brand:honda",
+      "brand_group_id": "brand:honda:retail",
+      "brand_canonical": "Honda",
+      "namespace": "retail",
+      "n_positive": 172,
+      "verified_aliases": [],
+      "requires_namespace_token": false,
+      "review_status": "accepted_structural"
+    },
+    {
+      "brand_family_id": "brand:honda",
+      "brand_group_id": "brand:honda:retail",
+      "brand_canonical": "Honda",
+      "namespace": "retail",
+      "n_positive": 172,
+      "verified_aliases": [],
+      "requires_namespace_token": false,
+      "review_status": "accepted_structural"
+    },
+    {
+      "brand_family_id": "brand:hong_lam",
+      "brand_group_id": "brand:hong_lam:retail",
+      "brand_canonical": "Hồng Lam",
+      "namespace": "retail",
+      "n_positive": 14,
+      "verified_aliases": [],
+      "requires_namespace_token": false,
+      "review_status": "accepted_structural"
+    },
+    {
+      "brand_family_id": "brand:hong_lam",
+      "brand_group_id": "brand:hong_lam:retail",
+      "brand_canonical": "Hồng Lam",
+      "namespace": "retail",
+      "n_positive": 14,
+      "verified_aliases": [],
+      "requires_namespace_token": false,
+      "review_status": "accepted_structural"
+    },
+    {
+      "brand_family_id": "brand:hong_lam",
+      "brand_group_id": "brand:hong_lam:retail",
+      "brand_canonical": "Hồng Lam",
+      "namespace": "retail",
+      "n_positive": 14,
+      "verified_aliases": [],
+      "requires_namespace_token": false,
+      "review_status": "accepted_structural"
+    },
+    {
+      "brand_family_id": "brand:hong_lam",
+      "brand_group_id": "brand:hong_lam:retail",
+      "brand_canonical": "Hồng Lam",
+      "namespace": "retail",
+      "n_positive": 14,
+      "verified_aliases": [],
+      "requires_namespace_token": false,
+      "review_status": "accepted_structural"
+    },
+    {
+      "brand_family_id": "brand:hp",
+      "brand_group_id": "brand:hp:fuel",
+      "brand_canonical": "HP",
+      "namespace": "fuel",
+      "n_positive": 3,
+      "verified_aliases": [],
+      "requires_namespace_token": false,
+      "review_status": "accepted_structural"
+    },
+    {
+      "brand_family_id": "brand:hp",
+      "brand_group_id": "brand:hp:fuel",
+      "brand_canonical": "HP",
+      "namespace": "fuel",
+      "n_positive": 3,
+      "verified_aliases": [],
+      "requires_namespace_token": false,
+      "review_status": "accepted_structural"
+    },
+    {
+      "brand_family_id": "brand:ibis",
+      "brand_group_id": "brand:ibis:hotel",
+      "brand_canonical": "Ibis",
+      "namespace": "hotel",
+      "n_positive": 2,
+      "verified_aliases": [],
+      "requires_namespace_token": false,
+      "review_status": "accepted_structural"
+    },
+    {
+      "brand_family_id": "brand:ibis",
+      "brand_group_id": "brand:ibis:hotel",
+      "brand_canonical": "Ibis",
+      "namespace": "hotel",
+      "n_positive": 2,
+      "verified_aliases": [],
+      "requires_namespace_token": false,
+      "review_status": "accepted_structural"
+    },
+    {
+      "brand_family_id": "brand:ibis",
+      "brand_group_id": "brand:ibis:hotel",
+      "brand_canonical": "Ibis",
+      "namespace": "hotel",
+      "n_positive": 2,
+      "verified_aliases": [],
+      "requires_namespace_token": false,
+      "review_status": "accepted_structural"
+    },
+    {
+      "brand_family_id": "brand:intercontinental",
+      "brand_group_id": "brand:intercontinental:hotel",
+      "brand_canonical": "InterContinental",
+      "namespace": "hotel",
+      "n_positive": 4,
+      "verified_aliases": [],
+      "requires_namespace_token": false,
+      "review_status": "accepted_structural"
+    },
+    {
+      "brand_family_id": "brand:intercontinental",
+      "brand_group_id": "brand:intercontinental:hotel",
+      "brand_canonical": "InterContinental",
+      "namespace": "hotel",
+      "n_positive": 4,
+      "verified_aliases": [],
+      "requires_namespace_token": false,
+      "review_status": "accepted_structural"
+    },
+    {
+      "brand_family_id": "brand:intercontinental",
+      "brand_group_id": "brand:intercontinental:hotel",
+      "brand_canonical": "InterContinental",
+      "namespace": "hotel",
+      "n_positive": 4,
+      "verified_aliases": [],
+      "requires_namespace_token": false,
+      "review_status": "accepted_structural"
+    },
+    {
+      "brand_family_id": "brand:jaguar",
+      "brand_group_id": "brand:jaguar:retail",
+      "brand_canonical": "Jaguar",
+      "namespace": "retail",
+      "n_positive": 3,
+      "verified_aliases": [],
+      "requires_namespace_token": false,
+      "review_status": "accepted_structural"
+    },
+    {
+      "brand_family_id": "brand:jaguar",
+      "brand_group_id": "brand:jaguar:retail",
+      "brand_canonical": "Jaguar",
+      "namespace": "retail",
+      "n_positive": 3,
+      "verified_aliases": [],
+      "requires_namespace_token": false,
+      "review_status": "accepted_structural"
+    },
+    {
+      "brand_family_id": "brand:jaguar",
+      "brand_group_id": "brand:jaguar:retail",
+      "brand_canonical": "Jaguar",
+      "namespace": "retail",
+      "n_positive": 3,
+      "verified_aliases": [],
+      "requires_namespace_token": false,
+      "review_status": "accepted_structural"
+    },
+    {
+      "brand_family_id": "brand:lexus",
+      "brand_group_id": "brand:lexus:retail",
+      "brand_canonical": "Lexus",
+      "namespace": "retail",
+      "n_positive": 2,
+      "verified_aliases": [],
+      "requires_namespace_token": false,
+      "review_status": "accepted_structural"
+    },
+    {
+      "brand_family_id": "brand:lexus",
+      "brand_group_id": "brand:lexus:retail",
+      "brand_canonical": "Lexus",
+      "namespace": "retail",
+      "n_positive": 2,
+      "verified_aliases": [],
+      "requires_namespace_token": false,
+      "review_status": "accepted_structural"
+    },
+    {
+      "brand_family_id": "brand:lexus",
+      "brand_group_id": "brand:lexus:retail",
+      "brand_canonical": "Lexus",
+      "namespace": "retail",
+      "n_positive": 2,
+      "verified_aliases": [],
+      "requires_namespace_token": false,
+      "review_status": "accepted_structural"
+    },
+    {
+      "brand_family_id": "brand:mango",
+      "brand_group_id": "brand:mango:retail",
+      "brand_canonical": "Mango",
+      "namespace": "retail",
+      "n_positive": 6,
+      "verified_aliases": [],
+      "requires_namespace_token": false,
+      "review_status": "accepted_structural"
+    },
+    {
+      "brand_family_id": "brand:mango",
+      "brand_group_id": "brand:mango:retail",
+      "brand_canonical": "Mango",
+      "namespace": "retail",
+      "n_positive": 6,
+      "verified_aliases": [],
+      "requires_namespace_token": false,
+      "review_status": "accepted_structural"
+    },
+    {
+      "brand_family_id": "brand:mango",
+      "brand_group_id": "brand:mango:retail",
+      "brand_canonical": "Mango",
+      "namespace": "retail",
+      "n_positive": 6,
+      "verified_aliases": [],
+      "requires_namespace_token": false,
+      "review_status": "accepted_structural"
+    },
+    {
+      "brand_family_id": "brand:mediamart",
+      "brand_group_id": "brand:mediamart:retail",
+      "brand_canonical": "MediaMart",
+      "namespace": "retail",
+      "n_positive": 14,
+      "verified_aliases": [],
+      "requires_namespace_token": true,
+      "review_status": "accepted_structural"
+    },
+    {
+      "brand_family_id": "brand:mediamart",
+      "brand_group_id": "brand:mediamart:retail",
+      "brand_canonical": "MediaMart",
+      "namespace": "retail",
+      "n_positive": 14,
+      "verified_aliases": [],
+      "requires_namespace_token": true,
+      "review_status": "accepted_structural"
+    },
+    {
+      "brand_family_id": "brand:mediamart",
+      "brand_group_id": "brand:mediamart:retail",
+      "brand_canonical": "MediaMart",
+      "namespace": "retail",
+      "n_positive": 14,
+      "verified_aliases": [],
+      "requires_namespace_token": true,
+      "review_status": "accepted_structural"
+    },
+    {
+      "brand_family_id": "brand:mediamart",
+      "brand_group_id": "brand:mediamart:supermarket",
+      "brand_canonical": "MediaMart",
+      "namespace": "supermarket",
+      "n_positive": 2,
+      "verified_aliases": [],
+      "requires_namespace_token": true,
+      "review_status": "accepted_structural"
+    },
+    {
+      "brand_family_id": "brand:mediamart",
+      "brand_group_id": "brand:mediamart:supermarket",
+      "brand_canonical": "MediaMart",
+      "namespace": "supermarket",
+      "n_positive": 2,
+      "verified_aliases": [],
+      "requires_namespace_token": true,
+      "review_status": "accepted_structural"
+    },
+    {
+      "brand_family_id": "brand:mediamart",
+      "brand_group_id": "brand:mediamart:supermarket",
+      "brand_canonical": "MediaMart",
+      "namespace": "supermarket",
+      "n_positive": 2,
+      "verified_aliases": [],
+      "requires_namespace_token": true,
+      "review_status": "accepted_structural"
+    },
+    {
+      "brand_family_id": "brand:miniso",
+      "brand_group_id": "brand:miniso:retail",
+      "brand_canonical": "Miniso",
+      "namespace": "retail",
+      "n_positive": 12,
+      "verified_aliases": [],
+      "requires_namespace_token": false,
+      "review_status": "accepted_structural"
+    },
+    {
+      "brand_family_id": "brand:miniso",
+      "brand_group_id": "brand:miniso:retail",
+      "brand_canonical": "Miniso",
+      "namespace": "retail",
+      "n_positive": 12,
+      "verified_aliases": [],
+      "requires_namespace_token": false,
+      "review_status": "accepted_structural"
+    },
+    {
+      "brand_family_id": "brand:miniso",
+      "brand_group_id": "brand:miniso:retail",
+      "brand_canonical": "Miniso",
+      "namespace": "retail",
+      "n_positive": 12,
+      "verified_aliases": [],
+      "requires_namespace_token": false,
+      "review_status": "accepted_structural"
+    },
+    {
+      "brand_family_id": "brand:mobifone",
+      "brand_group_id": "brand:mobifone:retail",
+      "brand_canonical": "Mobifone",
+      "namespace": "retail",
+      "n_positive": 12,
+      "verified_aliases": [],
+      "requires_namespace_token": false,
+      "review_status": "accepted_structural"
+    },
+    {
+      "brand_family_id": "brand:mobifone",
+      "brand_group_id": "brand:mobifone:retail",
+      "brand_canonical": "Mobifone",
+      "namespace": "retail",
+      "n_positive": 12,
+      "verified_aliases": [],
+      "requires_namespace_token": false,
+      "review_status": "accepted_structural"
+    },
+    {
+      "brand_family_id": "brand:mobifone",
+      "brand_group_id": "brand:mobifone:retail",
+      "brand_canonical": "Mobifone",
+      "namespace": "retail",
+      "n_positive": 12,
+      "verified_aliases": [],
+      "requires_namespace_token": false,
+      "review_status": "accepted_structural"
+    },
+    {
+      "brand_family_id": "brand:movenpick",
+      "brand_group_id": "brand:movenpick:hotel",
+      "brand_canonical": "Mövenpick",
+      "namespace": "hotel",
+      "n_positive": 3,
+      "verified_aliases": [],
+      "requires_namespace_token": false,
+      "review_status": "accepted_structural"
+    },
+    {
+      "brand_family_id": "brand:movenpick",
+      "brand_group_id": "brand:movenpick:hotel",
+      "brand_canonical": "Mövenpick",
+      "namespace": "hotel",
+      "n_positive": 3,
+      "verified_aliases": [],
+      "requires_namespace_token": false,
+      "review_status": "accepted_structural"
+    },
+    {
+      "brand_family_id": "brand:movenpick",
+      "brand_group_id": "brand:movenpick:hotel",
+      "brand_canonical": "Mövenpick",
+      "namespace": "hotel",
+      "n_positive": 3,
+      "verified_aliases": [],
+      "requires_namespace_token": false,
+      "review_status": "accepted_structural"
+    },
+    {
+      "brand_family_id": "brand:msb",
+      "brand_group_id": "brand:msb:atm",
+      "brand_canonical": "MSB",
+      "namespace": "atm",
+      "n_positive": 7,
+      "verified_aliases": [],
+      "requires_namespace_token": true,
+      "review_status": "accepted_structural"
+    },
+    {
+      "brand_family_id": "brand:msb",
+      "brand_group_id": "brand:msb:atm",
+      "brand_canonical": "MSB",
+      "namespace": "atm",
+      "n_positive": 7,
+      "verified_aliases": [],
+      "requires_namespace_token": true,
+      "review_status": "accepted_structural"
+    },
+    {
+      "brand_family_id": "brand:msb",
+      "brand_group_id": "brand:msb:bank",
+      "brand_canonical": "MSB",
+      "namespace": "bank",
+      "n_positive": 14,
+      "verified_aliases": [],
+      "requires_namespace_token": true,
+      "review_status": "accepted_structural"
+    },
+    {
+      "brand_family_id": "brand:msb",
+      "brand_group_id": "brand:msb:bank",
+      "brand_canonical": "MSB",
+      "namespace": "bank",
+      "n_positive": 14,
+      "verified_aliases": [],
+      "requires_namespace_token": true,
+      "review_status": "accepted_structural"
+    },
+    {
+      "brand_family_id": "brand:msb",
+      "brand_group_id": "brand:msb:bank",
+      "brand_canonical": "MSB",
+      "namespace": "bank",
+      "n_positive": 14,
+      "verified_aliases": [],
+      "requires_namespace_token": true,
+      "review_status": "accepted_structural"
+    },
+    {
+      "brand_family_id": "brand:nesta_hotel",
+      "brand_group_id": "brand:nesta_hotel:hotel",
+      "brand_canonical": "Nesta Hotel",
+      "namespace": "hotel",
+      "n_positive": 4,
+      "verified_aliases": [],
+      "requires_namespace_token": false,
+      "review_status": "accepted_structural"
+    },
+    {
+      "brand_family_id": "brand:nesta_hotel",
+      "brand_group_id": "brand:nesta_hotel:hotel",
+      "brand_canonical": "Nesta Hotel",
+      "namespace": "hotel",
+      "n_positive": 4,
+      "verified_aliases": [],
+      "requires_namespace_token": false,
+      "review_status": "accepted_structural"
+    },
+    {
+      "brand_family_id": "brand:nesta_hotel",
+      "brand_group_id": "brand:nesta_hotel:hotel",
+      "brand_canonical": "Nesta Hotel",
+      "namespace": "hotel",
+      "n_positive": 4,
+      "verified_aliases": [],
+      "requires_namespace_token": false,
+      "review_status": "accepted_structural"
+    },
+    {
+      "brand_family_id": "brand:nhua_binh_minh",
+      "brand_group_id": "brand:nhua_binh_minh:retail",
+      "brand_canonical": "Nhựa Bình Minh",
+      "namespace": "retail",
+      "n_positive": 2,
+      "verified_aliases": [],
+      "requires_namespace_token": false,
+      "review_status": "accepted_structural"
+    },
+    {
+      "brand_family_id": "brand:nhua_binh_minh",
+      "brand_group_id": "brand:nhua_binh_minh:retail",
+      "brand_canonical": "Nhựa Bình Minh",
+      "namespace": "retail",
+      "n_positive": 2,
+      "verified_aliases": [],
+      "requires_namespace_token": false,
+      "review_status": "accepted_structural"
+    },
+    {
+      "brand_family_id": "brand:nhua_binh_minh",
+      "brand_group_id": "brand:nhua_binh_minh:retail",
+      "brand_canonical": "Nhựa Bình Minh",
+      "namespace": "retail",
+      "n_positive": 2,
+      "verified_aliases": [],
+      "requires_namespace_token": false,
+      "review_status": "accepted_structural"
+    },
+    {
+      "brand_family_id": "brand:nhua_binh_minh",
+      "brand_group_id": "brand:nhua_binh_minh:retail",
+      "brand_canonical": "Nhựa Bình Minh",
+      "namespace": "retail",
+      "n_positive": 2,
+      "verified_aliases": [],
+      "requires_namespace_token": false,
+      "review_status": "accepted_structural"
+    },
+    {
+      "brand_family_id": "brand:paris_baguette",
+      "brand_group_id": "brand:paris_baguette:retail",
+      "brand_canonical": "Paris Baguette",
+      "namespace": "retail",
+      "n_positive": 3,
+      "verified_aliases": [],
+      "requires_namespace_token": false,
+      "review_status": "accepted_structural"
+    },
+    {
+      "brand_family_id": "brand:paris_baguette",
+      "brand_group_id": "brand:paris_baguette:retail",
+      "brand_canonical": "Paris Baguette",
+      "namespace": "retail",
+      "n_positive": 3,
+      "verified_aliases": [],
+      "requires_namespace_token": false,
+      "review_status": "accepted_structural"
+    },
+    {
+      "brand_family_id": "brand:paris_baguette",
+      "brand_group_id": "brand:paris_baguette:retail",
+      "brand_canonical": "Paris Baguette",
+      "namespace": "retail",
+      "n_positive": 3,
+      "verified_aliases": [],
+      "requires_namespace_token": false,
+      "review_status": "accepted_structural"
+    },
+    {
+      "brand_family_id": "brand:petec",
+      "brand_group_id": "brand:petec:fuel",
+      "brand_canonical": "Petec",
+      "namespace": "fuel",
+      "n_positive": 6,
+      "verified_aliases": [],
+      "requires_namespace_token": false,
+      "review_status": "accepted_structural"
+    },
+    {
+      "brand_family_id": "brand:petec",
+      "brand_group_id": "brand:petec:fuel",
+      "brand_canonical": "Petec",
+      "namespace": "fuel",
+      "n_positive": 6,
+      "verified_aliases": [],
+      "requires_namespace_token": false,
+      "review_status": "accepted_structural"
+    },
+    {
+      "brand_family_id": "brand:petec",
+      "brand_group_id": "brand:petec:fuel",
+      "brand_canonical": "Petec",
+      "namespace": "fuel",
+      "n_positive": 6,
+      "verified_aliases": [],
+      "requires_namespace_token": false,
+      "review_status": "accepted_structural"
+    },
+    {
+      "brand_family_id": "brand:petro_vietnam",
+      "brand_group_id": "brand:petro_vietnam:fuel",
+      "brand_canonical": "petro vietnam",
+      "namespace": "fuel",
+      "n_positive": 22,
+      "verified_aliases": [],
+      "requires_namespace_token": false,
+      "review_status": "accepted_structural"
+    },
+    {
+      "brand_family_id": "brand:petro_vietnam",
+      "brand_group_id": "brand:petro_vietnam:fuel",
+      "brand_canonical": "petro vietnam",
+      "namespace": "fuel",
+      "n_positive": 22,
+      "verified_aliases": [],
+      "requires_namespace_token": false,
+      "review_status": "accepted_structural"
+    },
+    {
+      "brand_family_id": "brand:petro_vietnam",
+      "brand_group_id": "brand:petro_vietnam:fuel",
+      "brand_canonical": "petro vietnam",
+      "namespace": "fuel",
+      "n_positive": 22,
+      "verified_aliases": [],
+      "requires_namespace_token": false,
+      "review_status": "accepted_structural"
+    },
+    {
+      "brand_family_id": "brand:phuong_nam",
+      "brand_group_id": "brand:phuong_nam:hotel",
+      "brand_canonical": "Phương Nam",
+      "namespace": "hotel",
+      "n_positive": 4,
+      "verified_aliases": [],
+      "requires_namespace_token": true,
+      "review_status": "accepted_structural"
+    },
+    {
+      "brand_family_id": "brand:phuong_nam",
+      "brand_group_id": "brand:phuong_nam:hotel",
+      "brand_canonical": "Phương Nam",
+      "namespace": "hotel",
+      "n_positive": 4,
+      "verified_aliases": [],
+      "requires_namespace_token": true,
+      "review_status": "accepted_structural"
+    },
+    {
+      "brand_family_id": "brand:phuong_nam",
+      "brand_group_id": "brand:phuong_nam:hotel",
+      "brand_canonical": "Phương Nam",
+      "namespace": "hotel",
+      "n_positive": 4,
+      "verified_aliases": [],
+      "requires_namespace_token": true,
+      "review_status": "accepted_structural"
+    },
+    {
+      "brand_family_id": "brand:phuong_nam",
+      "brand_group_id": "brand:phuong_nam:retail",
+      "brand_canonical": "Phương Nam",
+      "namespace": "retail",
+      "n_positive": 3,
+      "verified_aliases": [],
+      "requires_namespace_token": true,
+      "review_status": "accepted_structural"
+    },
+    {
+      "brand_family_id": "brand:phuong_nam",
+      "brand_group_id": "brand:phuong_nam:retail",
+      "brand_canonical": "Phương Nam",
+      "namespace": "retail",
+      "n_positive": 3,
+      "verified_aliases": [],
+      "requires_namespace_token": true,
+      "review_status": "accepted_structural"
+    },
+    {
+      "brand_family_id": "brand:phuong_nam",
+      "brand_group_id": "brand:phuong_nam:retail",
+      "brand_canonical": "Phương Nam",
+      "namespace": "retail",
+      "n_positive": 3,
+      "verified_aliases": [],
+      "requires_namespace_token": true,
+      "review_status": "accepted_structural"
+    },
+    {
+      "brand_family_id": "brand:piaggio",
+      "brand_group_id": "brand:piaggio:retail",
+      "brand_canonical": "Piaggio",
+      "namespace": "retail",
+      "n_positive": 2,
+      "verified_aliases": [],
+      "requires_namespace_token": false,
+      "review_status": "accepted_structural"
+    },
+    {
+      "brand_family_id": "brand:piaggio",
+      "brand_group_id": "brand:piaggio:retail",
+      "brand_canonical": "Piaggio",
+      "namespace": "retail",
+      "n_positive": 2,
+      "verified_aliases": [],
+      "requires_namespace_token": false,
+      "review_status": "accepted_structural"
+    },
+    {
+      "brand_family_id": "brand:piaggio",
+      "brand_group_id": "brand:piaggio:retail",
+      "brand_canonical": "Piaggio",
+      "namespace": "retail",
+      "n_positive": 2,
+      "verified_aliases": [],
+      "requires_namespace_token": false,
+      "review_status": "accepted_structural"
+    },
+    {
+      "brand_family_id": "brand:pizza_hut",
+      "brand_group_id": "brand:pizza_hut:restaurant",
+      "brand_canonical": "Pizza Hut",
+      "namespace": "restaurant",
+      "n_positive": 60,
+      "verified_aliases": [],
+      "requires_namespace_token": false,
+      "review_status": "accepted_structural"
+    },
+    {
+      "brand_family_id": "brand:pizza_hut",
+      "brand_group_id": "brand:pizza_hut:restaurant",
+      "brand_canonical": "Pizza Hut",
+      "namespace": "restaurant",
+      "n_positive": 60,
+      "verified_aliases": [],
+      "requires_namespace_token": false,
+      "review_status": "accepted_structural"
+    },
+    {
+      "brand_family_id": "brand:pizza_hut",
+      "brand_group_id": "brand:pizza_hut:restaurant",
+      "brand_canonical": "Pizza Hut",
+      "namespace": "restaurant",
+      "n_positive": 60,
+      "verified_aliases": [],
+      "requires_namespace_token": false,
+      "review_status": "accepted_structural"
+    },
+    {
+      "brand_family_id": "brand:pizza_inn",
+      "brand_group_id": "brand:pizza_inn:restaurant",
+      "brand_canonical": "Pizza Inn",
+      "namespace": "restaurant",
+      "n_positive": 2,
+      "verified_aliases": [],
+      "requires_namespace_token": false,
+      "review_status": "accepted_structural"
+    },
+    {
+      "brand_family_id": "brand:pizza_inn",
+      "brand_group_id": "brand:pizza_inn:restaurant",
+      "brand_canonical": "Pizza Inn",
+      "namespace": "restaurant",
+      "n_positive": 2,
+      "verified_aliases": [],
+      "requires_namespace_token": false,
+      "review_status": "accepted_structural"
+    },
+    {
+      "brand_family_id": "brand:pizza_inn",
+      "brand_group_id": "brand:pizza_inn:restaurant",
+      "brand_canonical": "Pizza Inn",
+      "namespace": "restaurant",
+      "n_positive": 2,
+      "verified_aliases": [],
+      "requires_namespace_token": false,
+      "review_status": "accepted_structural"
+    },
+    {
+      "brand_family_id": "brand:psp",
+      "brand_group_id": "brand:psp:fuel",
+      "brand_canonical": "PSP",
+      "namespace": "fuel",
+      "n_positive": 3,
+      "verified_aliases": [],
+      "requires_namespace_token": false,
+      "review_status": "accepted_structural"
+    },
+    {
+      "brand_family_id": "brand:psp",
+      "brand_group_id": "brand:psp:fuel",
+      "brand_canonical": "PSP",
+      "namespace": "fuel",
+      "n_positive": 3,
+      "verified_aliases": [],
+      "requires_namespace_token": false,
+      "review_status": "accepted_structural"
+    },
+    {
+      "brand_family_id": "brand:radisson",
+      "brand_group_id": "brand:radisson:hotel",
+      "brand_canonical": "Radisson",
+      "namespace": "hotel",
+      "n_positive": 3,
+      "verified_aliases": [],
+      "requires_namespace_token": false,
+      "review_status": "accepted_structural"
+    },
+    {
+      "brand_family_id": "brand:radisson",
+      "brand_group_id": "brand:radisson:hotel",
+      "brand_canonical": "Radisson",
+      "namespace": "hotel",
+      "n_positive": 3,
+      "verified_aliases": [],
+      "requires_namespace_token": false,
+      "review_status": "accepted_structural"
+    },
+    {
+      "brand_family_id": "brand:radisson",
+      "brand_group_id": "brand:radisson:hotel",
+      "brand_canonical": "Radisson",
+      "namespace": "hotel",
+      "n_positive": 3,
+      "verified_aliases": [],
+      "requires_namespace_token": false,
+      "review_status": "accepted_structural"
+    },
+    {
+      "brand_family_id": "brand:saigon_tourist",
+      "brand_group_id": "brand:saigon_tourist:retail",
+      "brand_canonical": "Saigon Tourist",
+      "namespace": "retail",
+      "n_positive": 2,
+      "verified_aliases": [],
+      "requires_namespace_token": false,
+      "review_status": "accepted_structural"
+    },
+    {
+      "brand_family_id": "brand:saigon_tourist",
+      "brand_group_id": "brand:saigon_tourist:retail",
+      "brand_canonical": "Saigon Tourist",
+      "namespace": "retail",
+      "n_positive": 2,
+      "verified_aliases": [],
+      "requires_namespace_token": false,
+      "review_status": "accepted_structural"
+    },
+    {
+      "brand_family_id": "brand:saigon_tourist",
+      "brand_group_id": "brand:saigon_tourist:retail",
+      "brand_canonical": "Saigon Tourist",
+      "namespace": "retail",
+      "n_positive": 2,
+      "verified_aliases": [],
+      "requires_namespace_token": false,
+      "review_status": "accepted_structural"
+    },
+    {
+      "brand_family_id": "brand:samsung",
+      "brand_group_id": "brand:samsung:retail",
+      "brand_canonical": "Samsung",
+      "namespace": "retail",
+      "n_positive": 9,
+      "verified_aliases": [],
+      "requires_namespace_token": false,
+      "review_status": "accepted_structural"
+    },
+    {
+      "brand_family_id": "brand:samsung",
+      "brand_group_id": "brand:samsung:retail",
+      "brand_canonical": "Samsung",
+      "namespace": "retail",
+      "n_positive": 9,
+      "verified_aliases": [],
+      "requires_namespace_token": false,
+      "review_status": "accepted_structural"
+    },
+    {
+      "brand_family_id": "brand:samsung",
+      "brand_group_id": "brand:samsung:retail",
+      "brand_canonical": "Samsung",
+      "namespace": "retail",
+      "n_positive": 9,
+      "verified_aliases": [],
+      "requires_namespace_token": false,
+      "review_status": "accepted_structural"
+    },
+    {
+      "brand_family_id": "brand:seabank",
+      "brand_group_id": "brand:seabank:atm",
+      "brand_canonical": "SeABank",
+      "namespace": "atm",
+      "n_positive": 33,
+      "verified_aliases": [],
+      "requires_namespace_token": true,
+      "review_status": "accepted_structural"
+    },
+    {
+      "brand_family_id": "brand:seabank",
+      "brand_group_id": "brand:seabank:atm",
+      "brand_canonical": "SeABank",
+      "namespace": "atm",
+      "n_positive": 33,
+      "verified_aliases": [],
+      "requires_namespace_token": true,
+      "review_status": "accepted_structural"
+    },
+    {
+      "brand_family_id": "brand:seabank",
+      "brand_group_id": "brand:seabank:atm",
+      "brand_canonical": "SeABank",
+      "namespace": "atm",
+      "n_positive": 33,
+      "verified_aliases": [],
+      "requires_namespace_token": true,
+      "review_status": "accepted_structural"
+    },
+    {
+      "brand_family_id": "brand:seabank",
+      "brand_group_id": "brand:seabank:bank",
+      "brand_canonical": "SeABank",
+      "namespace": "bank",
+      "n_positive": 35,
+      "verified_aliases": [],
+      "requires_namespace_token": true,
+      "review_status": "accepted_structural"
+    },
+    {
+      "brand_family_id": "brand:seabank",
+      "brand_group_id": "brand:seabank:bank",
+      "brand_canonical": "SeABank",
+      "namespace": "bank",
+      "n_positive": 35,
+      "verified_aliases": [],
+      "requires_namespace_token": true,
+      "review_status": "accepted_structural"
+    },
+    {
+      "brand_family_id": "brand:seabank",
+      "brand_group_id": "brand:seabank:bank",
+      "brand_canonical": "SeABank",
+      "namespace": "bank",
+      "n_positive": 35,
+      "verified_aliases": [],
+      "requires_namespace_token": true,
+      "review_status": "accepted_structural"
+    },
+    {
+      "brand_family_id": "brand:six_senses",
+      "brand_group_id": "brand:six_senses:hotel",
+      "brand_canonical": "Six Senses",
+      "namespace": "hotel",
+      "n_positive": 2,
+      "verified_aliases": [],
+      "requires_namespace_token": false,
+      "review_status": "accepted_structural"
+    },
+    {
+      "brand_family_id": "brand:six_senses",
+      "brand_group_id": "brand:six_senses:hotel",
+      "brand_canonical": "Six Senses",
+      "namespace": "hotel",
+      "n_positive": 2,
+      "verified_aliases": [],
+      "requires_namespace_token": false,
+      "review_status": "accepted_structural"
+    },
+    {
+      "brand_family_id": "brand:six_senses",
+      "brand_group_id": "brand:six_senses:hotel",
+      "brand_canonical": "Six Senses",
+      "namespace": "hotel",
+      "n_positive": 2,
+      "verified_aliases": [],
+      "requires_namespace_token": false,
+      "review_status": "accepted_structural"
+    },
+    {
+      "brand_family_id": "brand:starbucks",
+      "brand_group_id": "brand:starbucks:cafe",
+      "brand_canonical": "Starbucks",
+      "namespace": "cafe",
+      "n_positive": 73,
+      "verified_aliases": [],
+      "requires_namespace_token": true,
+      "review_status": "accepted_structural"
+    },
+    {
+      "brand_family_id": "brand:starbucks",
+      "brand_group_id": "brand:starbucks:cafe",
+      "brand_canonical": "Starbucks",
+      "namespace": "cafe",
+      "n_positive": 73,
+      "verified_aliases": [],
+      "requires_namespace_token": true,
+      "review_status": "accepted_structural"
+    },
+    {
+      "brand_family_id": "brand:starbucks",
+      "brand_group_id": "brand:starbucks:cafe",
+      "brand_canonical": "Starbucks",
+      "namespace": "cafe",
+      "n_positive": 73,
+      "verified_aliases": [],
+      "requires_namespace_token": true,
+      "review_status": "accepted_structural"
+    },
+    {
+      "brand_family_id": "brand:starbucks",
+      "brand_group_id": "brand:starbucks:retail",
+      "brand_canonical": "Starbucks",
+      "namespace": "retail",
+      "n_positive": 2,
+      "verified_aliases": [],
+      "requires_namespace_token": true,
+      "review_status": "accepted_structural"
+    },
+    {
+      "brand_family_id": "brand:starbucks",
+      "brand_group_id": "brand:starbucks:retail",
+      "brand_canonical": "Starbucks",
+      "namespace": "retail",
+      "n_positive": 2,
+      "verified_aliases": [],
+      "requires_namespace_token": true,
+      "review_status": "accepted_structural"
+    },
+    {
+      "brand_family_id": "brand:starbucks",
+      "brand_group_id": "brand:starbucks:retail",
+      "brand_canonical": "Starbucks",
+      "namespace": "retail",
+      "n_positive": 2,
+      "verified_aliases": [],
+      "requires_namespace_token": true,
+      "review_status": "accepted_structural"
+    },
+    {
+      "brand_family_id": "brand:suzuki",
+      "brand_group_id": "brand:suzuki:retail",
+      "brand_canonical": "Suzuki",
+      "namespace": "retail",
+      "n_positive": 6,
+      "verified_aliases": [],
+      "requires_namespace_token": false,
+      "review_status": "accepted_structural"
+    },
+    {
+      "brand_family_id": "brand:suzuki",
+      "brand_group_id": "brand:suzuki:retail",
+      "brand_canonical": "Suzuki",
+      "namespace": "retail",
+      "n_positive": 6,
+      "verified_aliases": [],
+      "requires_namespace_token": false,
+      "review_status": "accepted_structural"
+    },
+    {
+      "brand_family_id": "brand:suzuki",
+      "brand_group_id": "brand:suzuki:retail",
+      "brand_canonical": "Suzuki",
+      "namespace": "retail",
+      "n_positive": 6,
+      "verified_aliases": [],
+      "requires_namespace_token": false,
+      "review_status": "accepted_structural"
+    },
+    {
+      "brand_family_id": "brand:swp",
+      "brand_group_id": "brand:swp:fuel",
+      "brand_canonical": "SWP",
+      "namespace": "fuel",
+      "n_positive": 6,
+      "verified_aliases": [],
+      "requires_namespace_token": false,
+      "review_status": "accepted_structural"
+    },
+    {
+      "brand_family_id": "brand:swp",
+      "brand_group_id": "brand:swp:fuel",
+      "brand_canonical": "SWP",
+      "namespace": "fuel",
+      "n_positive": 6,
+      "verified_aliases": [],
+      "requires_namespace_token": false,
+      "review_status": "accepted_structural"
+    },
+    {
+      "brand_family_id": "brand:techcombank",
+      "brand_group_id": "brand:techcombank:atm",
+      "brand_canonical": "Techcombank",
+      "namespace": "atm",
+      "n_positive": 324,
+      "verified_aliases": [],
+      "requires_namespace_token": true,
+      "review_status": "accepted_structural"
+    },
+    {
+      "brand_family_id": "brand:techcombank",
+      "brand_group_id": "brand:techcombank:atm",
+      "brand_canonical": "Techcombank",
+      "namespace": "atm",
+      "n_positive": 324,
+      "verified_aliases": [],
+      "requires_namespace_token": true,
+      "review_status": "accepted_structural"
+    },
+    {
+      "brand_family_id": "brand:techcombank",
+      "brand_group_id": "brand:techcombank:atm",
+      "brand_canonical": "Techcombank",
+      "namespace": "atm",
+      "n_positive": 324,
+      "verified_aliases": [],
+      "requires_namespace_token": true,
+      "review_status": "accepted_structural"
+    },
+    {
+      "brand_family_id": "brand:techcombank",
+      "brand_group_id": "brand:techcombank:bank",
+      "brand_canonical": "Techcombank",
+      "namespace": "bank",
+      "n_positive": 88,
+      "verified_aliases": [],
+      "requires_namespace_token": true,
+      "review_status": "accepted_structural"
+    },
+    {
+      "brand_family_id": "brand:techcombank",
+      "brand_group_id": "brand:techcombank:bank",
+      "brand_canonical": "Techcombank",
+      "namespace": "bank",
+      "n_positive": 88,
+      "verified_aliases": [],
+      "requires_namespace_token": true,
+      "review_status": "accepted_structural"
+    },
+    {
+      "brand_family_id": "brand:techcombank",
+      "brand_group_id": "brand:techcombank:bank",
+      "brand_canonical": "Techcombank",
+      "namespace": "bank",
+      "n_positive": 88,
+      "verified_aliases": [],
+      "requires_namespace_token": true,
+      "review_status": "accepted_structural"
+    },
+    {
+      "brand_family_id": "brand:thanh_pho_oil",
+      "brand_group_id": "brand:thanh_pho_oil:fuel",
+      "brand_canonical": "Thành phố Oil",
+      "namespace": "fuel",
+      "n_positive": 3,
+      "verified_aliases": [],
+      "requires_namespace_token": false,
+      "review_status": "accepted_structural"
+    },
+    {
+      "brand_family_id": "brand:thanh_pho_oil",
+      "brand_group_id": "brand:thanh_pho_oil:fuel",
+      "brand_canonical": "Thành phố Oil",
+      "namespace": "fuel",
+      "n_positive": 3,
+      "verified_aliases": [],
+      "requires_namespace_token": false,
+      "review_status": "accepted_structural"
+    },
+    {
+      "brand_family_id": "brand:thanh_pho_oil",
+      "brand_group_id": "brand:thanh_pho_oil:fuel",
+      "brand_canonical": "Thành phố Oil",
+      "namespace": "fuel",
+      "n_positive": 3,
+      "verified_aliases": [],
+      "requires_namespace_token": false,
+      "review_status": "accepted_structural"
+    },
+    {
+      "brand_family_id": "brand:the_body_shop",
+      "brand_group_id": "brand:the_body_shop:retail",
+      "brand_canonical": "The Body Shop",
+      "namespace": "retail",
+      "n_positive": 3,
+      "verified_aliases": [],
+      "requires_namespace_token": false,
+      "review_status": "accepted_structural"
+    },
+    {
+      "brand_family_id": "brand:the_body_shop",
+      "brand_group_id": "brand:the_body_shop:retail",
+      "brand_canonical": "The Body Shop",
+      "namespace": "retail",
+      "n_positive": 3,
+      "verified_aliases": [],
+      "requires_namespace_token": false,
+      "review_status": "accepted_structural"
+    },
+    {
+      "brand_family_id": "brand:the_body_shop",
+      "brand_group_id": "brand:the_body_shop:retail",
+      "brand_canonical": "The Body Shop",
+      "namespace": "retail",
+      "n_positive": 3,
+      "verified_aliases": [],
+      "requires_namespace_token": false,
+      "review_status": "accepted_structural"
+    },
+    {
+      "brand_family_id": "brand:the_coffee_bean_tea_leaf",
+      "brand_group_id": "brand:the_coffee_bean_tea_leaf:cafe",
+      "brand_canonical": "The Coffee Bean & Tea Leaf",
+      "namespace": "cafe",
+      "n_positive": 15,
+      "verified_aliases": [],
+      "requires_namespace_token": false,
+      "review_status": "accepted_structural"
+    },
+    {
+      "brand_family_id": "brand:the_coffee_bean_tea_leaf",
+      "brand_group_id": "brand:the_coffee_bean_tea_leaf:cafe",
+      "brand_canonical": "The Coffee Bean & Tea Leaf",
+      "namespace": "cafe",
+      "n_positive": 15,
+      "verified_aliases": [],
+      "requires_namespace_token": false,
+      "review_status": "accepted_structural"
+    },
+    {
+      "brand_family_id": "brand:the_coffee_bean_tea_leaf",
+      "brand_group_id": "brand:the_coffee_bean_tea_leaf:cafe",
+      "brand_canonical": "The Coffee Bean & Tea Leaf",
+      "namespace": "cafe",
+      "n_positive": 15,
+      "verified_aliases": [],
+      "requires_namespace_token": false,
+      "review_status": "accepted_structural"
+    },
+    {
+      "brand_family_id": "brand:tin_nghia",
+      "brand_group_id": "brand:tin_nghia:fuel",
+      "brand_canonical": "Tín Nghĩa",
+      "namespace": "fuel",
+      "n_positive": 2,
+      "verified_aliases": [],
+      "requires_namespace_token": true,
+      "review_status": "accepted_structural"
+    },
+    {
+      "brand_family_id": "brand:tin_nghia",
+      "brand_group_id": "brand:tin_nghia:fuel",
+      "brand_canonical": "Tín Nghĩa",
+      "namespace": "fuel",
+      "n_positive": 2,
+      "verified_aliases": [],
+      "requires_namespace_token": true,
+      "review_status": "accepted_structural"
+    },
+    {
+      "brand_family_id": "brand:tin_nghia",
+      "brand_group_id": "brand:tin_nghia:fuel",
+      "brand_canonical": "Tín Nghĩa",
+      "namespace": "fuel",
+      "n_positive": 2,
+      "verified_aliases": [],
+      "requires_namespace_token": true,
+      "review_status": "accepted_structural"
+    },
+    {
+      "brand_family_id": "brand:tin_nghia",
+      "brand_group_id": "brand:tin_nghia:retail",
+      "brand_canonical": "Tín Nghĩa",
+      "namespace": "retail",
+      "n_positive": 2,
+      "verified_aliases": [],
+      "requires_namespace_token": true,
+      "review_status": "accepted_structural"
+    },
+    {
+      "brand_family_id": "brand:tin_nghia",
+      "brand_group_id": "brand:tin_nghia:retail",
+      "brand_canonical": "Tín Nghĩa",
+      "namespace": "retail",
+      "n_positive": 2,
+      "verified_aliases": [],
+      "requires_namespace_token": true,
+      "review_status": "accepted_structural"
+    },
+    {
+      "brand_family_id": "brand:tin_nghia",
+      "brand_group_id": "brand:tin_nghia:retail",
+      "brand_canonical": "Tín Nghĩa",
+      "namespace": "retail",
+      "n_positive": 2,
+      "verified_aliases": [],
+      "requires_namespace_token": true,
+      "review_status": "accepted_structural"
+    },
+    {
+      "brand_family_id": "brand:tops_market",
+      "brand_group_id": "brand:tops_market:supermarket",
+      "brand_canonical": "Tops Market",
+      "namespace": "supermarket",
+      "n_positive": 4,
+      "verified_aliases": [],
+      "requires_namespace_token": false,
+      "review_status": "accepted_structural"
+    },
+    {
+      "brand_family_id": "brand:tops_market",
+      "brand_group_id": "brand:tops_market:supermarket",
+      "brand_canonical": "Tops Market",
+      "namespace": "supermarket",
+      "n_positive": 4,
+      "verified_aliases": [],
+      "requires_namespace_token": false,
+      "review_status": "accepted_structural"
+    },
+    {
+      "brand_family_id": "brand:tops_market",
+      "brand_group_id": "brand:tops_market:supermarket",
+      "brand_canonical": "Tops Market",
+      "namespace": "supermarket",
+      "n_positive": 4,
+      "verified_aliases": [],
+      "requires_namespace_token": false,
+      "review_status": "accepted_structural"
+    },
+    {
+      "brand_family_id": "brand:toyota",
+      "brand_group_id": "brand:toyota:retail",
+      "brand_canonical": "Toyota",
+      "namespace": "retail",
+      "n_positive": 26,
+      "verified_aliases": [],
+      "requires_namespace_token": false,
+      "review_status": "accepted_structural"
+    },
+    {
+      "brand_family_id": "brand:toyota",
+      "brand_group_id": "brand:toyota:retail",
+      "brand_canonical": "Toyota",
+      "namespace": "retail",
+      "n_positive": 26,
+      "verified_aliases": [],
+      "requires_namespace_token": false,
+      "review_status": "accepted_structural"
+    },
+    {
+      "brand_family_id": "brand:toyota",
+      "brand_group_id": "brand:toyota:retail",
+      "brand_canonical": "Toyota",
+      "namespace": "retail",
+      "n_positive": 26,
+      "verified_aliases": [],
+      "requires_namespace_token": false,
+      "review_status": "accepted_structural"
+    },
+    {
+      "brand_family_id": "brand:tpbank",
+      "brand_group_id": "brand:tpbank:atm",
+      "brand_canonical": "TPBank",
+      "namespace": "atm",
+      "n_positive": 153,
+      "verified_aliases": [],
+      "requires_namespace_token": true,
+      "review_status": "accepted_structural"
+    },
+    {
+      "brand_family_id": "brand:tpbank",
+      "brand_group_id": "brand:tpbank:atm",
+      "brand_canonical": "TPBank",
+      "namespace": "atm",
+      "n_positive": 153,
+      "verified_aliases": [],
+      "requires_namespace_token": true,
+      "review_status": "accepted_structural"
+    },
+    {
+      "brand_family_id": "brand:tpbank",
+      "brand_group_id": "brand:tpbank:atm",
+      "brand_canonical": "TPBank",
+      "namespace": "atm",
+      "n_positive": 153,
+      "verified_aliases": [],
+      "requires_namespace_token": true,
+      "review_status": "accepted_structural"
+    },
+    {
+      "brand_family_id": "brand:tpbank",
+      "brand_group_id": "brand:tpbank:bank",
+      "brand_canonical": "TPBank",
+      "namespace": "bank",
+      "n_positive": 34,
+      "verified_aliases": [],
+      "requires_namespace_token": true,
+      "review_status": "accepted_structural"
+    },
+    {
+      "brand_family_id": "brand:tpbank",
+      "brand_group_id": "brand:tpbank:bank",
+      "brand_canonical": "TPBank",
+      "namespace": "bank",
+      "n_positive": 34,
+      "verified_aliases": [],
+      "requires_namespace_token": true,
+      "review_status": "accepted_structural"
+    },
+    {
+      "brand_family_id": "brand:tpbank",
+      "brand_group_id": "brand:tpbank:bank",
+      "brand_canonical": "TPBank",
+      "namespace": "bank",
+      "n_positive": 34,
+      "verified_aliases": [],
+      "requires_namespace_token": true,
+      "review_status": "accepted_structural"
+    },
+    {
+      "brand_family_id": "brand:triumph",
+      "brand_group_id": "brand:triumph:retail",
+      "brand_canonical": "Triumph",
+      "namespace": "retail",
+      "n_positive": 8,
+      "verified_aliases": [],
+      "requires_namespace_token": false,
+      "review_status": "accepted_structural"
+    },
+    {
+      "brand_family_id": "brand:triumph",
+      "brand_group_id": "brand:triumph:retail",
+      "brand_canonical": "Triumph",
+      "namespace": "retail",
+      "n_positive": 8,
+      "verified_aliases": [],
+      "requires_namespace_token": false,
+      "review_status": "accepted_structural"
+    },
+    {
+      "brand_family_id": "brand:triumph",
+      "brand_group_id": "brand:triumph:retail",
+      "brand_canonical": "Triumph",
+      "namespace": "retail",
+      "n_positive": 8,
+      "verified_aliases": [],
+      "requires_namespace_token": false,
+      "review_status": "accepted_structural"
+    },
+    {
+      "brand_family_id": "brand:tru_by_hilton",
+      "brand_group_id": "brand:tru_by_hilton:hotel",
+      "brand_canonical": "Tru by Hilton",
+      "namespace": "hotel",
+      "n_positive": 8,
+      "verified_aliases": [],
+      "requires_namespace_token": false,
+      "review_status": "accepted_structural"
+    },
+    {
+      "brand_family_id": "brand:tru_by_hilton",
+      "brand_group_id": "brand:tru_by_hilton:hotel",
+      "brand_canonical": "Tru by Hilton",
+      "namespace": "hotel",
+      "n_positive": 8,
+      "verified_aliases": [],
+      "requires_namespace_token": false,
+      "review_status": "accepted_structural"
+    },
+    {
+      "brand_family_id": "brand:tru_by_hilton",
+      "brand_group_id": "brand:tru_by_hilton:hotel",
+      "brand_canonical": "Tru by Hilton",
+      "namespace": "hotel",
+      "n_positive": 8,
+      "verified_aliases": [],
+      "requires_namespace_token": false,
+      "review_status": "accepted_structural"
+    },
+    {
+      "brand_family_id": "brand:vietbank",
+      "brand_group_id": "brand:vietbank:atm",
+      "brand_canonical": "Vietbank",
+      "namespace": "atm",
+      "n_positive": 5,
+      "verified_aliases": [],
+      "requires_namespace_token": true,
+      "review_status": "accepted_structural"
+    },
+    {
+      "brand_family_id": "brand:vietbank",
+      "brand_group_id": "brand:vietbank:atm",
+      "brand_canonical": "Vietbank",
+      "namespace": "atm",
+      "n_positive": 5,
+      "verified_aliases": [],
+      "requires_namespace_token": true,
+      "review_status": "accepted_structural"
+    },
+    {
+      "brand_family_id": "brand:vietbank",
+      "brand_group_id": "brand:vietbank:atm",
+      "brand_canonical": "Vietbank",
+      "namespace": "atm",
+      "n_positive": 5,
+      "verified_aliases": [],
+      "requires_namespace_token": true,
+      "review_status": "accepted_structural"
+    },
+    {
+      "brand_family_id": "brand:vietbank",
+      "brand_group_id": "brand:vietbank:bank",
+      "brand_canonical": "Vietbank",
+      "namespace": "bank",
+      "n_positive": 16,
+      "verified_aliases": [],
+      "requires_namespace_token": true,
+      "review_status": "accepted_structural"
+    },
+    {
+      "brand_family_id": "brand:vietbank",
+      "brand_group_id": "brand:vietbank:bank",
+      "brand_canonical": "Vietbank",
+      "namespace": "bank",
+      "n_positive": 16,
+      "verified_aliases": [],
+      "requires_namespace_token": true,
+      "review_status": "accepted_structural"
+    },
+    {
+      "brand_family_id": "brand:vietbank",
+      "brand_group_id": "brand:vietbank:bank",
+      "brand_canonical": "Vietbank",
+      "namespace": "bank",
+      "n_positive": 16,
+      "verified_aliases": [],
+      "requires_namespace_token": true,
+      "review_status": "accepted_structural"
+    },
+    {
+      "brand_family_id": "brand:vinfast",
+      "brand_group_id": "brand:vinfast:retail",
+      "brand_canonical": "VinFast",
+      "namespace": "retail",
+      "n_positive": 28,
+      "verified_aliases": [],
+      "requires_namespace_token": false,
+      "review_status": "accepted_structural"
+    },
+    {
+      "brand_family_id": "brand:vinfast",
+      "brand_group_id": "brand:vinfast:retail",
+      "brand_canonical": "VinFast",
+      "namespace": "retail",
+      "n_positive": 28,
+      "verified_aliases": [],
+      "requires_namespace_token": false,
+      "review_status": "accepted_structural"
+    },
+    {
+      "brand_family_id": "brand:vinfast",
+      "brand_group_id": "brand:vinfast:retail",
+      "brand_canonical": "VinFast",
+      "namespace": "retail",
+      "n_positive": 28,
+      "verified_aliases": [],
+      "requires_namespace_token": false,
+      "review_status": "accepted_structural"
+    },
+    {
+      "brand_family_id": "brand:vissan",
+      "brand_group_id": "brand:vissan:retail",
+      "brand_canonical": "Vissan",
+      "namespace": "retail",
+      "n_positive": 2,
+      "verified_aliases": [],
+      "requires_namespace_token": false,
+      "review_status": "accepted_structural"
+    },
+    {
+      "brand_family_id": "brand:vissan",
+      "brand_group_id": "brand:vissan:retail",
+      "brand_canonical": "Vissan",
+      "namespace": "retail",
+      "n_positive": 2,
+      "verified_aliases": [],
+      "requires_namespace_token": false,
+      "review_status": "accepted_structural"
+    },
+    {
+      "brand_family_id": "brand:vissan",
+      "brand_group_id": "brand:vissan:retail",
+      "brand_canonical": "Vissan",
+      "namespace": "retail",
+      "n_positive": 2,
+      "verified_aliases": [],
+      "requires_namespace_token": false,
+      "review_status": "accepted_structural"
+    },
+    {
+      "brand_family_id": "brand:wyndham",
+      "brand_group_id": "brand:wyndham:hotel",
+      "brand_canonical": "Wyndham",
+      "namespace": "hotel",
+      "n_positive": 2,
+      "verified_aliases": [],
+      "requires_namespace_token": false,
+      "review_status": "accepted_structural"
+    },
+    {
+      "brand_family_id": "brand:wyndham",
+      "brand_group_id": "brand:wyndham:hotel",
+      "brand_canonical": "Wyndham",
+      "namespace": "hotel",
+      "n_positive": 2,
+      "verified_aliases": [],
+      "requires_namespace_token": false,
+      "review_status": "accepted_structural"
+    },
+    {
+      "brand_family_id": "brand:wyndham",
+      "brand_group_id": "brand:wyndham:hotel",
+      "brand_canonical": "Wyndham",
+      "namespace": "hotel",
+      "n_positive": 2,
+      "verified_aliases": [],
+      "requires_namespace_token": false,
+      "review_status": "accepted_structural"
+    },
+    {
+      "brand_family_id": "brand:yves_rocher",
+      "brand_group_id": "brand:yves_rocher:retail",
+      "brand_canonical": "Yves Rocher",
+      "namespace": "retail",
+      "n_positive": 5,
+      "verified_aliases": [],
+      "requires_namespace_token": false,
+      "review_status": "accepted_structural"
+    },
+    {
+      "brand_family_id": "brand:yves_rocher",
+      "brand_group_id": "brand:yves_rocher:retail",
+      "brand_canonical": "Yves Rocher",
+      "namespace": "retail",
+      "n_positive": 5,
+      "verified_aliases": [],
+      "requires_namespace_token": false,
+      "review_status": "accepted_structural"
+    },
+    {
+      "brand_family_id": "brand:yves_rocher",
+      "brand_group_id": "brand:yves_rocher:retail",
+      "brand_canonical": "Yves Rocher",
+      "namespace": "retail",
+      "n_positive": 5,
+      "verified_aliases": [],
+      "requires_namespace_token": false,
+      "review_status": "accepted_structural"
+    }
+  ]
+}

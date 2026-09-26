@@ -1,0 +1,440 @@
+#!/usr/bin/env python3
+"""Mine hard negatives for the v6 hard-negative pilot.
+
+Reads compiled views + pinned mE5-small v3 embeddings. Writes only to
+data/vietnam/train_stage1_v6_hardneg_pilot/.
+"""
+from __future__ import annotations
+
+import argparse
+import hashlib
+import json
+import math
+import random
+import time
+import unicodedata
+from collections import defaultdict
+from pathlib import Path
+
+import numpy as np
+import pandas as pd
+import pyarrow as pa
+import pyarrow.parquet as pq
+
+ROOT = Path(__file__).resolve().parents[1]
+PILOT = ROOT / "data" / "vietnam" / "train_stage1_v6_hardneg_pilot"
+CORPUS_DOCS = ROOT / "data" / "vietnam" / "poi_corpus_v3" / "search_documents.parquet"
+CORPUS_CORE = ROOT / "data" / "vietnam" / "poi_corpus_v3" / "pois_core.parquet"
+EMB = ROOT / "artifacts" / "embeddings" / "me5_small_v3" / "corpus_embeddings.npy"
+EMB_IDS = ROOT / "artifacts" / "embeddings" / "me5_small_v3" / "poi_ids.parquet"
+MODEL_ID = "intfloat/multilingual-e5-small"
+QUERY_PREFIX = "query: "
+MAX_QUERY_TOKENS = 64
+POOL_DEPTH = 100
+SEED = 42
+QUOTA = {"random": 2, "lexical_hard": 3, "dense_hard": 3, "same_brand_other_branch": 2}
+MAX_NEGATIVES = 8
+
+
+def sha256(path: Path) -> str:
+    digest = hashlib.sha256()
+    with path.open("rb") as stream:
+        for chunk in iter(lambda: stream.read(1 << 20), b""):
+            digest.update(chunk)
+    return digest.hexdigest()
+
+
+def fold(text: str) -> str:
+    text = unicodedata.normalize("NFKC", text or "").replace("đ", "d").replace("Đ", "D")
+    return " ".join(
+        "".join(ch for ch in unicodedata.normalize("NFD", text) if not unicodedata.combining(ch))
+        .casefold()
+        .split()
+    )
+
+
+def tokenize(text: str) -> list[str]:
+    return [token for token in fold(text).split() if token]
+
+
+def parse_ids(raw) -> list[str]:
+    if raw is None or (isinstance(raw, float) and pd.isna(raw)):
+        return []
+    if isinstance(raw, (list, tuple)):
+        return [str(item) for item in raw]
+    text = str(raw).strip()
+    if not text or text.lower() == "nan":
+        return []
+    if text.startswith("["):
+        return [str(item) for item in json.loads(text)]
+    return [part for part in text.split("|") if part]
+
+
+class SparseBm25:
+    def __init__(self, documents: list[str]):
+        self.n_docs = len(documents)
+        self.doc_len = np.zeros(self.n_docs, dtype=np.int32)
+        df: dict[str, int] = defaultdict(int)
+        postings: dict[str, list[tuple[int, int]]] = defaultdict(list)
+        for index, text in enumerate(documents):
+            counts: dict[str, int] = defaultdict(int)
+            tokens = tokenize(text)
+            self.doc_len[index] = len(tokens)
+            for token in tokens:
+                counts[token] += 1
+            for token, tf in counts.items():
+                df[token] += 1
+                postings[token].append((index, tf))
+            if index == 0 or (index + 1) % 40000 == 0 or index + 1 == self.n_docs:
+                print(f"  lexical docs {index + 1}/{self.n_docs}", flush=True)
+        self.avgdl = float(self.doc_len.mean()) if self.n_docs else 1.0
+        self.idf = {
+            token: math.log((self.n_docs - freq + 0.5) / (freq + 0.5) + 1.0)
+            for token, freq in df.items()
+        }
+        self.postings = {
+            token: (
+                np.fromiter((doc for doc, _ in pairs), dtype=np.int32, count=len(pairs)),
+                np.fromiter((tf for _, tf in pairs), dtype=np.float32, count=len(pairs)),
+            )
+            for token, pairs in postings.items()
+        }
+
+    def topk(self, query: str, k: int) -> list[tuple[int, float]]:
+        scores = np.zeros(self.n_docs, dtype=np.float32)
+        k1 = 1.5
+        b = 0.75
+        for token in tokenize(query):
+            if token not in self.postings:
+                continue
+            docs, tfs = self.postings[token]
+            denom = tfs + k1 * (1.0 - b + b * self.doc_len[docs] / self.avgdl)
+            scores[docs] += self.idf[token] * (tfs * (k1 + 1.0) / denom)
+        if k >= self.n_docs:
+            order = np.argsort(-scores)
+        else:
+            pool = np.argpartition(-scores, k)[:k]
+            order = pool[np.argsort(-scores[pool])]
+        return [(int(i), float(scores[i])) for i in order if scores[i] > 0][:k]
+
+
+def encode_queries(texts: list[str], batch_size: int = 64) -> np.ndarray:
+    import torch
+    import torch.nn.functional as functional
+    from transformers import AutoModel, AutoTokenizer
+
+    device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
+    tokenizer = AutoTokenizer.from_pretrained(MODEL_ID)
+    model = AutoModel.from_pretrained(MODEL_ID).to(device).eval()
+    parts: list[np.ndarray] = []
+    print(f"encoding {len(texts)} train queries on {device}", flush=True)
+    with torch.no_grad():
+        for start in range(0, len(texts), batch_size):
+            batch = [QUERY_PREFIX + text for text in texts[start : start + batch_size]]
+            tokens = tokenizer(
+                batch,
+                padding=True,
+                truncation=True,
+                max_length=MAX_QUERY_TOKENS,
+                return_tensors="pt",
+            )
+            tokens.pop("token_type_ids", None)
+            tokens = {key: value.to(device) for key, value in tokens.items()}
+            hidden = model(**tokens).last_hidden_state
+            mask = tokens["attention_mask"].unsqueeze(-1).expand(hidden.size()).float()
+            pooled = torch.sum(hidden * mask, dim=1) / torch.clamp(mask.sum(dim=1), min=1e-9)
+            vec = functional.normalize(pooled, p=2, dim=1)
+            parts.append(vec.cpu().numpy().astype(np.float32, copy=False))
+            done = min(start + batch_size, len(texts))
+            if start == 0 or done == len(texts) or done % (batch_size * 20) == 0:
+                print(f"  query encode {done}/{len(texts)}", flush=True)
+    del model
+    if device.type == "cuda":
+        torch.cuda.empty_cache()
+    return np.concatenate(parts)
+
+
+def dense_topk(
+    queries: np.ndarray, corpus: np.ndarray, k: int, chunk: int = 64
+) -> list[list[tuple[int, float]]]:
+    out: list[list[tuple[int, float]]] = []
+    for start in range(0, len(queries), chunk):
+        scores = queries[start : start + chunk] @ corpus.T
+        for row in scores:
+            if k >= len(row):
+                order = np.argsort(-row)
+            else:
+                pool = np.argpartition(-row, k)[:k]
+                order = pool[np.argsort(-row[pool])]
+            out.append([(int(i), float(row[i])) for i in order[:k]])
+        done = min(start + chunk, len(queries))
+        if start == 0 or done == len(queries) or done % (chunk * 20) == 0:
+            print(f"  dense topk {done}/{len(queries)}", flush=True)
+    return out
+
+
+def take_unique(
+    ranked: list[tuple[str, int, float]],
+    blocked: set[str],
+    chosen: set[str],
+    limit: int,
+) -> list[dict[str, object]]:
+    picked: list[dict[str, object]] = []
+    if limit <= 0:
+        return picked
+    for poi_id, rank, score in ranked:
+        if poi_id in blocked or poi_id in chosen:
+            continue
+        picked.append({"poi_id": poi_id, "source_rank": rank, "score": score})
+        chosen.add(poi_id)
+        if len(picked) >= limit:
+            break
+    return picked
+
+
+def sample_random(poi_ids: list[str], blocked: set[str], chosen: set[str], limit: int, rng: random.Random) -> list[dict[str, object]]:
+    picked: list[dict[str, object]] = []
+    if limit <= 0 or not poi_ids:
+        return picked
+    attempts = 0
+    max_attempts = max(64, limit * 64)
+    n = len(poi_ids)
+    while len(picked) < limit and attempts < max_attempts:
+        attempts += 1
+        poi_id = poi_ids[rng.randrange(n)]
+        if poi_id in blocked or poi_id in chosen:
+            continue
+        picked.append({"poi_id": poi_id, "source_rank": None, "score": None})
+        chosen.add(poi_id)
+    return picked
+
+
+def main() -> None:
+    parser = argparse.ArgumentParser()
+    parser.add_argument("--out", type=Path, default=PILOT)
+    parser.add_argument("--sibling-quota", type=int, default=QUOTA["same_brand_other_branch"])
+    args = parser.parse_args()
+    out = args.out.resolve()
+    quota = dict(QUOTA)
+    quota["same_brand_other_branch"] = max(0, int(args.sibling_quota))
+
+    view_path = out / "query_train_view.parquet"
+    rel_path = out / "query_relation_view.parquet"
+    for path in (view_path, rel_path, CORPUS_DOCS, CORPUS_CORE, EMB, EMB_IDS):
+        if not path.exists():
+            raise SystemExit(f"Missing input: {path}")
+
+    view = pd.read_parquet(view_path)
+    relations = pd.read_parquet(rel_path)
+    docs = pd.read_parquet(CORPUS_DOCS, columns=["poi_id", "passage_context"])
+    core = pd.read_parquet(CORPUS_CORE, columns=["poi_id", "entity_group_id"])
+    emb_ids = pd.read_parquet(EMB_IDS)
+    print("loading dense corpus vectors …", flush=True)
+    corpus_vectors = np.asarray(np.load(EMB), dtype=np.float32)
+    poi_ids = docs["poi_id"].astype(str).tolist()
+    emb_poi_ids = emb_ids["poi_id"].astype(str).tolist()
+    if poi_ids != emb_poi_ids:
+        raise SystemExit("me5_small_v3 poi_ids do not match search_documents order")
+    if corpus_vectors.shape[0] != len(poi_ids):
+        raise SystemExit(f"Embedding rows {corpus_vectors.shape[0]} != docs {len(poi_ids)}")
+
+    entity_members: dict[str, set[str]] = defaultdict(set)
+    for row in core.itertuples(index=False):
+        entity_members[str(row.entity_group_id)].add(str(row.poi_id))
+
+    train = view[view["split"] == "train"].reset_index(drop=True)
+    blocked: dict[str, set[str]] = defaultdict(set)
+    ignore_ids: dict[str, set[str]] = defaultdict(set)
+    siblings: dict[str, list[str]] = defaultdict(list)
+    for row in relations.itertuples(index=False):
+        if row.split != "train":
+            continue
+        if row.label in {"positive", "ignore"}:
+            blocked[str(row.query_id)].add(str(row.poi_id))
+        if row.label == "ignore":
+            ignore_ids[str(row.query_id)].add(str(row.poi_id))
+        if row.label == "hard_neg_candidate":
+            siblings[str(row.query_id)].append(str(row.poi_id))
+    for row in train.itertuples(index=False):
+        query_id = str(row.query_id)
+        blocked[query_id].update(entity_members.get(str(row.entity_group_id), ()))
+
+    print(f"building lexical index on {len(poi_ids)} passages …", flush=True)
+    t0 = time.time()
+    lexical = SparseBm25(docs["passage_context"].fillna("").astype(str).tolist())
+    print(f"lexical index ready in {time.time() - t0:.1f}s", flush=True)
+
+    query_texts = train["query_text"].astype(str).tolist()
+    query_vectors = encode_queries(query_texts)
+    print("dense retrieval …", flush=True)
+    dense_ranks = dense_topk(query_vectors, np.asarray(corpus_vectors), POOL_DEPTH)
+
+    rng = random.Random(SEED)
+    pairs: list[dict[str, object]] = []
+    fill = {"random": 0, "lexical_hard": 0, "dense_hard": 0, "same_brand_other_branch": 0, "queries": 0}
+    weight_by_query = dict(zip(train["query_id"].astype(str), train["sample_weight"].astype(float)))
+
+    print("assembling pairs …", flush=True)
+    for offset, row in enumerate(train.itertuples(index=False)):
+        query_id = str(row.query_id)
+        positives = parse_ids(row.acceptable_poi_ids)
+        blocked_ids = set(blocked.get(query_id, ()))
+        blocked_ids.update(positives)
+        weight = float(row.sample_weight)
+        for poi_id in positives:
+            pairs.append(
+                {
+                    "query_id": query_id,
+                    "poi_id": poi_id,
+                    "label": "positive",
+                    "negative_source": None,
+                    "source_rank": None,
+                    "label_reason": "authored_acceptable",
+                    "sample_weight": weight,
+                }
+            )
+        lex_ranked = [
+            (poi_ids[index], rank, score)
+            for rank, (index, score) in enumerate(lexical.topk(str(row.query_text), POOL_DEPTH), start=1)
+        ]
+        dense_ranked = [
+            (poi_ids[index], rank, score)
+            for rank, (index, score) in enumerate(dense_ranks[offset], start=1)
+        ]
+        chosen: set[str] = set()
+        lex_pick = take_unique(lex_ranked, blocked_ids, chosen, quota["lexical_hard"])
+        dense_pick = take_unique(dense_ranked, blocked_ids, chosen, quota["dense_hard"])
+        sib_ranked = [
+            (poi_id, rank, 0.0)
+            for rank, poi_id in enumerate(siblings.get(query_id, ()), start=1)
+        ]
+        sib_pick = take_unique(sib_ranked, blocked_ids, chosen, quota["same_brand_other_branch"])
+        remain = max(0, MAX_NEGATIVES - len(lex_pick) - len(dense_pick) - len(sib_pick))
+        rand_pick = sample_random(poi_ids, blocked_ids, chosen, min(quota["random"], remain), rng)
+
+        for item in lex_pick:
+            pairs.append(
+                {
+                    "query_id": query_id,
+                    "poi_id": item["poi_id"],
+                    "label": "negative",
+                    "negative_source": "lexical_hard",
+                    "source_rank": item["source_rank"],
+                    "label_reason": "lexical_top100_minus_positive_ignore",
+                    "sample_weight": weight,
+                }
+            )
+        for item in dense_pick:
+            pairs.append(
+                {
+                    "query_id": query_id,
+                    "poi_id": item["poi_id"],
+                    "label": "negative",
+                    "negative_source": "dense_hard",
+                    "source_rank": item["source_rank"],
+                    "label_reason": "dense_top100_minus_positive_ignore",
+                    "sample_weight": weight,
+                }
+            )
+        for item in sib_pick:
+            pairs.append(
+                {
+                    "query_id": query_id,
+                    "poi_id": item["poi_id"],
+                    "label": "negative",
+                    "negative_source": "same_brand_other_branch",
+                    "source_rank": item["source_rank"],
+                    "label_reason": "forced_same_brand_other_branch",
+                    "sample_weight": weight,
+                }
+            )
+        for item in rand_pick:
+            pairs.append(
+                {
+                    "query_id": query_id,
+                    "poi_id": item["poi_id"],
+                    "label": "negative",
+                    "negative_source": "random",
+                    "source_rank": None,
+                    "label_reason": "random_eligible",
+                    "sample_weight": weight,
+                }
+            )
+        fill["lexical_hard"] += len(lex_pick)
+        fill["dense_hard"] += len(dense_pick)
+        fill["same_brand_other_branch"] += len(sib_pick)
+        fill["random"] += len(rand_pick)
+        fill["queries"] += 1
+        if offset == 0 or (offset + 1) % 1000 == 0 or offset + 1 == len(train):
+            print(f"  pairs {offset + 1}/{len(train)}", flush=True)
+
+    for row in relations.itertuples(index=False):
+        if row.split != "train" or row.label != "ignore":
+            continue
+        weight = float(weight_by_query.get(str(row.query_id), 1.0))
+        pairs.append(
+            {
+                "query_id": str(row.query_id),
+                "poi_id": str(row.poi_id),
+                "label": "ignore",
+                "negative_source": None,
+                "source_rank": None,
+                "label_reason": str(row.label_reason),
+                "sample_weight": weight,
+            }
+        )
+
+    table = pd.DataFrame(pairs)
+    out_path = out / "training_pairs.parquet"
+    pq.write_table(pa.Table.from_pandas(table, preserve_index=False), out_path, compression="zstd")
+
+    n_train = max(fill["queries"], 1)
+    mining = {
+        "dataset": out.name,
+        "status": "EXPERIMENTAL",
+        "miner_checkpoint": MODEL_ID,
+        "embedding_source": str(EMB.as_posix()),
+        "embeddings_sha256": sha256(EMB),
+        "poi_ids_sha256": sha256(EMB_IDS),
+        "documents_sha256": sha256(CORPUS_DOCS),
+        "view_sha256": sha256(view_path),
+        "relation_sha256": sha256(rel_path),
+        "seed": SEED,
+        "pool_depth": POOL_DEPTH,
+        "quota": quota,
+        "exclusions": [
+            "authored_positive",
+            "brand_membership_needs_review",
+            "same_entity_group",
+        ],
+        "note": (
+            "Same-brand other branches stay eligible as hard-neg candidates. "
+            "They are not expanded into positives."
+        ),
+        "train_queries": fill["queries"],
+        "pair_rows": int(len(table)),
+        "pairs_by_label": table["label"].value_counts().to_dict(),
+        "negatives_by_source": table.loc[table["label"] == "negative", "negative_source"]
+        .value_counts()
+        .to_dict(),
+        "fill_rate": {
+            "lexical_hard": fill["lexical_hard"] / (n_train * quota["lexical_hard"]),
+            "dense_hard": fill["dense_hard"] / (n_train * quota["dense_hard"]),
+            "same_brand_other_branch": (
+                fill["same_brand_other_branch"] / (n_train * quota["same_brand_other_branch"])
+                if quota["same_brand_other_branch"]
+                else 0.0
+            ),
+            "random": fill["random"] / (n_train * quota["random"]),
+        },
+        "outputs": {"training_pairs.parquet": sha256(out_path)},
+    }
+    (out / "mining_manifest.json").write_text(
+        json.dumps(mining, ensure_ascii=False, indent=2) + "\n", encoding="utf-8"
+    )
+    print(json.dumps({k: mining[k] for k in ("train_queries", "pair_rows", "pairs_by_label", "fill_rate")}, indent=2))
+    print(f"wrote {out_path}")
+
+
+if __name__ == "__main__":
+    main()

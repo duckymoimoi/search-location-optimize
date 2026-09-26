@@ -1,19 +1,17 @@
 {
-  "release_id": "hanoi-poi-demo-r1",
-  "encoder_id": "e5-v4-finetuned",
-  "embedding_space_id": "e5-v4-context-384",
-  "passage_builder_version": "stable-v1-context",
-  "corpus_version": "hn-poi-stable-v1",
-  "index_version": "hanoi-poi-stable-v1-release1",
-  "expected_rows": 45692,
-  "model_dir": "models/current",
-  "model_entrypoint": "final_model",
-  "inference_config": "inference_config.json",
-  "source_path": "artifacts/models/e5-v4-finetuned",
-  "link_type": "windows_junction",
+  "release_id": "vn-poi-demo-me5-r2",
+  "encoder_id": "intfloat/multilingual-e5-small",
+  "embedding_space_id": "me5-small-passage-384",
+  "passage_builder_version": "passage_context-v1",
+  "corpus_version": "vn-poi-core-v3-semantic-address-dedup50",
+  "index_version": "vn-poi-core-v3-me5-small",
+  "expected_rows": 179209,
+  "model_id": "intfloat/multilingual-e5-small",
+  "model_dir": "",
   "notes": [
-    "Runtime mounts models/current as /model.",
-    "Do not import training/stage1 into the API container.",
-    "To retarget a new checkpoint, update source_path and re-run scripts/link_model.ps1."
+    "API loads POI_MODEL_ID from Hugging Face (or POI_MODEL_DIR when present).",
+    "Corpus embeddings live in artifacts/embeddings/me5_small_v3/ (gitignored *.npy).",
+    "Indexer bulk-loads Elasticsearch 9 dense_vector + lexical fields.",
+    "Do not import training/ into the API container."
   ]
 }

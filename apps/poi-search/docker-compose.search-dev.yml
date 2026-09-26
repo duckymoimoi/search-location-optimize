@@ -1,0 +1,152 @@
+# SEARCH CORE — local test & develop (no web, no Kaggle).
+# Reuses ES volume vn-poi-es-data. HF model cache = named volume (no re-download).
+#
+#   .\scripts\search-dev.ps1 up
+#   .\scripts\search-dev.ps1 smoke
+#   .\scripts\search-dev.ps1 lexical-l1
+#   .\scripts\search-dev.ps1 shell
+
+name: vn-poi-search-dev
+
+services:
+  elasticsearch:
+    image: docker.elastic.co/elasticsearch/elasticsearch:9.5.3
+    container_name: vn-poi-searchdev-es
+    environment:
+      - discovery.type=single-node
+      - xpack.security.enabled=false
+      - xpack.security.http.ssl.enabled=false
+      - ES_JAVA_OPTS=-Xms1g -Xmx1g
+      - cluster.name=vn-poi-es
+      - network.host=0.0.0.0
+    ports:
+      - "127.0.0.1:9200:9200"
+    volumes:
+      - es_data:/usr/share/elasticsearch/data
+    mem_limit: 2g
+    ulimits:
+      nofile:
+        soft: 65536
+        hard: 65536
+      memlock:
+        soft: -1
+        hard: -1
+    healthcheck:
+      test: ["CMD-SHELL", "curl -fsS http://127.0.0.1:9200 >/dev/null || exit 1"]
+      interval: 10s
+      timeout: 5s
+      retries: 30
+      start_period: 60s
+    restart: unless-stopped
+
+  # One-shot bulk index. Only when needed:
+  #   docker compose -f docker-compose.search-dev.yml --profile index run --rm indexer
+  indexer:
+    profiles: ["index"]
+    image: vn-poi/indexer:0.1.0-local
+    build:
+      context: .
+      dockerfile: docker/Dockerfile.indexer
+    container_name: vn-poi-searchdev-indexer
+    depends_on:
+      elasticsearch:
+        condition: service_healthy
+    environment:
+      - POI_ES_URL=http://elasticsearch:9200
+      - POI_INDEX=vn-poi-core-v1-me5-small
+      - POI_EXPECTED_ROWS=186322
+      - POI_POIS_PATH=/data/corpus/pois_core.parquet
+      - POI_DOCUMENTS_PATH=/data/corpus/search_documents.parquet
+      - POI_EMBEDDINGS_PATH=/data/embeddings/corpus_embeddings.npy
+      - POI_ID_MAP_PATH=/data/embeddings/poi_ids.parquet
+      - RECREATE_INDEX=${RECREATE_INDEX:-0}
+    volumes:
+      - ../../data/vietnam/poi_corpus_v1:/data/corpus:ro
+      - ../../artifacts/embeddings/me5_small:/data/embeddings:ro
+    restart: "no"
+
+  # Hot-reload API — mount ./api, reuse HF cache volume.
+  api:
+    image: vn-poi/search-dev:0.1.0-local
+    build:
+      context: ./docker
+      dockerfile: Dockerfile.search-dev
+    container_name: vn-poi-searchdev-api
+    depends_on:
+      elasticsearch:
+        condition: service_healthy
+    environment:
+      - POI_MODEL_ID=intfloat/multilingual-e5-small
+      - POI_ES_URL=http://elasticsearch:9200
+      - POI_INDEX=vn-poi-core-v1-me5-small
+      - POI_EXPECTED_ROWS=186322
+      - POI_CORPUS_VERSION=vn-poi-core-v1
+      - POI_SEARCH_POLICY=/repo/apps/poi-search/api/search_policy.json
+      - POI_RETRIEVAL_PROFILE=${POI_RETRIEVAL_PROFILE:-hybrid}
+      - HF_HOME=/model-cache
+      - GOONG_API_KEY=${GOONG_API_KEY:-}
+    env_file:
+      - path: .env
+        required: false
+    command:
+      - python
+      - -m
+      - uvicorn
+      - app:app
+      - --app-dir
+      - /repo/apps/poi-search/api
+      - --host
+      - 0.0.0.0
+      - --port
+      - "8000"
+      - --reload
+      - --reload-dir
+      - /repo/apps/poi-search/api
+    ports:
+      - "127.0.0.1:8000:8000"
+    volumes:
+      - ../..:/repo
+      - hf_cache:/model-cache
+    mem_limit: 3g
+    restart: unless-stopped
+    healthcheck:
+      test:
+        - CMD
+        - python
+        - -c
+        - "import json,urllib.request; assert json.load(urllib.request.urlopen('http://127.0.0.1:8000/health', timeout=5))['status'] == 'ok'"
+      interval: 15s
+      timeout: 10s
+      retries: 40
+      start_period: 180s
+
+  # Long-lived bench/dev shell (same image). Lexical L1 does not need ES.
+  bench:
+    image: vn-poi/search-dev:0.1.0-local
+    build:
+      context: ./docker
+      dockerfile: Dockerfile.search-dev
+    container_name: vn-poi-searchdev-bench
+    environment:
+      - POI_ES_URL=http://elasticsearch:9200
+      - POI_API_BASE_URL=http://api:8000
+      - POI_INDEX=vn-poi-core-v1-me5-small
+      - POI_MODEL_ID=intfloat/multilingual-e5-small
+      - HF_HOME=/model-cache
+      - PYTHONPATH=/repo/apps/poi-search/api
+    working_dir: /repo
+    command: ["sleep", "infinity"]
+    volumes:
+      - ../..:/repo
+      - hf_cache:/model-cache
+    mem_limit: 4g
+    restart: unless-stopped
+    networks:
+      - default
+
+volumes:
+  es_data:
+    name: vn-poi-es-data
+    external: true
+  hf_cache:
+    name: vn-poi-hf-cache

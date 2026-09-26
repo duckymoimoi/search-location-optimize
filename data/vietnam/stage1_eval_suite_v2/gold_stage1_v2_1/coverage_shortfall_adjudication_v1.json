@@ -1,0 +1,10 @@
+{
+  "status": "accepted",
+  "requirement_id": 12,
+  "requirement_name": "bo_type_context_dau_q01",
+  "minimum": 80,
+  "actual_explicit_tag_rows": 42,
+  "decision_date": "2026-09-25",
+  "decision_source": "user_instruction_in_conversation",
+  "reason": "The current 200-POI target mix contains many bare brands, address-only destinations and proper names with no removable leading type/context. Adding the tag or rewriting these q01 intents to reach 80 would make the Gold labels inaccurate or less natural. The observed 42 source-backed rows are accepted as a documented shortfall; the requirement remains visible in coverage reporting."
+}

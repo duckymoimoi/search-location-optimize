@@ -1,10 +1,10 @@
 # Origin-aware dense — thiết kế thí nghiệm chính
 
-Revision 15/09/2026. Chưa triển khai hoặc train. Code tại commit 50394ab vẫn là dense query-only + geo-v5. Đây là thiết kế đích theo quyết định mới, không phải báo cáo đã đạt chất lượng.
+Revision gốc 15/09/2026; baseline note cập nhật 23/09/2026. Chưa triển khai hoặc train origin-aware dense. Code tại commit 50394ab từng là dense query-only + geo-v5; runtime hiện hành đã chuyển geo-v6 nhưng điều đó không chứng minh origin-aware design này đạt chất lượng.
 
 ## 1. Phạm vi
 
-Stage 1: lexical theo query/policy + dense nhận query và origin → RRF **hai nhánh** → cap 50. Stage 2 triển khai sau để dùng time/history/cá nhân hóa. Không thêm nhánh RRF khoảng cách, không bắt buộc learned geo reranker độc lập. Giữ baseline query-only và geo-v5 để đối chứng/rollback.
+Stage 1: lexical theo query/policy + dense nhận query và origin → RRF **hai nhánh** → cap 50. Stage 2 triển khai sau để dùng time/history/cá nhân hóa. Không thêm nhánh RRF khoảng cách, không bắt buộc learned geo reranker độc lập. Giữ baseline query-only + geo-v6 hiện hành; geo-v5 chỉ là regression comparator/rollback.
 
 ```mermaid
 flowchart TD
@@ -77,7 +77,7 @@ Trộn query-only examples, khởi đầu 25% optimizer requests, 75% context; b
 
 ## 5. Benchmark và quyết định
 
-B0 E5 query-only frozen; B1 B0 + geo-v5 hiện tại; B2 O1 origin-aware + cùng lexical/RRF, không geo rerank; B3 O2 chỉ khi O1 hạn chế. Kiểm tra dense exact riêng và hybrid cùng budget, trên cùng origin-conditioned qrels; query-only vẫn báo text metrics riêng.
+B0 E5 query-only frozen; B1 B0 + geo-v6 hiện tại; B1-regression dùng geo-v5 cũ; B2 O1 origin-aware + cùng lexical/RRF, không geo rerank; B3 O2 chỉ khi O1 hạn chế. Kiểm tra dense exact riêng và hybrid cùng budget, trên cùng origin-conditioned qrels; query-only vẫn báo text metrics riêng.
 
 Để tách data/architecture: cùng init/pairs/compute khi thích hợp; có origin-shuffled/null controls, context-label versus text-label objective được ghi rõ. Không cung cấp contradictory contextual single-target labels cho query-only chỉ để làm baseline yếu. Đánh giá cold-POI/geographic blocks nếu corpus cho phép để phát hiện memorization.
 
@@ -85,7 +85,7 @@ Metrics: CandidateHit@20/50, Hit@1/5, MRR/nDCG với qrels đúng loại; compat
 
 Gate đề xuất khóa trước holdout: lower CI ΔCandidateHit@50>=−0.005; có uplift xác nhận trên origin-sensitive metric đã chọn; explicit ΔHit@1 lower CI>=−0.01, wrong-branch increase upper CI<=0.005; null-origin text non-inferiority và cold/remote slice đạt. Margins là quyết định dự án trên thang0–1, không chuẩn nghiên cứu. CI rộng: inconclusive, giữ baseline.
 
-So exact trước ANN, sau đó đo ANN/exact cùng origin-conditioned vectors/scope/precision. Serving đo warm/cache miss, offered/achieved QPS, p50/p95/p99, queue/forward/fusion/ANN và API/search RAM. RRF/context không được dùng lại geo-v5 bonus mặc định sau B2/B3 vì có thể tăng thiên lệch gần hai lần.
+So exact trước ANN, sau đó đo ANN/exact cùng origin-conditioned vectors/scope/precision. Serving đo warm/cache miss, offered/achieved QPS, p50/p95/p99, queue/forward/fusion/ANN và API/search RAM. RRF/context không được áp thêm geo-v5/v6 mặc định sau B2/B3 nếu arm đã encode origin, vì có thể tăng thiên lệch gần hai lần.
 
 ## 6. Trade-offs và contract serving
 

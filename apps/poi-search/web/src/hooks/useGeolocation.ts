@@ -76,18 +76,3 @@ export function useGeolocation(): GpsState {
 
   return state
 }
-
-export function gpsLabel(gps: GpsState): string {
-  switch (gps.status) {
-    case 'pending':
-    case 'idle':
-      return 'Đang lấy vị trí…'
-    case 'ready':
-      return `GPS ±${Math.round(gps.accuracy_m)} m`
-    case 'stale':
-      return gps.message
-    case 'denied':
-    case 'error':
-      return gps.message
-  }
-}

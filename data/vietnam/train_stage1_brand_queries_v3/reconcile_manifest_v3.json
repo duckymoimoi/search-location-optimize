@@ -1,0 +1,51 @@
+{
+  "dataset": "train_stage1_brand_queries_v3_reconciled",
+  "status": "RECONCILED",
+  "created_at_utc": "2026-09-26T02:39:37.936220+00:00",
+  "sources": {
+    "packet_v3": {
+      "path": "D:/vsf/data/vietnam/train_stage1_brand_queries_v3/brand_authoring_packet_v3.jsonl",
+      "sha256": "6bc9296bf0432ef30db8a9d444ab7686162bcb63e628cd73f0cc9fc0b6c79012",
+      "bytes": 673888
+    },
+    "packet_v2": {
+      "path": "D:/vsf/data/vietnam/train_stage1_brand_queries_v2/brand_authoring_packet_v2.jsonl",
+      "sha256": "5c11a49db9c115c5082bfc55611cf2b6d8d6cac8c3db93c196b30e0783081aea",
+      "bytes": 660363
+    },
+    "membership_v3": {
+      "path": "D:/vsf/data/vietnam/train_stage1_brand_membership_v3/manifest.json",
+      "sha256": "1afc277d909a75fa0bf46173c9691324d53762ba869a00c53bb42397adb29364",
+      "bytes": 2451
+    }
+  },
+  "stats": {
+    "authored_intents": 381,
+    "packet_intents": 381,
+    "intent_id_mismatch": [],
+    "query_rows": 1156,
+    "qrel_rows": 33381,
+    "leftover_families_excluded": {
+      "brand:atm_bidv": "merged_into_brand:bidv:atm",
+      "brand:can_ho_dich_vu_va_khach_san": "excluded_generic_descriptor"
+    },
+    "dropped_historical_leftover_query_intents": [
+      "brand:atm_bidv:atm",
+      "brand:can_ho_dich_vu_va_khach_san:hotel"
+    ]
+  },
+  "artifacts": {
+    "brand_intent_queries_v3.csv": {
+      "sha256": "075405367b6754cbb0752d60462551388ab1af38c0c13ca0d3d8a52d0dcfc04a",
+      "bytes": 247138
+    },
+    "brand_intent_queries_v3.parquet": {
+      "sha256": "ee90db546db3d2d5f5c78247a44b4e6db06674abd4880d5d88de1dd0c644d3f3",
+      "bytes": 30106
+    },
+    "brand_query_qrels_v3.parquet": {
+      "sha256": "7336d3e3c37f37250b579cd3c9bb27f59e9358170c53aa3992193833550b1871",
+      "bytes": 111317
+    }
+  }
+}

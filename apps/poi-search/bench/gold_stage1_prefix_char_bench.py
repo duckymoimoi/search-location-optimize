@@ -112,11 +112,11 @@ def compute_variant_prefix_metrics(
         fhc = next((t + 1 for t, h in enumerate(hits) if h), None)
         out["fhc"][k] = {"found": fhc is not None, "value": fhc}
         shc = None
-        for t0 in range(t_q):
-            end = min(t0 + w, t_q)
-            if all(hits[s] for s in range(t0, end)):
-                shc = t0 + 1
-                break
+        if t_q >= w:
+            for t0 in range(0, t_q - w + 1):
+                if all(hits[s] for s in range(t0, t0 + w)):
+                    shc = t0 + 1
+                    break
         out["shc"][k] = {"found": shc is not None, "value": shc, "w": w}
         out["prefix_auc"][k] = (sum(1 for h in hits if h) / t_q) if t_q else 0.0
     return out

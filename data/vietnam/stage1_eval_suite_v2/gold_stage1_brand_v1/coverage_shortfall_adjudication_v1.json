@@ -1,0 +1,12 @@
+{
+  "suite_id": "gold_stage1_brand_v1",
+  "status": "accepted_shortfall",
+  "items": [
+    {
+      "requirement": "verified_alias",
+      "observed": 0,
+      "decision": "accept_shortfall",
+      "reason": "Packet and staging have zero verified aliases. None were invented."
+    }
+  ]
+}

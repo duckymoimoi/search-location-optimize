@@ -1,0 +1,28 @@
+{
+  "dataset": "train_stage1_brand_queries_v3_authoring_packet",
+  "packet_version": "brand_authoring_packet_v3",
+  "status": "READY_FOR_COMPILE",
+  "created_at_utc": "2026-09-26T02:39:27.741513+00:00",
+  "sources": {
+    "packet_v2": {
+      "path": "D:/vsf/data/vietnam/train_stage1_brand_queries_v2/brand_authoring_packet_v2.jsonl",
+      "sha256": "5c11a49db9c115c5082bfc55611cf2b6d8d6cac8c3db93c196b30e0783081aea",
+      "bytes": 660363
+    },
+    "membership_v3": {
+      "path": "D:/vsf/data/vietnam/train_stage1_brand_membership_v3/manifest.json",
+      "sha256": "1afc277d909a75fa0bf46173c9691324d53762ba869a00c53bb42397adb29364",
+      "bytes": 2451
+    }
+  },
+  "stats": {
+    "packet_rows": 381,
+    "families": 320,
+    "positive_members": 11122,
+    "empty_intents_dropped": []
+  },
+  "output": {
+    "path": "D:/vsf/data/vietnam/train_stage1_brand_queries_v3/brand_authoring_packet_v3.jsonl",
+    "sha256": "6bc9296bf0432ef30db8a9d444ab7686162bcb63e628cd73f0cc9fc0b6c79012"
+  }
+}

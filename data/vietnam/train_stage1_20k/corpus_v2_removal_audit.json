@@ -1,0 +1,496 @@
+{
+  "source_rows": 20000,
+  "retained_rows": 19939,
+  "removed_duplicate_or_short": 46,
+  "removed_gold_positive": 15,
+  "removed": [
+    {
+      "case_id": "train20k-01693",
+      "poi_id": "osm:node/4868910830",
+      "name": "S&L's Diner",
+      "reasons": [
+        "merge_duplicate"
+      ]
+    },
+    {
+      "case_id": "train20k-01743",
+      "poi_id": "osm:node/4813039924",
+      "name": "Kim Yến",
+      "reasons": [
+        "merge_duplicate"
+      ]
+    },
+    {
+      "case_id": "train20k-02260",
+      "poi_id": "osm:way/998927803",
+      "name": "Vincom",
+      "reasons": [
+        "gold_positive_leakage"
+      ]
+    },
+    {
+      "case_id": "train20k-02337",
+      "poi_id": "osm:way/1062310708",
+      "name": "Vibes",
+      "reasons": [
+        "gold_positive_leakage"
+      ]
+    },
+    {
+      "case_id": "train20k-02565",
+      "poi_id": "osm:node/14041626597",
+      "name": "Pharmacity",
+      "reasons": [
+        "gold_positive_leakage"
+      ]
+    },
+    {
+      "case_id": "train20k-02837",
+      "poi_id": "osm:way/1422780383",
+      "name": "137 Nguyễn Đình Chiểu",
+      "reasons": [
+        "merge_duplicate"
+      ]
+    },
+    {
+      "case_id": "train20k-03100",
+      "poi_id": "osm:node/6947229585",
+      "name": "Jollibee",
+      "reasons": [
+        "gold_positive_leakage"
+      ]
+    },
+    {
+      "case_id": "train20k-03796",
+      "poi_id": "osm:node/4438322620",
+      "name": "Sacombank",
+      "reasons": [
+        "merge_duplicate"
+      ]
+    },
+    {
+      "case_id": "train20k-04714",
+      "poi_id": "osm:node/5087697921",
+      "name": "nhật thi",
+      "reasons": [
+        "merge_duplicate"
+      ]
+    },
+    {
+      "case_id": "train20k-05433",
+      "poi_id": "osm:node/3093689363",
+      "name": "Café 43",
+      "reasons": [
+        "merge_duplicate"
+      ]
+    },
+    {
+      "case_id": "train20k-05556",
+      "poi_id": "osm:node/4814662321",
+      "name": "TH Cô Thậm",
+      "reasons": [
+        "merge_duplicate"
+      ]
+    },
+    {
+      "case_id": "train20k-06012",
+      "poi_id": "osm:way/1546246320",
+      "name": "Văn phòng đại diện Công ty TNHH MTV DV Du lịch Nhật Phong Travel TN",
+      "reasons": [
+        "merge_duplicate"
+      ]
+    },
+    {
+      "case_id": "train20k-06260",
+      "poi_id": "osm:way/1540942423",
+      "name": "15 Ngõ 36 Phố Hàm Nghi",
+      "reasons": [
+        "merge_duplicate"
+      ]
+    },
+    {
+      "case_id": "train20k-07029",
+      "poi_id": "osm:way/1153505745",
+      "name": "Nhà Hàng Gold One 3",
+      "reasons": [
+        "merge_duplicate"
+      ]
+    },
+    {
+      "case_id": "train20k-07225",
+      "poi_id": "osm:way/693368219",
+      "name": "PV Oil",
+      "reasons": [
+        "gold_positive_leakage"
+      ]
+    },
+    {
+      "case_id": "train20k-07255",
+      "poi_id": "osm:node/5103068277",
+      "name": "136 Dương Đình Hội",
+      "reasons": [
+        "merge_duplicate"
+      ]
+    },
+    {
+      "case_id": "train20k-07445",
+      "poi_id": "osm:way/694301978",
+      "name": "916 Đường Trần Cao Vân",
+      "reasons": [
+        "merge_duplicate"
+      ]
+    },
+    {
+      "case_id": "train20k-07772",
+      "poi_id": "osm:node/4233774189",
+      "name": "Jade Hotel",
+      "reasons": [
+        "merge_duplicate"
+      ]
+    },
+    {
+      "case_id": "train20k-08709",
+      "poi_id": "osm:node/5102376024",
+      "name": "137 Dương Đình Hội",
+      "reasons": [
+        "merge_duplicate"
+      ]
+    },
+    {
+      "case_id": "train20k-09020",
+      "poi_id": "osm:node/4890925445",
+      "name": "207/32 Nam Cao",
+      "reasons": [
+        "merge_duplicate"
+      ]
+    },
+    {
+      "case_id": "train20k-09059",
+      "poi_id": "osm:node/4608876708",
+      "name": "Khách sạn Hải Vân",
+      "reasons": [
+        "merge_duplicate"
+      ]
+    },
+    {
+      "case_id": "train20k-09550",
+      "poi_id": "osm:node/5623291944",
+      "name": "The Farmer Gardenista",
+      "reasons": [
+        "merge_duplicate"
+      ]
+    },
+    {
+      "case_id": "train20k-09813",
+      "poi_id": "osm:way/1556351131",
+      "name": "15 Đường Thụy Khuê",
+      "reasons": [
+        "merge_duplicate"
+      ]
+    },
+    {
+      "case_id": "train20k-10151",
+      "poi_id": "osm:way/1479977561",
+      "name": "BIDV",
+      "reasons": [
+        "merge_duplicate"
+      ]
+    },
+    {
+      "case_id": "train20k-10367",
+      "poi_id": "osm:way/1446638046",
+      "name": "Gemination Eatery & Bar Da Lat",
+      "reasons": [
+        "merge_duplicate"
+      ]
+    },
+    {
+      "case_id": "train20k-10670",
+      "poi_id": "osm:node/6724934011",
+      "name": "Sacombank",
+      "reasons": [
+        "gold_positive_leakage"
+      ]
+    },
+    {
+      "case_id": "train20k-11507",
+      "poi_id": "osm:node/5245298980",
+      "name": "Sacombank",
+      "reasons": [
+        "gold_positive_leakage"
+      ]
+    },
+    {
+      "case_id": "train20k-12021",
+      "poi_id": "osm:way/420287608",
+      "name": "Trường Tiểu học Nguyễn Thiện Thuật",
+      "reasons": [
+        "merge_duplicate"
+      ]
+    },
+    {
+      "case_id": "train20k-12336",
+      "poi_id": "osm:way/1555124597",
+      "name": "81 Phố Nguyễn Thái Học",
+      "reasons": [
+        "merge_duplicate"
+      ]
+    },
+    {
+      "case_id": "train20k-12365",
+      "poi_id": "osm:way/1338511473",
+      "name": "Trường Tiểu học Thắng Nhì",
+      "reasons": [
+        "gold_positive_leakage"
+      ]
+    },
+    {
+      "case_id": "train20k-12636",
+      "poi_id": "osm:node/5102376038",
+      "name": "163 Dương Đình Hội",
+      "reasons": [
+        "merge_duplicate"
+      ]
+    },
+    {
+      "case_id": "train20k-12677",
+      "poi_id": "osm:node/6789054123",
+      "name": "Sacombank",
+      "reasons": [
+        "gold_positive_leakage"
+      ]
+    },
+    {
+      "case_id": "train20k-12938",
+      "poi_id": "osm:node/4817079321",
+      "name": "Hong vinh",
+      "reasons": [
+        "merge_duplicate"
+      ]
+    },
+    {
+      "case_id": "train20k-13177",
+      "poi_id": "osm:node/13286864016",
+      "name": "May De Ville Crown Hotel",
+      "reasons": [
+        "gold_positive_leakage"
+      ]
+    },
+    {
+      "case_id": "train20k-13278",
+      "poi_id": "osm:way/1479927266",
+      "name": "Cơm Chay Hiển Nam",
+      "reasons": [
+        "merge_duplicate"
+      ]
+    },
+    {
+      "case_id": "train20k-13752",
+      "poi_id": "osm:node/13155788996",
+      "name": "Pharmacity",
+      "reasons": [
+        "gold_positive_leakage"
+      ]
+    },
+    {
+      "case_id": "train20k-13789",
+      "poi_id": "osm:node/5246607665",
+      "name": "180 Dinh Phong Phu",
+      "reasons": [
+        "merge_duplicate"
+      ]
+    },
+    {
+      "case_id": "train20k-14555",
+      "poi_id": "osm:node/1491047941",
+      "name": "Vietcombank",
+      "reasons": [
+        "gold_positive_leakage"
+      ]
+    },
+    {
+      "case_id": "train20k-14998",
+      "poi_id": "osm:way/1159585562",
+      "name": "TT Pilates Nha Trang",
+      "reasons": [
+        "merge_duplicate"
+      ]
+    },
+    {
+      "case_id": "train20k-15760",
+      "poi_id": "osm:way/1464534913",
+      "name": "ACB",
+      "reasons": [
+        "merge_duplicate"
+      ]
+    },
+    {
+      "case_id": "train20k-15827",
+      "poi_id": "osm:way/1215108835",
+      "name": "Chung cư Sacomreal 584",
+      "reasons": [
+        "merge_duplicate"
+      ]
+    },
+    {
+      "case_id": "train20k-15941",
+      "poi_id": "osm:node/5102376028",
+      "name": "141 Dương Đình Hội",
+      "reasons": [
+        "merge_duplicate"
+      ]
+    },
+    {
+      "case_id": "train20k-15991",
+      "poi_id": "osm:node/4457146451",
+      "name": "Techcombank",
+      "reasons": [
+        "merge_duplicate"
+      ]
+    },
+    {
+      "case_id": "train20k-16009",
+      "poi_id": "osm:node/5464364523",
+      "name": "Hanoi Grandeur Hotel & Spa",
+      "reasons": [
+        "merge_duplicate"
+      ]
+    },
+    {
+      "case_id": "train20k-16033",
+      "poi_id": "osm:way/715566835",
+      "name": "Ngân Hàng Sacombank - Đường 3 Tháng 2",
+      "reasons": [
+        "gold_positive_leakage"
+      ]
+    },
+    {
+      "case_id": "train20k-16365",
+      "poi_id": "osm:node/3514125539",
+      "name": "Bánh Mì 25",
+      "reasons": [
+        "merge_duplicate"
+      ]
+    },
+    {
+      "case_id": "train20k-16448",
+      "poi_id": "osm:node/2324391428",
+      "name": "02 Đội Cung",
+      "reasons": [
+        "merge_duplicate"
+      ]
+    },
+    {
+      "case_id": "train20k-16508",
+      "poi_id": "osm:node/4772130621",
+      "name": "Minh Tâm",
+      "reasons": [
+        "merge_duplicate"
+      ]
+    },
+    {
+      "case_id": "train20k-16818",
+      "poi_id": "osm:node/4791017422",
+      "name": "Phương Danh",
+      "reasons": [
+        "merge_duplicate"
+      ]
+    },
+    {
+      "case_id": "train20k-16872",
+      "poi_id": "osm:way/1479927274",
+      "name": "Cà phê Trung Nguyên",
+      "reasons": [
+        "merge_duplicate"
+      ]
+    },
+    {
+      "case_id": "train20k-16942",
+      "poi_id": "osm:node/6557784985",
+      "name": "Viện Hàn lâm Khoa học xã hội Việt Nam",
+      "reasons": [
+        "merge_duplicate"
+      ]
+    },
+    {
+      "case_id": "train20k-16957",
+      "poi_id": "osm:node/12329915312",
+      "name": "Pharmacity",
+      "reasons": [
+        "gold_positive_leakage"
+      ]
+    },
+    {
+      "case_id": "train20k-17080",
+      "poi_id": "osm:node/4798062922",
+      "name": "Thảo Hương",
+      "reasons": [
+        "merge_duplicate"
+      ]
+    },
+    {
+      "case_id": "train20k-17112",
+      "poi_id": "osm:node/5047144821",
+      "name": "Cửa hàng 67",
+      "reasons": [
+        "merge_duplicate"
+      ]
+    },
+    {
+      "case_id": "train20k-17170",
+      "poi_id": "osm:way/157532085",
+      "name": "Trung tâm Hội nghị tỉnh Bình Định",
+      "reasons": [
+        "merge_duplicate"
+      ]
+    },
+    {
+      "case_id": "train20k-17659",
+      "poi_id": "osm:way/1036030809",
+      "name": "Trường Tiểu học Lê Văn Thọ",
+      "reasons": [
+        "merge_duplicate"
+      ]
+    },
+    {
+      "case_id": "train20k-18053",
+      "poi_id": "osm:way/693361870",
+      "name": "PV Oil",
+      "reasons": [
+        "gold_positive_leakage"
+      ]
+    },
+    {
+      "case_id": "train20k-18178",
+      "poi_id": "osm:node/4766204757",
+      "name": "Cô Phụng",
+      "reasons": [
+        "merge_duplicate"
+      ]
+    },
+    {
+      "case_id": "train20k-18362",
+      "poi_id": "osm:way/1251149945",
+      "name": "Golden Star Villa",
+      "reasons": [
+        "merge_duplicate"
+      ]
+    },
+    {
+      "case_id": "train20k-18486",
+      "poi_id": "osm:node/4566657494",
+      "name": "Hưng Đức Shop - đồ dã ngoại",
+      "reasons": [
+        "merge_duplicate"
+      ]
+    },
+    {
+      "case_id": "train20k-19070",
+      "poi_id": "osm:way/1258963012",
+      "name": "Dịch vụ tổ chức tiệc cưới Thu Sương",
+      "reasons": [
+        "merge_duplicate"
+      ]
+    }
+  ]
+}

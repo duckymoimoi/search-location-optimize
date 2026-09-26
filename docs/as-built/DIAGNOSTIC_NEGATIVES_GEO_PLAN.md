@@ -1,5 +1,10 @@
 # Kế hoạch benchmark và origin-aware dense
 
+> **Snapshot lịch sử tại commit `50394ab`.** Các phát hiện “runtime geo-v5” và
+> OpenSearch bên dưới không mô tả runtime 2026-09-23; policy hiện hành là
+> Elasticsearch + geo-v6. Giữ nội dung để audit quyết định cũ, không dùng làm
+> current-state instructions. Xem [`CURRENT_STATE.md`](CURRENT_STATE.md).
+
 Revision 15/09/2026; review repo commit `50394ab374ae1028afa21a47758fadb188d00bd1`. Plan theo ý tưởng đã chốt: **train dense với query+origin, lexical+policy, RRF hai nhánh; Stage 2 time/history sau**. Không thêm RRF3. Không thay serving code hoặc push GitHub trong lượt chỉnh tài liệu.
 
 ## 1. Kết luận từ code hiện tại
