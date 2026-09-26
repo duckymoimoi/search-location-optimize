@@ -1,0 +1,28 @@
+{
+  "status": "approved",
+  "reviewed_at_utc": "2026-09-26T01:55:17Z",
+  "packet_sha256": "389329707128d70cceaadc39faa54b130bef08106e9bdc67e5932999f6dc8496",
+  "session_parquet_sha256": "690cbc793b4a89b568f581b2bd48e3d1ccfab03e3463ff0910b340eca24c0bb6",
+  "qrels_parquet_sha256": "c9579fc7267841d20e59ab11ed735eca1c750d8f5f45ee8139e1a3fc3b4127f4",
+  "mutation_traces_sha256": "da8c1b9c3af71df4af2bbe95043a7465cb1984860f0637ba661ea385048bdfb7",
+  "coverage_diagnostic_sha256": "fcb89a0a870c238d5f11ade492cac11b34f8735f9e525251a983e1bef2820812",
+  "name_street_coverage_sha256": "8de43a98cf8cbd3a704ca706c34b3e4662636daabdcd1adc99282ae9e3449e71",
+  "review_evidence": {
+    "source_only_batch_review_logs": 21,
+    "covered_case_ids": 200,
+    "stratified_q01_source_sample": "Every fifth card in the frozen 200-case packet (40 cases), including brand, address, named, category, code and building strata; no unresolved factual mismatch found.",
+    "multi_positive_case_ids": ["g150-057", "g150-151", "g150-152", "g150-167", "g200-195"],
+    "multi_positive_review": "All 20 extra qrels were compared with corpus-v3 name, category, address and point/location evidence; they are same-entity or navigationally equivalent records, not unrelated same-brand branches.",
+    "name_street_no_house": "All 131 tagged cases pass source-street presence and exact house-omission checks; three ambiguous/source-corrupt cases were explicitly accepted as exceptions by the user.",
+    "building_code": "All 26 building-code case surfaces were inspected after shortening; immutable code/numeric identifier checks pass, and q03 space-merge template use fell to 7/26.",
+    "mutation_trace_surface": "All 600 noisy query traces were screened for their after-span on the final authored surface, except explicit omission/order traces; one noncontiguous trace was repaired before this signoff.",
+    "leakage": "Full 30,000-row published train-v6 and historical Gold-v1 accent-fold overlaps are zero; target-ID train overlap is zero.",
+    "model_output_consulted_for_authoring": false
+  },
+  "accepted_deviations": [
+    "Coverage requirement 12: 42 source-backed q01 rows instead of the nominal 80.",
+    "Three name-plus-street/no-house exceptions: g150-035, g150-115, g150-129.",
+    "Address-only shared-suite requirement 18 remains a separate pending suite."
+  ],
+  "review_limitations": "Existing batch logs record second manual passes before the final mechanical shortening; the final pass used whole-table deterministic checks, targeted manual review of all 26 building-code cases and five multi-positive groups, and a 40-case source-stratified q01 sample. It was not a new independent line-by-line human rereview of every noisy row."
+}

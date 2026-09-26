@@ -1,17 +1,9 @@
 # Models (runtime release)
 
-`current/` is a Windows junction (or directory symlink) to the encoder release used by the API.
+Default encoder: **`intfloat/multilingual-e5-small`** (Hugging Face), loaded via `POI_MODEL_ID`.
 
-Default target:
-
-`artifacts/models/e5-v4-finetuned`
-
-Create / refresh the link:
-
-```powershell
-.\apps\poi-search\scripts\link_model.ps1
-```
+Optional local override: set `POI_MODEL_DIR` to a directory with `config.json` (or `final_model/`).
 
 Manifest: [MODEL_RELEASE.json](MODEL_RELEASE.json).
 
-Do not put training scripts here. Weights stay outside git; only the junction + manifest live under `apps/poi-search/models/`.
+Corpus vectors are **not** stored here — see `artifacts/embeddings/me5_small/`.

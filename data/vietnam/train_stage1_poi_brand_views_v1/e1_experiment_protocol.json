@@ -1,0 +1,33 @@
+{
+  "experiment": "stage1_e0_vs_e1_brand_track",
+  "status": "THRESHOLDS_LOCKED_BEFORE_TEST",
+  "locked_at_utc": "2026-09-26T02:50:00+00:00",
+  "note": "Thresholds are locked from current E0 / brand-dev policy before any E1 test look. E1 training has not been run.",
+  "setup": {
+    "E0": "POI-only hardneg/train v6, current hybrid API",
+    "E1": "Same train budget, corpus/index, candidate policy, plus brand queries after sampler/mask is tested",
+    "mix": "80-90% POI / 10-20% brand",
+    "policy_split": "gold_stage1_brand_dev_v1 and POI-internal dev only",
+    "test_suites": ["gold_stage1_v2_1", "gold_stage1_brand_v1"]
+  },
+  "e0_reference": {
+    "poi_hybrid_hit1": 0.82125,
+    "poi_hybrid_hit20": 0.9125,
+    "poi_hybrid_q01_hit1": 0.95,
+    "poi_hybrid_hit50": 0.925,
+    "brand_family_anycompatible_hit20": 0.7759353741496599,
+    "brand_family_mrr10": 0.5973563869992441,
+    "sources": {
+      "poi": "artifacts/results/gold_stage1_v21_docker_baseline/baseline_report.json",
+      "brand": "artifacts/results/gold_stage1_brand_v1_docker_baseline/baseline_report.json"
+    }
+  },
+  "acceptance": {
+    "max_poi_hit1_drop": 0.01,
+    "max_poi_hit20_drop": 0.01,
+    "max_poi_q01_hit1_drop": 0.01,
+    "max_poi_hit50_drop": 0.01,
+    "min_brand_anycompatible_hit20_gain": 0.01
+  },
+  "decision": "Accept E1 only if brand recall rises and all POI drops stay within the locked deltas. Hybrid-vs-lexical is not encoder evidence."
+}

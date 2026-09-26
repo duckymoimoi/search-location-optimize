@@ -1,0 +1,65 @@
+brand_fold,decision,note
+winmart+,accept_identity,Top explicit brand; keep distinct from WinMart
+petrolimex,accept_identity,Top explicit fuel brand
+vinfast,accept_identity,Top explicit brand; namespace split still applies
+bidv,accept_identity,Top explicit bank brand; split bank and ATM
+vietcombank,accept_identity,Top explicit bank brand; split bank and ATM
+agribank,accept_identity,Top explicit bank brand; split bank and ATM
+techcombank,accept_identity,Top explicit bank brand; split bank and ATM
+vietinbank,accept_identity,Top explicit bank brand; split bank and ATM
+pnj,accept_identity,Top explicit retail brand
+highlands coffee,accept_identity,Top explicit cafe brand
+pv oil,accept_identity,Top explicit fuel brand
+tpbank,accept_identity,Top explicit bank brand; split bank and ATM
+circle k,accept_identity,Top explicit convenience brand; anomalous namespaces remain reviewable
+honda,accept_identity,Top explicit vehicle retail/service brand
+sacombank,accept_identity,Top explicit bank brand; split bank and ATM
+vpbank,accept_identity,Top explicit bank brand; split bank and ATM
+mb,accept_identity,Top explicit bank brand; split bank and ATM
+winmart,accept_identity,Top explicit supermarket brand; keep distinct from WinMart+
+lotteria,accept_identity,Top explicit restaurant brand
+kfc,accept_identity,Top explicit restaurant brand
+tngo,accept_identity,Top explicit mobility brand; other namespace remains reviewable
+the coffee house,accept_identity,Top explicit cafe brand
+acb,accept_identity,Top explicit bank brand; split bank and ATM
+pharmacity,accept_identity,Top explicit pharmacy brand
+starbucks,accept_identity,Top explicit cafe brand
+gs25,accept_identity,Top explicit convenience brand
+pizza hut,accept_identity,Top explicit restaurant brand
+eximbank,accept_identity,Top explicit bank brand; split bank and ATM
+vib,accept_identity,Top explicit bank brand; split bank and ATM
+familymart,accept_identity,Top explicit convenience brand
+seabank,accept_identity,Top explicit bank brand; split bank and ATM
+cộng cà phê,accept_identity,Top explicit cafe brand
+trung nguyên,accept_identity,Top explicit cafe brand
+shb,accept_identity,Top explicit bank brand; split bank and ATM
+7-eleven,accept_identity,Top explicit convenience brand
+rạp chiếu phim cgv,accept_identity,Top explicit cinema brand; other namespace remains reviewable
+ministop,accept_identity,Top explicit convenience brand
+hsbc,accept_identity,Top explicit bank brand; split bank and ATM
+bách hóa xanh,accept_identity,Top explicit retail brand
+saigonbank,accept_identity,Top explicit bank brand; split bank and ATM
+thế giới di động,accept_identity,Top explicit electronics retail brand
+dongabank,accept_identity,Top explicit bank brand; split bank and ATM
+điện máy xanh,accept_identity,Top explicit electronics retail brand
+vietnam post,accept_identity,Top explicit postal brand; namespace remains reviewable
+viettel store,accept_identity,Top explicit telecom retail brand
+mipecorp,accept_identity,Top explicit fuel brand in corpus
+viettel,accept_identity,Top explicit telecom brand; namespace split still applies
+hdbank,accept_identity,Top explicit bank brand; split bank and ATM
+pvcombank,accept_identity,Top explicit bank brand; split bank and ATM
+jollibee,accept_identity,Top explicit restaurant brand
+vinamilk,accept_identity,Top explicit retail brand
+saigon petro,accept_identity,Top explicit fuel brand
+mixue ice cream & tea,accept_identity,Top explicit cafe brand
+mcdonald's,accept_identity,Top explicit restaurant brand
+toyota,accept_identity,Top explicit vehicle retail brand
+ngân hàng chính sách xã hội,accept_identity,Top explicit bank brand
+vikki bank,accept_identity,Top explicit bank brand
+mbbank,accept_identity,Top explicit bank brand; possible MB relation remains separate
+nam a bank,accept_identity,Top explicit bank brand
+vdb,accept_identity,Top explicit bank brand
+abbank,accept_identity,Top explicit bank brand
+tạp hóa,reject_identity,Generic shop descriptor rather than a brand family
+trạm xăng,reject_identity,Generic fuel descriptor rather than a brand family
+homestay,reject_identity,Generic lodging descriptor rather than a brand family

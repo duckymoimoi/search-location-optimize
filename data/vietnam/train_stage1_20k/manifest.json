@@ -1,0 +1,76 @@
+{
+  "dataset_name": "train_stage1_20k",
+  "version": "v1.2-corpus-v3-filtered",
+  "total_target_pois": 19891,
+  "source_corpus": "data/vietnam/poi_corpus_v3/pois.parquet",
+  "gold_exclusion_count": 180,
+  "gold_overlap_count": 0,
+  "files": {
+    "target_pois_20k.csv": {
+      "rows": 19891,
+      "sha256": "00e853ad4d98ecc24393b90bedd63457ff43f10abb1d3a496ea294915d70ec75"
+    },
+    "target_pois_20k.parquet": {
+      "rows": 19891,
+      "sha256": "cc209cad9af14ad77ee01c71cf139f48594bc6cbe3ce900dc7d607782b827857"
+    }
+  },
+  "strata_distribution": {
+    "category_local": 2190,
+    "brand_branch": 3963,
+    "explicit_area_cross_region": 2191,
+    "address_street_building": 3180,
+    "named_clear": 3988,
+    "code_transit_landmark": 1990,
+    "building_code": 2388
+  },
+  "regional_distribution": {
+    "North": 6982,
+    "South": 6967,
+    "Central": 5941
+  },
+  "province_count": 34,
+  "provinces": {
+    "Hà Nội": 4163,
+    "Thành phố Hồ Chí Minh": 5806,
+    "Thành phố Bắc Ninh": 1622,
+    "Thành phố Hải Phòng": 339,
+    "Tỉnh Phú Thọ": 58,
+    "Thành phố Huế": 430,
+    "Thành phố Đà Nẵng": 2485,
+    "Tỉnh Thanh Hóa": 134,
+    "Khánh Hòa": 588,
+    "Tỉnh Quảng Trị": 308,
+    "Tỉnh Quảng Ngãi": 159,
+    "Tỉnh Lâm Đồng": 954,
+    "Thành phố Đồng Nai": 249,
+    "Tỉnh Nghệ An": 158,
+    "Thành phố Quảng Ninh": 125,
+    "Tỉnh Tuyên Quang": 97,
+    "Thành phố Cần Thơ": 395,
+    "Tỉnh Tây Ninh": 105,
+    "Tỉnh Hưng Yên": 112,
+    "Tỉnh Đắk Lắk": 306,
+    "Tỉnh Vĩnh Long": 101,
+    "Tỉnh Đồng Tháp": 118,
+    "Tỉnh Cao Bằng": 21,
+    "Tỉnh Gia Lai": 326,
+    "Tỉnh Ninh Bình": 209,
+    "Tỉnh An Giang": 154,
+    "Tỉnh Thái Nguyên": 41,
+    "Tỉnh Lào Cai": 111,
+    "Hà Tĩnh": 93,
+    "Tỉnh Cà Mau": 39,
+    "Tỉnh Lai Châu": 26,
+    "Tỉnh Lạng Sơn": 30,
+    "Tỉnh Sơn La": 14,
+    "Tỉnh Điện Biên": 14
+  },
+  "gold_positive_overlap_count": 0,
+  "migration_removed_count_v2": 61,
+  "migration_removed_count_v3": 49,
+  "migration_audit_v2": "corpus_v2_removal_audit.json",
+  "migration_audit_v3": "corpus_v3_removal_audit.json",
+  "updated_at_utc": "2026-09-24T08:45:03.269487+00:00",
+  "case_id_policy": "Contiguous train20k-00001..N after compacting corpus-filter holes. Authored 003–007 occupy 00001–02500; unused pool continues at 02501. Restored authored train20k-02005 (PNJ) dropped by corpus v3 merge_duplicate."
+}

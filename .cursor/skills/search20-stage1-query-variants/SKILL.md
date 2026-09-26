@@ -1,189 +1,206 @@
 ---
 name: search20-stage1-query-variants
 description: >-
-  Author Stage-1 gold query variants for SEARCH 2.0 Vietnamese POI retrieval.
-  Writes canonical + controlled SINGLE/alias variants for locked gold cases
-  (gold_stage1_v1). Use when writing query variants, labeling noise/alias,
-  authoring gold queries, or when the user mentions Stage-1 variants / qrels text.
+  Author and validate Vietnamese Stage-1 POI/branch training-query coverage
+  from a user-selected set of locked train_stage1_20k targets. Use for
+  manual_authored_v6 production: six recoverable variants per POI, per-query
+  qrels, mutation traces, serialization, validation, repair, and QA reporting.
+  Bare-brand intents belong to search20-stage1-brand-queries. Prefix sampling,
+  negative mining, model training, evaluation, and serving are downstream.
 ---
 
-# SEARCH 2.0 — Stage 1 query variant authoring
+# Stage-1 POI query authoring
 
-## Scope
+## Mục tiêu
 
-**Do:** viết / duyệt `query_text` + nhãn family/operator cho gold Stage 1 (text-only). Mọi query tự viết thủ công
-**Do not:** metric model, ANN, Stage-2 geo/rerank, training compound augmentation, mở rộng POI list đã lock. DÙNG CODE ĐỂ SINH RA QUERY HÀNG LOẠT
+Tạo một **coverage pool** các cách người dùng có thể gõ để tìm đúng POI hoặc
+đúng chi nhánh. Sáu row của một POI dùng để phủ các tín hiệu khác nhau; chúng
+không biểu diễn tần suất traffic và không mặc định được lấy mẫu ngang nhau khi
+train.
 
-**Sources of truth**
+Stage 1 chỉ dùng văn bản tên, địa chỉ và mã. Không dùng vị trí người hỏi, thời
+gian, lịch sử, độ phổ biến hoặc tín hiệu Stage 2 để quyết định intent.
 
-| Artifact | Path |
-|---|---|
-| Locked POIs | `data/vietnam/gold_stage1_v1/target_pois_v1.csv` |
-| Manifest | `data/vietnam/gold_stage1_v1/manifest.json` |
-| Operator detail | [operators.md](operators.md) |
-| Examples | [examples.md](examples.md) |
+Nguồn sự thật:
 
-Corpus: `vn-poi-core-v1` (`data/vietnam/poi_corpus_v1/`).
+- target: `data/vietnam/train_stage1_20k/target_pois_20k.parquet`;
+- corpus đối chiếu: `data/vietnam/poi_corpus_v1/pois.parquet`;
+- brand membership: `data/vietnam/train_stage1_brand_v1/`;
+- brand lookup: `data/vietnam/train_stage1_brand_lookup_v2/`.
 
----
+Target row thắng khi corpus legacy mâu thuẫn. Không dùng web, không sửa tên
+riêng cho “đúng hơn”, không bịa alias, landmark, địa chỉ, category, branch label
+hoặc mã.
 
-## Hard rules
+Skill này tạo intent tới một POI/chi nhánh. Bare brand, alias brand và lỗi chỉ
+nằm trong tên brand thuộc
+[`search20-stage1-brand-queries`](../search20-stage1-brand-queries/SKILL.md).
+Brand vẫn xuất hiện trong query POI khi đi cùng discriminator đủ nhận ra chi
+nhánh.
 
-1. Stage 1 = **text only**. Không dùng origin / distance / time / history để sinh hoặc quyết định đúng–sai.
-2. Mỗi variant **một** `query_variant_family` + `variant_operator` trong whitelist ([operators.md](operators.md)).
-3. Gold chỉ `severity=CLEAN|SINGLE`. **Không** `COMPOUND`.
-4. Giữ intent: sửa 1 ký tự mà thành POI/địa chỉ khác thật → **reject**.
-5. Không bịa tên / địa chỉ / mã; không chat template (`cho tôi đến…`); không nhét origin vào query.
-6. Alias ≠ noise. Brand/Vincom/mã trùng → multi-positive qrels, không ép 1 chi nhánh.
-7. Prefix đầy đủ (`char_prefix` mọi độ dài) **không** lưu vào gold — để benchmark sinh. Tối đa 1 `mid_token_incomplete` nếu hữu ích.
+## Quy trình
 
----
+### 1. Khóa phạm vi và tạo authoring packet
 
-## Per-case pack (gold 6 variants)
-
-Với mỗi `case_id` trong `target_pois_v1.csv`, viết **đúng 6** variant fold-distinct:
-
-| slot | `severity` | Family / operator | Ghi chú vị trí |
-|---|---|---|---|
-| v1 | `CLEAN` | `CLEAN/canonical` | Chuẩn hoá đầy đủ nhận diện theo stratum |
-| v2 | `CLEAN` hoặc `SINGLE` | `ADDRESS_VARIANT` / `ORTHOGRAPHIC_IME` / `TOKEN_EDIT` | Biến thể địa chỉ tự nhiên hoặc chính tả |
-| v3 | `CLEAN` hoặc `SINGLE` | `ALIAS` / `ORTHOGRAPHIC_IME` / `ADDRESS_VARIANT` | Tên viết tắt, khu vực, strip diacritics |
-| v4 | `CLEAN` hoặc `SINGLE` | `ALIAS` / `STRUCTURAL` (`token_order_variant`, `short_name`) | Standalone entity search hoặc đảo ngữ chuẩn |
-| v5 | `SINGLE` | Nhóm nhiễu đơn (`telex_leftover`, `char_insert`, `double_letter`) | Bắt buộc Levenshtein ≤ 12 so với canonical |
-| v6 | `SINGLE` | Nhóm nhiễu đơn (`adjacent_key`, `char_delete`, `char_transpose`, `phonological_confusion`, `tone_confuse`) | Bắt buộc Levenshtein ≤ 12 so với canonical |
-
-Sáu `query_text` phải **khác nhau tuyệt đối** sau normalize NFKC + casefold (mục Validate).
-
----
-
-## Nguyên Tắc Giữ Tính Tự Nhiên Tuyệt Đối Của Query (Naturalness Guidelines)
-
-1. **Biến thể địa chỉ có dấu xuyệt (`/`)**:
-   - Người dùng Việt Nam trên thực tế **không bao giờ gõ dạng gạch nối cơ học** như `166-9` hay `24-19`.
-   - Bắt buộc dùng các dạng khẩu ngữ/văn bản tìm kiếm thực tế:
-     * **Miền Bắc**: `Số [nhà] ngõ [ngõ] [đường]` (ví dụ: `Số 24 ngõ 19 Trần Quang Diệu`, `Số 48 ngách 34 ngõ 143 Nguyễn Chính`).
-     * **Miền Nam**: `Hẻm [số nhà]/[hẻm] [đường]` hoặc `Hẻm [số]` (ví dụ: `Hẻm 96/2 Đông Nhì`, `Hẻm 30 Nguyễn Văn Linh`).
-     * **Miền Trung**: `K[kiệt]/[số] [đường]` hoặc `Kiệt [số] [đường]` (ví dụ: `K151/68 Âu Cơ Liên Chiểu`, `K91/8 Ngô Xuân Thu`).
-   - **Cấm tuyệt đối**: Tự chế đuôi số (`259-15`, `25-12`) gán vào canonical không hề có xuyệt.
-
-2. **Truy vấn thực thể độc lập (Standalone Entity Search)**:
-   - Với các địa điểm, quán ăn, khách sạn có tên riêng định danh rõ hoặc unique toàn quốc (như `Ngày của Nắng Coffee`, `Bún Ngan Cô Tuyết`, `Khách Sạn Little Saigon Boutique`):
-     * Cần có dạng truy vấn chỉ gồm **tên riêng/thương hiệu**, lược bỏ toàn bộ số nhà, tên đường, quận huyện phía sau (`Ngày của Nắng Coffee`).
-     * Mục đích: Tạo bài test thực sự (challenge) cho mô hình trích xuất thực thể POI mà không cần nương tựa vào tín hiệu địa chỉ hành chính.
-
-3. **Bảo toàn danh từ riêng trong đảo từ (`token_order_variant`)**:
-   - Khi đảo ngữ, **tuyệt đối không xé lẻ** danh từ riêng hoặc tên địa danh ghép (CẤM: `Trung Cà phê Nguyên`, `Hội Bánh Mì An`, `gà Phở Lâm`, `Lý Phở Quốc Sư`, `Tường Cà phê Vy`).
-   - Chỉ được đảo cấu trúc cú pháp tiếng Việt: `[Thương hiệu] + [Loại hình]` (ví dụ: `Trung Nguyên Cà phê`, `Tường Vy Cà phê`, `Phở Lâm Gà`, `Phở Lý Quốc Sư Tân Phú`).
-
-4. **Tách/dính khoảng cách tự nhiên (`space_split` / `space_merge`)**:
-   - **Cấm tuyệt đối**: Nối dính tên tỉnh/thành phố cơ học (`ĐàNẵng`, `CầnThơ`, `HàNội`).
-   - Chỉ áp dụng trên:
-     * Tên riêng ngoại/từ mượn ghép: `SpringHotel`, `ThaiFood`, `bon s vegan`.
-     * Tên đường ghép: `LêDuẩn`.
-     * Khoảng trắng quanh ký tự đặc biệt: `30 / 49 Nguyễn Văn Linh`.
-
-5. **Tránh bẫy từ đồng âm trong `address_component_omission`**:
-   - Thận trọng với các từ đồng âm với cấp hành chính nhưng là tên riêng (ví dụ: chữ `Quận` trong `Café Cố Quận` là tên quán, không phải đơn vị hành chính; không được xóa).
-
----
-
-## Workflow
-
-Copy checklist:
-
-```
-Case Progress:
-- [ ] 1. Đọc POI row từ target_pois_v1.csv
-- [ ] 2. Viết canonical theo stratum
-- [ ] 3. Ghi acceptable_poi_ids (single vs multi)
-- [ ] 4. Viết 3 variant còn lại
-- [ ] 5. Gắn family/operator/query_types/lang_*
-- [ ] 6. Validate (checklist dưới)
-- [ ] 7. Append rows → query_variants draft
-```
-
-### 1. Đọc POI
-
-Dùng: `case_id`, `poi_id`, `name`, `brand`, `housenumber`, `street`, `province`, `subdistrict`, `primary_sampling_stratum`, `category`.
-
-Mọi POI đã `address_status=direct` + hn + street.
-
-### 2. Canonical theo stratum
-
-| Stratum | Canonical |
-|---|---|
-| `brand_branch` | `{brand} {ward\|street\|khu}` — đủ disambiguation; **cấm** bare brand multi-branch |
-| `named_clear` | tên đủ nhận diện (có thể + khu nếu trùng tên) |
-| `category_local` | **tên POI thật** — không `category+ward` giả |
-| `address_street_building` | `{housenumber} {street}` giữ `/` nếu có |
-| `explicit_area_cross_region` | tên/brand + ward hoặc province trong text |
-| `code_transit_landmark` | tên địa điểm / bến / đình… |
-| `building_code` | mã hoặc tên tòa người dùng hay gõ (`S3.01`, `Landmark72`, `17T8 Trung Hòa…`) — có thể + khu nếu mã ngắn |
-
-### 3. Qrels text
-
-- Rõ ràng → `acceptable_poi_ids = [poi_id]`
-- Brand/Vincom nhiều chi nhánh cùng text; mã tòa trùng; alias mỏng → liệt kê mọi POI corpus **hợp lý theo text** (cùng brand_fold + cùng khu nếu canonical có khu; hoặc mọi brand nếu alias chỉ brand — đánh `needs_review` nếu set quá lớn)
-- Chưa chắc → `review_status=needs_review`, không fake single-ID
-
-### 4–5. Viết variant + nhãn
-
-Xem [operators.md](operators.md). Ưu tiên phép biến đổi **một chỗ**, đọc được.
-
-`query_types`: ≥1 tag cấu trúc + đúng một `lang_vi|lang_en|lang_mixed` (pipe).
-
-### 6. Validate trước accept
-
-1. Non-empty; không chat template.  
-2. Khác canonical (trừ dòng canonical).  
-3. Fold-distinct trong cùng case.  
-4. `severity` khớp số phép (gold: 0 hoặc 1).  
-5. Operator thuộc family; không xóa digit số nhà / phá mã.  
-6. Corpus-aware: không vô tình thành tên POI khác.  
-7. `building_code` / brand: không gán unique-target nếu text còn mơ hồ.
-
-Normalize so trùng:
+Xác nhận target subset, work directory và output trước khi author. Tạo packet
+một lần cho toàn phạm vi:
 
 ```text
-NFKC → casefold → trim → collapse whitespace
-(optional) bỏ dấu khi bắt duplicate “cùng ý gõ”
+python -X utf8 tools/build_stage1_authoring_packet.py \
+  --target <target_subset.parquet> \
+  --corpus data/vietnam/poi_corpus_v1/pois.parquet \
+  --brand-lookup data/vietnam/train_stage1_brand_lookup_v2 \
+  --output <work_dir>/authoring_packet.jsonl \
+  --manifest <work_dir>/authoring_packet_manifest.json
 ```
 
-### 7. Output row schema
+Đọc `authoring_contract` trong manifest, sau đó chỉ mở packet rows của batch
+đang xử lý. Chỉ tra corpus có mục tiêu khi packet thiếu match, collision bị
+truncate, brand cần review hoặc fact mâu thuẫn. Không quét lại toàn corpus cho
+từng POI.
 
-```text
-case_id
-variant_id                 # {case_id}-v{1..4}
-query_text
-canonical_query
-query_variant_family
-variant_operator
-variant_subtype            # optional
-severity                   # CLEAN | SINGLE
-query_types
-intended_poi_id
-acceptable_poi_ids         # JSON list or pipe-separated ids
-primary_sampling_stratum
-review_status              # draft | accepted | needs_review
-generator_version          # search20-stage1-query-variants@1
-```
+Nếu fact cần thiết không được xác minh, đặt `needs_review`; không đoán.
 
-Default draft path: `data/vietnam/gold_stage1_v1/query_variants_draft.csv` (tạo nếu chưa có; không sửa `target_pois_v1.csv`).
+### 2. Xác định identity và qrels trước khi viết
 
----
+Với mỗi target, xác định:
 
-## Cấm tuyệt đối
+- identity anchor: proper name, brand, ref, building code hoặc địa chỉ;
+- discriminator tối thiểu: street, area, housenumber, branch label hoặc ref;
+- component bất biến: digit, letter suffix, slash, ref và code;
+- collision/equivalent entity và tập `acceptable_poi_ids` ban đầu;
+- ownership của intent: POI/branch hay bare-brand dataset.
 
-- `COMPOUND` trên gold  
-- Bare multi-branch brand làm unique-target  
-- `category+ward` giả tên quán  
-- Invent code / địa chỉ  
-- Full grapheme-prefix dump vào dataset  
-- Đổi POI list đã `target_pois_locked` (trừ lỗi adjudicate)
+Với `brand_context`:
 
----
+- membership yêu cầu branch discriminator: giữ brand cùng discriminator tối
+  thiểu trong mọi query POI;
+- membership chưa adjudicate: đặt `needs_review` nếu lookup có review hoặc
+  alternative chưa khóa;
+- excluded membership không được dùng làm brand family;
+- `bare_brand_owner=brand_dataset`: không materialize bare-brand intent trong
+  pack POI.
 
-## Additional resources
+### 3. Viết đúng sáu slot
 
-- Operator whitelist + reject table: [operators.md](operators.md)  
-- Worked examples by stratum: [examples.md](examples.md)
+| Slot | Vai trò | Contract |
+|---|---|---|
+| v01 | source anchor | Canonical có official name và discriminator tối thiểu |
+| v02 | natural identity core | Cách gõ ngắn, tự nhiên, đủ giữ intent |
+| v03 | controlled coverage | 2–3 operator tương thích, bề mặt khác v02 |
+| v04 | controlled coverage | tag set và realization khác v03 |
+| v05 | controlled coverage | phủ họ lỗi/biến thể khác v03–v04 |
+| v06 | controlled coverage | alternate recoverable, không lặp công thức |
+
+`v01` giữ official spelling. Chỉ thêm descriptor hoặc admin khi cần phân biệt.
+
+`v02` ưu tiên tên/brand/mã/số và discriminator ngắn nhất. Có thể bỏ type label
+không mang identity như `đường`, `phố`, `phường`, `quận`, `cửa hàng`, `cây
+xăng`, `nhà hàng`, `trường`, `bệnh viện`, `tòa nhà`, `siêu thị`, `quán` hoặc
+`số`. Không bỏ nếu label thuộc proper name hoặc phần còn lại trở nên generic.
+Address-only ưu tiên `{housenumber} {street}`.
+
+`v02–v06` không dùng dấu chấm câu. Chỉ compact dấu chấm trong abbreviation/code
+khi thứ tự chữ-số được bảo toàn và form không tạo mã khác.
+
+`v03–v06` dùng parent v02, trừ operator cần thành phần chỉ có trong v01. Mỗi row:
+
+- dùng 2–3 tag pairwise-compatible trong [`operators.md`](operators.md);
+- có 2–4 mutation points được trace đầy đủ;
+- tác động identity hoặc discriminator, gồm một biến đổi cục bộ ở token chữ đầu
+  tiên sau mọi số/code bất biến;
+- giữ skeleton đủ để người đọc vẫn suy ra intent;
+- không sửa digit, letter suffix, ref, building code hoặc thứ tự thành phần địa
+  chỉ;
+- không lặp tag set hay cùng `source → mutated` trong một case.
+
+Độ khó đến từ biến đổi phần nhận dạng, không từ việc kéo dài query bằng admin.
+Ưu tiên transpose, adjacent-key substitution, delete bên trong token, raw
+Telex/VNI, mất ranh giới token và omission tự nhiên. Double-tap ở cuối token là
+tín hiệu yếu, chỉ dùng khi hợp lý và không lặp thành mẫu hàng loạt.
+
+### 4. Phủ yêu cầu Stage 1 ở cấp batch
+
+Một POI không cần mang đủ mọi loại lỗi. Một batch đủ lớn phải phân phối coverage
+theo khả năng áp dụng của source:
+
+- **Identity tự nhiên:** canonical, short name, verified name fragment, acronym
+  quen dùng, full address paste, street-only/address-only và building code.
+- **Dấu và bộ gõ:** full/partial diacritic drop, nhầm thanh, raw Telex/VNI,
+  orthographic equivalent đã xác minh.
+- **Gõ nhanh:** adjacent key, transpose, delete/insert, double-tap và
+  `token_boundary_error` cho dính/rời token.
+- **Cấu trúc:** token order, bỏ cụm chung, abbreviation/expansion có mapping.
+- **Địa chỉ/mã:** số nhà + street, street-only, ngõ/ngách/hẻm/kiệt, slash spoken,
+  địa chỉ dán nguyên và mã tòa/lô.
+
+Prefix giữa ký tự và prefix theo biên từ được sinh tự động từ query hoàn chỉnh ở
+pipeline train/eval. Không author toàn bộ prefix thành sáu slot. Prefix training
+view nên lấy chủ yếu từ v01/v02 và các controlled row còn tự nhiên, rồi sample
+theo ngưỡng ký tự/rành giới từ của sản phẩm.
+
+Coverage map đầy đủ và điều kiện từng operator nằm trong
+[`operators.md`](operators.md). Chỉ mở [`examples.md`](examples.md) khi cần xử lý
+ca khó; không sao chép typo hoặc cấu trúc của ví dụ hàng loạt.
+
+### 5. Kiểm tra intent và qrels sau từng biến đổi
+
+- Query đủ định danh dùng singleton hoặc entity-equivalent IDs đã khóa.
+- Query trở nên mơ hồ phải có đủ multi-positive qrels đã xác minh hoặc được viết
+  lại.
+- Recompute qrels sau omission, abbreviation, no-diacritic, name fragment,
+  token boundary và token order.
+- Bare brand nhiều chi nhánh không được gán cho một branch trong pack POI.
+- Chỉ viết cụm tìm kiếm điểm đến; không viết câu hỏi, voice/chat, action intent,
+  recommendation hoặc `gần tôi/quanh đây`.
+
+### 6. Serialize, validate và sửa
+
+Ghi schema và slot contract từ `authoring_packet_manifest.json`:
+
+- `generator_version=manual_authored_v6`;
+- đúng thứ tự `v01…v06`;
+- `canonical_query` bằng v01 trong cả sáu row;
+- `query_types={primary_sampling_stratum}|{slot_tag}|{language_tag}`;
+- `acceptable_poi_ids`, `n_acceptable`, `is_multipositive` phải khớp;
+- trace v03–v06 phải ghi parent, ordered error tags, toàn bộ affected spans,
+  before/after text và review status.
+
+Chạy:
+
+1. `tools/serialize_stage1_v6.py`;
+2. `tools/validate_stage1_train_v6.py --ban-acronym-case` với target, corpus,
+   gold và published sets đúng phạm vi;
+3. sửa query/trace gây lỗi rồi chạy lại đến khi không còn error.
+
+Không nới validator hoặc sửa source để ép PASS. Validator kiểm tra invariant máy;
+agent vẫn chịu trách nhiệm naturalness, factuality, identity và qrels completeness.
+
+### 7. Báo cáo
+
+Báo số POI/rows, authored/needs-review, trạng thái serialize/validate, artifact và
+packet hash, brand lookup version, tag distribution, mutation-point distribution,
+identity-target rate, token-boundary coverage, raw-IME coverage, warning được giữ
+và danh sách case cần adjudicate.
+
+Không publish immutable release nếu phạm vi chỉ yêu cầu thử nghiệm.
+
+## Hard rejects
+
+Reject hoặc đặt `needs_review` khi:
+
+- official name bị respell/dịch hoặc target admin bị trộn với legacy admin;
+- query chứa fact, alias, specialty, landmark hoặc branch label không có source;
+- bare brand bị gán singleton cho một branch;
+- code/digit/suffix bị đổi, slash bị phá hoặc địa chỉ bị đổi thứ tự;
+- token được dính/rời nhưng không gắn `token_boundary_error`, hoặc phép dính/rời
+  làm đổi ký tự ngoài whitespace;
+- query noisy mất cả anchor và discriminator, trở thành chuỗi khó khôi phục;
+- lỗi chỉ nằm ở admin/descriptor dù identity đủ điều kiện chịu lỗi;
+- nhiều slot lặp cùng typo, cùng span hoặc cùng công thức;
+- query prefix/chưa gõ xong bị dùng làm một trong sáu authored rows;
+- qrels rỗng, thiếu intended POI hoặc ambiguity chưa được xử lý;
+- sáu query trùng nhau sau NFKC + casefold + trim + collapse whitespace.
+
+Không tạo dữ liệu gượng ép để đủ slot. Giữ case trong work queue nếu source
+không cho phép tạo đủ sáu query tự nhiên và đúng contract.

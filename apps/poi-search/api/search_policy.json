@@ -1,5 +1,5 @@
 {
-  "policy_version": "search-policy-stable-demo-v9",
+  "policy_version": "search-policy-stable-demo-v10",
   "default_retrieval_profile": "hybrid",
   "retrieval": {
     "branch_depth": 50,
@@ -21,7 +21,10 @@
     "minimum_should_match": 1,
     "fuzzy": 0.0,
     "and_match": 3.0,
-    "number_bonus": 1.5
+    "number_bonus": 1.5,
+    "housenumber_path": 20.0,
+    "housenumber_exact": 16.0,
+    "phrase_street": 8.0
   },
   "warmup_queries": ["ga", "vincom", "phở bò nam định", "23 nguyễn trãi"],
   "query_rewrites": [
@@ -68,6 +71,7 @@
     "http://127.0.0.1:5174"
   ],
   "notes": [
+    "v10 lexical: index housenumber/street/place from corpus. Leading house+street path uses catalog keys (slash and single-letter glue share a path). Medial numbers stay in BM25. Name-field prefix is off on house+street queries so address-named POIs are not double-counted. No street-type word list.",
     "v9 lexical: a pure number beside a letter span is constant_score number_bonus, not a BM25 term. codes_compact requires both a letter and a digit in one token.",
     "v8 lexical: dotted/hyphenated alphanumeric spans are glued before the standard analyzer (s10.2 and s1.02 share s102). Slash is not glued.",
     "v8 geo: equivalent-name cohort orders by cap*exp(-d/5000m). cap 0.35 < 1 match tier, so an exact far hit stays above a nearer partial.",

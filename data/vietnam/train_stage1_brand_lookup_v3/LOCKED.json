@@ -1,0 +1,6 @@
+{
+  "lookup_version": "brand_lookup_v3",
+  "locked_at_utc": "2026-09-26T02:38:13.291546+00:00",
+  "manifest_sha256": "9aaf180be57e38cd6a6aca021e25ffd4dcdebb1d97a8c8f31603c5621d9bf866",
+  "mutation_policy": "Do not edit in place; rebuild as brand_lookup_v4."
+}

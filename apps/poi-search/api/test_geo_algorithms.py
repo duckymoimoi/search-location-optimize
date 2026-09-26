@@ -17,17 +17,23 @@ sys.path.insert(0, str(Path(__file__).parent))
 import demo_users
 
 ROOT = Path(__file__).parent
-SOURCE = ast.parse((ROOT / 'app.py').read_text(encoding='utf-8'))
 POLICY = json.loads((ROOT / 'search_policy.json').read_text(encoding='utf-8'))
+ALGO_FILES = (
+    'textnorm.py', 'lexical.py', 'ranking.py', 'geo.py', 'es_query.py', 'pipeline.py', 'app.py',
+)
 
 class HTTPException(Exception):
     def __init__(self, status_code, detail):
         self.status_code, self.detail = status_code, detail
 
 # Execute real top-level functions; omit API decorators and import-time model loading.
-functions = [node for node in SOURCE.body if isinstance(node, ast.FunctionDef)]
-for node in functions:
-    node.decorator_list = []
+functions = []
+for name in ALGO_FILES:
+    source = ast.parse((ROOT / name).read_text(encoding='utf-8'))
+    for node in source.body:
+        if isinstance(node, ast.FunctionDef):
+            node.decorator_list = []
+            functions.append(node)
 module = ast.Module(body=[ast.ImportFrom(module='__future__', names=[ast.alias(name='annotations')], level=0), *functions], type_ignores=[])
 ns = dict(globals(), LEXICAL_CONFIG=POLICY['lexical'], RANKING_POLICY=POLICY['ranking'],
           BRANCH_DEPTH=50, RRF_CONSTANT=60, CORPUS_VERSION='hn-poi-stable-v1',
@@ -106,6 +112,9 @@ class Algorithms(unittest.TestCase):
                 bonuses.append(clause)
         return bm25, phrases, codes, bonuses
 
+    def _number_bonus_count(self, bonuses):
+        return sum(1 for clause in bonuses if clause['constant_score'].get('boost') == 1.5)
+
     def test_pure_number_does_not_enter_bm25_beside_letters(self):
         bm25, phrases, codes, bonuses = self._lexical_parts('33 Lạc Trung')
         self.assertTrue(bm25)
@@ -113,8 +122,8 @@ class Algorithms(unittest.TestCase):
         self.assertIn('lac trung', phrases)
         self.assertIn('33 Lạc Trung', phrases)
         self.assertEqual(codes, [])
-        self.assertEqual(len(bonuses), 1)
-        self.assertEqual(bonuses[0]['constant_score']['boost'], 1.5)
+        self.assertEqual(self._number_bonus_count(bonuses), 1)
+        self.assertTrue(any(clause['constant_score'].get('boost') == 1.5 for clause in bonuses))
         # Letter-only and code-only queries keep the previous BM25 text.
         letters, _, letter_codes, letter_bonuses = self._lexical_parts('hàng bún')
         self.assertIn('hàng bún', letters)
@@ -128,7 +137,56 @@ class Algorithms(unittest.TestCase):
         slash_bm25, _, slash_codes, slash_bonuses = self._lexical_parts('16/2 lê văn khương')
         self.assertTrue(all(item == 'le van khuong' for item in slash_bm25))
         self.assertEqual(slash_codes, [])
-        self.assertEqual(len(slash_bonuses), 1)
+        self.assertEqual(self._number_bonus_count(slash_bonuses), 1)
+
+    def test_query_structure_house_path_vs_name_number(self):
+        slash = ns['parse_query_structure']('259/15 Nguyễn Chí Thanh')
+        self.assertEqual(slash.leading_path, ('259', '15'))
+        self.assertEqual(slash.named_letters, ('nguyen', 'chi', 'thanh'))
+        self.assertTrue(slash.has_house_street)
+        self.assertEqual(slash.path_keys, ('259 15',))
+        alley = ns['parse_query_structure']('259 ngõ 15 Nguyễn Chí Thanh')
+        self.assertEqual(alley.leading_path, slash.leading_path)
+        self.assertEqual(alley.path_keys, slash.path_keys)
+        self.assertTrue(alley.has_house_street)
+        numbered_street = ns['parse_query_structure']('Đường 3 Tháng 2')
+        self.assertEqual(numbered_street.leading_path, ())
+        self.assertTrue(numbered_street.has_medial_number)
+        self.assertFalse(numbered_street.has_house_street)
+        self.assertEqual(numbered_street.path_keys, ())
+        brand_number = ns['parse_query_structure']('Highlands 259')
+        self.assertEqual(brand_number.leading_path, ())
+        self.assertFalse(brand_number.has_house_street)
+        self.assertEqual(brand_number.path_keys, ())
+        brand_house_street = ns['parse_query_structure']('WinMart 30/48D Nguyễn Văn Linh')
+        self.assertEqual(brand_house_street.leading_path, ())
+        self.assertIn(('30', '48d'), brand_house_street.inner_paths)
+        self.assertIn('30 48d', brand_house_street.path_keys)
+        code = ns['parse_query_structure']('s10.2')
+        self.assertEqual(code.path_keys, ())
+        self.assertEqual(ns['housenumber_path_key']('259/15'), '259 15')
+        self.assertEqual(ns['housenumber_path_key']('30/48D'), '30 48d')
+        self.assertEqual(ns['glue_code_spans']('16/2 lê văn khương'), '16/2 lê văn khương')
+
+    def test_house_street_lexical_uses_catalog_fields_not_name_prefix(self):
+        body = json.dumps(ns['lexical_body']('259/15 Nguyễn Chí Thanh', 20), ensure_ascii=False)
+        self.assertIn('housenumber_path_key', body)
+        self.assertIn('259 15', body)
+        self.assertNotIn('search_label.prefix', body)
+        street_only = json.dumps(ns['lexical_body']('Nguyễn Chí Thanh', 20), ensure_ascii=False)
+        self.assertIn('search_label.prefix', street_only)
+        self.assertNotIn('housenumber_path_key', street_only)
+        numbered = json.dumps(ns['lexical_body']('Đường 3 Tháng 2', 20), ensure_ascii=False)
+        self.assertIn('Đường 3 Tháng 2', numbered)
+        self.assertNotIn('housenumber_path_key', numbered)
+        code_body = json.dumps(ns['lexical_body']('s10.2', 20), ensure_ascii=False)
+        self.assertIn('s102', code_body)
+        self.assertIn('codes_compact', code_body)
+        brand = json.dumps(ns['lexical_body']('Highlands 259', 20), ensure_ascii=False)
+        self.assertIn('search_label.prefix', brand)
+        inner = json.dumps(ns['lexical_body']('WinMart 30/48D Nguyễn Văn Linh', 20), ensure_ascii=False)
+        self.assertIn('30 48d', inner)
+        self.assertIn('search_label.prefix', inner)
 
     def test_letter_span_outranks_bare_number(self):
         street = doc(1, 'Cafe Mai', '12 Lạc Trung')
@@ -145,6 +203,15 @@ class Algorithms(unittest.TestCase):
             for row in ns['rank_candidates']('33 Lạc Tru', [bare, street], ev, None)
         ]
         self.assertEqual(prefix_ids, ['1', '2'])
+
+    def test_house_path_rank_prefers_slash_member_over_ngo_name(self):
+        cafe = doc(1, 'Cộng Cà Phê', '259/15, Nguyễn Chí Thanh', housenumber='259/15')
+        decoy = doc(2, '15, Ngõ 91 Nguyễn Chí Thanh', '15, Ngõ 91 Nguyễn Chí Thanh, Phường Hải Châu', housenumber='15')
+        ev = {'1': {'rrf': 1.0}, '2': {'rrf': 0.9}}
+        ranked = ns['rank_candidates']('259 ngõ 15 Nguyễn Chí Thanh', [decoy, cafe], ev, None)
+        self.assertEqual([row[3]['canonical_id'] for row in ranked], ['1', '2'])
+        slash_ranked = ns['rank_candidates']('259/15 Nguyễn Chí Thanh', [decoy, cafe], ev, None)
+        self.assertEqual(slash_ranked[0][3]['canonical_id'], '1')
 
     def test_name_address_evidence_brand_street(self):
         street = doc(1, 'Phố Bồ Đề', 'Phường Bồ Đề, Long Biên')
@@ -295,8 +362,10 @@ class Algorithms(unittest.TestCase):
             ns['retrieve_detailed']=old_retrieve
 
     def test_coverage_id_is_not_hanoi_literal(self):
-        source = (ROOT / 'app.py').read_text(encoding='utf-8')
-        self.assertNotIn('hanoi-osm-stable-v1', source)
+        for path in ROOT.glob('*.py'):
+            if path.name.startswith('test_') or path.name.startswith('_'):
+                continue
+            self.assertNotIn('hanoi-osm-stable-v1', path.read_text(encoding='utf-8'), path.name)
 
     def test_unknown_demo_user_forbidden(self):
         ns['runtime']=SimpleNamespace(sessions={'s'},documents=lambda ids:[],exposures={})

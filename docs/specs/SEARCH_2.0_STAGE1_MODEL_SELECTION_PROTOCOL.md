@@ -1,9 +1,19 @@
 # SEARCH 2.0 — Stage 1 zero-shot model selection protocol
 
 Ngày: 2026-09-18  
-Trạng thái: **active — gold_stage1_v1 Round 1**  
-Phạm vi: text-only Stage 1 trên `vn-poi-core-v1` + gold 180 case / 1080 query.  
+Trạng thái: **frozen W1 execution protocol — Round 1 đã hoàn thành**
+
+Phạm vi lịch sử W1: text-only Stage 1 trên `vn-poi-core-v1` + gold 180 case / 1080 query.
+
+Protocol cho `gold_stage1_v2`, `gold_stage1_brand_v1` và
+`address_scope_eval_v1` nằm tại
+[`STAGE1_EVALUATION_SUITE.md`](STAGE1_EVALUATION_SUITE.md). Không dùng quy tắc
+multi-positive/prefix W1 bên dưới để gán nhãn cho suite v2.
 Không dùng origin/distance/time/history trong Stage 1.
+
+Tài liệu này vẫn là contract replay cho kết quả W1, không phải protocol train
+20k hiện hành. Numeric typo/unseen-number chưa nằm trong gold này; dùng track
+riêng theo [`ADDRESS_NUMERIC_FALLBACK.md`](ADDRESS_NUMERIC_FALLBACK.md).
 
 ## 1. Dataset (locked)
 

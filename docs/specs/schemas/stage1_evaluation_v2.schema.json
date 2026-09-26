@@ -1,0 +1,412 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://vsf.local/schemas/stage1_evaluation_v2.schema.json",
+  "title": "SEARCH 2.0 shared Stage-1 evaluation records v2",
+  "description": "Logical JSON/JSONL contract for POI sessions, brand-group queries, address-scope evaluation, derived prefix checkpoints, qrels and suite manifests. Equivalent Parquet artifacts preserve field names and logical types.",
+  "oneOf": [
+    { "$ref": "#/$defs/poiQuerySession" },
+    { "$ref": "#/$defs/brandGroupQuery" },
+    { "$ref": "#/$defs/addressScopeMember" },
+    { "$ref": "#/$defs/addressScopeScenario" },
+    { "$ref": "#/$defs/prefixCheckpoint" },
+    { "$ref": "#/$defs/evaluationQrel" },
+    { "$ref": "#/$defs/suiteManifest" }
+  ],
+  "$defs": {
+    "schemaVersion": {
+      "const": "stage1-eval-suite-v2"
+    },
+    "nonEmptyString": {
+      "type": "string",
+      "minLength": 1
+    },
+    "poiId": {
+      "type": "string",
+      "minLength": 1
+    },
+    "poiIdArray": {
+      "type": "array",
+      "minItems": 1,
+      "uniqueItems": true,
+      "items": { "$ref": "#/$defs/poiId" }
+    },
+    "difficulty": {
+      "enum": ["clean", "mild", "compound", "challenge"]
+    },
+    "identifierRole": {
+      "enum": [
+        "house_number",
+        "alley_chain",
+        "unit",
+        "building_code",
+        "branch_ref",
+        "road_number",
+        "admin_number",
+        "unknown"
+      ]
+    },
+    "catalogMatchStatus": {
+      "enum": [
+        "exact_observed",
+        "number_unseen_in_observed_scope",
+        "valid_other_member_collision",
+        "ambiguous_scope",
+        "unresolved_scope",
+        "coverage_unknown"
+      ]
+    },
+    "poiQuerySession": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "schema_version",
+        "record_type",
+        "suite_id",
+        "query_id",
+        "query_family_id",
+        "case_id",
+        "query_role",
+        "query_text",
+        "difficulty",
+        "intended_poi_id",
+        "acceptable_poi_ids",
+        "qrel_set_id",
+        "primary_sampling_stratum",
+        "case_origin",
+        "exposure_class",
+        "review_status"
+      ],
+      "properties": {
+        "schema_version": { "$ref": "#/$defs/schemaVersion" },
+        "record_type": { "const": "poi_query_session" },
+        "suite_id": { "const": "gold_stage1_v2" },
+        "query_id": { "$ref": "#/$defs/nonEmptyString" },
+        "query_family_id": { "$ref": "#/$defs/nonEmptyString" },
+        "case_id": { "$ref": "#/$defs/nonEmptyString" },
+        "query_role": { "enum": ["q01", "q02", "q03", "q04"] },
+        "query_text": { "$ref": "#/$defs/nonEmptyString" },
+        "difficulty": { "$ref": "#/$defs/difficulty" },
+        "coverage_tags": {
+          "type": "array",
+          "uniqueItems": true,
+          "items": { "$ref": "#/$defs/nonEmptyString" }
+        },
+        "intended_poi_id": { "$ref": "#/$defs/poiId" },
+        "acceptable_poi_ids": { "$ref": "#/$defs/poiIdArray" },
+        "entity_group_id": { "type": ["string", "null"] },
+        "qrel_set_id": { "$ref": "#/$defs/nonEmptyString" },
+        "primary_sampling_stratum": { "$ref": "#/$defs/nonEmptyString" },
+        "case_origin": { "enum": ["inherited_v1", "heldout_supplement"] },
+        "exposure_class": {
+          "enum": ["poi_heldout_namespace_seen", "poi_heldout_namespace_unseen"]
+        },
+        "review_status": { "enum": ["draft", "accepted", "needs_review", "excluded"] }
+      }
+    },
+    "brandGroupQuery": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "schema_version",
+        "record_type",
+        "suite_id",
+        "query_id",
+        "query_family_id",
+        "query_text",
+        "query_role",
+        "difficulty",
+        "brand_group_id",
+        "namespace",
+        "acceptable_poi_ids",
+        "qrel_set_id",
+        "review_status"
+      ],
+      "properties": {
+        "schema_version": { "$ref": "#/$defs/schemaVersion" },
+        "record_type": { "const": "brand_group_query" },
+        "suite_id": { "const": "gold_stage1_brand_v1" },
+        "query_id": { "$ref": "#/$defs/nonEmptyString" },
+        "query_family_id": { "$ref": "#/$defs/nonEmptyString" },
+        "query_text": { "$ref": "#/$defs/nonEmptyString" },
+        "query_role": {
+          "enum": ["canonical_brand", "verified_alias", "brand_error", "namespace_qualified"]
+        },
+        "difficulty": { "$ref": "#/$defs/difficulty" },
+        "brand_group_id": { "$ref": "#/$defs/nonEmptyString" },
+        "namespace": { "$ref": "#/$defs/nonEmptyString" },
+        "acceptable_poi_ids": { "$ref": "#/$defs/poiIdArray" },
+        "qrel_set_id": { "$ref": "#/$defs/nonEmptyString" },
+        "review_status": { "enum": ["draft", "accepted", "needs_review", "excluded"] }
+      }
+    },
+    "addressScopeMember": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "schema_version",
+        "record_type",
+        "suite_id",
+        "address_scope_id",
+        "poi_id",
+        "street_raw",
+        "street_folded",
+        "identifier_role",
+        "number_parts",
+        "membership_status",
+        "scope_confidence",
+        "evidence_source",
+        "corpus_version",
+        "normalizer_version"
+      ],
+      "properties": {
+        "schema_version": { "$ref": "#/$defs/schemaVersion" },
+        "record_type": { "const": "address_scope_member" },
+        "suite_id": { "const": "address_scope_eval_v1" },
+        "address_scope_id": { "type": "string", "pattern": "^addr_scope:" },
+        "poi_id": { "$ref": "#/$defs/poiId" },
+        "street_raw": { "$ref": "#/$defs/nonEmptyString" },
+        "street_folded": { "$ref": "#/$defs/nonEmptyString" },
+        "subdistrict_region_id": { "type": ["string", "null"] },
+        "province_region_id": { "type": ["string", "null"] },
+        "house_number_raw": { "type": ["string", "null"] },
+        "house_number_normalized": { "type": ["string", "null"] },
+        "number_parts": {
+          "type": "array",
+          "items": { "$ref": "#/$defs/nonEmptyString" }
+        },
+        "identifier_role": { "$ref": "#/$defs/identifierRole" },
+        "namespace_id": { "type": ["string", "null"] },
+        "membership_status": { "enum": ["accepted", "needs_review", "excluded"] },
+        "scope_confidence": { "enum": ["direct", "derived", "weak"] },
+        "evidence_source": {
+          "type": "array",
+          "minItems": 1,
+          "uniqueItems": true,
+          "items": { "$ref": "#/$defs/nonEmptyString" }
+        },
+        "destination_searchable": { "type": "boolean" },
+        "corpus_version": { "$ref": "#/$defs/nonEmptyString" },
+        "normalizer_version": { "$ref": "#/$defs/nonEmptyString" }
+      }
+    },
+    "addressScopeScenario": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "schema_version",
+        "record_type",
+        "suite_id",
+        "query_id",
+        "query_family_id",
+        "query_text",
+        "lexical_fallback_text",
+        "scenario_type",
+        "numeric_span_role",
+        "observed_numeric",
+        "catalog_match_status",
+        "identity_evidence",
+        "acceptable_scope_ids",
+        "qrel_set_id",
+        "review_status",
+        "corpus_version",
+        "address_snapshot_version"
+      ],
+      "properties": {
+        "schema_version": { "$ref": "#/$defs/schemaVersion" },
+        "record_type": { "const": "address_scope_scenario" },
+        "suite_id": { "const": "address_scope_eval_v1" },
+        "query_id": { "$ref": "#/$defs/nonEmptyString" },
+        "query_family_id": { "$ref": "#/$defs/nonEmptyString" },
+        "query_text": { "$ref": "#/$defs/nonEmptyString" },
+        "lexical_fallback_text": { "$ref": "#/$defs/nonEmptyString" },
+        "scenario_type": {
+          "enum": [
+            "exact_observed",
+            "unseen_number_fallback",
+            "valid_number_collision",
+            "same_number_wrong_scope",
+            "slash_or_alley",
+            "code_namespace",
+            "ambiguous_or_unresolved"
+          ]
+        },
+        "numeric_span_role": { "$ref": "#/$defs/identifierRole" },
+        "observed_numeric": { "$ref": "#/$defs/nonEmptyString" },
+        "catalog_match_status": { "$ref": "#/$defs/catalogMatchStatus" },
+        "identity_evidence": { "enum": ["strong_identity", "weak_identity", "address_only"] },
+        "acceptable_scope_ids": {
+          "type": "array",
+          "uniqueItems": true,
+          "items": { "type": "string", "pattern": "^addr_scope:" }
+        },
+        "qrel_set_id": { "$ref": "#/$defs/nonEmptyString" },
+        "review_status": { "enum": ["draft", "accepted", "needs_review", "excluded"] },
+        "corpus_version": { "$ref": "#/$defs/nonEmptyString" },
+        "address_snapshot_version": { "$ref": "#/$defs/nonEmptyString" }
+      }
+    },
+    "prefixCheckpoint": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "schema_version",
+        "record_type",
+        "suite_id",
+        "query_id",
+        "checkpoint_index",
+        "prefix_text",
+        "prefix_unit",
+        "full_unit_count",
+        "evidence_state",
+        "is_full_query",
+        "expander_version"
+      ],
+      "properties": {
+        "schema_version": { "$ref": "#/$defs/schemaVersion" },
+        "record_type": { "const": "prefix_checkpoint" },
+        "suite_id": { "enum": ["gold_stage1_v2", "gold_stage1_brand_v1"] },
+        "query_id": { "$ref": "#/$defs/nonEmptyString" },
+        "checkpoint_index": { "type": "integer", "minimum": 1 },
+        "prefix_text": { "$ref": "#/$defs/nonEmptyString" },
+        "prefix_unit": { "enum": ["grapheme", "token_boundary"] },
+        "full_unit_count": { "type": "integer", "minimum": 1 },
+        "evidence_state": { "enum": ["pre_identity", "group_ready", "entity_ready"] },
+        "qrel_set_id": { "type": ["string", "null"] },
+        "is_full_query": { "type": "boolean" },
+        "expander_version": { "$ref": "#/$defs/nonEmptyString" }
+      }
+    },
+    "evaluationQrel": {
+      "type": "object",
+      "additionalProperties": false,
+      "allOf": [
+        {
+          "if": {
+            "properties": { "label": { "const": "positive" } },
+            "required": ["label"]
+          },
+          "then": {
+            "properties": { "relevance": { "minimum": 1 } }
+          }
+        },
+        {
+          "if": {
+            "properties": { "label": { "const": "compatible" } },
+            "required": ["label"]
+          },
+          "then": {
+            "properties": { "relevance": { "minimum": 1, "maximum": 2 } }
+          }
+        },
+        {
+          "if": {
+            "properties": { "label": { "enum": ["negative", "ignore"] } },
+            "required": ["label"]
+          },
+          "then": {
+            "properties": { "relevance": { "const": 0 } }
+          }
+        },
+        {
+          "if": {
+            "properties": { "target_type": { "const": "address_scope" } },
+            "required": ["target_type"]
+          },
+          "then": {
+            "properties": { "target_id": { "pattern": "^addr_scope:" } }
+          }
+        }
+      ],
+      "required": [
+        "schema_version",
+        "record_type",
+        "suite_id",
+        "qrel_set_id",
+        "target_type",
+        "target_id",
+        "label",
+        "relevance",
+        "label_reason",
+        "evidence_source"
+      ],
+      "properties": {
+        "schema_version": { "$ref": "#/$defs/schemaVersion" },
+        "record_type": { "const": "evaluation_qrel" },
+        "suite_id": {
+          "enum": ["gold_stage1_v2", "gold_stage1_brand_v1", "address_scope_eval_v1"]
+        },
+        "qrel_set_id": { "$ref": "#/$defs/nonEmptyString" },
+        "target_type": { "enum": ["poi", "entity_group", "brand_group", "address_scope"] },
+        "target_id": { "$ref": "#/$defs/nonEmptyString" },
+        "label": { "enum": ["positive", "compatible", "negative", "ignore"] },
+        "relevance": { "type": "integer", "minimum": 0, "maximum": 3 },
+        "label_reason": {
+          "enum": [
+            "intended_entity",
+            "entity_equivalent",
+            "brand_group_member",
+            "exact_address_member",
+            "scope_target",
+            "same_scope_compatible",
+            "same_number_wrong_scope",
+            "valid_collision",
+            "ambiguous_unjudged",
+            "manual_adjudication"
+          ]
+        },
+        "evidence_source": {
+          "type": "array",
+          "minItems": 1,
+          "uniqueItems": true,
+          "items": { "$ref": "#/$defs/nonEmptyString" }
+        }
+      }
+    },
+    "suiteManifest": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "schema_version",
+        "record_type",
+        "suite_id",
+        "status",
+        "created_at_utc",
+        "corpus_version",
+        "normalizer_version",
+        "label_policy_version",
+        "source_hashes",
+        "artifact_hashes"
+      ],
+      "properties": {
+        "schema_version": { "$ref": "#/$defs/schemaVersion" },
+        "record_type": { "const": "suite_manifest" },
+        "suite_id": {
+          "enum": ["stage1_eval_suite_v2", "gold_stage1_v2", "gold_stage1_brand_v1", "address_scope_eval_v1"]
+        },
+        "status": { "enum": ["draft", "validated", "locked", "superseded"] },
+        "created_at_utc": { "type": "string", "format": "date-time" },
+        "corpus_version": { "$ref": "#/$defs/nonEmptyString" },
+        "normalizer_version": { "$ref": "#/$defs/nonEmptyString" },
+        "entity_snapshot_version": { "type": ["string", "null"] },
+        "brand_snapshot_version": { "type": ["string", "null"] },
+        "address_snapshot_version": { "type": ["string", "null"] },
+        "prefix_expander_version": { "type": ["string", "null"] },
+        "label_policy_version": { "$ref": "#/$defs/nonEmptyString" },
+        "source_hashes": {
+          "type": "object",
+          "minProperties": 1,
+          "additionalProperties": { "type": "string", "pattern": "^[a-f0-9]{64}$" }
+        },
+        "artifact_hashes": {
+          "type": "object",
+          "minProperties": 1,
+          "additionalProperties": { "type": "string", "pattern": "^[a-f0-9]{64}$" }
+        },
+        "counts": {
+          "type": "object",
+          "additionalProperties": { "type": "integer", "minimum": 0 }
+        }
+      }
+    }
+  }
+}

@@ -152,3 +152,37 @@ Chi tiết chọn mẫu: `data/vietnam/gold_stage1_v1/README.md`.
 3. **Near-dup OSM** — đừng nhầm “model sai” với “hai bản ghi một thực thể”.
 4. **Brand mỏng trong field `brand` (4.8%)** nhưng same-name brand rất lớn — dựa folded name + stratum, không chỉ cột brand.
 5. Screening model trên gold 180 × corpus 186k là đúng hướng W2; đừng suy production accuracy từ gold alone.
+
+---
+
+## 11. Cleaning audit bổ sung 23/09/2026
+
+Audit mới trên cùng `pois_core.parquet` và cùng SHA-256 nguồn
+`e5d75c4783f27d86767ba5d0d46b2449dca19f709377b964672089b5226b658d`.
+[Báo cáo đầy đủ](../../../data/vietnam/poi_corpus_v1/eda/poi_cleaning_audit.md)
+có code tái lập, JSON và danh sách ứng viên Parquet.
+
+| Dấu hiệu | Quy mô | Diễn giải |
+|---|---:|---|
+| Tên đúng một ký tự | 1.122 POI | 703 có số nhà + street/place; cần xem vai trò address-only trước khi loại row khỏi index |
+| Cùng folded name + full address, ≤50 m | 1.920 cặp / 2.094 POI | 277 cặp node–way; 549 cặp dùng street key 1–2 ký tự nên cần kiểm tra lại khóa địa chỉ |
+| Cùng full address, >1 km | 2.044 cặp / 495 POI | 1.966 cặp dùng street key dài 1–2 ký tự; còn 78 cặp cần ưu tiên review địa chỉ/tọa độ |
+| Cùng folded name, ≤50 m bất kể địa chỉ | 12.049 cặp | 4.690 cặp có tên chỉ 1–2 ký tự; còn có thể gồm entrance/platform/chi nhánh |
+| Trùng ranking point | 40 nhóm | 16 cặp còn trùng tên |
+
+Các flag khác: 14 placeholder name, 766 generic name, 633 alias trùng name
+sau fold, 31 tọa độ ngoài bbox Việt Nam và 11.070 row `address_status=direct`
+không có đủ cặp số nhà + street/place. Những số này là tập review có thể chồng
+lấp, không cộng để suy số POI cần xóa.
+
+Overlay lên target hiện tại: Gold v1 có 5/180 POI thuộc ứng viên trùng gần mạnh;
+train 20k có 223/20.000 và checkpoint 500 có 5/500. Chưa thay đổi các target
+hoặc qrels đã khóa. Khi xây Gold v2 và corpus sạch mới, kiểm tra entity
+equivalence và migration map trước khi dùng những target này.
+
+Theo quyết định clean corpus, bản v2 đã thay 82 tên một ký tự bằng địa chỉ
+(74 còn sau dedup), bỏ 1.040 row thiếu địa chỉ dùng được và gộp 1.147 row
+trùng gần. Có [migration map](../../../data/vietnam/poi_corpus_v2/poi_id_migration.parquet)
+cho mọi ID v1. Trong target đã khóa, Gold v1 có 2 ID bị gộp, train 20k có 46,
+checkpoint 500 không có ID bị xóa. Đây là số tác động thực sau clean, khác
+số row nằm trong hàng đợi review nêu ở trên.

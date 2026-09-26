@@ -1,0 +1,2582 @@
+{
+  "split_version": "brand_family_split_v1",
+  "seed": 20260926,
+  "created_at_utc": "2026-09-26T02:39:39.184281+00:00",
+  "policy": "Split by brand_family_id. Every namespace/alias/variant stays in the same split.",
+  "targets": {
+    "test": 70,
+    "dev": 35,
+    "train": 215
+  },
+  "counts": {
+    "dev": 35,
+    "test": 70,
+    "train": 215
+  },
+  "families": [
+    {
+      "brand_family_id": "brand:scb",
+      "brand_canonical": "SCB",
+      "n_accepted_v3": 21,
+      "n_namespaces": 2,
+      "stratum": "lg|multi_ns|en|acronym",
+      "split": "dev"
+    },
+    {
+      "brand_family_id": "brand:hdbank",
+      "brand_canonical": "HDBank",
+      "n_accepted_v3": 37,
+      "n_namespaces": 2,
+      "stratum": "lg|multi_ns|en|name",
+      "split": "dev"
+    },
+    {
+      "brand_family_id": "brand:mbbank",
+      "brand_canonical": "MBBank",
+      "n_accepted_v3": 34,
+      "n_namespaces": 2,
+      "stratum": "lg|multi_ns|en|name",
+      "split": "dev"
+    },
+    {
+      "brand_family_id": "brand:7_eleven",
+      "brand_canonical": "7-Eleven",
+      "n_accepted_v3": 46,
+      "n_namespaces": 1,
+      "stratum": "lg|single_ns|en|name",
+      "split": "dev"
+    },
+    {
+      "brand_family_id": "brand:mcdonald_s",
+      "brand_canonical": "McDonald's",
+      "n_accepted_v3": 27,
+      "n_namespaces": 1,
+      "stratum": "lg|single_ns|en|name",
+      "split": "dev"
+    },
+    {
+      "brand_family_id": "brand:vietabank",
+      "brand_canonical": "VietABank",
+      "n_accepted_v3": 16,
+      "n_namespaces": 2,
+      "stratum": "md|multi_ns|en|name",
+      "split": "dev"
+    },
+    {
+      "brand_family_id": "brand:jysk",
+      "brand_canonical": "JYSK",
+      "n_accepted_v3": 5,
+      "n_namespaces": 1,
+      "stratum": "md|single_ns|en|acronym",
+      "split": "dev"
+    },
+    {
+      "brand_family_id": "brand:baoviet_bank",
+      "brand_canonical": "BAOVIET Bank",
+      "n_accepted_v3": 7,
+      "n_namespaces": 1,
+      "stratum": "md|single_ns|en|name",
+      "split": "dev"
+    },
+    {
+      "brand_family_id": "brand:giordano",
+      "brand_canonical": "Giordano",
+      "n_accepted_v3": 5,
+      "n_namespaces": 1,
+      "stratum": "md|single_ns|en|name",
+      "split": "dev"
+    },
+    {
+      "brand_family_id": "brand:novotel",
+      "brand_canonical": "Novotel",
+      "n_accepted_v3": 6,
+      "n_namespaces": 1,
+      "stratum": "md|single_ns|en|name",
+      "split": "dev"
+    },
+    {
+      "brand_family_id": "brand:oppo",
+      "brand_canonical": "Oppo",
+      "n_accepted_v3": 5,
+      "n_namespaces": 1,
+      "stratum": "md|single_ns|en|name",
+      "split": "dev"
+    },
+    {
+      "brand_family_id": "brand:petro",
+      "brand_canonical": "Petro",
+      "n_accepted_v3": 5,
+      "n_namespaces": 1,
+      "stratum": "md|single_ns|en|name",
+      "split": "dev"
+    },
+    {
+      "brand_family_id": "brand:peugeot",
+      "brand_canonical": "Peugeot",
+      "n_accepted_v3": 5,
+      "n_namespaces": 1,
+      "stratum": "md|single_ns|en|name",
+      "split": "dev"
+    },
+    {
+      "brand_family_id": "brand:total",
+      "brand_canonical": "Total",
+      "n_accepted_v3": 12,
+      "n_namespaces": 1,
+      "stratum": "md|single_ns|en|name",
+      "split": "dev"
+    },
+    {
+      "brand_family_id": "brand:totalenergies",
+      "brand_canonical": "TotalEnergies",
+      "n_accepted_v3": 9,
+      "n_namespaces": 1,
+      "stratum": "md|single_ns|en|name",
+      "split": "dev"
+    },
+    {
+      "brand_family_id": "brand:vinaphone",
+      "brand_canonical": "Vinaphone",
+      "n_accepted_v3": 12,
+      "n_namespaces": 1,
+      "stratum": "md|single_ns|en|name",
+      "split": "dev"
+    },
+    {
+      "brand_family_id": "brand:dong_a",
+      "brand_canonical": "Đông Á",
+      "n_accepted_v3": 11,
+      "n_namespaces": 1,
+      "stratum": "md|single_ns|vi|name",
+      "split": "dev"
+    },
+    {
+      "brand_family_id": "brand:ktm",
+      "brand_canonical": "KTM",
+      "n_accepted_v3": 2,
+      "n_namespaces": 1,
+      "stratum": "sm|single_ns|en|acronym",
+      "split": "dev"
+    },
+    {
+      "brand_family_id": "brand:mhb",
+      "brand_canonical": "MHB",
+      "n_accepted_v3": 2,
+      "n_namespaces": 1,
+      "stratum": "sm|single_ns|en|acronym",
+      "split": "dev"
+    },
+    {
+      "brand_family_id": "brand:banana_republic",
+      "brand_canonical": "Banana Republic",
+      "n_accepted_v3": 2,
+      "n_namespaces": 1,
+      "stratum": "sm|single_ns|en|name",
+      "split": "dev"
+    },
+    {
+      "brand_family_id": "brand:breadtalk",
+      "brand_canonical": "BreadTalk",
+      "n_accepted_v3": 4,
+      "n_namespaces": 1,
+      "stratum": "sm|single_ns|en|name",
+      "split": "dev"
+    },
+    {
+      "brand_family_id": "brand:eva_de_eva",
+      "brand_canonical": "Eva de Eva",
+      "n_accepted_v3": 2,
+      "n_namespaces": 1,
+      "stratum": "sm|single_ns|en|name",
+      "split": "dev"
+    },
+    {
+      "brand_family_id": "brand:gap",
+      "brand_canonical": "Gap",
+      "n_accepted_v3": 3,
+      "n_namespaces": 1,
+      "stratum": "sm|single_ns|en|name",
+      "split": "dev"
+    },
+    {
+      "brand_family_id": "brand:harley_davidson",
+      "brand_canonical": "Harley-Davidson",
+      "n_accepted_v3": 3,
+      "n_namespaces": 1,
+      "stratum": "sm|single_ns|en|name",
+      "split": "dev"
+    },
+    {
+      "brand_family_id": "brand:hocmonpetro",
+      "brand_canonical": "HOCMONPETRO",
+      "n_accepted_v3": 2,
+      "n_namespaces": 1,
+      "stratum": "sm|single_ns|en|name",
+      "split": "dev"
+    },
+    {
+      "brand_family_id": "brand:independant",
+      "brand_canonical": "Independant",
+      "n_accepted_v3": 3,
+      "n_namespaces": 1,
+      "stratum": "sm|single_ns|en|name",
+      "split": "dev"
+    },
+    {
+      "brand_family_id": "brand:marriott",
+      "brand_canonical": "Marriott",
+      "n_accepted_v3": 2,
+      "n_namespaces": 1,
+      "stratum": "sm|single_ns|en|name",
+      "split": "dev"
+    },
+    {
+      "brand_family_id": "brand:petro_28",
+      "brand_canonical": "Petro 28",
+      "n_accepted_v3": 4,
+      "n_namespaces": 1,
+      "stratum": "sm|single_ns|en|name",
+      "split": "dev"
+    },
+    {
+      "brand_family_id": "brand:sen",
+      "brand_canonical": "Sen",
+      "n_accepted_v3": 3,
+      "n_namespaces": 1,
+      "stratum": "sm|single_ns|en|name",
+      "split": "dev"
+    },
+    {
+      "brand_family_id": "brand:sports_authority",
+      "brand_canonical": "Sports Authority",
+      "n_accepted_v3": 2,
+      "n_namespaces": 1,
+      "stratum": "sm|single_ns|en|name",
+      "split": "dev"
+    },
+    {
+      "brand_family_id": "brand:the_alley",
+      "brand_canonical": "The Alley",
+      "n_accepted_v3": 3,
+      "n_namespaces": 1,
+      "stratum": "sm|single_ns|en|name",
+      "split": "dev"
+    },
+    {
+      "brand_family_id": "brand:wuling",
+      "brand_canonical": "Wuling",
+      "n_accepted_v3": 2,
+      "n_namespaces": 1,
+      "stratum": "sm|single_ns|en|name",
+      "split": "dev"
+    },
+    {
+      "brand_family_id": "brand:hientrang",
+      "brand_canonical": "HiềnTrang",
+      "n_accepted_v3": 1,
+      "n_namespaces": 1,
+      "stratum": "sm|single_ns|vi|name",
+      "split": "dev"
+    },
+    {
+      "brand_family_id": "brand:circle_k",
+      "brand_canonical": "Circle K",
+      "n_accepted_v3": 201,
+      "n_namespaces": 2,
+      "stratum": "xl|multi_ns|en|name",
+      "split": "dev"
+    },
+    {
+      "brand_family_id": "brand:pharmacity",
+      "brand_canonical": "Pharmacity",
+      "n_accepted_v3": 96,
+      "n_namespaces": 1,
+      "stratum": "xl|single_ns|en|name",
+      "split": "dev"
+    },
+    {
+      "brand_family_id": "brand:msb",
+      "brand_canonical": "MSB",
+      "n_accepted_v3": 20,
+      "n_namespaces": 2,
+      "stratum": "lg|multi_ns|en|acronym",
+      "split": "test"
+    },
+    {
+      "brand_family_id": "brand:eximbank",
+      "brand_canonical": "Eximbank",
+      "n_accepted_v3": 77,
+      "n_namespaces": 2,
+      "stratum": "lg|multi_ns|en|name",
+      "split": "test"
+    },
+    {
+      "brand_family_id": "brand:seabank",
+      "brand_canonical": "SeABank",
+      "n_accepted_v3": 65,
+      "n_namespaces": 2,
+      "stratum": "lg|multi_ns|en|name",
+      "split": "test"
+    },
+    {
+      "brand_family_id": "brand:starbucks",
+      "brand_canonical": "Starbucks",
+      "n_accepted_v3": 75,
+      "n_namespaces": 2,
+      "stratum": "lg|multi_ns|en|name",
+      "split": "test"
+    },
+    {
+      "brand_family_id": "brand:vietbank",
+      "brand_canonical": "Vietbank",
+      "n_accepted_v3": 20,
+      "n_namespaces": 2,
+      "stratum": "lg|multi_ns|en|name",
+      "split": "test"
+    },
+    {
+      "brand_family_id": "brand:petro_vietnam",
+      "brand_canonical": "petro vietnam",
+      "n_accepted_v3": 22,
+      "n_namespaces": 1,
+      "stratum": "lg|single_ns|en|name",
+      "split": "test"
+    },
+    {
+      "brand_family_id": "brand:pizza_hut",
+      "brand_canonical": "Pizza Hut",
+      "n_accepted_v3": 60,
+      "n_namespaces": 1,
+      "stratum": "lg|single_ns|en|name",
+      "split": "test"
+    },
+    {
+      "brand_family_id": "brand:toyota",
+      "brand_canonical": "Toyota",
+      "n_accepted_v3": 26,
+      "n_namespaces": 1,
+      "stratum": "lg|single_ns|en|name",
+      "split": "test"
+    },
+    {
+      "brand_family_id": "brand:vinfast",
+      "brand_canonical": "VinFast",
+      "n_accepted_v3": 28,
+      "n_namespaces": 1,
+      "stratum": "lg|single_ns|en|name",
+      "split": "test"
+    },
+    {
+      "brand_family_id": "brand:caltex",
+      "brand_canonical": "Caltex",
+      "n_accepted_v3": 8,
+      "n_namespaces": 2,
+      "stratum": "md|multi_ns|en|name",
+      "split": "test"
+    },
+    {
+      "brand_family_id": "brand:mediamart",
+      "brand_canonical": "MediaMart",
+      "n_accepted_v3": 16,
+      "n_namespaces": 2,
+      "stratum": "md|multi_ns|en|name",
+      "split": "test"
+    },
+    {
+      "brand_family_id": "brand:phuong_nam",
+      "brand_canonical": "Phương Nam",
+      "n_accepted_v3": 7,
+      "n_namespaces": 2,
+      "stratum": "md|multi_ns|vi|name",
+      "split": "test"
+    },
+    {
+      "brand_family_id": "brand:home",
+      "brand_canonical": "@HOME",
+      "n_accepted_v3": 5,
+      "n_namespaces": 1,
+      "stratum": "md|single_ns|en|acronym",
+      "split": "test"
+    },
+    {
+      "brand_family_id": "brand:swp",
+      "brand_canonical": "SWP",
+      "n_accepted_v3": 6,
+      "n_namespaces": 1,
+      "stratum": "md|single_ns|en|acronym",
+      "split": "test"
+    },
+    {
+      "brand_family_id": "brand:apple",
+      "brand_canonical": "Apple",
+      "n_accepted_v3": 5,
+      "n_namespaces": 1,
+      "stratum": "md|single_ns|en|name",
+      "split": "test"
+    },
+    {
+      "brand_family_id": "brand:big_c",
+      "brand_canonical": "Big C",
+      "n_accepted_v3": 14,
+      "n_namespaces": 1,
+      "stratum": "md|single_ns|en|name",
+      "split": "test"
+    },
+    {
+      "brand_family_id": "brand:chevrolet",
+      "brand_canonical": "Chevrolet",
+      "n_accepted_v3": 5,
+      "n_namespaces": 1,
+      "stratum": "md|single_ns|en|name",
+      "split": "test"
+    },
+    {
+      "brand_family_id": "brand:comeco",
+      "brand_canonical": "Comeco",
+      "n_accepted_v3": 5,
+      "n_namespaces": 1,
+      "stratum": "md|single_ns|en|name",
+      "split": "test"
+    },
+    {
+      "brand_family_id": "brand:dairy_queen",
+      "brand_canonical": "Dairy Queen",
+      "n_accepted_v3": 9,
+      "n_namespaces": 1,
+      "stratum": "md|single_ns|en|name",
+      "split": "test"
+    },
+    {
+      "brand_family_id": "brand:domino_s",
+      "brand_canonical": "Domino's",
+      "n_accepted_v3": 17,
+      "n_namespaces": 1,
+      "stratum": "md|single_ns|en|name",
+      "split": "test"
+    },
+    {
+      "brand_family_id": "brand:ford",
+      "brand_canonical": "Ford",
+      "n_accepted_v3": 10,
+      "n_namespaces": 1,
+      "stratum": "md|single_ns|en|name",
+      "split": "test"
+    },
+    {
+      "brand_family_id": "brand:fujimart",
+      "brand_canonical": "FujiMart",
+      "n_accepted_v3": 9,
+      "n_namespaces": 1,
+      "stratum": "md|single_ns|en|name",
+      "split": "test"
+    },
+    {
+      "brand_family_id": "brand:mango",
+      "brand_canonical": "Mango",
+      "n_accepted_v3": 6,
+      "n_namespaces": 1,
+      "stratum": "md|single_ns|en|name",
+      "split": "test"
+    },
+    {
+      "brand_family_id": "brand:miniso",
+      "brand_canonical": "Miniso",
+      "n_accepted_v3": 12,
+      "n_namespaces": 1,
+      "stratum": "md|single_ns|en|name",
+      "split": "test"
+    },
+    {
+      "brand_family_id": "brand:mobifone",
+      "brand_canonical": "Mobifone",
+      "n_accepted_v3": 12,
+      "n_namespaces": 1,
+      "stratum": "md|single_ns|en|name",
+      "split": "test"
+    },
+    {
+      "brand_family_id": "brand:petec",
+      "brand_canonical": "Petec",
+      "n_accepted_v3": 6,
+      "n_namespaces": 1,
+      "stratum": "md|single_ns|en|name",
+      "split": "test"
+    },
+    {
+      "brand_family_id": "brand:samsung",
+      "brand_canonical": "Samsung",
+      "n_accepted_v3": 9,
+      "n_namespaces": 1,
+      "stratum": "md|single_ns|en|name",
+      "split": "test"
+    },
+    {
+      "brand_family_id": "brand:suzuki",
+      "brand_canonical": "Suzuki",
+      "n_accepted_v3": 6,
+      "n_namespaces": 1,
+      "stratum": "md|single_ns|en|name",
+      "split": "test"
+    },
+    {
+      "brand_family_id": "brand:the_coffee_bean_tea_leaf",
+      "brand_canonical": "The Coffee Bean & Tea Leaf",
+      "n_accepted_v3": 15,
+      "n_namespaces": 1,
+      "stratum": "md|single_ns|en|name",
+      "split": "test"
+    },
+    {
+      "brand_family_id": "brand:triumph",
+      "brand_canonical": "Triumph",
+      "n_accepted_v3": 8,
+      "n_namespaces": 1,
+      "stratum": "md|single_ns|en|name",
+      "split": "test"
+    },
+    {
+      "brand_family_id": "brand:tru_by_hilton",
+      "brand_canonical": "Tru by Hilton",
+      "n_accepted_v3": 8,
+      "n_namespaces": 1,
+      "stratum": "md|single_ns|en|name",
+      "split": "test"
+    },
+    {
+      "brand_family_id": "brand:yves_rocher",
+      "brand_canonical": "Yves Rocher",
+      "n_accepted_v3": 5,
+      "n_namespaces": 1,
+      "stratum": "md|single_ns|en|name",
+      "split": "test"
+    },
+    {
+      "brand_family_id": "brand:hong_lam",
+      "brand_canonical": "Hồng Lam",
+      "n_accepted_v3": 14,
+      "n_namespaces": 1,
+      "stratum": "md|single_ns|vi|name",
+      "split": "test"
+    },
+    {
+      "brand_family_id": "brand:tin_nghia",
+      "brand_canonical": "Tín Nghĩa",
+      "n_accepted_v3": 4,
+      "n_namespaces": 2,
+      "stratum": "sm|multi_ns|vi|name",
+      "split": "test"
+    },
+    {
+      "brand_family_id": "brand:fmc",
+      "brand_canonical": "FMC",
+      "n_accepted_v3": 3,
+      "n_namespaces": 1,
+      "stratum": "sm|single_ns|en|acronym",
+      "split": "test"
+    },
+    {
+      "brand_family_id": "brand:hp",
+      "brand_canonical": "HP",
+      "n_accepted_v3": 3,
+      "n_namespaces": 1,
+      "stratum": "sm|single_ns|en|acronym",
+      "split": "test"
+    },
+    {
+      "brand_family_id": "brand:psp",
+      "brand_canonical": "PSP",
+      "n_accepted_v3": 3,
+      "n_namespaces": 1,
+      "stratum": "sm|single_ns|en|acronym",
+      "split": "test"
+    },
+    {
+      "brand_family_id": "brand:audi",
+      "brand_canonical": "Audi",
+      "n_accepted_v3": 2,
+      "n_namespaces": 1,
+      "stratum": "sm|single_ns|en|name",
+      "split": "test"
+    },
+    {
+      "brand_family_id": "brand:buffalo_wild_wings",
+      "brand_canonical": "Buffalo Wild Wings",
+      "n_accepted_v3": 2,
+      "n_namespaces": 1,
+      "stratum": "sm|single_ns|en|name",
+      "split": "test"
+    },
+    {
+      "brand_family_id": "brand:calvin_klein",
+      "brand_canonical": "Calvin Klein",
+      "n_accepted_v3": 2,
+      "n_namespaces": 1,
+      "stratum": "sm|single_ns|en|name",
+      "split": "test"
+    },
+    {
+      "brand_family_id": "brand:citi_fruit",
+      "brand_canonical": "Citi Fruit",
+      "n_accepted_v3": 3,
+      "n_namespaces": 1,
+      "stratum": "sm|single_ns|en|name",
+      "split": "test"
+    },
+    {
+      "brand_family_id": "brand:coco_island",
+      "brand_canonical": "Coco Island",
+      "n_accepted_v3": 2,
+      "n_namespaces": 1,
+      "stratum": "sm|single_ns|en|name",
+      "split": "test"
+    },
+    {
+      "brand_family_id": "brand:coffee_time",
+      "brand_canonical": "Coffee Time",
+      "n_accepted_v3": 4,
+      "n_namespaces": 1,
+      "stratum": "sm|single_ns|en|name",
+      "split": "test"
+    },
+    {
+      "brand_family_id": "brand:eneos",
+      "brand_canonical": "Eneos",
+      "n_accepted_v3": 4,
+      "n_namespaces": 1,
+      "stratum": "sm|single_ns|en|name",
+      "split": "test"
+    },
+    {
+      "brand_family_id": "brand:fila",
+      "brand_canonical": "Fila",
+      "n_accepted_v3": 2,
+      "n_namespaces": 1,
+      "stratum": "sm|single_ns|en|name",
+      "split": "test"
+    },
+    {
+      "brand_family_id": "brand:four_seasons",
+      "brand_canonical": "Four Seasons",
+      "n_accepted_v3": 2,
+      "n_namespaces": 1,
+      "stratum": "sm|single_ns|en|name",
+      "split": "test"
+    },
+    {
+      "brand_family_id": "brand:hilton_garden_inn",
+      "brand_canonical": "Hilton Garden Inn",
+      "n_accepted_v3": 2,
+      "n_namespaces": 1,
+      "stratum": "sm|single_ns|en|name",
+      "split": "test"
+    },
+    {
+      "brand_family_id": "brand:ibis",
+      "brand_canonical": "Ibis",
+      "n_accepted_v3": 2,
+      "n_namespaces": 1,
+      "stratum": "sm|single_ns|en|name",
+      "split": "test"
+    },
+    {
+      "brand_family_id": "brand:intercontinental",
+      "brand_canonical": "InterContinental",
+      "n_accepted_v3": 4,
+      "n_namespaces": 1,
+      "stratum": "sm|single_ns|en|name",
+      "split": "test"
+    },
+    {
+      "brand_family_id": "brand:jaguar",
+      "brand_canonical": "Jaguar",
+      "n_accepted_v3": 3,
+      "n_namespaces": 1,
+      "stratum": "sm|single_ns|en|name",
+      "split": "test"
+    },
+    {
+      "brand_family_id": "brand:lexus",
+      "brand_canonical": "Lexus",
+      "n_accepted_v3": 2,
+      "n_namespaces": 1,
+      "stratum": "sm|single_ns|en|name",
+      "split": "test"
+    },
+    {
+      "brand_family_id": "brand:nesta_hotel",
+      "brand_canonical": "Nesta Hotel",
+      "n_accepted_v3": 4,
+      "n_namespaces": 1,
+      "stratum": "sm|single_ns|en|name",
+      "split": "test"
+    },
+    {
+      "brand_family_id": "brand:paris_baguette",
+      "brand_canonical": "Paris Baguette",
+      "n_accepted_v3": 3,
+      "n_namespaces": 1,
+      "stratum": "sm|single_ns|en|name",
+      "split": "test"
+    },
+    {
+      "brand_family_id": "brand:piaggio",
+      "brand_canonical": "Piaggio",
+      "n_accepted_v3": 2,
+      "n_namespaces": 1,
+      "stratum": "sm|single_ns|en|name",
+      "split": "test"
+    },
+    {
+      "brand_family_id": "brand:pizza_inn",
+      "brand_canonical": "Pizza Inn",
+      "n_accepted_v3": 2,
+      "n_namespaces": 1,
+      "stratum": "sm|single_ns|en|name",
+      "split": "test"
+    },
+    {
+      "brand_family_id": "brand:radisson",
+      "brand_canonical": "Radisson",
+      "n_accepted_v3": 3,
+      "n_namespaces": 1,
+      "stratum": "sm|single_ns|en|name",
+      "split": "test"
+    },
+    {
+      "brand_family_id": "brand:saigon_tourist",
+      "brand_canonical": "Saigon Tourist",
+      "n_accepted_v3": 2,
+      "n_namespaces": 1,
+      "stratum": "sm|single_ns|en|name",
+      "split": "test"
+    },
+    {
+      "brand_family_id": "brand:six_senses",
+      "brand_canonical": "Six Senses",
+      "n_accepted_v3": 2,
+      "n_namespaces": 1,
+      "stratum": "sm|single_ns|en|name",
+      "split": "test"
+    },
+    {
+      "brand_family_id": "brand:the_body_shop",
+      "brand_canonical": "The Body Shop",
+      "n_accepted_v3": 3,
+      "n_namespaces": 1,
+      "stratum": "sm|single_ns|en|name",
+      "split": "test"
+    },
+    {
+      "brand_family_id": "brand:tops_market",
+      "brand_canonical": "Tops Market",
+      "n_accepted_v3": 4,
+      "n_namespaces": 1,
+      "stratum": "sm|single_ns|en|name",
+      "split": "test"
+    },
+    {
+      "brand_family_id": "brand:vissan",
+      "brand_canonical": "Vissan",
+      "n_accepted_v3": 2,
+      "n_namespaces": 1,
+      "stratum": "sm|single_ns|en|name",
+      "split": "test"
+    },
+    {
+      "brand_family_id": "brand:wyndham",
+      "brand_canonical": "Wyndham",
+      "n_accepted_v3": 2,
+      "n_namespaces": 1,
+      "stratum": "sm|single_ns|en|name",
+      "split": "test"
+    },
+    {
+      "brand_family_id": "brand:movenpick",
+      "brand_canonical": "Mövenpick",
+      "n_accepted_v3": 3,
+      "n_namespaces": 1,
+      "stratum": "sm|single_ns|vi|name",
+      "split": "test"
+    },
+    {
+      "brand_family_id": "brand:nhua_binh_minh",
+      "brand_canonical": "Nhựa Bình Minh",
+      "n_accepted_v3": 2,
+      "n_namespaces": 1,
+      "stratum": "sm|single_ns|vi|name",
+      "split": "test"
+    },
+    {
+      "brand_family_id": "brand:thanh_pho_oil",
+      "brand_canonical": "Thành phố Oil",
+      "n_accepted_v3": 3,
+      "n_namespaces": 1,
+      "stratum": "sm|single_ns|vi|name",
+      "split": "test"
+    },
+    {
+      "brand_family_id": "brand:bidv",
+      "brand_canonical": "BIDV",
+      "n_accepted_v3": 528,
+      "n_namespaces": 2,
+      "stratum": "xl|multi_ns|en|acronym",
+      "split": "test"
+    },
+    {
+      "brand_family_id": "brand:techcombank",
+      "brand_canonical": "Techcombank",
+      "n_accepted_v3": 398,
+      "n_namespaces": 2,
+      "stratum": "xl|multi_ns|en|name",
+      "split": "test"
+    },
+    {
+      "brand_family_id": "brand:tpbank",
+      "brand_canonical": "TPBank",
+      "n_accepted_v3": 178,
+      "n_namespaces": 2,
+      "stratum": "xl|multi_ns|en|name",
+      "split": "test"
+    },
+    {
+      "brand_family_id": "brand:highlands_coffee",
+      "brand_canonical": "Highlands Coffee",
+      "n_accepted_v3": 256,
+      "n_namespaces": 1,
+      "stratum": "xl|single_ns|en|name",
+      "split": "test"
+    },
+    {
+      "brand_family_id": "brand:honda",
+      "brand_canonical": "Honda",
+      "n_accepted_v3": 172,
+      "n_namespaces": 1,
+      "stratum": "xl|single_ns|en|name",
+      "split": "test"
+    },
+    {
+      "brand_family_id": "brand:hsbc",
+      "brand_canonical": "HSBC",
+      "n_accepted_v3": 44,
+      "n_namespaces": 2,
+      "stratum": "lg|multi_ns|en|acronym",
+      "split": "train"
+    },
+    {
+      "brand_family_id": "brand:ocb",
+      "brand_canonical": "OCB",
+      "n_accepted_v3": 28,
+      "n_namespaces": 2,
+      "stratum": "lg|multi_ns|en|acronym",
+      "split": "train"
+    },
+    {
+      "brand_family_id": "brand:shb",
+      "brand_canonical": "SHB",
+      "n_accepted_v3": 68,
+      "n_namespaces": 2,
+      "stratum": "lg|multi_ns|en|acronym",
+      "split": "train"
+    },
+    {
+      "brand_family_id": "brand:vib",
+      "brand_canonical": "VIB",
+      "n_accepted_v3": 63,
+      "n_namespaces": 2,
+      "stratum": "lg|multi_ns|en|acronym",
+      "split": "train"
+    },
+    {
+      "brand_family_id": "brand:abbank",
+      "brand_canonical": "ABBank",
+      "n_accepted_v3": 31,
+      "n_namespaces": 2,
+      "stratum": "lg|multi_ns|en|name",
+      "split": "train"
+    },
+    {
+      "brand_family_id": "brand:co_op_food",
+      "brand_canonical": "Co.op Food",
+      "n_accepted_v3": 22,
+      "n_namespaces": 3,
+      "stratum": "lg|multi_ns|en|name",
+      "split": "train"
+    },
+    {
+      "brand_family_id": "brand:ding_tea",
+      "brand_canonical": "Ding Tea",
+      "n_accepted_v3": 21,
+      "n_namespaces": 2,
+      "stratum": "lg|multi_ns|en|name",
+      "split": "train"
+    },
+    {
+      "brand_family_id": "brand:dongabank",
+      "brand_canonical": "DongaBank",
+      "n_accepted_v3": 67,
+      "n_namespaces": 2,
+      "stratum": "lg|multi_ns|en|name",
+      "split": "train"
+    },
+    {
+      "brand_family_id": "brand:familymart",
+      "brand_canonical": "FamilyMart",
+      "n_accepted_v3": 70,
+      "n_namespaces": 2,
+      "stratum": "lg|multi_ns|en|name",
+      "split": "train"
+    },
+    {
+      "brand_family_id": "brand:maritime_bank",
+      "brand_canonical": "Maritime Bank",
+      "n_accepted_v3": 26,
+      "n_namespaces": 2,
+      "stratum": "lg|multi_ns|en|name",
+      "split": "train"
+    },
+    {
+      "brand_family_id": "brand:ministop",
+      "brand_canonical": "Ministop",
+      "n_accepted_v3": 43,
+      "n_namespaces": 2,
+      "stratum": "lg|multi_ns|en|name",
+      "split": "train"
+    },
+    {
+      "brand_family_id": "brand:nam_a_bank",
+      "brand_canonical": "Nam A Bank",
+      "n_accepted_v3": 26,
+      "n_namespaces": 2,
+      "stratum": "lg|multi_ns|en|name",
+      "split": "train"
+    },
+    {
+      "brand_family_id": "brand:pvcombank",
+      "brand_canonical": "PVcomBank",
+      "n_accepted_v3": 36,
+      "n_namespaces": 2,
+      "stratum": "lg|multi_ns|en|name",
+      "split": "train"
+    },
+    {
+      "brand_family_id": "brand:vikki_bank",
+      "brand_canonical": "Vikki Bank",
+      "n_accepted_v3": 37,
+      "n_namespaces": 2,
+      "stratum": "lg|multi_ns|en|name",
+      "split": "train"
+    },
+    {
+      "brand_family_id": "brand:vinmart",
+      "brand_canonical": "VinMart",
+      "n_accepted_v3": 23,
+      "n_namespaces": 2,
+      "stratum": "lg|multi_ns|en|name",
+      "split": "train"
+    },
+    {
+      "brand_family_id": "brand:dien_may_xanh",
+      "brand_canonical": "Điện Máy Xanh",
+      "n_accepted_v3": 63,
+      "n_namespaces": 2,
+      "stratum": "lg|multi_ns|vi|name",
+      "split": "train"
+    },
+    {
+      "brand_family_id": "brand:trung_nguyen",
+      "brand_canonical": "Trung Nguyên",
+      "n_accepted_v3": 43,
+      "n_namespaces": 2,
+      "stratum": "lg|multi_ns|vi|name",
+      "split": "train"
+    },
+    {
+      "brand_family_id": "brand:gs25",
+      "brand_canonical": "GS25",
+      "n_accepted_v3": 72,
+      "n_namespaces": 1,
+      "stratum": "lg|single_ns|en|acronym",
+      "split": "train"
+    },
+    {
+      "brand_family_id": "brand:vdb",
+      "brand_canonical": "VDB",
+      "n_accepted_v3": 20,
+      "n_namespaces": 1,
+      "stratum": "lg|single_ns|en|acronym",
+      "split": "train"
+    },
+    {
+      "brand_family_id": "brand:jollibee",
+      "brand_canonical": "Jollibee",
+      "n_accepted_v3": 36,
+      "n_namespaces": 1,
+      "stratum": "lg|single_ns|en|name",
+      "split": "train"
+    },
+    {
+      "brand_family_id": "brand:mipec",
+      "brand_canonical": "Mipec",
+      "n_accepted_v3": 21,
+      "n_namespaces": 1,
+      "stratum": "lg|single_ns|en|name",
+      "split": "train"
+    },
+    {
+      "brand_family_id": "brand:mipecorp",
+      "brand_canonical": "MIPECORP",
+      "n_accepted_v3": 50,
+      "n_namespaces": 1,
+      "stratum": "lg|single_ns|en|name",
+      "split": "train"
+    },
+    {
+      "brand_family_id": "brand:mixue_ice_cream_tea",
+      "brand_canonical": "Mixue Ice Cream & Tea",
+      "n_accepted_v3": 31,
+      "n_namespaces": 1,
+      "stratum": "lg|single_ns|en|name",
+      "split": "train"
+    },
+    {
+      "brand_family_id": "brand:saigon_petro",
+      "brand_canonical": "Saigon Petro",
+      "n_accepted_v3": 33,
+      "n_namespaces": 1,
+      "stratum": "lg|single_ns|en|name",
+      "split": "train"
+    },
+    {
+      "brand_family_id": "brand:the_pizza_company",
+      "brand_canonical": "The Pizza Company",
+      "n_accepted_v3": 22,
+      "n_namespaces": 1,
+      "stratum": "lg|single_ns|en|name",
+      "split": "train"
+    },
+    {
+      "brand_family_id": "brand:viettel",
+      "brand_canonical": "Viettel",
+      "n_accepted_v3": 29,
+      "n_namespaces": 1,
+      "stratum": "lg|single_ns|en|name",
+      "split": "train"
+    },
+    {
+      "brand_family_id": "brand:viettel_store",
+      "brand_canonical": "Viettel Store",
+      "n_accepted_v3": 44,
+      "n_namespaces": 1,
+      "stratum": "lg|single_ns|en|name",
+      "split": "train"
+    },
+    {
+      "brand_family_id": "brand:vinamilk",
+      "brand_canonical": "Vinamilk",
+      "n_accepted_v3": 33,
+      "n_namespaces": 1,
+      "stratum": "lg|single_ns|en|name",
+      "split": "train"
+    },
+    {
+      "brand_family_id": "brand:yamaha",
+      "brand_canonical": "Yamaha",
+      "n_accepted_v3": 37,
+      "n_namespaces": 1,
+      "stratum": "lg|single_ns|en|name",
+      "split": "train"
+    },
+    {
+      "brand_family_id": "brand:cong_ca_phe",
+      "brand_canonical": "Cộng Cà Phê",
+      "n_accepted_v3": 44,
+      "n_namespaces": 1,
+      "stratum": "lg|single_ns|vi|name",
+      "split": "train"
+    },
+    {
+      "brand_family_id": "brand:ngan_hang_chinh_sach_xa_hoi",
+      "brand_canonical": "Ngân hàng Chính sách xã hội",
+      "n_accepted_v3": 28,
+      "n_namespaces": 1,
+      "stratum": "lg|single_ns|vi|name",
+      "split": "train"
+    },
+    {
+      "brand_family_id": "brand:vrb",
+      "brand_canonical": "VRB",
+      "n_accepted_v3": 10,
+      "n_namespaces": 2,
+      "stratum": "md|multi_ns|en|acronym",
+      "split": "train"
+    },
+    {
+      "brand_family_id": "brand:k_market",
+      "brand_canonical": "K-Market",
+      "n_accepted_v3": 18,
+      "n_namespaces": 2,
+      "stratum": "md|multi_ns|en|name",
+      "split": "train"
+    },
+    {
+      "brand_family_id": "brand:k_mart",
+      "brand_canonical": "K Mart",
+      "n_accepted_v3": 12,
+      "n_namespaces": 2,
+      "stratum": "md|multi_ns|en|name",
+      "split": "train"
+    },
+    {
+      "brand_family_id": "brand:kienlongbank",
+      "brand_canonical": "Kienlongbank",
+      "n_accepted_v3": 10,
+      "n_namespaces": 2,
+      "stratum": "md|multi_ns|en|name",
+      "split": "train"
+    },
+    {
+      "brand_family_id": "brand:mixue",
+      "brand_canonical": "Mixue",
+      "n_accepted_v3": 13,
+      "n_namespaces": 2,
+      "stratum": "md|multi_ns|en|name",
+      "split": "train"
+    },
+    {
+      "brand_family_id": "brand:ocean_bank",
+      "brand_canonical": "Ocean Bank",
+      "n_accepted_v3": 19,
+      "n_namespaces": 2,
+      "stratum": "md|multi_ns|en|name",
+      "split": "train"
+    },
+    {
+      "brand_family_id": "brand:shinhan_bank",
+      "brand_canonical": "Shinhan Bank",
+      "n_accepted_v3": 16,
+      "n_namespaces": 2,
+      "stratum": "md|multi_ns|en|name",
+      "split": "train"
+    },
+    {
+      "brand_family_id": "brand:tous_les_jours",
+      "brand_canonical": "Tous les Jours",
+      "n_accepted_v3": 18,
+      "n_namespaces": 2,
+      "stratum": "md|multi_ns|en|name",
+      "split": "train"
+    },
+    {
+      "brand_family_id": "brand:vinmart_plus",
+      "brand_canonical": "VinMart+",
+      "n_accepted_v3": 13,
+      "n_namespaces": 3,
+      "stratum": "md|multi_ns|en|name",
+      "split": "train"
+    },
+    {
+      "brand_family_id": "brand:nhu_y",
+      "brand_canonical": "NHƯ Ý",
+      "n_accepted_v3": 10,
+      "n_namespaces": 3,
+      "stratum": "md|multi_ns|vi|acronym",
+      "split": "train"
+    },
+    {
+      "brand_family_id": "brand:sua_chua_tran_chau_ha_long",
+      "brand_canonical": "Sữa Chua Trân Châu Hạ Long",
+      "n_accepted_v3": 6,
+      "n_namespaces": 2,
+      "stratum": "md|multi_ns|vi|name",
+      "split": "train"
+    },
+    {
+      "brand_family_id": "brand:bmw",
+      "brand_canonical": "BMW",
+      "n_accepted_v3": 9,
+      "n_namespaces": 1,
+      "stratum": "md|single_ns|en|acronym",
+      "split": "train"
+    },
+    {
+      "brand_family_id": "brand:fpt",
+      "brand_canonical": "FPT",
+      "n_accepted_v3": 5,
+      "n_namespaces": 1,
+      "stratum": "md|single_ns|en|acronym",
+      "split": "train"
+    },
+    {
+      "brand_family_id": "brand:h_m",
+      "brand_canonical": "H&M",
+      "n_accepted_v3": 7,
+      "n_namespaces": 1,
+      "stratum": "md|single_ns|en|acronym",
+      "split": "train"
+    },
+    {
+      "brand_family_id": "brand:mr_diy",
+      "brand_canonical": "MR.DIY",
+      "n_accepted_v3": 5,
+      "n_namespaces": 1,
+      "stratum": "md|single_ns|en|acronym",
+      "split": "train"
+    },
+    {
+      "brand_family_id": "brand:ncb",
+      "brand_canonical": "NCB",
+      "n_accepted_v3": 7,
+      "n_namespaces": 1,
+      "stratum": "md|single_ns|en|acronym",
+      "split": "train"
+    },
+    {
+      "brand_family_id": "brand:sym",
+      "brand_canonical": "SYM",
+      "n_accepted_v3": 5,
+      "n_namespaces": 1,
+      "stratum": "md|single_ns|en|acronym",
+      "split": "train"
+    },
+    {
+      "brand_family_id": "brand:abc_pharmacy",
+      "brand_canonical": "ABC Pharmacy",
+      "n_accepted_v3": 5,
+      "n_namespaces": 1,
+      "stratum": "md|single_ns|en|name",
+      "split": "train"
+    },
+    {
+      "brand_family_id": "brand:adidas",
+      "brand_canonical": "Adidas",
+      "n_accepted_v3": 18,
+      "n_namespaces": 1,
+      "stratum": "md|single_ns|en|name",
+      "split": "train"
+    },
+    {
+      "brand_family_id": "brand:aldo",
+      "brand_canonical": "Aldo",
+      "n_accepted_v3": 5,
+      "n_namespaces": 1,
+      "stratum": "md|single_ns|en|name",
+      "split": "train"
+    },
+    {
+      "brand_family_id": "brand:bac_a_bank",
+      "brand_canonical": "Bac A Bank",
+      "n_accepted_v3": 16,
+      "n_namespaces": 1,
+      "stratum": "md|single_ns|en|name",
+      "split": "train"
+    },
+    {
+      "brand_family_id": "brand:bitcoinvn",
+      "brand_canonical": "BitcoinVN",
+      "n_accepted_v3": 5,
+      "n_namespaces": 1,
+      "stratum": "md|single_ns|en|name",
+      "split": "train"
+    },
+    {
+      "brand_family_id": "brand:burger_king",
+      "brand_canonical": "Burger King",
+      "n_accepted_v3": 17,
+      "n_namespaces": 1,
+      "stratum": "md|single_ns|en|name",
+      "split": "train"
+    },
+    {
+      "brand_family_id": "brand:canifa",
+      "brand_canonical": "Canifa",
+      "n_accepted_v3": 12,
+      "n_namespaces": 1,
+      "stratum": "md|single_ns|en|name",
+      "split": "train"
+    },
+    {
+      "brand_family_id": "brand:cellphones",
+      "brand_canonical": "CellphoneS",
+      "n_accepted_v3": 7,
+      "n_namespaces": 1,
+      "stratum": "md|single_ns|en|name",
+      "split": "train"
+    },
+    {
+      "brand_family_id": "brand:crocs",
+      "brand_canonical": "Crocs",
+      "n_accepted_v3": 6,
+      "n_namespaces": 1,
+      "stratum": "md|single_ns|en|name",
+      "split": "train"
+    },
+    {
+      "brand_family_id": "brand:dds_petro",
+      "brand_canonical": "DDS Petro",
+      "n_accepted_v3": 7,
+      "n_namespaces": 1,
+      "stratum": "md|single_ns|en|name",
+      "split": "train"
+    },
+    {
+      "brand_family_id": "brand:decathlon",
+      "brand_canonical": "Decathlon",
+      "n_accepted_v3": 6,
+      "n_namespaces": 1,
+      "stratum": "md|single_ns|en|name",
+      "split": "train"
+    },
+    {
+      "brand_family_id": "brand:ecco",
+      "brand_canonical": "Ecco",
+      "n_accepted_v3": 5,
+      "n_namespaces": 1,
+      "stratum": "md|single_ns|en|name",
+      "split": "train"
+    },
+    {
+      "brand_family_id": "brand:fahasa",
+      "brand_canonical": "FAHASA",
+      "n_accepted_v3": 10,
+      "n_namespaces": 1,
+      "stratum": "md|single_ns|en|name",
+      "split": "train"
+    },
+    {
+      "brand_family_id": "brand:giant",
+      "brand_canonical": "Giant",
+      "n_accepted_v3": 6,
+      "n_namespaces": 1,
+      "stratum": "md|single_ns|en|name",
+      "split": "train"
+    },
+    {
+      "brand_family_id": "brand:go",
+      "brand_canonical": "Go",
+      "n_accepted_v3": 11,
+      "n_namespaces": 1,
+      "stratum": "md|single_ns|en|name",
+      "split": "train"
+    },
+    {
+      "brand_family_id": "brand:gong_cha",
+      "brand_canonical": "Gong Cha",
+      "n_accepted_v3": 6,
+      "n_namespaces": 1,
+      "stratum": "md|single_ns|en|name",
+      "split": "train"
+    },
+    {
+      "brand_family_id": "brand:gpbank",
+      "brand_canonical": "GPBank",
+      "n_accepted_v3": 13,
+      "n_namespaces": 1,
+      "stratum": "md|single_ns|en|name",
+      "split": "train"
+    },
+    {
+      "brand_family_id": "brand:guardian",
+      "brand_canonical": "Guardian",
+      "n_accepted_v3": 5,
+      "n_namespaces": 1,
+      "stratum": "md|single_ns|en|name",
+      "split": "train"
+    },
+    {
+      "brand_family_id": "brand:hai_linh",
+      "brand_canonical": "Hai Linh",
+      "n_accepted_v3": 5,
+      "n_namespaces": 1,
+      "stratum": "md|single_ns|en|name",
+      "split": "train"
+    },
+    {
+      "brand_family_id": "brand:hilton",
+      "brand_canonical": "Hilton",
+      "n_accepted_v3": 6,
+      "n_namespaces": 1,
+      "stratum": "md|single_ns|en|name",
+      "split": "train"
+    },
+    {
+      "brand_family_id": "brand:hyundai",
+      "brand_canonical": "Hyundai",
+      "n_accepted_v3": 18,
+      "n_namespaces": 1,
+      "stratum": "md|single_ns|en|name",
+      "split": "train"
+    },
+    {
+      "brand_family_id": "brand:kia",
+      "brand_canonical": "Kia",
+      "n_accepted_v3": 11,
+      "n_namespaces": 1,
+      "stratum": "md|single_ns|en|name",
+      "split": "train"
+    },
+    {
+      "brand_family_id": "brand:king_bbq",
+      "brand_canonical": "King BBQ",
+      "n_accepted_v3": 10,
+      "n_namespaces": 1,
+      "stratum": "md|single_ns|en|name",
+      "split": "train"
+    },
+    {
+      "brand_family_id": "brand:levi_s",
+      "brand_canonical": "Levi's",
+      "n_accepted_v3": 8,
+      "n_namespaces": 1,
+      "stratum": "md|single_ns|en|name",
+      "split": "train"
+    },
+    {
+      "brand_family_id": "brand:lock_lock",
+      "brand_canonical": "Lock & Lock",
+      "n_accepted_v3": 5,
+      "n_namespaces": 1,
+      "stratum": "md|single_ns|en|name",
+      "split": "train"
+    },
+    {
+      "brand_family_id": "brand:lotte_department_store",
+      "brand_canonical": "Lotte Department Store",
+      "n_accepted_v3": 10,
+      "n_namespaces": 1,
+      "stratum": "md|single_ns|en|name",
+      "split": "train"
+    },
+    {
+      "brand_family_id": "brand:lpbank",
+      "brand_canonical": "LPBank",
+      "n_accepted_v3": 12,
+      "n_namespaces": 1,
+      "stratum": "md|single_ns|en|name",
+      "split": "train"
+    },
+    {
+      "brand_family_id": "brand:mazda",
+      "brand_canonical": "Mazda",
+      "n_accepted_v3": 8,
+      "n_namespaces": 1,
+      "stratum": "md|single_ns|en|name",
+      "split": "train"
+    },
+    {
+      "brand_family_id": "brand:mercedes_benz",
+      "brand_canonical": "Mercedes-Benz",
+      "n_accepted_v3": 7,
+      "n_namespaces": 1,
+      "stratum": "md|single_ns|en|name",
+      "split": "train"
+    },
+    {
+      "brand_family_id": "brand:mitsubishi",
+      "brand_canonical": "Mitsubishi",
+      "n_accepted_v3": 5,
+      "n_namespaces": 1,
+      "stratum": "md|single_ns|en|name",
+      "split": "train"
+    },
+    {
+      "brand_family_id": "brand:nike",
+      "brand_canonical": "Nike",
+      "n_accepted_v3": 7,
+      "n_namespaces": 1,
+      "stratum": "md|single_ns|en|name",
+      "split": "train"
+    },
+    {
+      "brand_family_id": "brand:nissan",
+      "brand_canonical": "Nissan",
+      "n_accepted_v3": 5,
+      "n_namespaces": 1,
+      "stratum": "md|single_ns|en|name",
+      "split": "train"
+    },
+    {
+      "brand_family_id": "brand:pandora",
+      "brand_canonical": "Pandora",
+      "n_accepted_v3": 5,
+      "n_namespaces": 1,
+      "stratum": "md|single_ns|en|name",
+      "split": "train"
+    },
+    {
+      "brand_family_id": "brand:pepper_lunch",
+      "brand_canonical": "Pepper Lunch",
+      "n_accepted_v3": 5,
+      "n_namespaces": 1,
+      "stratum": "md|single_ns|en|name",
+      "split": "train"
+    },
+    {
+      "brand_family_id": "brand:petimex",
+      "brand_canonical": "Petimex",
+      "n_accepted_v3": 12,
+      "n_namespaces": 1,
+      "stratum": "md|single_ns|en|name",
+      "split": "train"
+    },
+    {
+      "brand_family_id": "brand:popeyes",
+      "brand_canonical": "Popeyes",
+      "n_accepted_v3": 12,
+      "n_namespaces": 1,
+      "stratum": "md|single_ns|en|name",
+      "split": "train"
+    },
+    {
+      "brand_family_id": "brand:public_bank_vietnam",
+      "brand_canonical": "Public Bank Vietnam",
+      "n_accepted_v3": 5,
+      "n_namespaces": 1,
+      "stratum": "md|single_ns|en|name",
+      "split": "train"
+    },
+    {
+      "brand_family_id": "brand:royaltea",
+      "brand_canonical": "Royaltea",
+      "n_accepted_v3": 6,
+      "n_namespaces": 1,
+      "stratum": "md|single_ns|en|name",
+      "split": "train"
+    },
+    {
+      "brand_family_id": "brand:samsonite",
+      "brand_canonical": "Samsonite",
+      "n_accepted_v3": 8,
+      "n_namespaces": 1,
+      "stratum": "md|single_ns|en|name",
+      "split": "train"
+    },
+    {
+      "brand_family_id": "brand:shell",
+      "brand_canonical": "Shell",
+      "n_accepted_v3": 5,
+      "n_namespaces": 1,
+      "stratum": "md|single_ns|en|name",
+      "split": "train"
+    },
+    {
+      "brand_family_id": "brand:skechers",
+      "brand_canonical": "Skechers",
+      "n_accepted_v3": 9,
+      "n_namespaces": 1,
+      "stratum": "md|single_ns|en|name",
+      "split": "train"
+    },
+    {
+      "brand_family_id": "brand:sts_petro",
+      "brand_canonical": "STS Petro",
+      "n_accepted_v3": 10,
+      "n_namespaces": 1,
+      "stratum": "md|single_ns|en|name",
+      "split": "train"
+    },
+    {
+      "brand_family_id": "brand:texas_chicken",
+      "brand_canonical": "Texas Chicken",
+      "n_accepted_v3": 10,
+      "n_namespaces": 1,
+      "stratum": "md|single_ns|en|name",
+      "split": "train"
+    },
+    {
+      "brand_family_id": "brand:thalexim_petro",
+      "brand_canonical": "Thalexim Petro",
+      "n_accepted_v3": 19,
+      "n_namespaces": 1,
+      "stratum": "md|single_ns|en|name",
+      "split": "train"
+    },
+    {
+      "brand_family_id": "brand:uniqlo",
+      "brand_canonical": "Uniqlo",
+      "n_accepted_v3": 12,
+      "n_namespaces": 1,
+      "stratum": "md|single_ns|en|name",
+      "split": "train"
+    },
+    {
+      "brand_family_id": "brand:vans",
+      "brand_canonical": "Vans",
+      "n_accepted_v3": 6,
+      "n_namespaces": 1,
+      "stratum": "md|single_ns|en|name",
+      "split": "train"
+    },
+    {
+      "brand_family_id": "brand:viet_capital_bank",
+      "brand_canonical": "Viet Capital Bank",
+      "n_accepted_v3": 6,
+      "n_namespaces": 1,
+      "stratum": "md|single_ns|en|name",
+      "split": "train"
+    },
+    {
+      "brand_family_id": "brand:vietnam_airlines",
+      "brand_canonical": "Vietnam Airlines",
+      "n_accepted_v3": 10,
+      "n_namespaces": 1,
+      "stratum": "md|single_ns|en|name",
+      "split": "train"
+    },
+    {
+      "brand_family_id": "brand:vincom",
+      "brand_canonical": "Vincom",
+      "n_accepted_v3": 14,
+      "n_namespaces": 1,
+      "stratum": "md|single_ns|en|name",
+      "split": "train"
+    },
+    {
+      "brand_family_id": "brand:western_union",
+      "brand_canonical": "Western Union",
+      "n_accepted_v3": 7,
+      "n_namespaces": 1,
+      "stratum": "md|single_ns|en|name",
+      "split": "train"
+    },
+    {
+      "brand_family_id": "brand:wyndham_garden",
+      "brand_canonical": "Wyndham Garden",
+      "n_accepted_v3": 5,
+      "n_namespaces": 1,
+      "stratum": "md|single_ns|en|name",
+      "split": "train"
+    },
+    {
+      "brand_family_id": "brand:zara",
+      "brand_canonical": "Zara",
+      "n_accepted_v3": 5,
+      "n_namespaces": 1,
+      "stratum": "md|single_ns|en|name",
+      "split": "train"
+    },
+    {
+      "brand_family_id": "brand:long_chau",
+      "brand_canonical": "Long Châu",
+      "n_accepted_v3": 9,
+      "n_namespaces": 1,
+      "stratum": "md|single_ns|vi|name",
+      "split": "train"
+    },
+    {
+      "brand_family_id": "brand:melia",
+      "brand_canonical": "Meliá",
+      "n_accepted_v3": 6,
+      "n_namespaces": 1,
+      "stratum": "md|single_ns|vi|name",
+      "split": "train"
+    },
+    {
+      "brand_family_id": "brand:pho_24",
+      "brand_canonical": "Phở 24",
+      "n_accepted_v3": 5,
+      "n_namespaces": 1,
+      "stratum": "md|single_ns|vi|name",
+      "split": "train"
+    },
+    {
+      "brand_family_id": "brand:flc",
+      "brand_canonical": "FLC",
+      "n_accepted_v3": 2,
+      "n_namespaces": 1,
+      "stratum": "sm|single_ns|en|acronym",
+      "split": "train"
+    },
+    {
+      "brand_family_id": "brand:ktc",
+      "brand_canonical": "KTC",
+      "n_accepted_v3": 4,
+      "n_namespaces": 1,
+      "stratum": "sm|single_ns|en|acronym",
+      "split": "train"
+    },
+    {
+      "brand_family_id": "brand:mbv",
+      "brand_canonical": "MBV",
+      "n_accepted_v3": 2,
+      "n_namespaces": 1,
+      "stratum": "sm|single_ns|en|acronym",
+      "split": "train"
+    },
+    {
+      "brand_family_id": "brand:oyo",
+      "brand_canonical": "OYO",
+      "n_accepted_v3": 2,
+      "n_namespaces": 1,
+      "stratum": "sm|single_ns|en|acronym",
+      "split": "train"
+    },
+    {
+      "brand_family_id": "brand:pv",
+      "brand_canonical": "PV",
+      "n_accepted_v3": 2,
+      "n_namespaces": 1,
+      "stratum": "sm|single_ns|en|acronym",
+      "split": "train"
+    },
+    {
+      "brand_family_id": "brand:s_e_g",
+      "brand_canonical": "S. E. G",
+      "n_accepted_v3": 2,
+      "n_namespaces": 1,
+      "stratum": "sm|single_ns|en|acronym",
+      "split": "train"
+    },
+    {
+      "brand_family_id": "brand:sts",
+      "brand_canonical": "STS",
+      "n_accepted_v3": 3,
+      "n_namespaces": 1,
+      "stratum": "sm|single_ns|en|acronym",
+      "split": "train"
+    },
+    {
+      "brand_family_id": "brand:ttc",
+      "brand_canonical": "TTC",
+      "n_accepted_v3": 3,
+      "n_namespaces": 1,
+      "stratum": "sm|single_ns|en|acronym",
+      "split": "train"
+    },
+    {
+      "brand_family_id": "brand:yadea",
+      "brand_canonical": "YADEA",
+      "n_accepted_v3": 3,
+      "n_namespaces": 1,
+      "stratum": "sm|single_ns|en|acronym",
+      "split": "train"
+    },
+    {
+      "brand_family_id": "brand:adidas_originals",
+      "brand_canonical": "Adidas Originals",
+      "n_accepted_v3": 2,
+      "n_namespaces": 1,
+      "stratum": "sm|single_ns|en|name",
+      "split": "train"
+    },
+    {
+      "brand_family_id": "brand:airbnb",
+      "brand_canonical": "Airbnb",
+      "n_accepted_v3": 2,
+      "n_namespaces": 1,
+      "stratum": "sm|single_ns|en|name",
+      "split": "train"
+    },
+    {
+      "brand_family_id": "brand:an_phu_hotel",
+      "brand_canonical": "An Phu Hotel",
+      "n_accepted_v3": 2,
+      "n_namespaces": 1,
+      "stratum": "sm|single_ns|en|name",
+      "split": "train"
+    },
+    {
+      "brand_family_id": "brand:atm_vietin_bank",
+      "brand_canonical": "ATM Vietin Bank",
+      "n_accepted_v3": 4,
+      "n_namespaces": 1,
+      "stratum": "sm|single_ns|en|name",
+      "split": "train"
+    },
+    {
+      "brand_family_id": "brand:bata",
+      "brand_canonical": "Bata",
+      "n_accepted_v3": 2,
+      "n_namespaces": 1,
+      "stratum": "sm|single_ns|en|name",
+      "split": "train"
+    },
+    {
+      "brand_family_id": "brand:bb_q_chicken",
+      "brand_canonical": "bb.q Chicken",
+      "n_accepted_v3": 3,
+      "n_namespaces": 1,
+      "stratum": "sm|single_ns|en|name",
+      "split": "train"
+    },
+    {
+      "brand_family_id": "brand:bell1",
+      "brand_canonical": "Bell1",
+      "n_accepted_v3": 2,
+      "n_namespaces": 1,
+      "stratum": "sm|single_ns|en|name",
+      "split": "train"
+    },
+    {
+      "brand_family_id": "brand:bikini_bottom_express",
+      "brand_canonical": "Bikini Bottom Express",
+      "n_accepted_v3": 2,
+      "n_namespaces": 1,
+      "stratum": "sm|single_ns|en|name",
+      "split": "train"
+    },
+    {
+      "brand_family_id": "brand:boost_juice",
+      "brand_canonical": "Boost Juice",
+      "n_accepted_v3": 1,
+      "n_namespaces": 1,
+      "stratum": "sm|single_ns|en|name",
+      "split": "train"
+    },
+    {
+      "brand_family_id": "brand:carl_s_jr",
+      "brand_canonical": "Carl's Jr.",
+      "n_accepted_v3": 2,
+      "n_namespaces": 1,
+      "stratum": "sm|single_ns|en|name",
+      "split": "train"
+    },
+    {
+      "brand_family_id": "brand:castrol",
+      "brand_canonical": "Castrol",
+      "n_accepted_v3": 3,
+      "n_namespaces": 1,
+      "stratum": "sm|single_ns|en|name",
+      "split": "train"
+    },
+    {
+      "brand_family_id": "brand:chanel",
+      "brand_canonical": "Chanel",
+      "n_accepted_v3": 2,
+      "n_namespaces": 1,
+      "stratum": "sm|single_ns|en|name",
+      "split": "train"
+    },
+    {
+      "brand_family_id": "brand:citibank",
+      "brand_canonical": "Citibank",
+      "n_accepted_v3": 2,
+      "n_namespaces": 1,
+      "stratum": "sm|single_ns|en|name",
+      "split": "train"
+    },
+    {
+      "brand_family_id": "brand:coco",
+      "brand_canonical": "CoCo",
+      "n_accepted_v3": 3,
+      "n_namespaces": 1,
+      "stratum": "sm|single_ns|en|name",
+      "split": "train"
+    },
+    {
+      "brand_family_id": "brand:commonwealth_bank",
+      "brand_canonical": "Commonwealth Bank",
+      "n_accepted_v3": 2,
+      "n_namespaces": 1,
+      "stratum": "sm|single_ns|en|name",
+      "split": "train"
+    },
+    {
+      "brand_family_id": "brand:converse",
+      "brand_canonical": "Converse",
+      "n_accepted_v3": 4,
+      "n_namespaces": 1,
+      "stratum": "sm|single_ns|en|name",
+      "split": "train"
+    },
+    {
+      "brand_family_id": "brand:crowne_plaza",
+      "brand_canonical": "Crowne Plaza",
+      "n_accepted_v3": 3,
+      "n_namespaces": 1,
+      "stratum": "sm|single_ns|en|name",
+      "split": "train"
+    },
+    {
+      "brand_family_id": "brand:dynasty_house",
+      "brand_canonical": "Dynasty House",
+      "n_accepted_v3": 2,
+      "n_namespaces": 1,
+      "stratum": "sm|single_ns|en|name",
+      "split": "train"
+    },
+    {
+      "brand_family_id": "brand:engu_pouches",
+      "brand_canonical": "Engu Pouches",
+      "n_accepted_v3": 2,
+      "n_namespaces": 1,
+      "stratum": "sm|single_ns|en|name",
+      "split": "train"
+    },
+    {
+      "brand_family_id": "brand:h_mart",
+      "brand_canonical": "H Mart",
+      "n_accepted_v3": 4,
+      "n_namespaces": 1,
+      "stratum": "sm|single_ns|en|name",
+      "split": "train"
+    },
+    {
+      "brand_family_id": "brand:haidilao_hot_pot",
+      "brand_canonical": "Haidilao Hot Pot",
+      "n_accepted_v3": 2,
+      "n_namespaces": 1,
+      "stratum": "sm|single_ns|en|name",
+      "split": "train"
+    },
+    {
+      "brand_family_id": "brand:hk_oil",
+      "brand_canonical": "HK Oil",
+      "n_accepted_v3": 2,
+      "n_namespaces": 1,
+      "stratum": "sm|single_ns|en|name",
+      "split": "train"
+    },
+    {
+      "brand_family_id": "brand:holiday_inn",
+      "brand_canonical": "Holiday Inn",
+      "n_accepted_v3": 2,
+      "n_namespaces": 1,
+      "stratum": "sm|single_ns|en|name",
+      "split": "train"
+    },
+    {
+      "brand_family_id": "brand:hotel_indigo",
+      "brand_canonical": "Hotel Indigo",
+      "n_accepted_v3": 4,
+      "n_namespaces": 1,
+      "stratum": "sm|single_ns|en|name",
+      "split": "train"
+    },
+    {
+      "brand_family_id": "brand:hotraco",
+      "brand_canonical": "Hotraco",
+      "n_accepted_v3": 2,
+      "n_namespaces": 1,
+      "stratum": "sm|single_ns|en|name",
+      "split": "train"
+    },
+    {
+      "brand_family_id": "brand:hugo_boss",
+      "brand_canonical": "Hugo Boss",
+      "n_accepted_v3": 4,
+      "n_namespaces": 1,
+      "stratum": "sm|single_ns|en|name",
+      "split": "train"
+    },
+    {
+      "brand_family_id": "brand:hyatt_regency",
+      "brand_canonical": "Hyatt Regency",
+      "n_accepted_v3": 4,
+      "n_namespaces": 1,
+      "stratum": "sm|single_ns|en|name",
+      "split": "train"
+    },
+    {
+      "brand_family_id": "brand:ippudo",
+      "brand_canonical": "Ippudo",
+      "n_accepted_v3": 2,
+      "n_namespaces": 1,
+      "stratum": "sm|single_ns|en|name",
+      "split": "train"
+    },
+    {
+      "brand_family_id": "brand:jw_marriott",
+      "brand_canonical": "JW Marriott",
+      "n_accepted_v3": 4,
+      "n_namespaces": 1,
+      "stratum": "sm|single_ns|en|name",
+      "split": "train"
+    },
+    {
+      "brand_family_id": "brand:kai_coffee",
+      "brand_canonical": "KAI Coffee",
+      "n_accepted_v3": 2,
+      "n_namespaces": 1,
+      "stratum": "sm|single_ns|en|name",
+      "split": "train"
+    },
+    {
+      "brand_family_id": "brand:lotte_hotels_resorts",
+      "brand_canonical": "Lotte Hotels & Resorts",
+      "n_accepted_v3": 2,
+      "n_namespaces": 1,
+      "stratum": "sm|single_ns|en|name",
+      "split": "train"
+    },
+    {
+      "brand_family_id": "brand:loving_hut",
+      "brand_canonical": "Loving Hut",
+      "n_accepted_v3": 4,
+      "n_namespaces": 1,
+      "stratum": "sm|single_ns|en|name",
+      "split": "train"
+    },
+    {
+      "brand_family_id": "brand:lush",
+      "brand_canonical": "Lush",
+      "n_accepted_v3": 2,
+      "n_namespaces": 1,
+      "stratum": "sm|single_ns|en|name",
+      "split": "train"
+    },
+    {
+      "brand_family_id": "brand:marugame_seimen",
+      "brand_canonical": "Marugame Seimen",
+      "n_accepted_v3": 2,
+      "n_namespaces": 1,
+      "stratum": "sm|single_ns|en|name",
+      "split": "train"
+    },
+    {
+      "brand_family_id": "brand:mercure",
+      "brand_canonical": "Mercure",
+      "n_accepted_v3": 3,
+      "n_namespaces": 1,
+      "stratum": "sm|single_ns|en|name",
+      "split": "train"
+    },
+    {
+      "brand_family_id": "brand:miya_jewellery_clothes",
+      "brand_canonical": "Miya Jewellery & Clothes",
+      "n_accepted_v3": 2,
+      "n_namespaces": 1,
+      "stratum": "sm|single_ns|en|name",
+      "split": "train"
+    },
+    {
+      "brand_family_id": "brand:mothercare",
+      "brand_canonical": "Mothercare",
+      "n_accepted_v3": 2,
+      "n_namespaces": 1,
+      "stratum": "sm|single_ns|en|name",
+      "split": "train"
+    },
+    {
+      "brand_family_id": "brand:nam_an_market",
+      "brand_canonical": "Nam An Market",
+      "n_accepted_v3": 2,
+      "n_namespaces": 1,
+      "stratum": "sm|single_ns|en|name",
+      "split": "train"
+    },
+    {
+      "brand_family_id": "brand:new_balance",
+      "brand_canonical": "New Balance",
+      "n_accepted_v3": 4,
+      "n_namespaces": 1,
+      "stratum": "sm|single_ns|en|name",
+      "split": "train"
+    },
+    {
+      "brand_family_id": "brand:nsh_petro",
+      "brand_canonical": "NSH PETRO",
+      "n_accepted_v3": 2,
+      "n_namespaces": 1,
+      "stratum": "sm|single_ns|en|name",
+      "split": "train"
+    },
+    {
+      "brand_family_id": "brand:omoda_jaecoo",
+      "brand_canonical": "Omoda & Jaecoo",
+      "n_accepted_v3": 2,
+      "n_namespaces": 1,
+      "stratum": "sm|single_ns|en|name",
+      "split": "train"
+    },
+    {
+      "brand_family_id": "brand:parkson",
+      "brand_canonical": "Parkson",
+      "n_accepted_v3": 2,
+      "n_namespaces": 1,
+      "stratum": "sm|single_ns|en|name",
+      "split": "train"
+    },
+    {
+      "brand_family_id": "brand:pega",
+      "brand_canonical": "Pega",
+      "n_accepted_v3": 2,
+      "n_namespaces": 1,
+      "stratum": "sm|single_ns|en|name",
+      "split": "train"
+    },
+    {
+      "brand_family_id": "brand:petrolinex",
+      "brand_canonical": "Petrolinex",
+      "n_accepted_v3": 2,
+      "n_namespaces": 1,
+      "stratum": "sm|single_ns|en|name",
+      "split": "train"
+    },
+    {
+      "brand_family_id": "brand:phinholic",
+      "brand_canonical": "Phinholic",
+      "n_accepted_v3": 2,
+      "n_namespaces": 1,
+      "stratum": "sm|single_ns|en|name",
+      "split": "train"
+    },
+    {
+      "brand_family_id": "brand:pierre_cardin",
+      "brand_canonical": "Pierre Cardin",
+      "n_accepted_v3": 3,
+      "n_namespaces": 1,
+      "stratum": "sm|single_ns|en|name",
+      "split": "train"
+    },
+    {
+      "brand_family_id": "brand:porsche",
+      "brand_canonical": "Porsche",
+      "n_accepted_v3": 2,
+      "n_namespaces": 1,
+      "stratum": "sm|single_ns|en|name",
+      "split": "train"
+    },
+    {
+      "brand_family_id": "brand:pullman",
+      "brand_canonical": "Pullman",
+      "n_accepted_v3": 4,
+      "n_namespaces": 1,
+      "stratum": "sm|single_ns|en|name",
+      "split": "train"
+    },
+    {
+      "brand_family_id": "brand:puma",
+      "brand_canonical": "Puma",
+      "n_accepted_v3": 4,
+      "n_namespaces": 1,
+      "stratum": "sm|single_ns|en|name",
+      "split": "train"
+    },
+    {
+      "brand_family_id": "brand:quiksilver",
+      "brand_canonical": "QUIKSILVER",
+      "n_accepted_v3": 1,
+      "n_namespaces": 1,
+      "stratum": "sm|single_ns|en|name",
+      "split": "train"
+    },
+    {
+      "brand_family_id": "brand:reebok",
+      "brand_canonical": "Reebok",
+      "n_accepted_v3": 2,
+      "n_namespaces": 1,
+      "stratum": "sm|single_ns|en|name",
+      "split": "train"
+    },
+    {
+      "brand_family_id": "brand:roygent_parks",
+      "brand_canonical": "Roygent Parks",
+      "n_accepted_v3": 2,
+      "n_namespaces": 1,
+      "stratum": "sm|single_ns|en|name",
+      "split": "train"
+    },
+    {
+      "brand_family_id": "brand:ruby_hotel",
+      "brand_canonical": "Ruby Hotel",
+      "n_accepted_v3": 3,
+      "n_namespaces": 1,
+      "stratum": "sm|single_ns|en|name",
+      "split": "train"
+    },
+    {
+      "brand_family_id": "brand:satra",
+      "brand_canonical": "Satra",
+      "n_accepted_v3": 4,
+      "n_namespaces": 1,
+      "stratum": "sm|single_ns|en|name",
+      "split": "train"
+    },
+    {
+      "brand_family_id": "brand:sheraton",
+      "brand_canonical": "Sheraton",
+      "n_accepted_v3": 4,
+      "n_namespaces": 1,
+      "stratum": "sm|single_ns|en|name",
+      "split": "train"
+    },
+    {
+      "brand_family_id": "brand:shiseido",
+      "brand_canonical": "Shiseido",
+      "n_accepted_v3": 3,
+      "n_namespaces": 1,
+      "stratum": "sm|single_ns|en|name",
+      "split": "train"
+    },
+    {
+      "brand_family_id": "brand:silk_path",
+      "brand_canonical": "Silk Path",
+      "n_accepted_v3": 2,
+      "n_namespaces": 1,
+      "stratum": "sm|single_ns|en|name",
+      "split": "train"
+    },
+    {
+      "brand_family_id": "brand:skyline_coffee",
+      "brand_canonical": "Skyline Coffee",
+      "n_accepted_v3": 2,
+      "n_namespaces": 1,
+      "stratum": "sm|single_ns|en|name",
+      "split": "train"
+    },
+    {
+      "brand_family_id": "brand:sony",
+      "brand_canonical": "Sony",
+      "n_accepted_v3": 4,
+      "n_namespaces": 1,
+      "stratum": "sm|single_ns|en|name",
+      "split": "train"
+    },
+    {
+      "brand_family_id": "brand:standard_chartered",
+      "brand_canonical": "Standard Chartered",
+      "n_accepted_v3": 2,
+      "n_namespaces": 1,
+      "stratum": "sm|single_ns|en|name",
+      "split": "train"
+    },
+    {
+      "brand_family_id": "brand:subaru",
+      "brand_canonical": "Subaru",
+      "n_accepted_v3": 3,
+      "n_namespaces": 1,
+      "stratum": "sm|single_ns|en|name",
+      "split": "train"
+    },
+    {
+      "brand_family_id": "brand:swarovski",
+      "brand_canonical": "Swarovski",
+      "n_accepted_v3": 2,
+      "n_namespaces": 1,
+      "stratum": "sm|single_ns|en|name",
+      "split": "train"
+    },
+    {
+      "brand_family_id": "brand:tan",
+      "brand_canonical": "tan.",
+      "n_accepted_v3": 2,
+      "n_namespaces": 1,
+      "stratum": "sm|single_ns|en|name",
+      "split": "train"
+    },
+    {
+      "brand_family_id": "brand:tcp_station",
+      "brand_canonical": "TCP Station",
+      "n_accepted_v3": 3,
+      "n_namespaces": 1,
+      "stratum": "sm|single_ns|en|name",
+      "split": "train"
+    },
+    {
+      "brand_family_id": "brand:td_oil",
+      "brand_canonical": "TD Oil",
+      "n_accepted_v3": 2,
+      "n_namespaces": 1,
+      "stratum": "sm|single_ns|en|name",
+      "split": "train"
+    },
+    {
+      "brand_family_id": "brand:thom_s_sourdough_bakery_coffee",
+      "brand_canonical": "Thom's Sourdough Bakery & Coffee",
+      "n_accepted_v3": 3,
+      "n_namespaces": 1,
+      "stratum": "sm|single_ns|en|name",
+      "split": "train"
+    },
+    {
+      "brand_family_id": "brand:tommy_hilfiger",
+      "brand_canonical": "Tommy Hilfiger",
+      "n_accepted_v3": 3,
+      "n_namespaces": 1,
+      "stratum": "sm|single_ns|en|name",
+      "split": "train"
+    },
+    {
+      "brand_family_id": "brand:upharma",
+      "brand_canonical": "UPharma",
+      "n_accepted_v3": 2,
+      "n_namespaces": 1,
+      "stratum": "sm|single_ns|en|name",
+      "split": "train"
+    },
+    {
+      "brand_family_id": "brand:valentino",
+      "brand_canonical": "Valentino",
+      "n_accepted_v3": 3,
+      "n_namespaces": 1,
+      "stratum": "sm|single_ns|en|name",
+      "split": "train"
+    },
+    {
+      "brand_family_id": "brand:victoria_s_secret",
+      "brand_canonical": "Victoria's Secret",
+      "n_accepted_v3": 2,
+      "n_namespaces": 1,
+      "stratum": "sm|single_ns|en|name",
+      "split": "train"
+    },
+    {
+      "brand_family_id": "brand:viet_phong",
+      "brand_canonical": "Viet Phong",
+      "n_accepted_v3": 3,
+      "n_namespaces": 1,
+      "stratum": "sm|single_ns|en|name",
+      "split": "train"
+    },
+    {
+      "brand_family_id": "brand:vinpearl",
+      "brand_canonical": "Vinpearl",
+      "n_accepted_v3": 3,
+      "n_namespaces": 1,
+      "stratum": "sm|single_ns|en|name",
+      "split": "train"
+    },
+    {
+      "brand_family_id": "brand:volkswagen",
+      "brand_canonical": "Volkswagen",
+      "n_accepted_v3": 2,
+      "n_namespaces": 1,
+      "stratum": "sm|single_ns|en|name",
+      "split": "train"
+    },
+    {
+      "brand_family_id": "brand:volvo",
+      "brand_canonical": "Volvo",
+      "n_accepted_v3": 2,
+      "n_namespaces": 1,
+      "stratum": "sm|single_ns|en|name",
+      "split": "train"
+    },
+    {
+      "brand_family_id": "brand:wayne_s_coffee",
+      "brand_canonical": "Wayne's Coffee",
+      "n_accepted_v3": 3,
+      "n_namespaces": 1,
+      "stratum": "sm|single_ns|en|name",
+      "split": "train"
+    },
+    {
+      "brand_family_id": "brand:xiaomi",
+      "brand_canonical": "Xiaomi",
+      "n_accepted_v3": 3,
+      "n_namespaces": 1,
+      "stratum": "sm|single_ns|en|name",
+      "split": "train"
+    },
+    {
+      "brand_family_id": "brand:an_ngoc_dien",
+      "brand_canonical": "AN NGỌC ĐIỀN",
+      "n_accepted_v3": 3,
+      "n_namespaces": 1,
+      "stratum": "sm|single_ns|vi|name",
+      "split": "train"
+    },
+    {
+      "brand_family_id": "brand:bia_hoi_ha_noi",
+      "brand_canonical": "Bia Hơi Hà Nội",
+      "n_accepted_v3": 2,
+      "n_namespaces": 1,
+      "stratum": "sm|single_ns|vi|name",
+      "split": "train"
+    },
+    {
+      "brand_family_id": "brand:hoang_minh_chau",
+      "brand_canonical": "HOÀNG MINH CHÂU",
+      "n_accepted_v3": 2,
+      "n_namespaces": 1,
+      "stratum": "sm|single_ns|vi|name",
+      "split": "train"
+    },
+    {
+      "brand_family_id": "brand:muong_thanh",
+      "brand_canonical": "Mường Thanh",
+      "n_accepted_v3": 4,
+      "n_namespaces": 1,
+      "stratum": "sm|single_ns|vi|name",
+      "split": "train"
+    },
+    {
+      "brand_family_id": "brand:ngoc_khanh",
+      "brand_canonical": "Ngọc Khánh",
+      "n_accepted_v3": 2,
+      "n_namespaces": 1,
+      "stratum": "sm|single_ns|vi|name",
+      "split": "train"
+    },
+    {
+      "brand_family_id": "brand:ngoc_minh_anh",
+      "brand_canonical": "Ngọc Minh Anh",
+      "n_accepted_v3": 2,
+      "n_namespaces": 1,
+      "stratum": "sm|single_ns|vi|name",
+      "split": "train"
+    },
+    {
+      "brand_family_id": "brand:paris_gateaux",
+      "brand_canonical": "Paris Gâteaux",
+      "n_accepted_v3": 3,
+      "n_namespaces": 1,
+      "stratum": "sm|single_ns|vi|name",
+      "split": "train"
+    },
+    {
+      "brand_family_id": "brand:ta_ca_phe",
+      "brand_canonical": "Ta Cà Phê",
+      "n_accepted_v3": 2,
+      "n_namespaces": 1,
+      "stratum": "sm|single_ns|vi|name",
+      "split": "train"
+    },
+    {
+      "brand_family_id": "brand:tong_daily",
+      "brand_canonical": "Tóng Dạilỳ",
+      "n_accepted_v3": 2,
+      "n_namespaces": 1,
+      "stratum": "sm|single_ns|vi|name",
+      "split": "train"
+    },
+    {
+      "brand_family_id": "brand:acb",
+      "brand_canonical": "ACB",
+      "n_accepted_v3": 132,
+      "n_namespaces": 2,
+      "stratum": "xl|multi_ns|en|acronym",
+      "split": "train"
+    },
+    {
+      "brand_family_id": "brand:mb",
+      "brand_canonical": "MB",
+      "n_accepted_v3": 147,
+      "n_namespaces": 2,
+      "stratum": "xl|multi_ns|en|acronym",
+      "split": "train"
+    },
+    {
+      "brand_family_id": "brand:agribank",
+      "brand_canonical": "Agribank",
+      "n_accepted_v3": 490,
+      "n_namespaces": 2,
+      "stratum": "xl|multi_ns|en|name",
+      "split": "train"
+    },
+    {
+      "brand_family_id": "brand:sacombank",
+      "brand_canonical": "Sacombank",
+      "n_accepted_v3": 214,
+      "n_namespaces": 2,
+      "stratum": "xl|multi_ns|en|name",
+      "split": "train"
+    },
+    {
+      "brand_family_id": "brand:saigonbank",
+      "brand_canonical": "Saigonbank",
+      "n_accepted_v3": 81,
+      "n_namespaces": 2,
+      "stratum": "xl|multi_ns|en|name",
+      "split": "train"
+    },
+    {
+      "brand_family_id": "brand:vietcombank",
+      "brand_canonical": "Vietcombank",
+      "n_accepted_v3": 436,
+      "n_namespaces": 2,
+      "stratum": "xl|multi_ns|en|name",
+      "split": "train"
+    },
+    {
+      "brand_family_id": "brand:vietinbank",
+      "brand_canonical": "VietinBank",
+      "n_accepted_v3": 375,
+      "n_namespaces": 2,
+      "stratum": "xl|multi_ns|en|name",
+      "split": "train"
+    },
+    {
+      "brand_family_id": "brand:vpbank",
+      "brand_canonical": "VPBank",
+      "n_accepted_v3": 182,
+      "n_namespaces": 2,
+      "stratum": "xl|multi_ns|en|name",
+      "split": "train"
+    },
+    {
+      "brand_family_id": "brand:winmart",
+      "brand_canonical": "WinMart",
+      "n_accepted_v3": 128,
+      "n_namespaces": 2,
+      "stratum": "xl|multi_ns|en|name",
+      "split": "train"
+    },
+    {
+      "brand_family_id": "brand:winmart_plus",
+      "brand_canonical": "WinMart+",
+      "n_accepted_v3": 1221,
+      "n_namespaces": 2,
+      "stratum": "xl|multi_ns|en|name",
+      "split": "train"
+    },
+    {
+      "brand_family_id": "brand:bach_hoa_xanh",
+      "brand_canonical": "Bách Hóa XANH",
+      "n_accepted_v3": 172,
+      "n_namespaces": 3,
+      "stratum": "xl|multi_ns|vi|name",
+      "split": "train"
+    },
+    {
+      "brand_family_id": "brand:the_gioi_di_dong",
+      "brand_canonical": "Thế Giới Di Động",
+      "n_accepted_v3": 85,
+      "n_namespaces": 2,
+      "stratum": "xl|multi_ns|vi|name",
+      "split": "train"
+    },
+    {
+      "brand_family_id": "brand:kfc",
+      "brand_canonical": "KFC",
+      "n_accepted_v3": 100,
+      "n_namespaces": 1,
+      "stratum": "xl|single_ns|en|acronym",
+      "split": "train"
+    },
+    {
+      "brand_family_id": "brand:pnj",
+      "brand_canonical": "PNJ",
+      "n_accepted_v3": 239,
+      "n_namespaces": 1,
+      "stratum": "xl|single_ns|en|acronym",
+      "split": "train"
+    },
+    {
+      "brand_family_id": "brand:lotteria",
+      "brand_canonical": "Lotteria",
+      "n_accepted_v3": 119,
+      "n_namespaces": 1,
+      "stratum": "xl|single_ns|en|name",
+      "split": "train"
+    },
+    {
+      "brand_family_id": "brand:petrolimex",
+      "brand_canonical": "Petrolimex",
+      "n_accepted_v3": 1318,
+      "n_namespaces": 1,
+      "stratum": "xl|single_ns|en|name",
+      "split": "train"
+    },
+    {
+      "brand_family_id": "brand:pv_oil",
+      "brand_canonical": "PV Oil",
+      "n_accepted_v3": 460,
+      "n_namespaces": 1,
+      "stratum": "xl|single_ns|en|name",
+      "split": "train"
+    },
+    {
+      "brand_family_id": "brand:the_coffee_house",
+      "brand_canonical": "The Coffee House",
+      "n_accepted_v3": 84,
+      "n_namespaces": 1,
+      "stratum": "xl|single_ns|en|name",
+      "split": "train"
+    }
+  ],
+  "leftover_families_excluded": {
+    "brand:atm_bidv": "merged_into_brand:bidv:atm",
+    "brand:can_ho_dich_vu_va_khach_san": "excluded_generic_descriptor"
+  }
+}

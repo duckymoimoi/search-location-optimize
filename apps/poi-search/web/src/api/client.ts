@@ -9,10 +9,10 @@ import type {
   SuggestResponse,
 } from '../types/api'
 import { ApiError } from '../types/api'
-import { mockApi } from '../mock/server'
 
-const USE_MOCK = import.meta.env.VITE_USE_MOCK === '1'
 const BASE = (import.meta.env.VITE_API_BASE_URL as string | undefined)?.replace(/\/$/, '') ?? ''
+const CORPUS_VERSION =
+  (import.meta.env.VITE_CORPUS_VERSION as string | undefined)?.trim() || 'vn-poi-core-v3-semantic-address-dedup50'
 
 async function http<T>(path: string, init?: RequestInit): Promise<T> {
   const res = await fetch(`${BASE}${path}`, {
@@ -43,22 +43,18 @@ async function http<T>(path: string, init?: RequestInit): Promise<T> {
 
 export const api = {
   createSession(): Promise<SessionResponse> {
-    if (USE_MOCK) return mockApi.createSession()
     return http('/v1/sessions', { method: 'POST', body: '{}' })
   },
 
   getStatus(): Promise<Status> {
-    if (USE_MOCK) return mockApi.getStatus()
     return http('/v1/status')
   },
 
   listDemoUsers(): Promise<DemoUser[]> {
-    if (USE_MOCK) return mockApi.listDemoUsers()
     return http('/v1/demo/users')
   },
 
   listOrigins(q: string): Promise<OriginList> {
-    if (USE_MOCK) return mockApi.listOrigins(q)
     const qs = new URLSearchParams({ q, limit: '20' })
     return http(`/v1/origins?${qs}`)
   },
@@ -71,9 +67,6 @@ export const api = {
     top_k?: number
     signal?: AbortSignal
   }): Promise<SuggestResponse> {
-    if (USE_MOCK) {
-      return mockApi.suggest({ ...input, personalized: false })
-    }
     return http('/v1/suggest', {
       method: 'POST',
       body: JSON.stringify({
@@ -81,8 +74,8 @@ export const api = {
         session_id: input.session_id,
         context_revision: input.context_revision,
         query: input.query,
-        top_k: input.top_k ?? 5,
-        expected_corpus_version: 'hn-poi-stable-v1',
+        top_k: input.top_k ?? 10,
+        expected_corpus_version: CORPUS_VERSION,
       }),
       signal: input.signal,
     })
@@ -99,9 +92,6 @@ export const api = {
     context_time: string | null
     signal?: AbortSignal
   }): Promise<SuggestResponse> {
-    if (USE_MOCK) {
-      return mockApi.suggest({ ...input, personalized: true })
-    }
     return http('/v1/suggest/personalized', {
       method: 'POST',
       body: JSON.stringify({
@@ -109,8 +99,8 @@ export const api = {
         session_id: input.session_id,
         context_revision: input.context_revision,
         query: input.query,
-        top_k: input.top_k ?? 5,
-        expected_corpus_version: 'hn-poi-stable-v1',
+        top_k: input.top_k ?? 10,
+        expected_corpus_version: CORPUS_VERSION,
         search_kind: 'destination',
         origin: input.origin,
         demo_user_id: input.demo_user_id,
@@ -126,7 +116,6 @@ export const api = {
     exposure_id: string
     context_revision: number
   }) {
-    if (USE_MOCK) return mockApi.markDisplayed(input)
     return http('/v1/exposures/displayed', {
       method: 'POST',
       body: JSON.stringify(input),
@@ -140,7 +129,6 @@ export const api = {
     selected_poi_id: string
     idempotency_key: string
   }): Promise<SelectResponse> {
-    if (USE_MOCK) return mockApi.select(input)
     return http('/v1/select', { method: 'POST', body: JSON.stringify(input) })
   },
 
@@ -154,13 +142,6 @@ export const api = {
     vehicle?: 'car' | 'bike' | 'taxi' | 'truck' | 'hd'
     allow_fallback?: boolean
   }): Promise<RouteResponse> {
-    if (USE_MOCK) {
-      return mockApi.routePreview({
-        corpus_version: input.corpus_version,
-        origin_poi_id: input.origin_poi_id ?? null,
-        destination_poi_id: input.destination_poi_id ?? 'mock',
-      })
-    }
     return http('/v1/route-preview', {
       method: 'POST',
       body: JSON.stringify({

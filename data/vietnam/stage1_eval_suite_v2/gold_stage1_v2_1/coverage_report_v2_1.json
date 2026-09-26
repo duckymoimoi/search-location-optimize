@@ -1,0 +1,337 @@
+{
+  "status": "draft_coverage_diagnostic",
+  "cases": 200,
+  "note": "Tag counts are only evidence candidates. Manual semantic review is required before any PASS claim.",
+  "requirements": [
+    {
+      "id": 1,
+      "name": "khong_dau",
+      "minimum": 40,
+      "explicit_tag_rows": 54,
+      "status": "tag_gate_pass",
+      "tag_examples": {
+        "khong_dau": [
+          "g150-011-q03",
+          "g150-014-q03",
+          "g150-016-q03",
+          "g150-020-q03",
+          "g150-020-q04"
+        ]
+      }
+    },
+    {
+      "id": 2,
+      "name": "sai_dau",
+      "minimum": 12,
+      "explicit_tag_rows": 28,
+      "status": "tag_gate_pass",
+      "tag_examples": {
+        "sai_dau": [
+          "g150-002-q02",
+          "g150-003-q04",
+          "g150-005-q02",
+          "g150-008-q02",
+          "g150-008-q04"
+        ]
+      }
+    },
+    {
+      "id": 3,
+      "name": "raw_telex",
+      "minimum": 12,
+      "explicit_tag_rows": 14,
+      "status": "tag_gate_pass",
+      "tag_examples": {
+        "raw_telex": [
+          "g150-031-q03",
+          "g150-048-q02",
+          "g150-053-q04",
+          "g150-055-q04",
+          "g150-058-q02"
+        ],
+        "ime_telex_residual": [
+          "g150-069-q04"
+        ]
+      }
+    },
+    {
+      "id": 4,
+      "name": "raw_vni",
+      "minimum": 8,
+      "explicit_tag_rows": 8,
+      "status": "tag_gate_pass",
+      "tag_examples": {
+        "raw_vni": [
+          "g150-005-q03",
+          "g150-033-q03",
+          "g150-055-q03",
+          "g150-070-q03",
+          "g150-072-q03"
+        ]
+      }
+    },
+    {
+      "id": 5,
+      "name": "phim_ke",
+      "minimum": 20,
+      "explicit_tag_rows": 21,
+      "status": "tag_gate_pass",
+      "tag_examples": {
+        "phim_ke": [
+          "g150-009-q03",
+          "g150-014-q03",
+          "g150-023-q03",
+          "g150-030-q02",
+          "g150-032-q03"
+        ]
+      }
+    },
+    {
+      "id": 6,
+      "name": "dau_nua_voi",
+      "minimum": 25,
+      "explicit_tag_rows": 361,
+      "status": "tag_gate_pass",
+      "tag_examples": {
+        "dau_nua_voi": [
+          "g150-002-q03",
+          "g150-002-q04",
+          "g150-003-q03",
+          "g150-005-q04",
+          "g150-007-q02"
+        ]
+      }
+    },
+    {
+      "id": 7,
+      "name": "chinh_ta_tuong_duong",
+      "minimum": 8,
+      "explicit_tag_rows": 10,
+      "status": "tag_gate_pass",
+      "tag_examples": {
+        "chinh_ta_tuong_duong": [],
+        "phonetic_confusion": [
+          "g150-015-q04",
+          "g150-031-q02",
+          "g150-037-q03",
+          "g150-060-q02",
+          "g150-063-q04"
+        ]
+      }
+    },
+    {
+      "id": 8,
+      "name": "double_tap",
+      "minimum": 10,
+      "explicit_tag_rows": 29,
+      "status": "tag_gate_pass",
+      "tag_examples": {
+        "double_tap": [
+          "g150-009-q02",
+          "g150-009-q04",
+          "g150-013-q02",
+          "g150-013-q03",
+          "g150-014-q02"
+        ]
+      }
+    },
+    {
+      "id": 9,
+      "name": "dinh_roi_space",
+      "minimum": 24,
+      "explicit_tag_rows": 137,
+      "status": "tag_gate_pass",
+      "tag_examples": {
+        "dinh_roi_space": [
+          "g150-002-q02",
+          "g150-002-q04",
+          "g150-003-q02",
+          "g150-003-q03",
+          "g150-005-q04"
+        ]
+      }
+    },
+    {
+      "id": 10,
+      "name": "dao_token",
+      "minimum": 12,
+      "explicit_tag_rows": 12,
+      "status": "tag_gate_pass",
+      "tag_examples": {
+        "dao_token": [
+          "g150-005-q03",
+          "g150-001-q03",
+          "g150-004-q03",
+          "g150-006-q03",
+          "g150-009-q03"
+        ],
+        "token_order_variant": [
+          "g150-005-q03",
+          "g150-001-q03",
+          "g150-004-q03",
+          "g150-006-q03",
+          "g150-009-q03"
+        ]
+      }
+    },
+    {
+      "id": 11,
+      "name": "omission",
+      "minimum": 16,
+      "explicit_tag_rows": 262,
+      "status": "tag_gate_pass",
+      "tag_examples": {
+        "omission": [
+          "g150-002-q01",
+          "g150-003-q01",
+          "g150-003-q03",
+          "g150-005-q04",
+          "g150-007-q01"
+        ]
+      }
+    },
+    {
+      "id": 12,
+      "name": "bo_type_context_dau_q01",
+      "minimum": 80,
+      "explicit_tag_rows": 42,
+      "status": "needs_evidence",
+      "tag_examples": {
+        "bo_type_context_dau": [
+          "g150-008-q01",
+          "g150-012-q01",
+          "g150-034-q01",
+          "g150-035-q01",
+          "g150-039-q01"
+        ]
+      }
+    },
+    {
+      "id": 13,
+      "name": "acronym",
+      "minimum": 16,
+      "explicit_tag_rows": 16,
+      "status": "tag_gate_pass",
+      "tag_examples": {
+        "acronym": [
+          "g150-036-q03",
+          "g150-039-q02",
+          "g150-044-q03",
+          "g150-057-q01"
+        ],
+        "acronym_expand_contract": [
+          "g150-045-q02",
+          "g150-057-q02",
+          "g150-057-q03",
+          "g150-057-q04",
+          "g150-105-q01"
+        ]
+      }
+    },
+    {
+      "id": 16,
+      "name": "doan_giua_cuoi",
+      "minimum": 20,
+      "explicit_tag_rows": 21,
+      "status": "tag_gate_pass",
+      "tag_examples": {
+        "doan_giua_cuoi": [
+          "g150-008-q01",
+          "g150-012-q01",
+          "g150-039-q01",
+          "g150-047-q01",
+          "g150-049-q01"
+        ]
+      }
+    },
+    {
+      "id": 17,
+      "name": "so_nha_doan_ten_duong",
+      "minimum": 20,
+      "explicit_tag_rows": 501,
+      "status": "tag_gate_pass",
+      "tag_examples": {
+        "so_nha_doan_ten_duong": [
+          "g150-003-q01",
+          "g150-003-q02",
+          "g150-003-q04",
+          "g150-005-q01",
+          "g150-005-q02"
+        ]
+      }
+    },
+    {
+      "id": 19,
+      "name": "ngo_ngach_hem_kiet",
+      "minimum": 10,
+      "explicit_tag_rows": 29,
+      "status": "tag_gate_pass",
+      "tag_examples": {
+        "ngo_ngach_hem_kiet": [
+          "g150-044-q01",
+          "g150-044-q02",
+          "g150-044-q03",
+          "g150-044-q04",
+          "g150-066-q02"
+        ]
+      }
+    },
+    {
+      "id": 20,
+      "name": "slash_number",
+      "minimum": 10,
+      "explicit_tag_rows": 51,
+      "status": "tag_gate_pass",
+      "tag_examples": {
+        "slash_number": [
+          "g150-010-q01",
+          "g150-010-q02",
+          "g150-010-q04",
+          "g150-047-q04",
+          "g150-057-q01"
+        ]
+      }
+    },
+    {
+      "id": 21,
+      "name": "dan_dia_chi_day_du",
+      "minimum": 12,
+      "explicit_tag_rows": 12,
+      "status": "tag_gate_pass",
+      "tag_examples": {
+        "dan_dia_chi_day_du": [
+          "g150-071-q01",
+          "g150-071-q03",
+          "g150-071-q04",
+          "g150-072-q03",
+          "g150-072-q04"
+        ]
+      }
+    },
+    {
+      "id": 22,
+      "name": "ma_toa_lo",
+      "minimum": 12,
+      "explicit_tag_rows": 94,
+      "status": "tag_gate_pass",
+      "tag_examples": {
+        "ma_toa_lo": [
+          "g150-002-q03",
+          "g150-002-q04",
+          "g150-026-q01",
+          "g150-026-q02",
+          "g150-026-q03"
+        ]
+      }
+    }
+  ],
+  "derived_prefix_requirements": [
+    14,
+    15
+  ],
+  "address_scope_handoff": 18,
+  "unmet_explicit_tag_gates": [
+    12
+  ],
+  "tag_evidence_errors": []
+}

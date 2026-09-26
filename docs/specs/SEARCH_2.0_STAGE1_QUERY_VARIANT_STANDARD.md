@@ -1,9 +1,23 @@
 # SEARCH 2.0 — Chuẩn viết query variant (Stage 1)
 
-**Trạng thái:** authoring SoT cho gold  
-**Agent skill (đọc để viết):** `.cursor/skills/search20-stage1-query-variants/SKILL.md`
+**Trạng thái:** contract lịch sử đã khóa cho `gold_stage1_v1`; không dùng để
+author bộ train v6 mới
 
-Tài liệu này chỉ giữ nguyên tắc ngắn. Chi tiết operator / ví dụ / checklist nằm trong skill (tránh lẫn train–eval–metric).
+**Authoring train hiện hành:** `.cursor/skills/search20-stage1-query-variants/SKILL.md`
+
+Gold 180 × 6 bên dưới vẫn được giữ nguyên để replay evidence W1. Workspace
+`train_stage1_queries_v6` dùng slot/độ khó/schema khác theo skill hiện hành.
+Không sửa digit/ref/code trong cả hai bộ POI. Lỗi số/mã và address-only fallback
+thuộc contract riêng
+[`ADDRESS_NUMERIC_FALLBACK.md`](ADDRESS_NUMERIC_FALLBACK.md), không thêm vào
+v01–v06 và không hồi tố thay đổi qrels gold v1. Contract đánh giá kế tiếp gồm
+ba suite tách biệt theo
+[`STAGE1_EVALUATION_SUITE.md`](STAGE1_EVALUATION_SUITE.md); wrong-number chỉ là
+address-scope eval, không phải query train model.
+
+Tài liệu này chỉ giữ nguyên tắc ngắn của gold v1. Chi tiết operator/ví dụ hiện
+hành trong skill áp dụng cho train v6, không được dùng để diễn giải lại các row
+gold đã khóa.
 
 ## Phạm vi
 

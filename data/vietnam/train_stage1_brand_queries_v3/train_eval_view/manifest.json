@@ -1,0 +1,35 @@
+{
+  "schema_version": "stage1-eval-suite-v2",
+  "record_type": "suite_manifest",
+  "suite_id": "gold_stage1_brand_v1",
+  "status": "draft",
+  "created_at_utc": "2026-09-26T02:43:24.566304+00:00",
+  "corpus_version": "vn-poi-core-v3-semantic-address-dedup50",
+  "normalizer_version": "v2-nfkc-casefold",
+  "entity_snapshot_version": null,
+  "brand_snapshot_version": "brand_membership_v3",
+  "address_snapshot_version": null,
+  "prefix_expander_version": "v2-grapheme-nfc",
+  "label_policy_version": "v1-compatible-brand-group",
+  "source_hashes": {
+    "queries_v3": "ee90db546db3d2d5f5c78247a44b4e6db06674abd4880d5d88de1dd0c644d3f3",
+    "packet_v3": "6bc9296bf0432ef30db8a9d444ab7686162bcb63e628cd73f0cc9fc0b6c79012",
+    "membership_v3": "1afc277d909a75fa0bf46173c9691324d53762ba869a00c53bb42397adb29364",
+    "family_split": "96bec897c99126fb21585c425740f8d35ffe44413c5ff16ac7df2f592a8e4d42"
+  },
+  "artifact_hashes": {
+    "brand_queries_v1.parquet": "3ce0e3a4e1f004944f5fc4591701d985739ecd17151e84d9b8537704798a385c",
+    "brand_qrels_v1.parquet": "d60c8ae61c58803f91ef36843adf91f5f08fc1d99b33760f608e0f4d52b4111a",
+    "prefix_evidence_v1.jsonl": "b4a6b58988a77e51eb7014531c6348b90dbc29f111fdcbd84200c4ff5ba1980b",
+    "prefix_checkpoints_v1.jsonl": "b168ea8f8fa61b785c0ee12ce147b8fea46fd17bef26b7ed464c45cda8095dca",
+    "independent_family_review.json": "47817e8d701728b294d04736c9939f39e205480af562204cad725846f21eb249"
+  },
+  "counts": {
+    "n_queries": 782,
+    "n_qrels": 24653,
+    "n_families": 215,
+    "n_prefix_evidence": 516,
+    "n_prefix_checkpoints": 7751
+  },
+  "split": "train"
+}

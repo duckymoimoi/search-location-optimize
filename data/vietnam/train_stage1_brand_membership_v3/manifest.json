@@ -1,0 +1,64 @@
+{
+  "dataset": "train_stage1_brand_membership_v3",
+  "membership_view_version": "brand_membership_v3",
+  "group_version": "brand_groups_v1",
+  "status": "VALIDATED",
+  "created_at_utc": "2026-09-26T02:37:59.440019+00:00",
+  "corpus_version": "vn-poi-core-v3-semantic-address-dedup50",
+  "scope": "sidecar membership view; does not replace locked brand_groups_v1",
+  "sources": {
+    "brand_group_members_v1": {
+      "path": "D:/vsf/data/vietnam/train_stage1_brand_v1/brand_group_members_v1.parquet",
+      "sha256": "a2d0afbb1430e1338c60e9f0d65869323bf9c6fcf0e35ae20aea10a5f7d659eb",
+      "bytes": 179156
+    },
+    "brand_v1_manifest": {
+      "path": "D:/vsf/data/vietnam/train_stage1_brand_v1/manifest.json",
+      "sha256": "4258399d0adc46872b761c0e77786120eb619d18a4f2cc13f920bec05758fd86",
+      "bytes": 1777
+    },
+    "composed_migration": {
+      "path": "D:/vsf/data/vietnam/train_stage1_brand_membership_v3/composed_poi_id_migration_v1_v3.parquet",
+      "sha256": "aa146e3c429b8bf2e667460d57b3e5ba52ffd8d18fce07995a04f935ce7e6134",
+      "bytes": 1957906
+    },
+    "pois_core_v3": {
+      "path": "D:/vsf/data/vietnam/poi_corpus_v3/pois_core.parquet",
+      "sha256": "b542a03ca6820ea30dadd83b94833a0bd019641a96c21c8ab4405cba6cec3b54",
+      "bytes": 12631565
+    },
+    "gold_targets_v2_1": {
+      "path": "D:/vsf/data/vietnam/stage1_eval_suite_v2/gold_stage1_v2_1/target_pois_v2_1.parquet",
+      "sha256": "146c65f8481d6b56620e20094f4ffd90dc8647b2fb9865b036d68988b42af1af",
+      "bytes": 29462
+    }
+  },
+  "counts": {
+    "membership_rows": 12714,
+    "accepted_rows": 11124,
+    "needs_review_rows": 1447,
+    "excluded_rows": 143,
+    "accepted_unique_poi": 10929,
+    "accepted_families": 322,
+    "accepted_groups": 383,
+    "unmapped_accepted": 1
+  },
+  "artifacts": {
+    "brand_group_members_v3.parquet": {
+      "sha256": "119ebb78518817acc12f114995241df0e931c5d03ea6bd0797dc5ef0095a41a2",
+      "bytes": 342984
+    },
+    "id_migration_audit.json": {
+      "sha256": "13605a8981f9703c7f980349e86fb5d83863c20e53da9a8db5ce5cbf2347ad97",
+      "bytes": 705
+    },
+    "missing_id_adjudication.json": {
+      "sha256": "32094b081d934e4f4c504d392dda85a2872f466156c920268f0f58256787feff",
+      "bytes": 488
+    },
+    "gold_poi_overlap.json": {
+      "sha256": "e0c3239e918cf04bce44ce861502c10382607e2cb91b3ddd3f6aadcf32127c92",
+      "bytes": 7631
+    }
+  }
+}

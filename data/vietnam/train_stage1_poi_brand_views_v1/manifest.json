@@ -1,0 +1,54 @@
+{
+  "dataset": "train_stage1_poi_brand_views_v1",
+  "status": "EXPERIMENTAL",
+  "created_at_utc": "2026-09-26T02:47:57.253653+00:00",
+  "note": "Unified views only. Do not merge brand into training until the sampler/mask tests pass.",
+  "mix": {
+    "poi_weight": 0.85,
+    "brand_weight": 0.15
+  },
+  "gold_ids_masked_from_brand_train": 200,
+  "counts": {
+    "query_rows": 36908,
+    "poi_rows": 36000,
+    "brand_rows": 908,
+    "train_rows": 36782,
+    "dev_rows": 126,
+    "relation_rows": 68261,
+    "relations_by_label": {
+      "positive": 68197,
+      "ignore": 64
+    }
+  },
+  "sources": {
+    "train_v6": {
+      "path": "D:/vsf/data/vietnam/train_stage1_queries_v6/query_variants.csv",
+      "sha256": "aafea7af07cd36a35b5f8ea262dba191b226d0403dd44016c398315580693561",
+      "bytes": 11798521
+    },
+    "brand_train": {
+      "path": "D:/vsf/data/vietnam/train_stage1_brand_queries_v3/train_eval_view/manifest.json",
+      "sha256": "99631563202a320e8649b39a83551312b449fc18430ae02c0a77ed3b249220cc",
+      "bytes": 1640
+    },
+    "brand_dev": {
+      "path": "D:/vsf/data/vietnam/stage1_eval_suite_v2/staging/gold_stage1_brand_dev_v1/manifest.json",
+      "sha256": "b9df01e0e791fafe56f1606b03245c6f0a187182e26099d28687367b784c8a15",
+      "bytes": 1635
+    },
+    "membership": {
+      "path": "D:/vsf/data/vietnam/train_stage1_brand_membership_v3/manifest.json",
+      "sha256": "1afc277d909a75fa0bf46173c9691324d53762ba869a00c53bb42397adb29364",
+      "bytes": 2451
+    },
+    "split": {
+      "path": "D:/vsf/data/vietnam/train_stage1_brand_splits_v1/family_split.json",
+      "sha256": "96bec897c99126fb21585c425740f8d35ffe44413c5ff16ac7df2f592a8e4d42",
+      "bytes": 70337
+    }
+  },
+  "outputs": {
+    "query_train_view.parquet": "daab259ee0a67d2c33358e54783e9cb4242b1cb0bc9d829808ea36e9bd09e58a",
+    "query_relation_view.parquet": "e9966b8a3d6a8ef1b5bfc9fd5c3fd9123a6d34f7f4baa7da53fb781be1502519"
+  }
+}

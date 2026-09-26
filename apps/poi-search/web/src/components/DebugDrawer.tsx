@@ -27,6 +27,10 @@ export function DebugDrawer({ open, onToggle, last, error, note }: Props) {
               <dd>{last.exposure_id ?? 'null'}</dd>
               <dt>context_revision</dt>
               <dd>{last.context_revision}</dd>
+              <dt>history_version</dt>
+              <dd>{last.history_version ?? 'null'}</dd>
+              <dt>resolved_context_time</dt>
+              <dd>{last.resolved_context_time}</dd>
               <dt>scope</dt>
               <dd>
                 {last.scope_summary.mode} · {last.scope_summary.coverage_id}

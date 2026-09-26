@@ -1,0 +1,7 @@
+{
+  "split_version": "brand_family_split_v1",
+  "status": "locked",
+  "locked_at_utc": "2026-09-26T02:39:39.191923+00:00",
+  "family_split_sha256": "96bec897c99126fb21585c425740f8d35ffe44413c5ff16ac7df2f592a8e4d42",
+  "mutation_policy": "Do not reshuffle after Gold authoring starts."
+}

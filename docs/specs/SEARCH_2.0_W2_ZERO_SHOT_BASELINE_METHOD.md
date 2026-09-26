@@ -1,5 +1,15 @@
 # SEARCH 2.0 — Phương pháp benchmark baseline zero-shot trên Elasticsearch
 
+> **Trạng thái: superseded pilot method.** File này giữ phương pháp/số liệu của
+> pilot đã gỡ khỏi workspace và không còn là lệnh chạy hiện hành. Baseline W1
+> trên `gold_stage1_v1` dùng
+> [`SEARCH_2.0_STAGE1_MODEL_SELECTION_PROTOCOL.md`](SEARCH_2.0_STAGE1_MODEL_SELECTION_PROTOCOL.md)
+> cùng evidence trong `docs/deliveries/w1_evidence/`. Target evaluation tiếp theo
+> dùng ba suite trong
+> [`STAGE1_EVALUATION_SUITE.md`](STAGE1_EVALUATION_SUITE.md); address fallback là
+> lexical track theo [`ADDRESS_NUMERIC_FALLBACK.md`](ADDRESS_NUMERIC_FALLBACK.md),
+> không được suy từ pilot labels bên dưới.
+
 Ngày khóa bản: 2026-09-17  
 Trạng thái: **đủ để chạy pilot diagnostic sau khi hoàn thành bước lọc nhãn bắt buộc**  
 Phạm vi: Stage 1 text retrieval, corpus toàn quốc; chưa đánh giá geo rerank, popularity hay personalization.
@@ -446,5 +456,3 @@ Khuyến nghị thực thi:
 | `prefix_states` / FHC                            | **Có — synthetic token-prefix**           | `fhc_unit=token_index`; không phải IME raw                                   |
 | `checkpoint_qrels` graded                        | **Chưa bắt buộc** cho zero-shot TargetHit | Làm sau nếu cần nDCG checkpoint                                              |
 | `acceptable_poi_ids_adjudicated` / label overlay | **Nên** trước main metric                 | Multi-positive cho generic/collision; zero-shot diagnostic dùng intended đơn |
-
-

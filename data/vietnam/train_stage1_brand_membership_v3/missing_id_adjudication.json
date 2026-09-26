@@ -1,0 +1,14 @@
+{
+  "policy": "Transfer a positive only when v1→v2→v3 proves the same POI. Do not invent a successor.",
+  "rows": [
+    {
+      "source_poi_id": "osm:node/12627999501",
+      "brand_family_id": "brand:caltex",
+      "brand_group_id": "brand:caltex:fuel",
+      "brand_canonical": "Caltex",
+      "mapping_action": "dropped_no_successor",
+      "mapping_evidence": "v2:keep:|v3:drop_junk_or_foreign:outside_admin_vn",
+      "decision": "dropped_no_successor"
+    }
+  ]
+}

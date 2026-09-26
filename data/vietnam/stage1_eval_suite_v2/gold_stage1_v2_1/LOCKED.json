@@ -1,0 +1,12 @@
+{
+  "suite_id": "gold_stage1_v2",
+  "release_id": "gold_stage1_v2_1",
+  "status": "locked",
+  "locked_at_utc": "2026-09-26T01:58:33.885296+00:00",
+  "verdict": "PASS_WITH_ACCEPTED_EXCEPTIONS",
+  "n_target_pois": 200,
+  "n_query_sessions": 800,
+  "n_qrels": 820,
+  "train_overlap": 0,
+  "manifest_sha256": "965079a861fd19a0209a793ef372bae7a5272c00e69ce7a73b9e1722f7fa012e"
+}

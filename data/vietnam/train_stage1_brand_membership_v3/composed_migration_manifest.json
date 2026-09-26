@@ -1,0 +1,36 @@
+{
+  "dataset": "composed_poi_id_migration_v1_v3",
+  "created_at_utc": "2026-09-26T02:37:57.479290+00:00",
+  "sources": {
+    "poi_corpus_v2_migration": {
+      "path": "D:/vsf/data/vietnam/poi_corpus_v2/poi_id_migration.parquet",
+      "sha256": "08e8dd09ecbcecbde609a2dc71f648cf6a17a1f4f54043fca141bcc2440501a9",
+      "bytes": 7312828
+    },
+    "poi_corpus_v3_migration": {
+      "path": "D:/vsf/data/vietnam/poi_corpus_v3/poi_id_migration.parquet",
+      "sha256": "15f0477506d136608eb1b5dad835162c538a01f0b8f2fcd73085db91dce5ae28",
+      "bytes": 7311276
+    },
+    "poi_corpus_v3_core": {
+      "path": "D:/vsf/data/vietnam/poi_corpus_v3/pois_core.parquet",
+      "sha256": "b542a03ca6820ea30dadd83b94833a0bd019641a96c21c8ab4405cba6cec3b54",
+      "bytes": 12631565
+    }
+  },
+  "counts": {
+    "rows": 186322,
+    "mapped": 184789,
+    "by_action": {
+      "already_in_v3": 179209,
+      "merged_same_poi": 5580,
+      "dropped_no_successor": 1533
+    }
+  },
+  "artifacts": {
+    "composed_poi_id_migration_v1_v3.parquet": {
+      "sha256": "aa146e3c429b8bf2e667460d57b3e5ba52ffd8d18fce07995a04f935ce7e6134",
+      "bytes": 1957906
+    }
+  }
+}

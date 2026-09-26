@@ -1,0 +1,22 @@
+{
+  "missing_direct_accepted": 430,
+  "qrel_accepted_missing_direct": 430,
+  "queries_with_missing_positive": 271,
+  "queries_losing_all_positives_without_remap": 0,
+  "accepted_source_rows": 11347,
+  "accepted_mapped_rows": 11124,
+  "accepted_unique_v3": 10929,
+  "recovered_or_changed_ids": 468,
+  "collapsed_duplicate_dest_rows": 236,
+  "unmapped_accepted": 1,
+  "leftover_families_without_queries": [
+    "brand:atm_bidv",
+    "brand:can_ho_dich_vu_va_khach_san"
+  ],
+  "leftover_family_reasons": {
+    "brand:atm_bidv": "merged_into_brand:bidv:atm",
+    "brand:can_ho_dich_vu_va_khach_san": "excluded_generic_descriptor"
+  },
+  "packet_intents": 381,
+  "staging_intents": 381
+}

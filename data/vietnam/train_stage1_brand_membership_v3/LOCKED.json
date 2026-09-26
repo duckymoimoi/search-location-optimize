@@ -1,0 +1,7 @@
+{
+  "membership_view_version": "brand_membership_v3",
+  "status": "locked",
+  "locked_at_utc": "2026-09-26T02:37:59.440019+00:00",
+  "manifest_sha256": "1afc277d909a75fa0bf46173c9691324d53762ba869a00c53bb42397adb29364",
+  "mutation_policy": "Do not edit in place; rebuild as brand_membership_v4."
+}

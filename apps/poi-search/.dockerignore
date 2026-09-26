@@ -1,0 +1,12 @@
+# Keep image builds lean (compose build context = apps/poi-search)
+**/__pycache__/
+**/*.pyc
+web/node_modules/
+web/dist/
+web/vite.log
+web/.env
+web/.env.*
+!web/.env.example
+bench/
+models/current/
+**/.git/
