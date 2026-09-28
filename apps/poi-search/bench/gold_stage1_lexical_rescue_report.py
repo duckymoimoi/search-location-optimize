@@ -476,7 +476,8 @@ def main() -> None:
     md_path.write_text(render_markdown(report), encoding="utf-8")
 
     # also publish under w1 evidence if present
-    evidence = ROOT / "docs" / "deliveries" / "w1_evidence" / "08_LEXICAL_RESCUE_DIAGNOSTIC.md"
+    evidence = ROOT / "artifacts" / "results" / "diagnostic_reports" / "08_LEXICAL_RESCUE_DIAGNOSTIC.md"
+    evidence.parent.mkdir(parents=True, exist_ok=True)
     evidence.write_text(render_markdown(report), encoding="utf-8")
 
     at = report["overlap"]["overall"]["at_k"]

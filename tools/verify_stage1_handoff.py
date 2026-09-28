@@ -48,7 +48,7 @@ def request(base, path, body=None):
 def verify(args):
     out = Path(args.out)
     out.mkdir(parents=True, exist_ok=False)
-    snapshot_path = ROOT / "docs/deliveries/stage1_handoff_20260928/evidence_snapshot.json"
+    snapshot_path = ROOT / "docs/deliveries/w3/handoff/evidence_snapshot.json"
     snapshot = json.loads(snapshot_path.read_text(encoding="utf-8"))
     report = {"schema": "stage1-handoff-verification-v1", "status": "running",
               "started_utc": datetime.now(timezone.utc).isoformat(),

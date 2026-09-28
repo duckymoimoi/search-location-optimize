@@ -4,7 +4,7 @@ Ngày đo: 2026-09-28. Đây là evidence nghiên cứu trên checkout hiện t�
 
 ## Quyết định
 
-Mốc bàn giao mới: [tạm chốt Stage 1 để bắt đầu Stage 2](../deliveries/stage1_handoff_20260928/README.md). Giữ dense-first làm baseline chính và hybrid raw làm đối chứng coverage; mở nghiên cứu ranking trong khi các gate release còn pending.
+Mốc bàn giao mới: [tạm chốt Stage 1 để bắt đầu Stage 2](../deliveries/w3/05_STAGE1_HANDOFF.md). Giữ dense-first làm baseline chính và hybrid raw làm đối chứng coverage; mở nghiên cứu ranking trong khi các gate release còn pending.
 
 Bổ sung sau khi người dùng yêu cầu đề xuất SLA: [quyết định hiện tại, thay đổi cần làm và SLA pilot v0.1](RETRIEVAL_DECISIONS_AND_PILOT_SLA_2026_09_28.md). SLA mới là mục tiêu đề xuất, không thay đổi trạng thái characterization của các phép đo lịch sử bên dưới.
 

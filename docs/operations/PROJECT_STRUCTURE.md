@@ -39,7 +39,7 @@ snapshots stay in git history, not as sibling folders.
 | `docs/specs/` | Target architecture, technical contracts and experiment protocols |
 | `docs/specs/schemas/` | Machine-readable extension contracts outside the HTTP app |
 | `docs/contract-package-v1/` | Historical baseline package; create a new version for incompatible extensions |
-| `docs/deliveries/w1_evidence/` | Frozen W1 evidence; do not rewrite old counts to match new data |
+| `docs/deliveries/w1/` | Frozen W1 evidence; do not rewrite old counts to match new data |
 | `docs/research/` | Rationale and pilot history; not runtime truth |
 | `docs/operations/` | Layout, lifecycle and release rules |
 

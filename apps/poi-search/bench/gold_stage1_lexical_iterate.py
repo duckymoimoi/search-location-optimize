@@ -24,7 +24,7 @@ GOLD = ROOT / "data" / "vietnam" / "gold_stage1_v1"
 POLICY_PATH = ROOT / "apps" / "poi-search" / "api" / "search_policy.json"
 ME5_RUN = ROOT / "training/kaggle/output_gold_stage1_w1/gold_stage1_w1/run_dense_me5_exact.jsonl"
 OUT = Path(__file__).resolve().parent / "results" / "gold_stage1_lexical_iterate"
-EVIDENCE = ROOT / "docs" / "deliveries" / "w1_evidence"
+EVIDENCE = ROOT / "artifacts" / "results" / "diagnostic_reports"
 
 DEPTH = 1000
 MISS = DEPTH + 1

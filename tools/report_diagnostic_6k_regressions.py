@@ -14,7 +14,7 @@ ROOT = Path(__file__).resolve().parents[1]
 RUN = ROOT / "training" / "kaggle" / "output_stage1_v6_hardneg_6k" / "stage1_v6_hardneg"
 GOLD = ROOT / "data" / "vietnam" / "stage1_eval_suite_v2" / "gold_stage1_v2_1" / "query_sessions_v2_1.parquet"
 CORE = ROOT / "data" / "vietnam" / "poi_corpus_v3" / "pois_core.parquet"
-OUT = ROOT / "docs" / "deliveries" / "w3_evidence" / "02_DIAGNOSTIC_REGRESSIONS.md"
+OUT = ROOT / "artifacts" / "results" / "diagnostic_reports" / "02_DIAGNOSTIC_REGRESSIONS.md"
 
 
 def load_jsonl(path: Path) -> pd.DataFrame:
@@ -83,6 +83,7 @@ def main() -> None:
         *lines_for(q03_miss),
         "",
     ]
+    OUT.parent.mkdir(parents=True, exist_ok=True)
     OUT.write_text("\n".join(body), encoding="utf-8")
     print(json.dumps({"lost_rank1": int(len(lost)), "q03_miss20": int(len(q03_miss)), "out": str(OUT)}))
 

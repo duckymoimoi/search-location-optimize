@@ -6,7 +6,7 @@ Ngày: 2026-09-28. Phạm vi: demo/pilot một máy, corpus 179.209 POI, checkpo
 
 ## 1. Những quyết định có thể chốt hiện tại
 
-Cập nhật chuyển pha: [báo cáo tạm chốt Stage 1 và bàn giao Stage 2](../deliveries/stage1_handoff_20260928/README.md). Các việc “trước khi chuyển pilot” bên dưới là gate triển khai, không cản việc bắt đầu nghiên cứu ranking trên hai candidate pool đóng băng.
+Cập nhật chuyển pha: [báo cáo tạm chốt Stage 1 và bàn giao Stage 2](../deliveries/w3/05_STAGE1_HANDOFF.md). Các việc “trước khi chuyển pilot” bên dưới là gate triển khai, không cản việc bắt đầu nghiên cứu ranking trên hai candidate pool đóng băng.
 
 | Quyết định | Bằng chứng và phạm vi áp dụng |
 |---|---|

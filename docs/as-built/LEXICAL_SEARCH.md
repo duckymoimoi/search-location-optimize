@@ -267,6 +267,6 @@ hoặc gọi thẳng `lexical_body` rồi `POST /{index}/_msearch`.
 
 Lịch sử policy (v7 Photon-ish → v12 gated fuzzy) ghi trong
 `search_policy.json` `notes` và evidence W1
-[`11_ES_LEXICAL_POLICY.md`](../deliveries/w1_evidence/11_ES_LEXICAL_POLICY.md),
-[`12_LEXICAL_ITERATE.md`](../deliveries/w1_evidence/12_LEXICAL_ITERATE.md).
+[`11_ES_LEXICAL_POLICY.md`](../deliveries/w3/03_RETRIEVAL_BENCHMARK.md),
+[`12_LEXICAL_ITERATE.md`](../deliveries/w3/03_RETRIEVAL_BENCHMARK.md).
 Số liệu trong các file đó gắn snapshot cũ; không sửa để khớp v12.

@@ -30,7 +30,7 @@ CORPUS_DOCS = ROOT / "data" / "vietnam" / "poi_corpus_v1" / "search_documents.pa
 CORPUS_POIS = ROOT / "data" / "vietnam" / "poi_corpus_v1" / "pois_core.parquet"
 ME5_RUN = ROOT / "training/kaggle/output_gold_stage1_w1/gold_stage1_w1/run_dense_me5_exact.jsonl"
 OUT = Path(__file__).resolve().parent / "results" / "gold_stage1_lexical_l1"
-EVIDENCE = ROOT / "docs" / "deliveries" / "w1_evidence"
+EVIDENCE = ROOT / "artifacts" / "results" / "diagnostic_reports"
 
 DEPTH = 1000
 MISS = DEPTH + 1
@@ -651,6 +651,7 @@ def main() -> None:
     json_path.write_text(json.dumps(report, ensure_ascii=False, indent=2) + "\n", encoding="utf-8")
     md = render_md(report)
     md_path.write_text(md, encoding="utf-8")
+    EVIDENCE.mkdir(parents=True, exist_ok=True)
     evidence_path = EVIDENCE / "10_LEXICAL_L1_LOCAL.md"
     evidence_path.write_text(md, encoding="utf-8")
     print("wrote", json_path)

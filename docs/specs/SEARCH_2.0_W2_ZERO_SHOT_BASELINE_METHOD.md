@@ -4,7 +4,7 @@
 > pilot đã gỡ khỏi workspace và không còn là lệnh chạy hiện hành. Baseline W1
 > trên `gold_stage1_v1` dùng
 > [`SEARCH_2.0_STAGE1_MODEL_SELECTION_PROTOCOL.md`](SEARCH_2.0_STAGE1_MODEL_SELECTION_PROTOCOL.md)
-> cùng evidence trong `docs/deliveries/w1_evidence/`. Target evaluation tiếp theo
+> cùng evidence trong `docs/deliveries/w1/`. Target evaluation tiếp theo
 > dùng ba suite trong
 > [`STAGE1_EVALUATION_SUITE.md`](STAGE1_EVALUATION_SUITE.md); address fallback là
 > lexical track theo [`ADDRESS_NUMERIC_FALLBACK.md`](ADDRESS_NUMERIC_FALLBACK.md),

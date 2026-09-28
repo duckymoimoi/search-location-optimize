@@ -14,7 +14,6 @@ import json
 import math
 import re
 import shutil
-import sys
 import unicodedata
 from collections import Counter, defaultdict
 from datetime import UTC, datetime
@@ -28,7 +27,7 @@ ROOT = Path(__file__).resolve().parents[1]
 DATA_DIR = ROOT / "data" / "vietnam"
 DEFAULT_SOURCE = DATA_DIR / "poi_corpus_v2"
 DEFAULT_OUTPUT = DATA_DIR / "poi_corpus_v3"
-VERSION = "vn-poi-core-v3-semantic-address-dedup50"
+VERSION = "vn-poi-core-v3-search-safe-dedup50-candidate"
 MAX_DUPLICATE_DISTANCE_M = 50.0
 CELL_SIZE = 0.001  # approx 110m lat/lon grid
 
@@ -82,8 +81,10 @@ def fold(value: Any) -> str:
 def clean_housenumber(h: Any) -> str | None:
     if not h:
         return None
-    val = fold(h)
-    val = re.sub(r"\s+", "", val)
+    # Preserve structure: 12/3, 12-3, 12 3 and 123 are different addresses.
+    val = unicodedata.normalize("NFKC", str(h)).casefold().strip()
+    val = re.sub(r"\s*([/\-])\s*", r"\1", val)
+    val = re.sub(r"\s+", " ", val)
     return val if val else None
 
 
@@ -224,6 +225,16 @@ def point(row: dict[str, Any]) -> tuple[float, float]:
 
 
 def is_duplicate_pair(r1: dict[str, Any], r2: dict[str, Any]) -> tuple[bool, str]:
+    if r1.get("preserve_individual_access_point") or r2.get("preserve_individual_access_point"):
+        return False, "preserved_access_point"
+    # Buildings/address shells can accompany a POI, but distinct business
+    # types (especially bank/ATM) must not collapse just because names match.
+    def business_types(row):
+        return {part for part in str(row.get("category") or "").split("|")
+                if part.partition("=")[0] in {"amenity", "shop", "tourism", "public_transport", "railway"}}
+    left, right = business_types(r1), business_types(r2)
+    if left and right and left.isdisjoint(right):
+        return False, "different_business_type"
     matched, name_reason = is_name_similar_guarded(r1.get("name") or "", r2.get("name") or "")
     if not matched:
         return False, name_reason
@@ -272,6 +283,32 @@ def is_duplicate_pair(r1: dict[str, Any], r2: dict[str, Any]) -> tuple[bool, str
 def load_protected_targets(data_dir: Path) -> tuple[set[str], set[str], set[str]]:
     """Collect target IDs from Gold benchmarks, Train v6 batches, and Train 20k pool."""
     gold_ids = set()
+    registry_path = data_dir / "stage1_eval_suite_v2/suite_registry.json"
+    if registry_path.exists():
+        registry = json.loads(registry_path.read_text(encoding="utf-8"))
+        suite_root = registry_path.parent
+        active = registry["active_gold_poi_release"]
+        releases = [active]
+        if registry.get("suites", {}).get("gold_stage1_brand_v1", {}).get("status") == "locked":
+            releases.append("gold_stage1_brand_v1")
+        for release in releases:
+            folder = (suite_root / release).resolve()
+            if not folder.is_relative_to(suite_root.resolve()):
+                raise ValueError("Gold release path escapes suite directory")
+            paths = list(folder.glob("*.parquet"))
+            if not paths:
+                raise FileNotFoundError(f"Registered Gold release has no Parquet payloads: {folder}")
+            for path in paths:
+                for row in pq.read_table(path).to_pylist():
+                    for key in ("poi_id", "intended_poi_id"):
+                        if row.get(key):
+                            gold_ids.add(str(row[key]))
+                    if row.get("label") == "positive" and row.get("target_id"):
+                        gold_ids.add(str(row["target_id"]))
+                    accepted = row.get("acceptable_poi_ids")
+                    if isinstance(accepted, str):
+                        accepted = json.loads(accepted) if accepted.startswith("[") else accepted.split("|")
+                    gold_ids.update(str(x) for x in (accepted or []) if x)
     for p in [
         data_dir / "gold_stage1_v1_corpus_v2/target_pois.parquet",
         data_dir / "stage1_eval_suite_v2/gold_stage1_v2/target_pois.parquet",
@@ -289,14 +326,16 @@ def load_protected_targets(data_dir: Path) -> tuple[set[str], set[str], set[str]
                     gold_ids.update(r["acceptable_poi_ids"].split("|"))
 
     v6_ids = set()
-    for p in (data_dir / "train_stage1_queries_v6").rglob("*.parquet"):
-        try:
-            t = pq.read_table(p)
-            for col in ["poi_id", "intended_poi_id"]:
-                if col in t.column_names:
-                    v6_ids.update(t[col].to_pylist())
-        except Exception:
-            pass
+    for p in (data_dir / "train_stage1_queries_v6").glob("*.parquet"):
+        t = pq.read_table(p)
+        for col in ["poi_id", "intended_poi_id"]:
+            if col in t.column_names:
+                v6_ids.update(t[col].to_pylist())
+        if "acceptable_poi_ids" in t.column_names:
+            for accepted in t["acceptable_poi_ids"].to_pylist():
+                if isinstance(accepted, str):
+                    accepted = json.loads(accepted) if accepted.startswith("[") else accepted.split("|")
+                v6_ids.update(str(x) for x in (accepted or []) if x)
 
     train_20k_ids = set()
     p_20k = data_dir / "train_stage1_20k/target_pois_20k.parquet"
@@ -367,18 +406,22 @@ def plan_decisions_v3(
     merge_reason: dict[str, str] = {}
     counts: Counter[str] = Counter()
     row_by_id = {str(row["poi_id"]): row for row in core_rows}
+    if len(row_by_id) != len(core_rows):
+        raise ValueError("Duplicate source poi_id")
+    protected = gold_ids | v6_ids
 
     # Pass 1: Identify and drop junk / foreign POIs (Option A)
     for r in core_rows:
         pid = str(r["poi_id"])
         is_junk, junk_reason = classify_junk_or_foreign(r)
-        if is_junk:
+        if is_junk and pid not in protected:
             dropped_junk[pid] = junk_reason
             counts["dropped_junk_or_foreign"] += 1
             counts[f"dropped_{junk_reason}"] += 1
 
     # Pass 2: Spatial-semantic deduplication on clean candidates
-    clean_rows = [r for r in core_rows if str(r["poi_id"]) not in dropped_junk]
+    clean_rows = sorted((r for r in core_rows if str(r["poi_id"]) not in dropped_junk),
+                        key=lambda r: str(r["poi_id"]))
     grid = defaultdict(list)
     for idx, r in enumerate(clean_rows):
         lat, lon = point(r)
@@ -391,7 +434,9 @@ def plan_decisions_v3(
 
     for (gx, gy), indices in grid.items():
         neighbor_indices = []
-        for dx, dy in [(0, 0), (1, 0), (0, 1), (1, 1), (1, -1)]:
+        # All neighbor directions plus i<j visits every unordered pair once,
+        # regardless of source row ordering or which grid cell has the lower ID.
+        for dx, dy in ((dx, dy) for dx in (-1, 0, 1) for dy in (-1, 0, 1)):
             if (gx + dx, gy + dy) in grid:
                 neighbor_indices.extend(grid[(gx + dx, gy + dy)])
 
@@ -427,7 +472,7 @@ def plan_decisions_v3(
             edges[cand_id],
             key=lambda pid: priority(row_by_id[pid], gold_ids, v6_ids, train_20k_ids),
         ):
-            if neighbor_id in removed_duplicates or neighbor_id == cand_id:
+            if neighbor_id in removed_duplicates or neighbor_id == cand_id or neighbor_id in protected:
                 continue
             d = distance_m(p_keeper, point(row_by_id[neighbor_id]))
             if d < max_distance_m:
@@ -448,13 +493,21 @@ def build(
     output: Path = DEFAULT_OUTPUT,
     overwrite: bool = False,
 ) -> dict[str, Any]:
+    source, output = source.resolve(), output.resolve()
+    if source == output or source.is_relative_to(output) or output.is_relative_to(source):
+        raise ValueError("Source and output must be separate directories")
+    if output == DEFAULT_OUTPUT.resolve():
+        raise ValueError("Use a new --output directory; the active corpus is immutable")
+    missing = [name for name in (*SOURCE_TABLES, "schema_core.json") if not (source / name).is_file()]
+    if missing:
+        raise FileNotFoundError(f"Missing source files in {source}: {missing}. Supply --source; no output was changed.")
+    gold_ids, v6_ids, train_20k_ids = load_protected_targets(DATA_DIR)
+    tables, source_rows = read_source(source)
     if output.exists() and any(output.iterdir()):
         if not overwrite:
             raise FileExistsError(f"Output directory is not empty: {output}. Use --overwrite to replace.")
         shutil.rmtree(output)
 
-    gold_ids, v6_ids, train_20k_ids = load_protected_targets(DATA_DIR)
-    tables, source_rows = read_source(source)
     core_rows = source_rows["pois_core.parquet"]
 
     dropped_junk, removed_duplicates, duplicate_distance, merge_reason, counts = plan_decisions_v3(
@@ -523,14 +576,17 @@ def build(
         "corpus_version": VERSION,
         "status": "built_not_activated",
         "created_at_utc": datetime.now(UTC).isoformat(),
-        "source_corpus_version": "vn-poi-core-v2-address-name-dedup50",
+        "source_corpus_version": (json.loads((source / "manifest.json").read_text(encoding="utf-8")).get("corpus_version")
+                                  if (source / "manifest.json").exists() else "unversioned_input"),
         "source_corpus_path": str(source),
         "builder": "tools/build_clean_poi_corpus_v3.py",
+        "builder_sha256": digest(Path(__file__)),
         "policy": {
             "spatial_cell": "0.001 deg lat/lon grid (~110m)",
             "max_distance_m": MAX_DUPLICATE_DISTANCE_M,
             "name_matching": "exact fold, business prefix stripping, token Jaccard, fuzzy Levenshtein with number-mismatch guard",
-            "address_rules": "both no address => dup; one street/house missing => dup; different house/street => not dup",
+            "address_rules": "preserve house separators; reject conflicting business types/access points; compatible name/address within 50m",
+            "target_protection": "Gold registry positives and published train v6 positives cannot be dropped or merged away",
             "option_a_cleaning": "drop pure non-latin (Khmer, Lao, Thai, pure Chinese/Cyrillic), drop outside admin (province is None), drop obstacle/barrier notes",
             "representative_priority": "Gold targets, Train v6 targets, Train 20k pool, preserved access point, named category, house number, street, direct address, aliases, node, poi_id",
         },
@@ -538,7 +594,7 @@ def build(
         "source_hashes": source_hashes,
         "artifact_hashes": {name: digest(output / name) for name in artifact_names},
         "migration_actions": dict(Counter(row["action"] for row in migration)),
-        "index_activation": "requires fresh embeddings and index; runtime remains on v2 until explicitly switched",
+        "index_activation": "candidate only; requires new embeddings/index and explicit activation",
     }
     (output / "manifest.json").write_text(
         json.dumps(manifest, ensure_ascii=False, indent=2) + "\n", encoding="utf-8"
@@ -583,11 +639,11 @@ def build(
         "",
         "### Target Protection Summary:",
         f"- Gold Targets ({len(gold_ids)} IDs): **100% preserved (0 merged, 0 dropped)**.",
-        f"- Train v6 Checkpoint (500 IDs): **100% preserved (0 merged, 0 dropped)**.",
-        f"- Train 20k Pool ({len(train_20k_ids)} IDs): **Filtered to remove 38 internal duplicates and 11 foreign/junk POIs**.",
+        f"- Train v6 positives ({len(v6_ids)} IDs): no protected ID removed from the source.",
+        f"- Train pool: {len(train_20k_ids & set(removed_duplicates))} merged, {len(train_20k_ids & set(dropped_junk))} dropped.",
         "",
         "All removed IDs and retained representatives are recorded in `poi_id_migration.parquet`.",
-        "The v2 corpus and live index were not modified. A new embedding matrix and index are required before activation.",
+        "Source and live index were not modified. A new embedding matrix and index are required before activation.",
         "",
     ]
     (output / "cleaning_report.md").write_text("\n".join(report), encoding="utf-8")

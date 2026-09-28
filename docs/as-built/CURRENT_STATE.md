@@ -2,7 +2,7 @@
 
 Cập nhật: **2026-09-28**.
 
-Gold POI hiện hành theo registry là **v2.2 reissue** (cùng 800 query/820 qrel), validator và rebuild PASS. [EDA cập nhật](../deliveries/dataset_eda_20260928/README.md) kiểm tra 40 bảng. Các mục v2.1 phía dưới là lịch sử; thiếu historical provenance vẫn còn ở bản đó, không được coi v2.2 là holdout mới.
+Gold POI hiện hành theo registry là **v2.2 reissue** (cùng 800 query/820 qrel), validator và rebuild PASS. [EDA cập nhật](../deliveries/w1/eda/README.md) kiểm tra 40 bảng. Các mục v2.1 phía dưới là lịch sử; thiếu historical provenance vẫn còn ở bản đó, không được coi v2.2 là holdout mới.
 
 Kiểm tra mới: [biên bản Stage 1 và chuẩn bị GitHub](../operations/STAGE1_SOURCE_RELEASE_CHECKLIST.md).
 API cách ly cổng 8003 đã được kiểm tra với hai profile retrieval; đây không phải thay cấu hình demo mặc định.
@@ -25,7 +25,7 @@ Bản cũ (corpus v1/v2, Gold v1/v2, brand sidecar trước v3) nằm trong git 
 | Train POI | Pool 20k + query v6 compile + hard-neg 5k; hard-neg 6k là thí nghiệm chưa release | `train_stage1_20k/`, `train_stage1_queries_v6/`, `train_stage1_v6_hardneg_5k/`, `train_stage1_v6_hardneg_6k/` |
 | POI+brand views | 36.000 POI + 908 brand, weight 85/15 | `data/vietnam/train_stage1_poi_brand_views_v1/` |
 | Embeddings demo | mE5-small 384d (local) | `artifacts/embeddings/me5_small_v3/` |
-| W1 evidence | EDA · taxonomy · DQ · problem statement | `docs/deliveries/w1_evidence/` |
+| W1 evidence | EDA · taxonomy · DQ · problem statement | `docs/deliveries/w1/` |
 
 Hướng corpus: [`NATIONWIDE_CORPUS_DIRECTION.md`](NATIONWIDE_CORPUS_DIRECTION.md).
 
@@ -64,14 +64,14 @@ Hai suite đã lock trên corpus v3 theo [`STAGE1_EVALUATION_SUITE.md`](../specs
 |---|---|
 | Round-1 exact D=1000 (BM25 + dense) | Kaggle; winner **mE5-small** |
 | Round-1b prefix-char | Kaggle → `artifacts/results/gold_stage1_prefix_char/` (mE5 dẫn FHC/AUC) |
-| Lexical rescue diag | `docs/deliveries/w1_evidence/08_LEXICAL_RESCUE_DIAGNOSTIC.md` |
+| Lexical rescue diag | `docs/deliveries/w1/08_LEXICAL_RESCUE_DIAGNOSTIC.md` |
 | Protocol | `docs/specs/SEARCH_2.0_STAGE1_MODEL_SELECTION_PROTOCOL.md` |
-| Model SoT | `docs/deliveries/w1_evidence/07_MODEL_CATALOG_AND_RESULTS.md` |
+| Model SoT | `docs/deliveries/w1/07_MODEL_CATALOG_AND_RESULTS.md` |
 
 Replay: `apps/poi-search/bench/gold_stage1_v21_docker_baseline.py` và
 `apps/poi-search/bench/gold_stage1_brand_v1_docker_baseline.py`.
 Audit run 6k và điều kiện đánh giá lại:
-[`W3 hard-neg 6k Kaggle audit`](../deliveries/w3_evidence/01_HARDNEG_6K_KAGGLE_AUDIT.md).
+[`W3 hard-neg 6k Kaggle audit`](../deliveries/w3/02_MINING_AND_NEGATIVE_AUDIT.md).
 
 ## 4. Đã gỡ khỏi tree hiện hành
 

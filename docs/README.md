@@ -14,19 +14,21 @@ GitHub và local chỉ giữ **một bộ tài liệu/data hiện hành**. Bản
    [`ADDRESS_NUMERIC_FALLBACK.md`](specs/ADDRESS_NUMERIC_FALLBACK.md).
 3. `as-built/` mô tả phần thực sự đã chạy; một thiết kế trong `specs/` không tự
    trở thành tính năng runtime.
-4. `deliveries/w1_evidence/`, `deliveries/w2_evidence/`, `deliveries/w3_evidence/`, `research/` và `contract-package-v1/` là evidence
+4. `deliveries/w1/`, `deliveries/w2/`, `deliveries/w3/`, `research/` và `contract-package-v1/` là evidence
    hoặc baseline theo snapshot. Không sửa số liệu lịch sử để khớp runtime mới.
 
 ## 1. Đang chạy / evidence
 
-- [Tạm chốt Stage 1 và bàn giao Stage 2 — 2026-09-28](deliveries/stage1_handoff_20260928/README.md) — baseline nghiên cứu, candidate coverage, giới hạn và lộ trình ranking.
+- **[Bộ bàn giao theo tuần W1–W6](deliveries/README.md)** — mục lục chính cho review tiến độ và nghiệm thu theo SEARCH 2.0.
+
+- [Tạm chốt Stage 1 và bàn giao Stage 2 — 2026-09-28](deliveries/w3/05_STAGE1_HANDOFF.md) — baseline nghiên cứu, candidate coverage, giới hạn và lộ trình ranking.
 
 - [Current state](as-built/CURRENT_STATE.md)
 - [Lexical search](as-built/LEXICAL_SEARCH.md)
 - [Nationwide corpus direction](as-built/NATIONWIDE_CORPUS_DIRECTION.md)
-- [W1 evidence](deliveries/w1_evidence/README.md)
-- [W2 design & baseline evidence](deliveries/w2_evidence/README.md)
-- [W3 retrieval evidence](deliveries/w3_evidence/README.md)
+- [W1 evidence](deliveries/w1/README.md)
+- [W2 design & baseline evidence](deliveries/w2/README.md)
+- [W3 retrieval evidence](deliveries/w3/README.md)
 - [Tổng hợp task W1–W6](deliveries/SEARCH_2.0_TONG_HOP_TASK.md)
 - Runtime FE/API: [`apps/poi-search/README.md`](../apps/poi-search/README.md)
 

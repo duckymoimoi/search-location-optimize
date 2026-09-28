@@ -10,7 +10,7 @@ import pandas as pd
 ROOT = Path(__file__).resolve().parents[3]
 GOLD = ROOT / "data/vietnam/gold_stage1_v1"
 RUNS = ROOT / "training/kaggle/output_gold_stage1_w1/gold_stage1_w1"
-OUT = ROOT / "docs/deliveries/w1_evidence"
+OUT = ROOT / "artifacts/results/diagnostic_reports"
 CORPUS = ROOT / "data/vietnam/poi_corpus_v1/pois_core.parquet"
 
 DEPTH = 1000

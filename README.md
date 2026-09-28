@@ -34,14 +34,16 @@ Tree hiện hành chỉ giữ **một bộ** (corpus v3 + Gold v2.1 + brand v1).
 | Gold POI | `data/vietnam/stage1_eval_suite_v2/gold_stage1_v2_2/` |
 | Gold brand | `data/vietnam/stage1_eval_suite_v2/gold_stage1_brand_v1/` |
 | Embeddings (mE5, local) | `artifacts/embeddings/me5_small_v3/` |
-| W1 evidence | `docs/deliveries/w1_evidence/` |
-| W2/W3 evidence | `docs/deliveries/w2_evidence/`, `docs/deliveries/w3_evidence/` |
+| W1 evidence | `docs/deliveries/w1/` |
+| W2/W3 evidence | `docs/deliveries/w2/`, `docs/deliveries/w3/` |
 | Protocol chọn model | `docs/specs/SEARCH_2.0_STAGE1_MODEL_SELECTION_PROTOCOL.md` |
 | App FE + BE | `apps/poi-search/` |
 
 Trạng thái triển khai: [`docs/as-built/CURRENT_STATE.md`](docs/as-built/CURRENT_STATE.md).
 
-Stage 1 hiện có [báo cáo retrieval và candidate bàn giao](docs/deliveries/stage1_handoff_20260928/README.md).
+Bàn giao theo yêu cầu SEARCH 2.0: **[hồ sơ W1–W6](docs/deliveries/README.md)** — output, evidence, gate và phần còn thiếu của từng tuần.
+
+Stage 1 hiện có [báo cáo retrieval và candidate bàn giao](docs/deliveries/w3/05_STAGE1_HANDOFF.md).
 Trước khi dùng bản này làm release, đọc [biên bản kiểm tra và giới hạn](docs/operations/STAGE1_SOURCE_RELEASE_CHECKLIST.md):
 retrieval đã kiểm tra offline/live, Stage 2 chưa train/triển khai, provenance Gold POI v2.1 còn pending.
 Model/tokenizer, vectors, trace benchmark và payload Kaggle sinh lại nằm ở local; mã nguồn chứa cấu hình, recipe, manifest và evidence summary.
@@ -142,7 +144,7 @@ python apps\poi-search\bench\gold_stage1_selection_report.py
 | Mục lục docs | [`docs/README.md`](docs/README.md) |
 | Vision / kiến trúc | [`docs/specs/search2.0.md`](docs/specs/search2.0.md) |
 | ES baseline method (W2) | [`docs/specs/SEARCH_2.0_W2_ZERO_SHOT_BASELINE_METHOD.md`](docs/specs/SEARCH_2.0_W2_ZERO_SHOT_BASELINE_METHOD.md) |
-| W1 evidence | [`docs/deliveries/w1_evidence/`](docs/deliveries/w1_evidence/) |
+| W1 evidence | [`docs/deliveries/w1/`](docs/deliveries/w1/) |
 | Kế hoạch W1–W6 | [`docs/deliveries/SEARCH_2.0_TONG_HOP_TASK.md`](docs/deliveries/SEARCH_2.0_TONG_HOP_TASK.md) |
 
-EDA m?i nh?t: [40 b?ng dataset v? audit leakage](docs/deliveries/dataset_eda_20260928/README.md).
+EDA mới nhất: [40 bảng dataset và audit leakage](docs/deliveries/w1/eda/README.md).

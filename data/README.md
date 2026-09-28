@@ -25,5 +25,5 @@ PBF nguồn (nếu có): `vietnam-*.osm.pbf` ở repo root — không commit.
 
 > Đã gỡ khỏi tree hiện hành: corpus v1/v2, Gold v1, Gold v2, brand membership/lookup/query cũ. Khôi phục bằng git history.
 
-EDA hi?n h?nh: [b?o c?o 2026-09-28](../docs/deliveries/dataset_eda_20260928/README.md).
+EDA hi?n h?nh: [b?o c?o 2026-09-28](../docs/deliveries/w1/eda/README.md).
 X?c minh Gold POI hi?n h?nh: `python tools/reissue_gold_stage1_v22.py verify`. Verifier v2.1 c? gi? nguy?n v? c?n FAIL historical provenance.

@@ -15,7 +15,7 @@ import pandas as pd
 ROOT = Path(__file__).resolve().parents[1]
 DEFAULT_PACK = ROOT / "data" / "vietnam" / "train_stage1_v6_hardneg_6k_clean"
 CORE = ROOT / "data" / "vietnam" / "poi_corpus_v3" / "pois_core.parquet"
-OUT = ROOT / "docs" / "deliveries" / "w3_evidence" / "hardneg_audit_6k_sample.csv"
+OUT = ROOT / "docs" / "deliveries" / "w3" / "hardneg_audit_6k_sample.csv"
 
 
 def main() -> None:

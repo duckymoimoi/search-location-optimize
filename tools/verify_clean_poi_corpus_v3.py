@@ -3,7 +3,6 @@
 from __future__ import annotations
 
 import argparse
-import hashlib
 import json
 import sys
 from collections import Counter
@@ -18,12 +17,19 @@ from build_clean_poi_corpus_v3 import (
 )
 
 
-def verify(output: Path) -> dict:
+def verify(output: Path, *, scope: str = "full", source_override: Path | None = None) -> dict:
+    if scope not in {"full", "artifacts"}:
+        raise ValueError("scope must be full or artifacts")
     manifest = json.loads((output / "manifest.json").read_text(encoding="utf-8"))
-    source = Path(manifest["source_corpus_path"])
-    for name, expected in manifest["source_hashes"].items():
-        if digest(source / name) != expected:
-            raise ValueError(f"Source hash changed: {name}")
+    source = source_override or Path(manifest["source_corpus_path"])
+    missing_sources = [name for name in manifest["source_hashes"] if not (source / name).is_file()]
+    if scope == "full":
+        if missing_sources:
+            raise ValueError(f"Full provenance unavailable; restore --source {source}: {missing_sources}. "
+                             "Use --scope artifacts only for a separately labelled serving-artifact check.")
+        for name, expected in manifest["source_hashes"].items():
+            if digest(source / name) != expected:
+                raise ValueError(f"Source hash changed: {name}")
     for name, expected in manifest["artifact_hashes"].items():
         if digest(output / name) != expected:
             raise ValueError(f"Artifact hash mismatch: {name}")
@@ -64,22 +70,30 @@ def verify(output: Path) -> dict:
         elif target_id not in survivors:
             raise ValueError(f"Migration points to missing survivor: {old_id} -> {target_id}")
         elif row["action"] == "merge_duplicate":
+            if old_id in survivors:
+                raise ValueError(f"Merged source is still present: {old_id}")
             distance = row["distance_to_canonical_m"]
             if distance is None or not (distance < MAX_DUPLICATE_DISTANCE_M):
                 raise ValueError(f"Invalid duplicate distance for {old_id}: {distance}")
+        elif row["action"] != "keep" or target_id != old_id:
+            raise ValueError(f"Invalid keep/action mapping: {old_id}")
 
     expected_rows = manifest["counts"]["output_rows"]
     if len(core) != expected_rows:
         raise ValueError(f"Expected {expected_rows} output rows, got {len(core)}")
-    return {"verdict": "PASS", "rows": len(core), "actions": dict(action_counts)}
+    return {"verdict": "PASS", "scope": scope, "source_provenance_verified": scope == "full",
+            "missing_source_files": missing_sources, "rows": len(core), "actions": dict(action_counts)}
 
 
 def main() -> int:
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument("--corpus", type=Path, default=DEFAULT_OUTPUT)
+    parser.add_argument("--scope", choices=["full", "artifacts"], default="full",
+                        help="full requires source hashes; artifacts verifies the serving release only")
+    parser.add_argument("--source", type=Path, help="Override source location without changing expected hashes")
     args = parser.parse_args()
     try:
-        result = verify(args.corpus.resolve())
+        result = verify(args.corpus.resolve(), scope=args.scope, source_override=args.source)
     except Exception as error:
         result = {"verdict": "FAIL", "error": str(error)}
     print(json.dumps(result, ensure_ascii=False, indent=2))

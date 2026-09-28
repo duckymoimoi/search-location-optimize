@@ -2,7 +2,7 @@
 
 Ngày: 2026-09-28. Nhánh chuẩn bị: `release/stage1-verified-handoff`.
 
-**Cập nhật sau khi người dùng chọn tái phát hành:** Gold POI v2.2 đã build/verify PASS và dựng lại byte-identical ở thư mục khác; registry trỏ v2.2. Historical verifier v2.1 vẫn FAIL như bên dưới, không sửa validator cũ. Đây là regression reissue từ nhãn đã có, không phải holdout mới hoặc independent label review. [EDA mới của 40 bảng](../deliveries/dataset_eda_20260928/README.md) bổ sung inventory, missingness và leakage; clone Git sạch đã chạy 78 tests PASS trước khi thêm reissue, cần kiểm tra lại bản cuối có reissue.
+**Cập nhật sau khi người dùng chọn tái phát hành:** Gold POI v2.2 đã build/verify PASS và dựng lại byte-identical ở thư mục khác; registry trỏ v2.2. Historical verifier v2.1 vẫn FAIL như bên dưới, không sửa validator cũ. Đây là regression reissue từ nhãn đã có, không phải holdout mới hoặc independent label review. [EDA mới của 40 bảng](../deliveries/w1/eda/README.md) bổ sung inventory, missingness và leakage; clone Git sạch đã chạy 78 tests PASS trước khi thêm reissue, cần kiểm tra lại bản cuối có reissue.
 
 **Trạng thái: bản mã nguồn nghiên cứu để review; chưa sign-off release dữ liệu/sản phẩm.** Stage 2 chưa được train hoặc triển khai. Việc kiểm tra dưới đây xác nhận candidate và serving của Stage 1 có thể tái lập; không chứng minh chất lượng Stage 2 hoặc SLA.
 
@@ -24,7 +24,7 @@ Ngày: 2026-09-28. Nhánh chuẩn bị: `release/stage1-verified-handoff`.
 
 Hai lần kiểm tra live dùng API cách ly 8003, inference trên checkpoint đã tải; không train local. Test sample không phải full live benchmark mọi query hay đánh giá chất lượng độc lập. Debug response cắt stage ở 80 nên kiểm tra prefix 80 + tổng count; không tuyên bố đã so thứ tự toàn bộ 100 ID qua HTTP.
 
-Evidence mới: [verification_summary.json](../deliveries/stage1_handoff_20260928/verification_summary.json). Trace live chi tiết local nằm trong `artifacts/results/dense_first/handoff_verification_s1a_20260928/` và `handoff_verification_s1b_20260928/`. Snapshot lịch sử vẫn giữ nguyên; không ghi đè run cũ.
+Evidence mới: [verification_summary.json](../deliveries/w3/handoff/verification_summary.json). Trace live chi tiết local nằm trong `artifacts/results/dense_first/handoff_verification_s1a_20260928/` và `handoff_verification_s1b_20260928/`. Snapshot lịch sử vẫn giữ nguyên; không ghi đè run cũ.
 
 ## Lỗi đã sửa trong vòng kiểm tra
 
@@ -56,7 +56,7 @@ Evidence mới: [verification_summary.json](../deliveries/stage1_handoff_2026092
 
 ## Tái chạy
 
-Từ root repo, cài CPU deps bằng `python -m pip install -r requirements-dev.txt`. Unit checks không cần checkpoint hoặc GPU; inference live cần Docker GPU, model devlock, brand lookup và index 179.209 POI. Các artifact ngoài Git phải lấy đúng hash trong [snapshot](../deliveries/stage1_handoff_20260928/evidence_snapshot.json), không tự thay bằng checkpoint mới.
+Từ root repo, cài CPU deps bằng `python -m pip install -r requirements-dev.txt`. Unit checks không cần checkpoint hoặc GPU; inference live cần Docker GPU, model devlock, brand lookup và index 179.209 POI. Các artifact ngoài Git phải lấy đúng hash trong [snapshot](../deliveries/w3/handoff/evidence_snapshot.json), không tự thay bằng checkpoint mới.
 
 ```powershell
 # S1-A: compose mặc định dùng cấu hình bàn giao, không phụ thuộc DF_* của phiên trước.
