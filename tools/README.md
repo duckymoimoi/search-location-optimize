@@ -25,7 +25,7 @@ Từ repo root chạy `python tools/<script> --help` để xem tham số. Model,
 | POI authoring | `build_stage1_authoring_packet`, `serialize_stage1_v6`, `validate_stage1_train_v6`, `stage1_v6_common`, `expand_stage1_v6_manual_batch`, `merge_stage1_v6_authored` | Schema, query variants, trace và validation |
 | Brand pipeline | `build_brand_*`, `validate_brand_*`, `serialize_stage1_brand_queries_v1`, `stage1_brand_*_common`, `split_brand_families_v1`, `compile_stage1_poi_brand_views` | Membership/aliases, query/qrels và split |
 | Negative mining | `mine_stage1_hardneg_pilot`, `compile_stage1_hardneg_pilot`, `augment_stage1_hardneg_brand_siblings`, `sample_hardneg_audit` | Train pairs, FN audit và masks |
-| Evaluation authoring | `build_gold_stage1_v21_packet`, `serialize_gold_stage1_v21_draft`, `audit_gold_stage1_v21_*`, `lock_gold_stage1_*` | Tạo/kiểm dữ liệu theo schema; không sửa signed release tại chỗ |
+| Evaluation authoring | `serialize_gold_poi_draft`, `audit_gold_query_coverage`, `plan_gold_name_street`, `lock_gold_stage1_brand_v1` | Serializer/schema helpers còn được kiểm thử; không sửa signed release tại chỗ |
 | Diagnostics | `report_*`, `compare_*`, `judge_devlock_summary`, `inspect_osm_*`, `analyze_gold_stage1_v21_miss` | Chẩn đoán offline; output riêng, không tự cập nhật bàn giao |
 | Shared helpers/tests | `prefix_sampler`, common modules, `tests/` | Dependency dùng chung và regression |
 

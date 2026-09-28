@@ -6,7 +6,7 @@ import importlib.util
 from pathlib import Path
 
 
-SCRIPT = Path(__file__).resolve().parents[1] / "plan_gold_stage1_v21_name_street.py"
+SCRIPT = Path(__file__).resolve().parents[1] / "plan_gold_name_street.py"
 
 
 def test_remove_house_preserves_street_number_and_unit_code():

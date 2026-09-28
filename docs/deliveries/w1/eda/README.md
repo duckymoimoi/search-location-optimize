@@ -1,6 +1,6 @@
 # EDA dataset hiện hành — 2026-09-28
 
-EDA mới được tính trực tiếp trên **40 bảng Parquet** trong `data/vietnam`, bỏ staging; bao gồm nguồn hiện hành, view huấn luyện và các pack diagnostic để so sánh. Không cộng tổng số dòng giữa các bảng vì nhiều bảng là view hoặc phiên bản của cùng dữ liệu. Gold v2.1/v2.2 có cùng payload, không phải hai tập độc lập.
+EDA mới được tính trực tiếp trên **31 bảng Parquet** trong `data/vietnam`, bỏ staging; bao gồm nguồn hiện hành, view huấn luyện và các pack diagnostic để so sánh. Không cộng tổng số dòng giữa các bảng vì nhiều bảng là view hoặc phiên bản của cùng dữ liệu. Gold v2.1/v2.2 có cùng payload, không phải hai tập độc lập.
 
 Nguồn số đầy đủ: [dataset_eda.json](dataset_eda.json), gồm path, SHA-256, số dòng, cột, null/blank, cardinality, phân bố và audit. Runner: [report_current_datasets.py](../../../../tools/report_current_datasets.py). Báo cáo thống kê corpus v3, Gold hiện hành và các view dùng cho nghiên cứu; không cộng các view cùng nguồn thành số query độc lập.
 
@@ -75,4 +75,4 @@ python tools/report_current_datasets.py --out artifacts/results/dataset_eda_new
 python tools/reissue_gold_stage1_v22.py verify
 ```
 
-Runner EDA dùng toàn bộ rows, stream bảng lớn; categorical JSON chỉ giữ top 20 nhưng lưu distinct count. SHA-256 khóa từng file và runner. Một số pack diagnostic được giữ local/ignore khỏi Git: fresh clone phải khôi phục đúng artifact để tái tạo đủ 40 bảng; nếu thiếu thì báo cáo mới sẽ có scope nhỏ hơn, không được gọi là cùng snapshot.
+Runner EDA dùng toàn bộ rows, stream bảng lớn; categorical JSON chỉ giữ top 20 nhưng lưu distinct count. SHA-256 khóa từng file và runner. Một số pack diagnostic được giữ local/ignore khỏi Git: fresh clone phải khôi phục đúng artifact để tái tạo đủ 31 bảng; nếu thiếu thì báo cáo mới sẽ có scope nhỏ hơn, không được gọi là cùng snapshot.

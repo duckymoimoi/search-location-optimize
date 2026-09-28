@@ -1,6 +1,6 @@
 """Serialize compact manually authored Gold v2.1 cases into draft artifacts.
 
-Input: staging/gold_stage1_v2_1/authored/batch_*.jsonl, one object per case.
+Input: staging/gold_poi_draft/authored/batch_*.jsonl, one object per case.
 This never writes to either locked Gold release and never uses model results.
 """
 
@@ -20,7 +20,7 @@ import pyarrow as pa
 import pyarrow.parquet as pq
 
 ROOT = Path(__file__).resolve().parents[1]
-STAGING = ROOT / "data/vietnam/stage1_eval_suite_v2/staging/gold_stage1_v2_1"
+STAGING = ROOT / "data/vietnam/stage1_eval_suite_v2/staging/gold_poi_draft"
 CORPUS = ROOT / "data/vietnam/poi_corpus_v3/pois_core.parquet"
 SCHEMA = ROOT / "docs/specs/schemas/stage1_evaluation_v2.schema.json"
 VERSION = "stage1-eval-suite-v2"
@@ -229,8 +229,15 @@ def main() -> None:
                 })
     draft = staging / "draft"
     draft.mkdir(parents=True, exist_ok=True)
-    session_schema_arrow = pq.read_schema(ROOT / "data/vietnam/stage1_eval_suite_v2/gold_stage1_v2_1/query_sessions_v2_1.parquet")
-    qrel_schema_arrow = pq.read_schema(ROOT / "data/vietnam/stage1_eval_suite_v2/gold_stage1_v2_1/qrels_v2_1.parquet")
+    suite_root = ROOT / "data/vietnam/stage1_eval_suite_v2"
+    registry = json.loads((suite_root / "suite_registry.json").read_text(encoding="utf-8"))
+    release = suite_root / registry["active_gold_poi_release"]
+    session_files = list(release.glob("query_sessions_*.parquet"))
+    qrel_files = list(release.glob("qrels_*.parquet"))
+    if len(session_files) != 1 or len(qrel_files) != 1:
+        raise ValueError("Active Gold release must have exactly one sessions and one qrels schema source")
+    session_schema_arrow = pq.read_schema(session_files[0])
+    qrel_schema_arrow = pq.read_schema(qrel_files[0])
     pq.write_table(pa.Table.from_pylist(sessions, schema=session_schema_arrow), draft / "query_sessions_v2_1_draft.parquet")
     pq.write_table(pa.Table.from_pylist(qrels, schema=qrel_schema_arrow), draft / "qrels_v2_1_draft.parquet")
     write_csv(draft / "query_sessions_v2_1_draft.csv", sessions)

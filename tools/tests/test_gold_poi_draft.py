@@ -12,7 +12,7 @@ import pyarrow as pa
 import pyarrow.parquet as pq
 
 
-SCRIPT = Path(__file__).resolve().parents[1] / "serialize_gold_stage1_v21_draft.py"
+SCRIPT = Path(__file__).resolve().parents[1] / "serialize_gold_poi_draft.py"
 
 
 def test_one_manual_case_serializes_query_specific_qrels_and_prefix(tmp_path, monkeypatch):

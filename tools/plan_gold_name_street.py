@@ -14,7 +14,7 @@ from pathlib import Path
 import pyarrow.parquet as pq
 
 ROOT = Path(__file__).resolve().parents[1]
-STAGING = ROOT / "data/vietnam/stage1_eval_suite_v2/staging/gold_stage1_v2_1"
+STAGING = ROOT / "data/vietnam/stage1_eval_suite_v2/staging/gold_poi_draft"
 CORPUS = ROOT / "data/vietnam/poi_corpus_v3/search_documents.parquet"
 STREET_TYPES = {"duong", "pho", "hem", "ngo", "ngach", "kiet", "ql", "quoc", "lo"}
 EXCEPTIONS = {

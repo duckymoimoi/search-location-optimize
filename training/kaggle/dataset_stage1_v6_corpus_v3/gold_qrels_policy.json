@@ -1,8 +1,0 @@
-{
-  "policy": "brand_multipositive_only_as_authored_mapped_to_corpus_v2",
-  "n_rows": 1080,
-  "n_cases": 180,
-  "n_multipositive_rows": 16,
-  "n_multipositive_cases": 11,
-  "note": "No automatic brand expansion. Only migration-map remap and deduplication of accepted IDs."
-}

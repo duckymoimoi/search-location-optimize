@@ -12,7 +12,7 @@ from collections import Counter
 from pathlib import Path
 
 ROOT = Path(__file__).resolve().parents[1]
-STAGING = ROOT / "data/vietnam/stage1_eval_suite_v2/staging/gold_stage1_v2_1"
+STAGING = ROOT / "data/vietnam/stage1_eval_suite_v2/staging/gold_poi_draft"
 
 # Gold-owned minima from GOLD_STAGE1_V2_CONSTRUCTION_PLAYBOOK.md.
 REQUIREMENTS = {

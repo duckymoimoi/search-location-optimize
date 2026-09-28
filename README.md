@@ -147,4 +147,4 @@ python apps\poi-search\bench\gold_stage1_selection_report.py
 | W1 evidence | [`docs/deliveries/w1/`](docs/deliveries/w1/) |
 | Kế hoạch W1–W6 | [`docs/deliveries/SEARCH_2.0_TONG_HOP_TASK.md`](docs/deliveries/SEARCH_2.0_TONG_HOP_TASK.md) |
 
-EDA mới nhất: [40 bảng dataset và audit leakage](docs/deliveries/w1/eda/README.md).
+EDA mới nhất: [31 bảng dataset và audit leakage](docs/deliveries/w1/eda/README.md).

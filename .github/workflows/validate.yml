@@ -29,7 +29,7 @@ jobs:
         run: >-
           python -m ruff check --select E9,F63,F7,F82
           apps/poi-search/api apps/poi-search/bench
-          tools/verify_stage1_handoff.py tools/serialize_gold_stage1_v21_draft.py
+          tools/verify_stage1_handoff.py tools/serialize_gold_poi_draft.py
       - name: Compile sources
         run: python -m compileall -q apps/poi-search/api apps/poi-search/bench tools training
       - name: Verify Gold POI reproducible reissue

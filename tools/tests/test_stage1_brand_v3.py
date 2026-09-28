@@ -12,7 +12,7 @@ import pandas as pd
 TOOLS = Path(__file__).resolve().parents[1]
 if str(TOOLS) not in sys.path:
     sys.path.insert(0, str(TOOLS))
-KERNEL = TOOLS.parent / "training/kaggle/kernel_stage1_v6_hardneg_5k"
+KERNEL = TOOLS.parent / "training/kaggle/kernel_stage1_v6_hardneg_6k_devlock"
 if str(KERNEL) not in sys.path:
     sys.path.insert(0, str(KERNEL))
 

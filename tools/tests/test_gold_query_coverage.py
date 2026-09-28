@@ -6,7 +6,7 @@ import importlib.util
 from pathlib import Path
 
 
-SCRIPT = Path(__file__).resolve().parents[1] / "audit_gold_stage1_v21_coverage.py"
+SCRIPT = Path(__file__).resolve().parents[1] / "audit_gold_query_coverage.py"
 
 
 def test_keyboard_neighbor_trace_requires_real_adjacent_substitution():

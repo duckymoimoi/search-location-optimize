@@ -19,7 +19,7 @@ Tool hiện hành và cách dùng: [tools/README.md](../../tools/README.md). Cá
 | Brand queries / splits | `train_stage1_brand_queries_v3/`, `train_stage1_brand_splits_v1/` | Locked authoring + family split |
 | Stage 1 train targets | `data/vietnam/train_stage1_20k/` | Selected target pool |
 | POI query compile | `data/vietnam/train_stage1_queries_v6/` | Compiled v6 queries; staging stays local |
-| Hard-neg train compile | `data/vietnam/train_stage1_v6_hardneg_5k/` | Current POI train pairs |
+| Hard-neg train compile | `data/vietnam/train_stage1_v6_hardneg_6k_clean/` | Current POI train pairs |
 | Unified POI+brand views | `data/vietnam/train_stage1_poi_brand_views_v1/` | E1 views; trainer gated on multi-positive mask |
 | Address membership/fallback | Not built | Target contract in `docs/specs/ADDRESS_NUMERIC_FALLBACK.md` |
 | Encoder embeddings | `artifacts/embeddings/me5_small_v3/` | Local/derived; rebuild from corpus + pinned model |

@@ -1,6 +1,6 @@
 # W1 — Bàn giao hiện hành
 
-Cập nhật: 2026-09-28. Có EDA 40 bảng, taxonomy, DQ và problem statement; chưa có ride-hailing EDA từ log thật đủ tin cậy.
+Cập nhật: 2026-09-28. Có EDA 31 bảng, taxonomy, DQ và problem statement; chưa có ride-hailing EDA từ log thật đủ tin cậy.
 
 ## Tài liệu và đầu ra
 
