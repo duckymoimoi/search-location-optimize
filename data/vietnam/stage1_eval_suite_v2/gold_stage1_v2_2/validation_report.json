@@ -1,0 +1,19 @@
+{
+  "verdict": "PASS",
+  "errors": [],
+  "counts": {
+    "targets": 200,
+    "sessions": 800,
+    "qrels": 820,
+    "prefixes": 200
+  },
+  "role_counts": {
+    "q01": 200,
+    "q02": 200,
+    "q03": 200,
+    "q04": 200
+  },
+  "positive_overlap_train_targets": 0,
+  "label_review": "inherited accepted labels; structural and corpus linkage revalidated; no new independent human review",
+  "holdout_status": "previously exposed regression set; not a new holdout"
+}

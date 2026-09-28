@@ -1,0 +1,23 @@
+{
+  "parent_release": "gold_stage1_v2_1",
+  "logical_suite_id": "gold_stage1_v2",
+  "operation": "byte_identical_payload_reissue",
+  "new_independent_holdout": false,
+  "authorization": "User requested reissue of existing queries/qrels with revalidation and reproducible provenance.",
+  "historical_provenance_recovered": false,
+  "historical_missing_or_changed_sources": [
+    "gold_v2_manifest",
+    "authoring_packet",
+    "authoring_packet_manifest",
+    "target_overrides"
+  ],
+  "historical_readme_hash_matches": false,
+  "scope": "Provenance begins at existing locked data payloads and current corpus/schema. Does not certify missing historical authoring packet.",
+  "payload_mapping": {
+    "query_sessions_v2_1.parquet": "query_sessions_v2_2.parquet",
+    "qrels_v2_1.parquet": "qrels_v2_2.parquet",
+    "target_pois_v2_1.parquet": "target_pois_v2_2.parquet",
+    "prefix_evidence_v2_1.jsonl": "prefix_evidence_v2_2.jsonl",
+    "mutation_traces_v2_1.jsonl": "mutation_traces_v2_2.jsonl"
+  }
+}

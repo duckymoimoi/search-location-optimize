@@ -12,6 +12,8 @@ from textnorm import (
     normalized_text,
     parse_query_structure,
     query_code_compacts,
+    query_fuzzy_terms,
+    query_name_compacts,
     text_tokens,
     _token_kind,
 )
@@ -252,6 +254,17 @@ def lexical_body(query: str, size: int) -> dict[str, Any]:
                 should.append(
                     {"prefix": {"codes_compact": {"value": key, "boost": code_boost * 0.7}}}
                 )
+    name_keys = query_name_compacts(query)
+    if name_keys:
+        name_boost = float(lex.get("name_compact", 24.0))
+        should.append(
+            {
+                "constant_score": {
+                    "filter": {"terms": {"names_compact": name_keys}},
+                    "boost": name_boost,
+                }
+            }
+        )
     if len(folded) >= 2 and not drop_name_prefix:
         should += [
             {"prefix": {"label_folded": {"value": folded, "boost": lex["leading_prefix"]}}},
@@ -321,7 +334,7 @@ def lexical_body(query: str, size: int) -> dict[str, Any]:
                     should.append(number_bonus_clause(token, number_boost))
     fuzzy_boost = float(lex.get("fuzzy") or 0.0)
     if fuzzy_boost > 0:
-        fuzzy_terms = [token for token in text_tokens(query) if token.isalpha() and len(token) >= 4]
+        fuzzy_terms = query_fuzzy_terms(query)
         if fuzzy_terms:
             should.append(
                 {
@@ -330,9 +343,9 @@ def lexical_body(query: str, size: int) -> dict[str, Any]:
                         "fields": ["search_label^4", "search_aliases^3"],
                         "type": "best_fields",
                         "operator": "or",
-                        "fuzziness": "AUTO",
+                        "fuzziness": 1,
                         "prefix_length": 1,
-                        "max_expansions": 50,
+                        "max_expansions": 40,
                         "boost": fuzzy_boost,
                     }
                 }

@@ -1,0 +1,50 @@
+name: Validate source release
+on:
+  push:
+  pull_request:
+
+permissions:
+  contents: read
+
+jobs:
+  cpu-regression:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+          cache: pip
+      - run: python -m pip install -r requirements-dev.txt
+      - name: Algorithm and data-tool regression (no training or GPU)
+        env:
+          PYTHONPATH: apps/poi-search/api:apps/poi-search/bench
+        run: >-
+          python -m pytest -q apps/poi-search/api/test_geo_algorithms.py
+          apps/poi-search/bench/test_dense_first_ablation.py
+          apps/poi-search/bench/test_brand_router.py
+          apps/poi-search/bench/test_name_lookup.py
+          training/stage1/test_training_weights.py tools/tests
+      - name: Fatal Python lint
+        run: >-
+          python -m ruff check --select E9,F63,F7,F82
+          apps/poi-search/api apps/poi-search/bench
+          tools/verify_stage1_handoff.py tools/serialize_gold_stage1_v21_draft.py
+      - name: Compile sources
+        run: python -m compileall -q apps/poi-search/api apps/poi-search/bench tools training
+      - name: Verify Gold POI reproducible reissue
+        run: python tools/reissue_gold_stage1_v22.py verify
+  frontend:
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: apps/poi-search/web
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+          cache: npm
+          cache-dependency-path: apps/poi-search/web/package-lock.json
+      - run: npm ci
+      - run: npm run build

@@ -1,0 +1,16 @@
+{
+  "id": "hiengchi/vn-poi-dense-first-loss-only-dev",
+  "title": "vn-poi-dense-first-loss-only-dev",
+  "code_file": "run_train.py",
+  "language": "python",
+  "kernel_type": "script",
+  "is_private": "true",
+  "enable_gpu": "true",
+  "enable_internet": "true",
+  "dataset_sources": [
+    "hiengchi/vn-poi-stage1-v6-hardneg-6k-devlock"
+  ],
+  "competition_sources": [],
+  "kernel_sources": [],
+  "model_sources": []
+}

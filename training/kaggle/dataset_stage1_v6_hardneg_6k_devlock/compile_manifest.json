@@ -1,0 +1,63 @@
+{
+  "dataset": "train_stage1_v6_hardneg_6k_clean",
+  "status": "EXPERIMENTAL",
+  "note": "Compiled views only. Does not modify published v6 queries.",
+  "split_seed": 42,
+  "dev_case_fraction": 0.1,
+  "slot_weight": {
+    "v01": 1.0,
+    "v02": 1.0,
+    "v03": 0.25,
+    "v04": 0.25,
+    "v05": 0.25,
+    "v06": 0.25
+  },
+  "excluded_cases": {
+    "train20k-02003": "intended osm:node/5608881031 merges into a different PNJ branch on v3"
+  },
+  "holdout_gold": {
+    "path": "D:\\vsf\\data\\vietnam\\stage1_eval_suite_v2\\gold_stage1_v2_1",
+    "n_ids": 205,
+    "stripped_acceptables": 24,
+    "stripped_relations": 2070,
+    "max_cases": 0
+  },
+  "counts": {
+    "view_rows": 35994,
+    "train_rows": 32394,
+    "dev_rows": 3600,
+    "train_cases": 5399,
+    "dev_cases": 600,
+    "excluded_source_rows": 6,
+    "dropped_unresolved": 0,
+    "relation_rows": 3237666,
+    "relations_by_label": {
+      "hard_neg_candidate": 3196104,
+      "positive": 41454,
+      "ignore": 108
+    },
+    "rows_with_brand_group": 6792
+  },
+  "sources": {
+    "query_variants.csv": {
+      "path": "D:/vsf/data/vietnam/train_stage1_queries_v6/query_variants.csv",
+      "sha256": "aafea7af07cd36a35b5f8ea262dba191b226d0403dd44016c398315580693561"
+    },
+    "train_manifest.json": {
+      "path": "D:/vsf/data/vietnam/train_stage1_queries_v6/manifest.json",
+      "sha256": "a2667d316d9cbcc7bdb2693a10964f65730a252a3ed00250a1a1b86bb5722059"
+    },
+    "search_documents.parquet": {
+      "path": "D:/vsf/data/vietnam/poi_corpus_v3/search_documents.parquet",
+      "sha256": "6301bc85f6ac5229854875359db57e25c66ca78ba4f484807788e5ba27eb00f2"
+    },
+    "brand_group_members_v1.parquet": {
+      "path": "D:/vsf/data/vietnam/train_stage1_brand_membership_v3/brand_group_members_v3.parquet",
+      "sha256": "119ebb78518817acc12f114995241df0e931c5d03ea6bd0797dc5ef0095a41a2"
+    }
+  },
+  "outputs": {
+    "query_train_view.parquet": "6a82efc9bc69bfe888f78bcd96244a6357904bb5c6b7d881cbe0cf2efedd35a3",
+    "query_relation_view.parquet": "d31203bffdd43c9c8f2625b732f79ae699e465e1cb7a98440e35a9364b3f42d8"
+  }
+}

@@ -60,8 +60,23 @@ apps/poi-search/bench/results/
 artifacts/embeddings/
 artifacts/results/
 artifacts/archive/
+artifacts/models/
 data/vietnam/train_stage1_queries_v6/staging/
+data/vietnam/stage1_eval_suite_v2/staging/
 *.v2bak
+
+# Generated Kaggle dataset copies: keep recipes/metadata, restore payloads locally.
+training/kaggle/dataset_*/*.parquet
+training/kaggle/dataset_*/*.csv
+training/kaggle/dataset_*/*.jsonl
+training/kaggle/dataset_*/tokenizer.json
+training/kaggle/dataset_*/tokenizer_config.json
+training/kaggle/dataset_*/config.json
+
+# Local diagnostic training views; manifests and preparation code remain reviewable.
+data/vietnam/train_stage1_v6_hardneg_5k_v21/*.parquet
+data/vietnam/train_stage1_v6_hardneg_6k/*.parquet
+data/vietnam/train_stage1_v6_hardneg_6k_clean/*.parquet
 
 # Stale Hanoi paths (removed from tree; keep ignore harmless)
 HANOI_POI_STABLE_V1/

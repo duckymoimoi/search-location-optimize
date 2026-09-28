@@ -14,14 +14,19 @@ GitHub và local chỉ giữ **một bộ tài liệu/data hiện hành**. Bản
    [`ADDRESS_NUMERIC_FALLBACK.md`](specs/ADDRESS_NUMERIC_FALLBACK.md).
 3. `as-built/` mô tả phần thực sự đã chạy; một thiết kế trong `specs/` không tự
    trở thành tính năng runtime.
-4. `deliveries/w1_evidence/`, `research/` và `contract-package-v1/` là evidence
+4. `deliveries/w1_evidence/`, `deliveries/w2_evidence/`, `deliveries/w3_evidence/`, `research/` và `contract-package-v1/` là evidence
    hoặc baseline theo snapshot. Không sửa số liệu lịch sử để khớp runtime mới.
 
 ## 1. Đang chạy / evidence
 
+- [Tạm chốt Stage 1 và bàn giao Stage 2 — 2026-09-28](deliveries/stage1_handoff_20260928/README.md) — baseline nghiên cứu, candidate coverage, giới hạn và lộ trình ranking.
+
 - [Current state](as-built/CURRENT_STATE.md)
+- [Lexical search](as-built/LEXICAL_SEARCH.md)
 - [Nationwide corpus direction](as-built/NATIONWIDE_CORPUS_DIRECTION.md)
 - [W1 evidence](deliveries/w1_evidence/README.md)
+- [W2 design & baseline evidence](deliveries/w2_evidence/README.md)
+- [W3 retrieval evidence](deliveries/w3_evidence/README.md)
 - [Tổng hợp task W1–W6](deliveries/SEARCH_2.0_TONG_HOP_TASK.md)
 - Runtime FE/API: [`apps/poi-search/README.md`](../apps/poi-search/README.md)
 
@@ -52,3 +57,7 @@ GitHub và local chỉ giữ **một bộ tài liệu/data hiện hành**. Bản
 - [Contract package v1](contract-package-v1/README.md)
 - [Research](research/README.md)
 - [Operations / structure](operations/PROJECT_STRUCTURE.md)
+- [Review retrieval, train và benchmark — 2026-09-28](operations/RETRIEVAL_ARCHITECTURE_REVIEW_2026_09_28.md)
+- [Quy trình thực hiện dense-first và quyết định vai trò lexical](operations/DENSE_FIRST_EXECUTION_PLAN.md)
+- [Kết quả thực thi dense-first, benchmark và quyết định kiến trúc — 2026-09-28](operations/DENSE_FIRST_EXECUTION_STATUS_2026_09_28.md)
+- [Quyết định retrieval và SLA pilot đề xuất — 2026-09-28](operations/RETRIEVAL_DECISIONS_AND_PILOT_SLA_2026_09_28.md)

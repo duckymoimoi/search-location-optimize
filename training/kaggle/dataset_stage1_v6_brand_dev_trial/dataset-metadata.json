@@ -1,0 +1,10 @@
+{
+  "title": "VN POI Stage1 v6 brand dev trial",
+  "id": "hiengchi/vn-poi-stage1-v6-brand-dev-trial",
+  "licenses": [
+    {
+      "name": "ODbL-1.0"
+    }
+  ],
+  "subtitle": "Brand train, dev, and gold queries. No embeddings."
+}

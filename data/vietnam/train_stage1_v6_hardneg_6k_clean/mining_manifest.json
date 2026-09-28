@@ -1,0 +1,53 @@
+{
+  "dataset": "train_stage1_v6_hardneg_6k_clean",
+  "status": "EXPERIMENTAL",
+  "miner_checkpoint": "intfloat/multilingual-e5-small",
+  "embedding_source": "D:/vsf/artifacts/embeddings/me5_small_v3/corpus_embeddings.npy",
+  "embeddings_sha256": "d02fd85af5ebce95e9fad25e1b7d947cb2d0c336f5458c5ee2e312e1998549b1",
+  "poi_ids_sha256": "2b8de9de9edd93c99061cf98e7599d1eea5dcf6fe8650138ba7edc96da6ca9fa",
+  "documents_sha256": "6301bc85f6ac5229854875359db57e25c66ca78ba4f484807788e5ba27eb00f2",
+  "view_sha256": "6a82efc9bc69bfe888f78bcd96244a6357904bb5c6b7d881cbe0cf2efedd35a3",
+  "relation_sha256": "d31203bffdd43c9c8f2625b732f79ae699e465e1cb7a98440e35a9364b3f42d8",
+  "seed": 42,
+  "pool_depth": 100,
+  "quota": {
+    "random": 2,
+    "lexical_hard": 1,
+    "dense_hard": 3,
+    "same_brand_other_branch": 0
+  },
+  "exclusions": [
+    "authored_positive",
+    "brand_membership_needs_review",
+    "same_entity_group",
+    "gold_holdout_poi"
+  ],
+  "holdout_gold": {
+    "path": "D:\\vsf\\data\\vietnam\\stage1_eval_suite_v2\\gold_stage1_v2_1",
+    "n_ids": 205,
+    "gold_pool_hits": 8525,
+    "pair_overlap": 0
+  },
+  "note": "Same-brand other branches stay eligible as hard-neg candidates. They are not expanded into positives.",
+  "train_queries": 32394,
+  "pair_rows": 231608,
+  "pairs_by_label": {
+    "negative": 194060,
+    "positive": 37446,
+    "ignore": 102
+  },
+  "negatives_by_source": {
+    "dense_hard": 97182,
+    "random": 64788,
+    "lexical_hard": 32090
+  },
+  "fill_rate": {
+    "lexical_hard": 0.9906155460887819,
+    "dense_hard": 1.0,
+    "same_brand_other_branch": 0.0,
+    "random": 1.0
+  },
+  "outputs": {
+    "training_pairs.parquet": "6f41341233bc407e5960b89c1cf085881733608ededf416beddeb839d2388c69"
+  }
+}

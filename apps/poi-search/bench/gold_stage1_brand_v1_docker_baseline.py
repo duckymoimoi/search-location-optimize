@@ -163,7 +163,9 @@ def main() -> None:
     parser.add_argument("--es-url", default="http://127.0.0.1:9200")
     parser.add_argument("--workers", type=int, default=4)
     parser.add_argument("--prefix-hybrid", action="store_true")
+    parser.add_argument("--out", type=Path, default=OUT)
     args = parser.parse_args()
+    out_dir = args.out
     began = time.perf_counter()
 
     lock = json.loads((GOLD / "LOCKED.json").read_text(encoding="utf-8"))
@@ -191,7 +193,7 @@ def main() -> None:
         )
     texts = [str(row["query_text"]) for row in rows]
     print(f"brand full-query rows={len(texts)}", flush=True)
-    OUT.mkdir(parents=True, exist_ok=True)
+    out_dir.mkdir(parents=True, exist_ok=True)
     lexical = common.lexical_rankings(args.es_url, texts)
     hybrid = common.hybrid_rankings(args.api_url, texts, args.workers)
     sibling = sibling_namespaces(members)
@@ -210,7 +212,7 @@ def main() -> None:
         metrics = brand_metrics(rows, rankings, sibling)
         scores = metrics.pop("query_rows")
         report["profiles"][name] = metrics
-        pd.DataFrame(scores).to_csv(OUT.joinpath(f"per_query_{name}.csv"), index=False, encoding="utf-8-sig")
+        pd.DataFrame(scores).to_csv(out_dir.joinpath(f"per_query_{name}.csv"), index=False, encoding="utf-8-sig")
 
     evidence = [
         json.loads(line)
@@ -239,7 +241,7 @@ def main() -> None:
             evidence, checkpoints, prefix_hybrid
         )
     report["elapsed_seconds"] = round(time.perf_counter() - began, 2)
-    (OUT / "baseline_report.json").write_text(
+    (out_dir / "baseline_report.json").write_text(
         json.dumps(report, ensure_ascii=False, indent=2) + "\n", encoding="utf-8"
     )
     print(

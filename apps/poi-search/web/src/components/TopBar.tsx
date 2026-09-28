@@ -1,16 +1,19 @@
 import { useState } from 'react'
 import type { DemoUser, Mode, Status } from '../types/api'
+import { BACKENDS, type BackendId } from '../api/client'
 
 type Props = {
   mode: Mode
   onMode: (m: Mode) => void
+  backendId: BackendId
+  onBackend: (id: BackendId) => void
   status: Status | null
   users: DemoUser[]
   demoUserId: string
   onDemoUser: (id: string) => void
 }
 
-export function TopBar({ mode, onMode, status, users, demoUserId, onDemoUser }: Props) {
+export function TopBar({ mode, onMode, backendId, onBackend, status, users, demoUserId, onDemoUser }: Props) {
   const [open, setOpen] = useState(false)
   const personalized = mode === 'personalized'
   const options = users.length
@@ -28,6 +31,20 @@ export function TopBar({ mode, onMode, status, users, demoUserId, onDemoUser }: 
           Ngữ cảnh
         </button>
         <span className="chip">{personalized ? 'Personalized' : 'Query-only'}</span>
+        <label className="chip model-switch">
+          Mô hình
+          <select
+            aria-label="Mô hình tìm kiếm"
+            value={backendId}
+            onChange={(event) => onBackend(event.target.value as BackendId)}
+          >
+            {BACKENDS.map((item) => (
+              <option key={item.id} value={item.id}>
+                {item.label}
+              </option>
+            ))}
+          </select>
+        </label>
       </header>
     )
   }
@@ -66,7 +83,21 @@ export function TopBar({ mode, onMode, status, users, demoUserId, onDemoUser }: 
         </button>
       </div>
       <div className="chips">
-        <span className="chip">{status?.coverage_id ?? status?.versions.corpus_version ?? '…'}</span>
+        <label className="chip model-switch">
+          Mô hình
+          <select
+            aria-label="Mô hình tìm kiếm"
+            value={backendId}
+            onChange={(event) => onBackend(event.target.value as BackendId)}
+          >
+            {BACKENDS.map((item) => (
+              <option key={item.id} value={item.id}>
+                {item.label}
+              </option>
+            ))}
+          </select>
+        </label>
+        <span className="chip">{status?.versions.index_version ?? status?.coverage_id ?? '…'}</span>
         <span className="chip">{status?.profile ?? '…'}</span>
       </div>
       <div className="context-fields">

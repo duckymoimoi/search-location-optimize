@@ -21,8 +21,11 @@ ROOT = Path(__file__).resolve().parents[1]
 TRAIN_CSV = ROOT / "data" / "vietnam" / "train_stage1_queries_v6" / "query_variants.csv"
 TRAIN_MANIFEST = ROOT / "data" / "vietnam" / "train_stage1_queries_v6" / "manifest.json"
 CORPUS = ROOT / "data" / "vietnam" / "poi_corpus_v3"
-BRAND_MEMBERS = ROOT / "data" / "vietnam" / "train_stage1_brand_v1" / "brand_group_members_v1.parquet"
+BRAND_MEMBERS = (
+    ROOT / "data" / "vietnam" / "train_stage1_brand_membership_v3" / "brand_group_members_v3.parquet"
+)
 OUT = ROOT / "data" / "vietnam" / "train_stage1_v6_hardneg_pilot"
+GOLD_DIR = ROOT / "data" / "vietnam" / "stage1_eval_suite_v2" / "gold_stage1_v2_1"
 
 EXCLUDED_CASES = {
     "train20k-02003": (
@@ -54,6 +57,8 @@ def parse_ids(raw) -> list[str]:
         return []
     if isinstance(raw, (list, tuple)):
         return [str(item) for item in raw]
+    if hasattr(raw, "tolist") and not isinstance(raw, str):
+        return [str(item) for item in raw.tolist()]
     text = str(raw).strip()
     if not text or text.lower() == "nan":
         return []
@@ -75,6 +80,23 @@ def slot_of(variant_id: str) -> str:
     return str(variant_id).rsplit("-", 1)[-1]
 
 
+def case_number(case_id: str) -> int:
+    tail = str(case_id).rsplit("-", 1)[-1]
+    return int(tail) if tail.isdigit() else 10**9
+
+
+def load_holdout_ids(gold_dir: Path) -> set[str]:
+    sessions = gold_dir / "query_sessions_v2_1.parquet"
+    frame = pd.read_parquet(sessions, columns=["intended_poi_id", "acceptable_poi_ids"])
+    ids = set(frame["intended_poi_id"].astype(str))
+    for raw in frame["acceptable_poi_ids"]:
+        ids.update(parse_ids(raw))
+    targets = pd.read_parquet(gold_dir / "target_pois_v2_1.parquet", columns=["poi_id"])
+    ids.update(targets["poi_id"].astype(str))
+    ids.discard("")
+    return ids
+
+
 def main() -> None:
     parser = argparse.ArgumentParser()
     parser.add_argument("--out", type=Path, default=OUT)
@@ -82,6 +104,17 @@ def main() -> None:
         "--slot-weight",
         default="",
         help="Override slot weights, e.g. v01=1,v02=1,v03=0.5,v04=0.25,v05=0.5,v06=0.25",
+    )
+    parser.add_argument(
+        "--holdout-gold",
+        default=str(GOLD_DIR),
+        help="Gold release directory whose POI ids are removed from train views. Empty disables.",
+    )
+    parser.add_argument(
+        "--max-cases",
+        type=int,
+        default=0,
+        help="Keep cases whose numeric suffix is <= N (train20k-00001). 0 keeps every published case.",
     )
     args = parser.parse_args()
     out = args.out.resolve()
@@ -141,6 +174,18 @@ def main() -> None:
         elif status == "needs_review":
             group_ignore[group_id].add(poi)
 
+    holdout_ids: set[str] = set()
+    holdout_dir = str(args.holdout_gold or "").strip()
+    if holdout_dir:
+        gold_dir = Path(holdout_dir)
+        if not gold_dir.is_absolute():
+            gold_dir = ROOT / gold_dir
+        if not (gold_dir / "query_sessions_v2_1.parquet").exists():
+            raise SystemExit(f"Missing Gold sessions: {gold_dir}")
+        holdout_ids = load_holdout_ids(gold_dir)
+    if args.max_cases:
+        train = train.loc[train["case_id"].map(lambda value: case_number(str(value)) <= args.max_cases)].copy()
+
     cases = sorted({str(cid) for cid in train["case_id"] if str(cid) not in EXCLUDED_CASES})
     rng = random.Random(SPLIT_SEED)
     rng.shuffle(cases)
@@ -151,6 +196,8 @@ def main() -> None:
     relation_rows: list[dict[str, object]] = []
     excluded_rows = 0
     dropped_unresolved = 0
+    stripped_acceptables = 0
+    stripped_relations = 0
 
     for raw in train.to_dict("records"):
         case_id = str(raw["case_id"])
@@ -167,6 +214,12 @@ def main() -> None:
             mapped = remap_id(poi_id, corpus_ids, migration)
             if mapped and mapped not in positives:
                 positives.append(mapped)
+        if intended in holdout_ids:
+            raise SystemExit(f"Train intended is a Gold POI: {case_id} {intended}")
+        if holdout_ids:
+            kept_pos = [poi_id for poi_id in positives if poi_id not in holdout_ids]
+            stripped_acceptables += len(positives) - len(kept_pos)
+            positives = kept_pos
         if intended not in positives:
             positives.insert(0, intended)
         entity_id = entity_by_id.get(intended)
@@ -212,6 +265,9 @@ def main() -> None:
             seen.add(poi_id)
         if brand_group_id:
             for poi_id in sorted(group_ignore.get(brand_group_id, ())):
+                if poi_id in holdout_ids:
+                    stripped_relations += 1
+                    continue
                 if poi_id in seen:
                     continue
                 relation_rows.append(
@@ -225,6 +281,9 @@ def main() -> None:
                 )
                 seen.add(poi_id)
             for poi_id in sorted(group_accepted.get(brand_group_id, ())):
+                if poi_id in holdout_ids:
+                    stripped_relations += 1
+                    continue
                 if poi_id in seen:
                     continue
                 relation_rows.append(
@@ -240,6 +299,19 @@ def main() -> None:
 
     view = pd.DataFrame(view_rows)
     relations = pd.DataFrame(relation_rows)
+    if holdout_ids:
+        intended_overlap = sorted(set(view["intended_poi_id"].astype(str)) & holdout_ids)
+        if intended_overlap:
+            raise SystemExit(f"Compiled intended still overlaps Gold: {intended_overlap[:10]}")
+        acceptable_overlap = []
+        for raw in view["acceptable_poi_ids"]:
+            acceptable_overlap.extend(poi_id for poi_id in parse_ids(raw) if poi_id in holdout_ids)
+        relation_overlap = sorted(set(relations["poi_id"].astype(str)) & holdout_ids)
+        if acceptable_overlap or relation_overlap:
+            raise SystemExit(
+                "Compiled view still contains Gold POIs: "
+                f"acceptables={acceptable_overlap[:5]} relations={relation_overlap[:5]}"
+            )
     pq.write_table(
         pa.Table.from_pandas(view, preserve_index=False),
         out / "query_train_view.parquet",
@@ -259,6 +331,13 @@ def main() -> None:
         "dev_case_fraction": DEV_CASE_FRACTION,
         "slot_weight": slot_weight,
         "excluded_cases": EXCLUDED_CASES,
+        "holdout_gold": {
+            "path": holdout_dir,
+            "n_ids": len(holdout_ids),
+            "stripped_acceptables": stripped_acceptables,
+            "stripped_relations": stripped_relations,
+            "max_cases": int(args.max_cases or 0),
+        },
         "counts": {
             "view_rows": int(len(view)),
             "train_rows": int((view["split"] == "train").sum()),
@@ -297,7 +376,9 @@ def main() -> None:
         "`train_stage1_queries_v6/query_variants.csv` is not modified.\n\n"
         "- `query_train_view.parquet`: same query text, remapped v3 IDs, slot weights, split.\n"
         "- `query_relation_view.parquet`: authored positives, ignore, same-brand hard-neg candidates.\n"
-        "- `training_pairs.parquet`: written later by `tools/mine_stage1_hardneg_pilot.py`.\n",
+        "- `training_pairs.parquet`: written later by `tools/mine_stage1_hardneg_pilot.py`.\n"
+        "- Gold holdout POIs are removed from acceptables, ignore, and hard-neg candidates "
+        "when `--holdout-gold` is set.\n",
         encoding="utf-8",
     )
     print(json.dumps(manifest["counts"], ensure_ascii=False, indent=2))

@@ -1,3 +1,5 @@
+> EDA snapshot l?ch s?. Xem [EDA dataset hi?n h?nh 2026-09-28](../dataset_eda_20260928/README.md) cho corpus v3, Gold t?i ph?t h?nh v? training packs.
+
 ﻿# SEARCH 2.0 — W1 EDA Query
 
 **SoT đầy đủ (frozen):** [`EDA_GOLD_STAGE1_QUERY_VARIANTS.md`](../../../data/vietnam/gold_stage1_v1/EDA_GOLD_STAGE1_QUERY_VARIANTS.md)  

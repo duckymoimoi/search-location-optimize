@@ -15,8 +15,8 @@ RUN --mount=type=cache,target=/var/cache/apt,sharing=locked \
 COPY api-requirements.txt /tmp/api-requirements.txt
 RUN --mount=type=cache,target=/root/.cache/pip \
     pip install \
-      torch==2.6.0+cpu \
-      --index-url https://download.pytorch.org/whl/cpu \
+      torch==2.6.0+cu126 \
+      --index-url https://download.pytorch.org/whl/cu126 \
     && pip install -r /tmp/api-requirements.txt
 
 # Warm Hugging Face weights into the image for offline-ish first boot.

@@ -1,0 +1,102 @@
+{
+  "policy_version": "stage1-hybrid-coverage-control-v1",
+  "default_retrieval_profile": "hybrid",
+  "retrieval": {
+    "branch_depth": 100,
+    "candidate_budget": 100,
+    "ann_candidates": 200,
+    "rrf_constant": 60,
+    "dense_min_compact_chars": 0
+  },
+  "lexical": {
+    "exact": 20.0,
+    "alias_exact": 16.0,
+    "phrase": 10.0,
+    "phrase_address": 6.0,
+    "cross_or": 5.0,
+    "best_or": 2.0,
+    "prefix_field": 8.0,
+    "leading_prefix": 10.0,
+    "code_compact": 14.0,
+    "name_compact": 24.0,
+    "minimum_should_match": 1,
+    "fuzzy": 3.0,
+    "and_match": 3.0,
+    "number_bonus": 1.5,
+    "housenumber_path": 20.0,
+    "housenumber_exact": 16.0,
+    "phrase_street": 8.0
+  },
+  "warmup_queries": [
+    "ga",
+    "vincom",
+    "phở bò nam định",
+    "23 nguyễn trãi"
+  ],
+  "query_rewrites": [
+    {
+      "pattern": "\\bbv\\b",
+      "replacement": "bệnh viện"
+    },
+    {
+      "pattern": "\\bdh\\b",
+      "replacement": "đại học"
+    },
+    {
+      "pattern": "\\bthpt\\b",
+      "replacement": "trung học phổ thông"
+    },
+    {
+      "pattern": "\\bthcs\\b",
+      "replacement": "trung học cơ sở"
+    }
+  ],
+  "ranking": {
+    "geo_mode": "v6",
+    "geo_equivalent_window": 10,
+    "geo_min_retrieval_ratio": 0.5,
+    "geo_distance_band_m": 500,
+    "geo_score_cap": 0.35,
+    "retrieval_weight": 0.65,
+    "name_token_overlap_weight": 0.35,
+    "relevance_blend": 0.65,
+    "geo_blend": 0.35,
+    "geo_decay_m": 5000,
+    "exact_text_bonus": 0.04,
+    "protect_exact_name_or_alias": true,
+    "name_address_priority": true,
+    "name_address_min_query_tokens": 4,
+    "name_address_min_evidence": 0.5,
+    "name_address_min_addr_span": 2,
+    "name_match_quality_priority": true,
+    "accent_match_priority": true,
+    "deduplication": {
+      "entity_group_id": true,
+      "normalized_name_within_m": 50
+    },
+    "nearby_name_rescue": {
+      "enabled": true,
+      "radius_m": 5000,
+      "limit": 15,
+      "min_query_chars": 3,
+      "fetch_size": 40
+    }
+  },
+  "cors_origins": [
+    "http://localhost:5173",
+    "http://127.0.0.1:5173",
+    "http://localhost:5174",
+    "http://127.0.0.1:5174"
+  ],
+  "notes": [
+    "v12 lexical: gated fuzzy on letter tokens of length >= 4, edit distance 1, prefix_length 1, name/alias only. Numbers, codes, and house-path keys stay exact. Boost stays below exact/name_compact.",
+    "v11 lexical: names_compact is the letter-only fold of the full name/alias. Query emits that key only when a letter token is long enough to be space-glued (vanhanh mall → vanhanhmall). Exact terms, no prefix, no pair index, no name list. Spaced names and house+street queries stay on the existing path.",
+    "v10 lexical: index housenumber/street/place from corpus. Leading house+street path uses catalog keys (slash and single-letter glue share a path). Medial numbers stay in BM25. Name-field prefix is off on house+street queries so address-named POIs are not double-counted. No street-type word list.",
+    "v9 lexical: a pure number beside a letter span is constant_score number_bonus, not a BM25 term. codes_compact requires both a letter and a digit in one token.",
+    "v8 lexical: dotted/hyphenated alphanumeric spans are glued before the standard analyzer (s10.2 and s1.02 share s102). Slash is not glued.",
+    "v8 geo: equivalent-name cohort orders by cap*exp(-d/5000m). cap 0.35 < 1 match tier, so an exact far hit stays above a nearer partial.",
+    "v8: codes_compact keyword (alnum fold) so S2.02 matches s202 without hard-coded building patterns.",
+    "v7 lexical = gold iterate winner v4_photonish (docs/deliveries/w1_evidence/12_LEXICAL_ITERATE.md).",
+    "MSM=1; cross/best OR + context_text. Hybrid R@1000 0.999 on gold_stage1_v1."
+  ]
+}

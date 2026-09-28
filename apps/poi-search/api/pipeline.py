@@ -17,6 +17,7 @@ from ranking import (
     _result_rows,
     apply_history_cohort,
     candidate_documents,
+    candidate_document_stages,
     merge_nearby_name_rescue,
     name_match_class,
     nearby_name_rescue_body,
@@ -32,10 +33,12 @@ from settings import (
     PASSAGE_BUILDER_VERSION,
     POLICY,
     RANKING_POLICY,
+    RANKING_PROFILE,
+    ENCODER_NORMALIZER,
     RELEASE_ID,
     RETRIEVAL_PROFILE,
 )
-from textnorm import compact_length, fold, glue_code_spans
+from textnorm import compact_length, fold, encoder_input
 
 runtime = None  # set to Runtime() by app.py before serving
 
@@ -53,6 +56,9 @@ def versions() -> dict[str, Any]:
             if geo_mode == "v6"
             else "field-aware-bounded-geo-v5"
         )
+    if RANKING_PROFILE != "current":
+        ranker = "retrieval-order" if RANKING_PROFILE in {"raw", "dedup_only"} else f"heuristic-{RANKING_PROFILE}"
+        feature = f"ranking-profile:{RANKING_PROFILE}"
     return {
         "release_id": RELEASE_ID,
         "corpus_version": CORPUS_VERSION,
@@ -61,10 +67,17 @@ def versions() -> dict[str, Any]:
         "embedding_space_id": EMBEDDING_SPACE_ID,
         "passage_builder_version": PASSAGE_BUILDER_VERSION,
         "scope_policy_version": "global-v1",
-        "candidate_policy_version": f"{POLICY['policy_version']}:safe-candidates-v5:{RETRIEVAL_PROFILE}",
+        "candidate_policy_version": f"{POLICY['policy_version']}:safe-candidates-v5:{RETRIEVAL_PROFILE}:{RANKING_PROFILE}",
         "ranker_id": ranker,
         "feature_version": feature,
         "model_source": getattr(runtime, "model_source", MODEL_ID),
+        "device": str(getattr(runtime, "device", "cpu")),
+        "ranking_profile": RANKING_PROFILE,
+        "encoder_normalizer": ENCODER_NORMALIZER,
+        "dense_backend": getattr(runtime, "dense_backend", "ann"),
+        "brand_lookup_sha256": getattr(runtime, "brand_lookup_sha256", None),
+        "brand_route_mode": getattr(runtime, "brand_route_mode", None),
+        "name_lookup_enabled": getattr(runtime, 'name_lookup_enabled', False),
     }
 
 
@@ -129,11 +142,26 @@ def retrieve_detailed(query: str) -> dict[str, Any]:
     lexical_ids: list[str] = []
     dense_ids: list[str] = []
     degraded: list[str] = []
+    branch_candidates: dict[str, list[dict[str, Any]]] = {}
+    brand_family = None
+    if RETRIEVAL_PROFILE == "dense_first":
+        brand_family = runtime.brand_family(query)
+
+    def branch(name, value):
+        detailed = getattr(runtime, f"{name}_candidates", None)
+        if detailed is None:
+            return getattr(runtime, name)(value)
+        candidates, elapsed = detailed(value)
+        branch_candidates[name] = candidates
+        return [item["poi_id"] for item in candidates], elapsed
     if RETRIEVAL_PROFILE == "lexical_only" or (
         RETRIEVAL_PROFILE == "hybrid"
         and compact_length(query) < int(POLICY["retrieval"]["dense_min_compact_chars"])
+    ) or (
+        RETRIEVAL_PROFILE == "dense_first" and not brand_family
+        and compact_length(query) < int(POLICY["retrieval"]["dense_min_compact_chars"])
     ):
-        lexical_ids, timings["lexical"] = runtime.lexical(query)
+        lexical_ids, timings["lexical"] = branch("lexical", query)
         ids = list(lexical_ids)
         route = "lexical_only" if RETRIEVAL_PROFILE == "lexical_only" else "lexical_short_query"
         return {
@@ -144,30 +172,62 @@ def retrieve_detailed(query: str) -> dict[str, Any]:
             "lexical_ids": lexical_ids,
             "dense_ids": dense_ids,
             "degraded_reasons": degraded,
+            "branch_candidates": branch_candidates,
         }
-    if RETRIEVAL_PROFILE == "dense_only":
+    if RETRIEVAL_PROFILE == "dense_only" or (RETRIEVAL_PROFILE == "dense_first" and not brand_family):
+        lookup_future = runtime.pool.submit(runtime.name_lookup, query) if RETRIEVAL_PROFILE == 'dense_first' and hasattr(runtime,'name_lookup') else None
         began = time.perf_counter()
-        vector = runtime.encode(glue_code_spans(query))
-        timings["encode"] = (time.perf_counter() - began) * 1000
-        dense_ids, timings["ann"] = runtime.dense(vector)
+        try:
+            vector = runtime.encode(encoder_input(query))
+            timings["encode"] = (time.perf_counter() - began) * 1000
+            timings.update(getattr(getattr(runtime, "local", None), "encode_timings", {}))
+            dense_ids, timings["ann"] = branch("dense", vector)
+        except Exception:
+            if RETRIEVAL_PROFILE != "dense_first":
+                raise
+            degraded.append("dense_unavailable")
+            try:
+                lexical_ids, timings["lexical"] = branch("lexical", query)
+            except Exception as exc:
+                raise HTTPException(503, detail={"code": "search_unavailable", "message": "No retrieval branch available"}) from exc
+            return {"ids": lexical_ids, "route": "dense_first_lexical_fallback", "timings": timings,
+                    "evidence": _lexical_evidence(lexical_ids), "lexical_ids": lexical_ids,
+                    "dense_ids": [], "degraded_reasons": degraded, "branch_candidates": branch_candidates}
         ids = list(dense_ids)
+        lookup_candidates = []
+        if lookup_future is not None:
+            try:
+                lookup_candidates, timings['name_lookup'] = lookup_future.result()
+                branch_candidates['name_lookup'] = lookup_candidates
+            except Exception:
+                degraded.append('name_lookup_unavailable')
+        evidence = _dense_evidence(dense_ids)
+        if lookup_candidates:
+            lookup_ids = [row['poi_id'] for row in lookup_candidates]
+            ids = list(dict.fromkeys(lookup_ids + dense_ids))
+            top = max((row['rrf'] for row in evidence.values()), default=0.0)
+            for poi_id in lookup_ids:
+                evidence[poi_id] = {**evidence.get(poi_id, {'lexical_rank':None,'dense_rank':None}), 'rrf':top+1e-6}
         return {
             "ids": ids,
-            "route": "dense_only",
+            "route": "dense_first_entity" if RETRIEVAL_PROFILE == "dense_first" else "dense_only",
             "timings": timings,
-            "evidence": _dense_evidence(ids),
+            "evidence": evidence,
             "lexical_ids": lexical_ids,
             "dense_ids": dense_ids,
             "degraded_reasons": degraded,
+            "branch_candidates": branch_candidates,
+            "name_lookup_ids": [row['poi_id'] for row in lookup_candidates],
         }
-    lexical_future = runtime.pool.submit(runtime.lexical, query)
+    lexical_future = runtime.pool.submit(lambda value: branch("lexical", value), query)
     dense_failed = False
     lexical_failed = False
     began = time.perf_counter()
     try:
-        vector = runtime.encode(glue_code_spans(query))
+        vector = runtime.encode(encoder_input(query))
         timings["encode"] = (time.perf_counter() - began) * 1000
-        dense_ids, timings["ann"] = runtime.dense(vector)
+        timings.update(getattr(getattr(runtime, "local", None), "encode_timings", {}))
+        dense_ids, timings["ann"] = branch("dense", vector)
     except Exception:
         dense_failed = True
         degraded.append("dense_unavailable")
@@ -181,9 +241,14 @@ def retrieve_detailed(query: str) -> dict[str, Any]:
     if dense_failed and lexical_failed:
         raise HTTPException(503, detail={"code": "search_unavailable", "message": "No retrieval branch available"})
     began = time.perf_counter()
+    if brand_family and hasattr(runtime, "brand_members"):
+        members = runtime.brand_members(brand_family)
+        if members:
+            lexical_ids = [poi_id for poi_id in lexical_ids if poi_id in members]
+            dense_ids = [poi_id for poi_id in dense_ids if poi_id in members]
     if lexical_ids and dense_ids:
         ids, evidence = _hybrid_evidence(lexical_ids, dense_ids)
-        route = "hybrid_long_query"
+        route = "dense_first_brand_exact" if brand_family else "hybrid_long_query"
     elif lexical_ids:
         ids = list(lexical_ids)
         evidence = _lexical_evidence(ids)
@@ -201,13 +266,14 @@ def retrieve_detailed(query: str) -> dict[str, Any]:
         "lexical_ids": lexical_ids,
         "dense_ids": dense_ids,
         "degraded_reasons": degraded,
+        "branch_candidates": branch_candidates,
     }
 
 
 def fetch_nearby_name_rescue(query: str, anchor: dict[str, float]) -> tuple[list[str], float]:
     """Return nearby POI ids with label/alias matching query, nearest first."""
     cfg = RANKING_POLICY.get("nearby_name_rescue") or {}
-    if not bool(cfg.get("enabled", False)):
+    if RANKING_PROFILE != "current" or not bool(cfg.get("enabled", False)):
         return [], 0.0
     compact = compact_length(query)
     if compact < int(cfg.get("min_query_chars", 3)):
@@ -280,7 +346,11 @@ def pipeline_trace(
         after_rescue = list(ids)
         if rescued_n:
             route = f"{route}+nearby_name_rescue:{rescued_n}"
-    docs = candidate_documents(ids, runtime.documents(ids))
+    hydrate_start = time.perf_counter()
+    documents = runtime.documents(ids)
+    timings["hydrate"] = (time.perf_counter() - hydrate_start) * 1000
+    document_stages = candidate_document_stages(ids, documents, dedup=RANKING_PROFILE != "raw")
+    docs = document_stages["after_cap"]
     after_dedup_cap = [doc["canonical_id"] for doc in docs]
     stages = rank_candidates_traced(query, docs, evidence, anchor)
     ranked = stages["final"]
@@ -298,13 +368,18 @@ def pipeline_trace(
         "geo_mode": str(RANKING_POLICY.get("geo_mode", "v6")),
         "anchor": anchor,
         "rescued_n": rescued_n,
+        "branch_candidates": retrieved.get("branch_candidates", {}),
+        "encoder_input": encoder_input(query),
         "stages": {
             "lexical": lexical_ids,
             "dense": dense_ids,
+            "name_lookup": retrieved.get('name_lookup_ids', []),
             "rrf": after_rrf,
             "nearby_rescue_hits": rescued_ids,
             "after_nearby_rescue": after_rescue,
             "after_dedup_cap": after_dedup_cap,
+            "after_dedup": [doc["canonical_id"] for doc in document_stages["after_dedup"]],
+            "after_cap": after_dedup_cap,
             "after_geo": ids_of(stages["after_geo"]),
             "after_name_address": ids_of(stages["after_name_address"]),
             "after_name_match_quality": ids_of(stages["final"]),
@@ -401,8 +476,13 @@ def suggest(payload: SuggestRequest, personalized: bool) -> dict[str, Any]:
         ids, evidence, rescued_n = merge_nearby_name_rescue(query, ids, evidence, rescued_ids)
         if rescued_n:
             route = f"{route}+nearby_name_rescue:{rescued_n}"
-    docs = candidate_documents(ids, runtime.documents(ids))
+    hydrate_start = time.perf_counter()
+    documents = runtime.documents(ids)
+    timings["hydrate"] = (time.perf_counter() - hydrate_start) * 1000
+    rank_start = time.perf_counter()
+    docs = candidate_documents(ids, documents)
     ranked = rank_candidates(query, docs, evidence, anchor)
+    timings["ranking"] = (time.perf_counter() - rank_start) * 1000
     if context["preferred_ids"]:
         ranked = apply_history_cohort(query, ranked, context["preferred_ids"])
     results = _result_rows(ranked, payload.top_k)
@@ -426,16 +506,19 @@ def response_payload(payload: SuggestRequest, results: list[dict], exposure_id: 
     if personalized and history_version:
         notes.append(f"demo history {history_version}")
     elif personalized:
+        ranking_description = "geo heuristic" if RANKING_PROFILE == "current" else f"{RANKING_PROFILE} ranking; geo disabled"
         notes.append(
-            f"Stage 2 policy {POLICY['policy_version']}: {RETRIEVAL_PROFILE}, geo heuristic; no learned ranker"
+            f"Ranking policy {POLICY['policy_version']}: {RETRIEVAL_PROFILE}, {ranking_description}; no learned ranker"
         )
     else:
         notes.append("query-only fixed global scope")
+    if personalized and anchor is not None and RANKING_PROFILE != 'current':
+        notes.append('origin_not_applied_by_ranking_profile')
     return {
         "request_id": payload.request_id, "context_revision": payload.context_revision,
         "exposure_id": exposure_id, "selectable": exposure_id is not None, "versions": versions(),
         "scope_summary": {
-            "mode": "global_with_geo_heuristic" if personalized and anchor else "global",
+            "mode": "global_with_geo_heuristic" if personalized and anchor and RANKING_PROFILE == 'current' else "global",
             "coverage_id": CORPUS_VERSION, "primary_region_id": None,
             "primary_radius_m": None,
             "notes": notes,

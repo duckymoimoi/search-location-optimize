@@ -1,0 +1,56 @@
+{
+  "dataset": "vn-poi-stage1-v6-hardneg-6k-devlock",
+  "status": "EXPERIMENTAL",
+  "uploads_embeddings": false,
+  "checkpoint_selection": "dev_only",
+  "gold_pair_overlap": 0,
+  "corpus_version": "vn-poi-core-v3-semantic-address-dedup50",
+  "gold_dataset": "gold_stage1_v2_1",
+  "train_rows": 32394,
+  "dev_rows": 3600,
+  "pair_rows": 231608,
+  "gold_rows": 800,
+  "corpus_rows": 179209,
+  "files": {
+    "search_documents.parquet": {
+      "bytes": 4345597,
+      "sha256": "a9d8ab88238b8e25aba3f598c0011ccc168907b2518b6683f5740703aa5b2460"
+    },
+    "query_train_view.parquet": {
+      "bytes": 1057844,
+      "sha256": "6a82efc9bc69bfe888f78bcd96244a6357904bb5c6b7d881cbe0cf2efedd35a3"
+    },
+    "training_pairs.parquet": {
+      "bytes": 1456041,
+      "sha256": "6f41341233bc407e5960b89c1cf085881733608ededf416beddeb839d2388c69"
+    },
+    "compile_manifest.json": {
+      "bytes": 2153,
+      "sha256": "266907f36427eb312945f5323fcd2287a4f8e0fa7a5dc51c93fae5bb2d33b99b"
+    },
+    "mining_manifest.json": {
+      "bytes": 1787,
+      "sha256": "985ca7ef03ce53109f7c5630e1ad10b7b0283a9d5624c93989ab069288d4a6b5"
+    },
+    "gold_query_variants.csv": {
+      "bytes": 107518,
+      "sha256": "29015df77ab49aff8c2ce4b922060b7110c81d82def4b2c661d8a03354f60bb2"
+    },
+    "gold_target_pois.csv": {
+      "bytes": 80217,
+      "sha256": "191bcb6c0b60cac9ce3c88c4131c29ccb24efd6328d21e919fb8dbc0f302ffff"
+    },
+    "gold_manifest.json": {
+      "bytes": 3240,
+      "sha256": "965079a861fd19a0209a793ef372bae7a5272c00e69ce7a73b9e1722f7fa012e"
+    },
+    "corpus_manifest.json": {
+      "bytes": 3541,
+      "sha256": "87da69e6293ec507b30a4204ecb4a485de2f003061487577c44533e31ebddc46"
+    },
+    "train_config.json": {
+      "bytes": 985,
+      "sha256": "a32b972dbcc77e3481002ff6cdb289957ccae68eca1aafebf61bda2c346e9ba0"
+    }
+  }
+}

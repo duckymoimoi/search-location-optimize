@@ -1,0 +1,172 @@
+# Side stack for the 6k dev-lock checkpoint.
+# Does not use vn-poi-es-data, port 9200, port 8000, or the demo index.
+#
+#   docker compose -f docker-compose.devlock.yml up --build
+#
+# Requires artifacts/embeddings/me5_small_v3_6k_devlock/ from the Kaggle encode kernel.
+# Query encoding loads that same checkpoint through POI_MODEL_DIR.
+
+name: vn-poi-devlock
+
+services:
+  elasticsearch:
+    image: docker.elastic.co/elasticsearch/elasticsearch:9.5.3
+    container_name: vn-poi-elasticsearch-devlock
+    environment:
+      - discovery.type=single-node
+      - xpack.security.enabled=false
+      - xpack.security.http.ssl.enabled=false
+      - ES_JAVA_OPTS=-Xms1g -Xmx1g
+      - cluster.name=vn-poi-es-devlock
+      - network.host=0.0.0.0
+    ports:
+      - "127.0.0.1:9201:9200"
+    volumes:
+      - es_data_devlock:/usr/share/elasticsearch/data
+    mem_limit: 2g
+    ulimits:
+      nofile:
+        soft: 65536
+        hard: 65536
+      memlock:
+        soft: -1
+        hard: -1
+    healthcheck:
+      test: ["CMD-SHELL", "curl -fsS http://127.0.0.1:9200 >/dev/null || exit 1"]
+      interval: 10s
+      timeout: 5s
+      retries: 30
+      start_period: 60s
+    restart: unless-stopped
+
+  indexer:
+    image: vn-poi/indexer:0.1.0-local
+    build:
+      context: .
+      dockerfile: docker/Dockerfile.indexer
+    container_name: vn-poi-indexer-devlock
+    depends_on:
+      elasticsearch:
+        condition: service_healthy
+    environment:
+      - POI_ES_URL=http://elasticsearch:9200
+      - POI_INDEX=vn-poi-core-v3-me5-6k-devlock
+      - POI_EXPECTED_ROWS=179209
+      - POI_POIS_PATH=/data/corpus/pois_core.parquet
+      - POI_DOCUMENTS_PATH=/data/corpus/search_documents.parquet
+      - POI_EMBEDDINGS_PATH=/data/embeddings/corpus_embeddings.npy
+      - POI_ID_MAP_PATH=/data/embeddings/poi_ids.parquet
+      - RECREATE_INDEX=0
+    volumes:
+      - ../../data/vietnam/poi_corpus_v3:/data/corpus:ro
+      - ../../artifacts/embeddings/me5_small_v3_6k_devlock:/data/embeddings:ro
+    restart: "no"
+
+  api:
+    image: vn-poi/stage1-api:0.1.0-local
+    build:
+      context: ./docker
+      dockerfile: Dockerfile.api
+      args:
+        POI_MODEL_ID: intfloat/multilingual-e5-small
+    container_name: vn-poi-stage1-api-devlock
+    depends_on:
+      indexer:
+        condition: service_completed_successfully
+    environment:
+      - POI_MODEL_DIR=/model
+      - POI_ES_URL=http://elasticsearch:9200
+      - POI_INDEX=vn-poi-core-v3-me5-6k-devlock
+      - POI_EXPECTED_ROWS=179209
+      - POI_CORPUS_VERSION=vn-poi-core-v3-semantic-address-dedup50
+      - POI_SEARCH_POLICY=/app/api/search_policy.json
+      - POI_RETRIEVAL_PROFILE=hybrid
+      - POI_DEVICE=cuda
+      - HF_HOME=/model-cache
+    command:
+      - python
+      - -m
+      - uvicorn
+      - app:app
+      - --app-dir
+      - /app/api
+      - --host
+      - 0.0.0.0
+      - --port
+      - "8000"
+      - --workers
+      - "1"
+    ports:
+      - "127.0.0.1:8001:8000"
+    volumes:
+      - ./api:/app/api:ro
+      - ../../artifacts/models/me5_6k_devlock_serving:/model:ro
+    mem_limit: 3g
+    gpus: all
+    restart: unless-stopped
+
+  indexer-mix:
+    profiles: ["mix"]
+    image: vn-poi/indexer:0.1.0-local
+    container_name: vn-poi-indexer-brand-poi-mix
+    depends_on:
+      elasticsearch:
+        condition: service_healthy
+    environment:
+      - POI_ES_URL=http://elasticsearch:9200
+      - POI_INDEX=vn-poi-core-v3-me5-brand-poi-mix
+      - POI_EXPECTED_ROWS=179209
+      - POI_POIS_PATH=/data/corpus/pois_core.parquet
+      - POI_DOCUMENTS_PATH=/data/corpus/search_documents.parquet
+      - POI_EMBEDDINGS_PATH=/data/embeddings/corpus_embeddings.npy
+      - POI_ID_MAP_PATH=/data/embeddings/poi_ids.parquet
+      - RECREATE_INDEX=0
+    volumes:
+      - ../../data/vietnam/poi_corpus_v3:/data/corpus:ro
+      - ../../artifacts/embeddings/me5_brand_poi_mix:/data/embeddings:ro
+    restart: "no"
+
+  api-mix:
+    profiles: ["mix"]
+    image: vn-poi/stage1-api:0.1.0-local
+    container_name: vn-poi-stage1-api-brand-poi-mix
+    depends_on:
+      indexer-mix:
+        condition: service_completed_successfully
+    environment:
+      - POI_MODEL_DIR=/model
+      - POI_ES_URL=http://elasticsearch:9200
+      - POI_INDEX=vn-poi-core-v3-me5-brand-poi-mix
+      - POI_EXPECTED_ROWS=179209
+      - POI_CORPUS_VERSION=vn-poi-core-v3-semantic-address-dedup50
+      - POI_SEARCH_POLICY=/app/api/search_policy.json
+      - POI_RETRIEVAL_PROFILE=hybrid
+      - POI_DEVICE=cuda
+      - POI_RELEASE_ID=vn-poi-brand-poi-mix-e2
+      - POI_EMBEDDING_SPACE_ID=me5-brand-poi-mix-384
+      - HF_HOME=/model-cache
+    command:
+      - python
+      - -m
+      - uvicorn
+      - app:app
+      - --app-dir
+      - /app/api
+      - --host
+      - 0.0.0.0
+      - --port
+      - "8000"
+      - --workers
+      - "1"
+    ports:
+      - "127.0.0.1:8002:8000"
+    volumes:
+      - ./api:/app/api:ro
+      - ../../artifacts/models/me5_brand_poi_mix_serving:/model:ro
+    mem_limit: 3g
+    gpus: all
+    restart: unless-stopped
+
+volumes:
+  es_data_devlock:
+    name: vn-poi-es-data-devlock

@@ -71,6 +71,7 @@ services:
       - POI_CORPUS_VERSION=vn-poi-core-v3-semantic-address-dedup50
       - POI_SEARCH_POLICY=/app/api/search_policy.json
       - POI_RETRIEVAL_PROFILE=hybrid
+      - POI_DEVICE=cuda
       - HF_HOME=/model-cache
       - GOONG_API_KEY=${GOONG_API_KEY:-}
     env_file:
@@ -94,6 +95,7 @@ services:
     volumes:
       - ./api:/app/api:ro
     mem_limit: 3g
+    gpus: all
     restart: unless-stopped
     healthcheck:
       test:
@@ -119,6 +121,8 @@ services:
         VITE_MAP_STYLE_URL: ${VITE_MAP_STYLE_URL:-}
         VITE_CORPUS_VERSION: ${VITE_CORPUS_VERSION:-vn-poi-core-v3-semantic-address-dedup50}
     container_name: vn-poi-web
+    extra_hosts:
+      - "host.docker.internal:host-gateway"
     depends_on:
       api:
         condition: service_healthy

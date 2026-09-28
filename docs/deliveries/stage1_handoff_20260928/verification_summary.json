@@ -1,0 +1,333 @@
+{
+  "status": "retrieval_verified_gold_v22_reissue_verified",
+  "stage2_trained_or_deployed": false,
+  "production_sla_verified": false,
+  "runs": {
+    "handoff_verification_s1a_20260928": {
+      "summary_sha256": "5cb3fd9dc22d3ab373b9f920a97686ed13926d6cda1dc4c4f44e9b51478f2263",
+      "summary": {
+        "schema": "stage1-handoff-verification-v1",
+        "status": "pass",
+        "started_utc": "2026-09-28T08:37:59.834807+00:00",
+        "runner_sha256": "fe2f4bafa7219940fb8ec1b28f7c1f8aa0b9c4e15a1bb5d9ea28b6d39e7a3aea",
+        "snapshot_sha256": "22fc61fd3da8ae89f1d8fb405fb1a509e84c37e4d1b0f918109a3e61541620b4",
+        "training": false,
+        "stage2_model_tested": false,
+        "sla_tested": false,
+        "hashes_verified": 20,
+        "offline": {
+          "poi_dev:raw/gated_candidate": {
+            "queries": 3600,
+            "empty_pools": 0,
+            "metrics": {
+              "Hit@1": 0.9111111111111111,
+              "Hit@5": 0.9680555555555556,
+              "Hit@10": 0.9755555555555555,
+              "Hit@20": 0.9788888888888889,
+              "Hit@100": 0.9852777777777778,
+              "MRR@10": 0.9356739417989418,
+              "coverage@20": 0.9728012566137566
+            },
+            "metric_replay_matches": true,
+            "unique_ids_in_corpus": true,
+            "depth_at_most_100": true
+          },
+          "poi_dev:raw/hybrid_raw": {
+            "queries": 3600,
+            "empty_pools": 0,
+            "metrics": {
+              "Hit@1": 0.7863888888888889,
+              "Hit@5": 0.9211111111111111,
+              "Hit@10": 0.9544444444444444,
+              "Hit@20": 0.9825,
+              "Hit@100": 0.9966666666666667,
+              "MRR@10": 0.8446772486772487,
+              "coverage@20": 0.9773716931216931
+            },
+            "metric_replay_matches": true,
+            "unique_ids_in_corpus": true,
+            "depth_at_most_100": true
+          },
+          "brand_dev:raw/gated_candidate": {
+            "queries": 126,
+            "empty_pools": 0,
+            "metrics": {
+              "Hit@1": 0.7439115646258503,
+              "Hit@5": 0.8358503401360544,
+              "Hit@10": 0.8911224489795918,
+              "Hit@20": 0.9051700680272109,
+              "Hit@100": 0.9452380952380953,
+              "MRR@10": 0.7897515117157975,
+              "coverage@20": 0.6443464545765211
+            },
+            "metric_replay_matches": true,
+            "unique_ids_in_corpus": true,
+            "depth_at_most_100": true
+          },
+          "brand_dev:raw/hybrid_raw": {
+            "queries": 126,
+            "empty_pools": 0,
+            "metrics": {
+              "Hit@1": 0.6634353741496598,
+              "Hit@5": 0.8727551020408163,
+              "Hit@10": 0.9142517006802721,
+              "Hit@20": 0.9613945578231293,
+              "Hit@100": 0.9952380952380953,
+              "MRR@10": 0.7497773458589786,
+              "coverage@20": 0.7206280811828822
+            },
+            "metric_replay_matches": true,
+            "unique_ids_in_corpus": true,
+            "depth_at_most_100": true
+          },
+          "generated_cold_entity:raw/gated_candidate": {
+            "queries": 660,
+            "empty_pools": 0,
+            "metrics": {
+              "Hit@1": 0.8212121212121212,
+              "Hit@5": 0.8909090909090909,
+              "Hit@10": 0.9015151515151515,
+              "Hit@20": 0.9136363636363637,
+              "Hit@100": 0.9303030303030303,
+              "MRR@10": 0.8489075276575277,
+              "coverage@20": 0.9136363636363637
+            },
+            "metric_replay_matches": true,
+            "unique_ids_in_corpus": true,
+            "depth_at_most_100": true
+          },
+          "generated_cold_entity:raw/hybrid_raw": {
+            "queries": 660,
+            "empty_pools": 0,
+            "metrics": {
+              "Hit@1": 0.8863636363636364,
+              "Hit@5": 0.9681818181818181,
+              "Hit@10": 0.9893939393939394,
+              "Hit@20": 0.9984848484848485,
+              "Hit@100": 1.0,
+              "MRR@10": 0.9212181337181338,
+              "coverage@20": 0.9984848484848485
+            },
+            "metric_replay_matches": true,
+            "unique_ids_in_corpus": true,
+            "depth_at_most_100": true
+          }
+        },
+        "failures": [],
+        "offline_query_count": 4386,
+        "live": {
+          "api": "http://127.0.0.1:8003",
+          "profile": "s1-a",
+          "health": {
+            "status": "ok",
+            "index": "vn-poi-core-v3-me5-6k-devlock",
+            "corpus_rows": 179209,
+            "device": "cuda"
+          },
+          "queries": 190,
+          "passed": 190,
+          "failures": [],
+          "route_counts": {
+            "dense_first_brand_exact": 39,
+            "hybrid_long_query": 4,
+            "dense_first_entity": 146,
+            "lexical_short_query": 1
+          }
+        },
+        "finished_utc": "2026-09-28T08:39:10.997409+00:00"
+      }
+    },
+    "handoff_verification_s1b_20260928": {
+      "summary_sha256": "640edb868d083913e3b19e3f10a1f532c4f8b95bebdec13a16b4945b687ab6d8",
+      "summary": {
+        "schema": "stage1-handoff-verification-v1",
+        "status": "pass",
+        "started_utc": "2026-09-28T08:40:10.621810+00:00",
+        "runner_sha256": "fe2f4bafa7219940fb8ec1b28f7c1f8aa0b9c4e15a1bb5d9ea28b6d39e7a3aea",
+        "snapshot_sha256": "22fc61fd3da8ae89f1d8fb405fb1a509e84c37e4d1b0f918109a3e61541620b4",
+        "training": false,
+        "stage2_model_tested": false,
+        "sla_tested": false,
+        "hashes_verified": 20,
+        "offline": {
+          "poi_dev:raw/gated_candidate": {
+            "queries": 3600,
+            "empty_pools": 0,
+            "metrics": {
+              "Hit@1": 0.9111111111111111,
+              "Hit@5": 0.9680555555555556,
+              "Hit@10": 0.9755555555555555,
+              "Hit@20": 0.9788888888888889,
+              "Hit@100": 0.9852777777777778,
+              "MRR@10": 0.9356739417989418,
+              "coverage@20": 0.9728012566137566
+            },
+            "metric_replay_matches": true,
+            "unique_ids_in_corpus": true,
+            "depth_at_most_100": true
+          },
+          "poi_dev:raw/hybrid_raw": {
+            "queries": 3600,
+            "empty_pools": 0,
+            "metrics": {
+              "Hit@1": 0.7863888888888889,
+              "Hit@5": 0.9211111111111111,
+              "Hit@10": 0.9544444444444444,
+              "Hit@20": 0.9825,
+              "Hit@100": 0.9966666666666667,
+              "MRR@10": 0.8446772486772487,
+              "coverage@20": 0.9773716931216931
+            },
+            "metric_replay_matches": true,
+            "unique_ids_in_corpus": true,
+            "depth_at_most_100": true
+          },
+          "brand_dev:raw/gated_candidate": {
+            "queries": 126,
+            "empty_pools": 0,
+            "metrics": {
+              "Hit@1": 0.7439115646258503,
+              "Hit@5": 0.8358503401360544,
+              "Hit@10": 0.8911224489795918,
+              "Hit@20": 0.9051700680272109,
+              "Hit@100": 0.9452380952380953,
+              "MRR@10": 0.7897515117157975,
+              "coverage@20": 0.6443464545765211
+            },
+            "metric_replay_matches": true,
+            "unique_ids_in_corpus": true,
+            "depth_at_most_100": true
+          },
+          "brand_dev:raw/hybrid_raw": {
+            "queries": 126,
+            "empty_pools": 0,
+            "metrics": {
+              "Hit@1": 0.6634353741496598,
+              "Hit@5": 0.8727551020408163,
+              "Hit@10": 0.9142517006802721,
+              "Hit@20": 0.9613945578231293,
+              "Hit@100": 0.9952380952380953,
+              "MRR@10": 0.7497773458589786,
+              "coverage@20": 0.7206280811828822
+            },
+            "metric_replay_matches": true,
+            "unique_ids_in_corpus": true,
+            "depth_at_most_100": true
+          },
+          "generated_cold_entity:raw/gated_candidate": {
+            "queries": 660,
+            "empty_pools": 0,
+            "metrics": {
+              "Hit@1": 0.8212121212121212,
+              "Hit@5": 0.8909090909090909,
+              "Hit@10": 0.9015151515151515,
+              "Hit@20": 0.9136363636363637,
+              "Hit@100": 0.9303030303030303,
+              "MRR@10": 0.8489075276575277,
+              "coverage@20": 0.9136363636363637
+            },
+            "metric_replay_matches": true,
+            "unique_ids_in_corpus": true,
+            "depth_at_most_100": true
+          },
+          "generated_cold_entity:raw/hybrid_raw": {
+            "queries": 660,
+            "empty_pools": 0,
+            "metrics": {
+              "Hit@1": 0.8863636363636364,
+              "Hit@5": 0.9681818181818181,
+              "Hit@10": 0.9893939393939394,
+              "Hit@20": 0.9984848484848485,
+              "Hit@100": 1.0,
+              "MRR@10": 0.9212181337181338,
+              "coverage@20": 0.9984848484848485
+            },
+            "metric_replay_matches": true,
+            "unique_ids_in_corpus": true,
+            "depth_at_most_100": true
+          }
+        },
+        "failures": [],
+        "offline_query_count": 4386,
+        "live": {
+          "api": "http://127.0.0.1:8003",
+          "profile": "s1-b",
+          "health": {
+            "status": "ok",
+            "index": "vn-poi-core-v3-me5-6k-devlock",
+            "corpus_rows": 179209,
+            "device": "cuda"
+          },
+          "queries": 190,
+          "passed": 190,
+          "failures": [],
+          "route_counts": {
+            "hybrid_long_query": 190
+          }
+        },
+        "finished_utc": "2026-09-28T08:41:17.159646+00:00"
+      }
+    }
+  },
+  "gold_brand": {
+    "verdict": "PASS",
+    "errors": [],
+    "warnings": [],
+    "stats": {
+      "queries": 248,
+      "qrels": 6610,
+      "families": 70,
+      "roles": {
+        "brand_error": 84,
+        "canonical_brand": 82,
+        "namespace_qualified": 82
+      },
+      "split": "test"
+    }
+  },
+  "gold_poi_provenance_recovery": {
+    "recovered": [],
+    "not_found": {
+      "4a92b19535af75ab9c55da3a88016e762cdb0c4ffe8c2d8aecf3c9fa8a76f71b": "data/vietnam/stage1_eval_suite_v2/gold_stage1_v2/manifest.json",
+      "389329707128d70cceaadc39faa54b130bef08106e9bdc67e5932999f6dc8496": "data/vietnam/stage1_eval_suite_v2/staging/gold_stage1_v2_1/authoring_packet.jsonl",
+      "6e27a8a785bb9b60eb38081b4475b1da39ee4ca62c93ea64d0d6119d4da683e7": "data/vietnam/stage1_eval_suite_v2/staging/gold_stage1_v2_1/authoring_packet_manifest.json",
+      "5f1cbdc0f7d533a427ae4fadf9956e95c1559ae252a0332960967bf0fff07516": "data/vietnam/stage1_eval_suite_v2/staging/gold_stage1_v2_1/target_overrides_v1.json",
+      "58967a6ff6cbe017f101d640ee18449833c8dd8157d0bb3a34e19bf5bd438316": "data/vietnam/stage1_eval_suite_v2/gold_stage1_v2_1/README.md"
+    }
+  },
+  "checks": {
+    "unit_tests_passed": 78,
+    "frontend_build": "pass_with_large_chunk_warning",
+    "fatal_python_lint": "pass",
+    "compile": "pass",
+    "contract_geo_smoke_current_profile": "ALL_SMOKE_PASSED",
+    "contract_geo_smoke_raw_profile": "failed_geo_expectation_raw_disables_geo",
+    "github_ci": "not_run",
+    "isolated_final_git_tree_tests_passed": 78,
+    "isolated_final_git_tree_gold_v22": "PASS",
+    "final_source_tree_tested": "59649b3472abf74202124f98b40f833a94d50d0c"
+  },
+  "gold_v22": {
+    "validation": {
+      "verdict": "PASS",
+      "errors": [],
+      "counts": {
+        "targets": 200,
+        "sessions": 800,
+        "qrels": 820,
+        "prefixes": 200
+      },
+      "role_counts": {
+        "q01": 200,
+        "q02": 200,
+        "q03": 200,
+        "q04": 200
+      },
+      "positive_overlap_train_targets": 0,
+      "label_review": "inherited accepted labels; structural and corpus linkage revalidated; no new independent human review",
+      "holdout_status": "previously exposed regression set; not a new holdout"
+    },
+    "rebuild_byte_identical": true,
+    "historical_v21_provenance_recovered": false
+  }
+}

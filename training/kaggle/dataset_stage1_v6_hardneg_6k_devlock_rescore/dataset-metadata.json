@@ -1,0 +1,10 @@
+{
+  "title": "VN POI Stage1 v6 hardneg 6k devlock rescore",
+  "id": "hiengchi/vn-poi-stage1-v6-hardneg-6k-devlock-rescore",
+  "licenses": [
+    {
+      "name": "ODbL-1.0"
+    }
+  ],
+  "subtitle": "Dev-lock checkpoint plus brand Gold queries. No corpus embeddings."
+}

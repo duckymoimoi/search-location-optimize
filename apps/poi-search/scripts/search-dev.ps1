@@ -66,9 +66,20 @@ switch ($Action) {
     "build" {
         $env:DOCKER_BUILDKIT = "1"
         $env:COMPOSE_DOCKER_CLI_BUILD = "1"
-        $apiImg = docker images -q "vn-poi/stage1-api:0.1.0-local"
-        if (-not $apiImg) {
-            Write-Warning "vn-poi/stage1-api missing - build API once from main compose (needs network for torch)."
+        Push-Location $ProductRoot
+        try {
+            docker compose -f docker-compose.yml build api
+            if ($LASTEXITCODE -ne 0) { throw "docker compose build api failed" }
+        } finally {
+            Pop-Location
+        }
+        Invoke-Compose build api bench
+        Write-Output "Built CUDA API and search-dev images. HF runtime cache volume: vn-poi-hf-cache."
+    }
+    "up" {
+        $code = Invoke-Compose -AllowFail up -d --no-build elasticsearch api bench
+        if ($code -ne 0) {
+            Write-Warning "Images missing or compose failed - building search-dev once..."
             Push-Location $ProductRoot
             try {
                 docker compose -f docker-compose.yml build api
@@ -76,16 +87,6 @@ switch ($Action) {
             } finally {
                 Pop-Location
             }
-        } else {
-            Write-Output "Reusing local vn-poi/stage1-api:0.1.0-local (no torch re-download)."
-        }
-        Invoke-Compose build api bench
-        Write-Output "Built vn-poi/search-dev (extras only). HF runtime cache volume: vn-poi-hf-cache."
-    }
-    "up" {
-        $code = Invoke-Compose -AllowFail up -d --no-build elasticsearch api bench
-        if ($code -ne 0) {
-            Write-Warning "Images missing or compose failed - building search-dev once..."
             Invoke-Compose build api bench
             Invoke-Compose up -d --no-build elasticsearch api bench
         }

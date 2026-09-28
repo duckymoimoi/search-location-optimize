@@ -1,0 +1,56 @@
+{
+  "dataset": "train_stage1_v6_hardneg_6k",
+  "status": "EXPERIMENTAL",
+  "note": "Compiled views only. Does not modify published v6 queries.",
+  "split_seed": 42,
+  "dev_case_fraction": 0.1,
+  "slot_weight": {
+    "v01": 1.0,
+    "v02": 1.0,
+    "v03": 0.25,
+    "v04": 0.25,
+    "v05": 0.25,
+    "v06": 0.25
+  },
+  "excluded_cases": {
+    "train20k-02003": "intended osm:node/5608881031 merges into a different PNJ branch on v3"
+  },
+  "counts": {
+    "view_rows": 35994,
+    "train_rows": 32394,
+    "dev_rows": 3600,
+    "train_cases": 5399,
+    "dev_cases": 600,
+    "excluded_source_rows": 6,
+    "dropped_unresolved": 0,
+    "relation_rows": 3239748,
+    "relations_by_label": {
+      "hard_neg_candidate": 3198162,
+      "positive": 41478,
+      "ignore": 108
+    },
+    "rows_with_brand_group": 6792
+  },
+  "sources": {
+    "query_variants.csv": {
+      "path": "D:/vsf/data/vietnam/train_stage1_queries_v6/query_variants.csv",
+      "sha256": "aafea7af07cd36a35b5f8ea262dba191b226d0403dd44016c398315580693561"
+    },
+    "train_manifest.json": {
+      "path": "D:/vsf/data/vietnam/train_stage1_queries_v6/manifest.json",
+      "sha256": "a2667d316d9cbcc7bdb2693a10964f65730a252a3ed00250a1a1b86bb5722059"
+    },
+    "search_documents.parquet": {
+      "path": "D:/vsf/data/vietnam/poi_corpus_v3/search_documents.parquet",
+      "sha256": "6301bc85f6ac5229854875359db57e25c66ca78ba4f484807788e5ba27eb00f2"
+    },
+    "brand_group_members_v1.parquet": {
+      "path": "D:/vsf/data/vietnam/train_stage1_brand_membership_v3/brand_group_members_v3.parquet",
+      "sha256": "119ebb78518817acc12f114995241df0e931c5d03ea6bd0797dc5ef0095a41a2"
+    }
+  },
+  "outputs": {
+    "query_train_view.parquet": "9c33c33154aef501d16fc835dfee776f9abfb27933ee354ff4fce63bce78cc77",
+    "query_relation_view.parquet": "2cd91e2d3cff41390f1a1b1c35c54d8317200d26154f415da3df8317693cffb3"
+  }
+}

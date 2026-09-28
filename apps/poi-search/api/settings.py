@@ -28,13 +28,19 @@ RETRIEVAL_PROFILE = os.environ.get(
 )
 GOONG_API_KEY = os.environ.get("GOONG_API_KEY", "").strip()
 GOONG_DIRECTION_URL = os.environ.get("GOONG_DIRECTION_URL", "https://rsapi.goong.io/Direction").strip()
-if RETRIEVAL_PROFILE not in {"lexical_only", "dense_only", "hybrid"}:
+if RETRIEVAL_PROFILE not in {"lexical_only", "dense_only", "hybrid", "dense_first"}:
     raise ValueError(f"Unsupported retrieval profile: {RETRIEVAL_PROFILE}")
 CORPUS_VERSION = os.environ.get("POI_CORPUS_VERSION", "vn-poi-core-v3-semantic-address-dedup50")
 BRANCH_DEPTH = int(POLICY["retrieval"]["branch_depth"])
 ANN_CANDIDATES = int(POLICY["retrieval"]["ann_candidates"])
 RRF_CONSTANT = int(POLICY["retrieval"]["rrf_constant"])
 RANKING_POLICY = POLICY["ranking"]
+RANKING_PROFILE = os.environ.get("POI_RANKING_PROFILE", "current")
+ENCODER_NORMALIZER = os.environ.get("POI_ENCODER_NORMALIZER", "glue_code_spans")
+if RANKING_PROFILE not in {"current", "raw", "dedup_only", "name_address", "name_quality"}:
+    raise ValueError(f"Unsupported ranking profile: {RANKING_PROFILE}")
+if ENCODER_NORMALIZER not in {"raw", "glue_code_spans"}:
+    raise ValueError(f"Unsupported encoder normalizer: {ENCODER_NORMALIZER}")
 LEXICAL_CONFIG = POLICY["lexical"]
 RELEASE_ID = os.environ.get("POI_RELEASE_ID", "vn-poi-demo-me5-r2")
 EMBEDDING_SPACE_ID = os.environ.get("POI_EMBEDDING_SPACE_ID", "me5-small-passage-384")
@@ -47,4 +53,6 @@ def resolve_model_source() -> str:
         return str(MODEL_DIR / "final_model")
     if MODEL_DIR and (MODEL_DIR / "config.json").exists():
         return str(MODEL_DIR)
+    if os.environ.get("POI_MODEL_DIR", os.environ.get("HANOI_POI_MODEL_DIR", "")):
+        raise ValueError(f"Configured model directory has no model config: {MODEL_DIR}")
     return MODEL_ID

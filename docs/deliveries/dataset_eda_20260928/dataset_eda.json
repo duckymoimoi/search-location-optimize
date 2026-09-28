@@ -1,0 +1,3375 @@
+{
+  "schema_version": "current-datasets-eda-v1",
+  "created_at_utc": "2026-09-28T08:56:47.163933+00:00",
+  "runner_sha256": "c75ced927fbffaac3ffaf4f2a58ff11957054dcbba57663208b9f356a7b99717",
+  "scope": "All local data/vietnam Parquet except staging; no training; no label changes",
+  "tables": [
+    {
+      "path": "data/vietnam/admin_regions_v1/region_catalog.parquet",
+      "role": "current_source_or_derived_view",
+      "rows": 8785,
+      "bytes": 1535440,
+      "sha256": "9bd60ee7804322ca85496dc2d22d08318cc3de8bc538aaae4b02ad35bf469ac5",
+      "columns": [
+        "region_osm_id",
+        "osm_type",
+        "osm_id",
+        "osm_version",
+        "admin_level",
+        "label",
+        "aliases",
+        "name_tags_json",
+        "wikidata",
+        "parent_ids",
+        "bbox",
+        "rep_lon",
+        "rep_lat",
+        "area_deg2",
+        "geometry_ref",
+        "geometry_status",
+        "geometry_missing_json",
+        "boundary_hash",
+        "admin_scheme_version",
+        "scheme_role",
+        "member_way_count"
+      ],
+      "null_counts": {
+        "region_osm_id": 0,
+        "osm_type": 0,
+        "osm_id": 0,
+        "osm_version": 0,
+        "admin_level": 0,
+        "label": 0,
+        "aliases": 0,
+        "name_tags_json": 0,
+        "wikidata": 7458,
+        "parent_ids": 0,
+        "bbox": 153,
+        "rep_lon": 153,
+        "rep_lat": 153,
+        "area_deg2": 153,
+        "geometry_ref": 153,
+        "geometry_status": 0,
+        "geometry_missing_json": 0,
+        "boundary_hash": 153,
+        "admin_scheme_version": 0,
+        "scheme_role": 0,
+        "member_way_count": 0
+      },
+      "blank_string_counts": {
+        "region_osm_id": 0,
+        "osm_type": 0,
+        "label": 0,
+        "name_tags_json": 0,
+        "wikidata": 0,
+        "geometry_ref": 0,
+        "geometry_status": 0,
+        "geometry_missing_json": 0,
+        "boundary_hash": 0,
+        "admin_scheme_version": 0,
+        "scheme_role": 0
+      },
+      "distinct_keys": {},
+      "distributions": {
+        "admin_level": {
+          "9": 5240,
+          "6": 3396,
+          "8": 73,
+          "4": 59,
+          "5": 7,
+          "2": 5,
+          "10": 3,
+          "3": 1,
+          "0": 1
+        },
+        "label": {
+          "Khu phố 1": 83,
+          "Khu phố 4": 83,
+          "Khu phố 2": 82,
+          "Khu phố 3": 82,
+          "Khu phố 5": 80,
+          "Khu phố 6": 79,
+          "Khu phố 7": 75,
+          "Khu phố 8": 74,
+          "Khu phố 9": 73,
+          "Khu phố 10": 70,
+          "Khu phố 12": 69,
+          "Khu phố 11": 69,
+          "Khu phố 13": 68,
+          "Khu phố 14": 67,
+          "Khu phố 15": 64,
+          "Khu phố 16": 64,
+          "Khu phố 17": 60,
+          "Khu phố 18": 60,
+          "Khu phố 20": 54,
+          "Khu phố 21": 54
+        },
+        "geometry_status": {
+          "ok": 8616,
+          "unclosed_rings:1": 149,
+          "ok_outside_vn_bbox": 9,
+          "ok_partial": 7,
+          "unclosed_rings:2": 3,
+          "no_outer_ways": 1
+        }
+      },
+      "distribution_distinct_counts": {
+        "admin_level": 9,
+        "label": 5369,
+        "geometry_status": 6
+      }
+    },
+    {
+      "path": "data/vietnam/admin_regions_v1/region_geometries.parquet",
+      "role": "current_source_or_derived_view",
+      "rows": 8632,
+      "bytes": 60159557,
+      "sha256": "0bfc39398d8ea6e8550b5b0c088cd08288827c2bda5aa20a5f7973373e26c3d5",
+      "columns": [
+        "region_osm_id",
+        "osm_id",
+        "admin_level",
+        "boundary_hash",
+        "geometry_wkb"
+      ],
+      "null_counts": {
+        "region_osm_id": 0,
+        "osm_id": 0,
+        "admin_level": 0,
+        "boundary_hash": 0,
+        "geometry_wkb": 0
+      },
+      "blank_string_counts": {
+        "region_osm_id": 0,
+        "boundary_hash": 0
+      },
+      "distinct_keys": {},
+      "distributions": {
+        "admin_level": {
+          "9": 5233,
+          "6": 3327,
+          "4": 36,
+          "8": 30,
+          "2": 3,
+          "3": 1,
+          "5": 1,
+          "0": 1
+        }
+      },
+      "distribution_distinct_counts": {
+        "admin_level": 8
+      }
+    },
+    {
+      "path": "data/vietnam/poi_corpus_v3/poi_id_migration.parquet",
+      "role": "current_source_or_derived_view",
+      "rows": 184135,
+      "bytes": 7311276,
+      "sha256": "15f0477506d136608eb1b5dad835162c538a01f0b8f2fcd73085db91dce5ae28",
+      "columns": [
+        "old_poi_id",
+        "canonical_poi_id",
+        "action",
+        "old_name",
+        "new_name",
+        "distance_to_canonical_m",
+        "reason"
+      ],
+      "null_counts": {
+        "old_poi_id": 0,
+        "canonical_poi_id": 493,
+        "action": 0,
+        "old_name": 0,
+        "new_name": 493,
+        "distance_to_canonical_m": 179702,
+        "reason": 179209
+      },
+      "blank_string_counts": {
+        "old_poi_id": 0,
+        "canonical_poi_id": 0,
+        "action": 0,
+        "old_name": 0,
+        "new_name": 0,
+        "reason": 0
+      },
+      "distinct_keys": {},
+      "distributions": {},
+      "distribution_distinct_counts": {}
+    },
+    {
+      "path": "data/vietnam/poi_corpus_v3/poi_regions.parquet",
+      "role": "current_source_or_derived_view",
+      "rows": 358244,
+      "bytes": 2418026,
+      "sha256": "a6018d20e86945692187c528197a20861a8022d1fcb0d5deb8da6d9c4ebc142e",
+      "columns": [
+        "poi_id",
+        "region_osm_id",
+        "admin_level",
+        "admin_scheme_version",
+        "membership_method",
+        "boundary_hash",
+        "primary_choice"
+      ],
+      "null_counts": {
+        "poi_id": 0,
+        "region_osm_id": 0,
+        "admin_level": 0,
+        "admin_scheme_version": 0,
+        "membership_method": 0,
+        "boundary_hash": 0,
+        "primary_choice": 0
+      },
+      "blank_string_counts": {
+        "poi_id": 0,
+        "region_osm_id": 0,
+        "admin_scheme_version": 0,
+        "membership_method": 0,
+        "boundary_hash": 0
+      },
+      "distinct_keys": {
+        "poi_id": 179209
+      },
+      "distributions": {
+        "admin_level": {
+          "4": 179209,
+          "6": 179035
+        }
+      },
+      "distribution_distinct_counts": {
+        "admin_level": 2
+      }
+    },
+    {
+      "path": "data/vietnam/poi_corpus_v3/pois.parquet",
+      "role": "current_source_or_derived_view",
+      "rows": 179209,
+      "bytes": 14491722,
+      "sha256": "bc240a5d3ea93d6810346e04104880330c681b742016fec7120704b7fc976627",
+      "columns": [
+        "poi_id",
+        "name",
+        "aliases",
+        "category",
+        "brand",
+        "ref",
+        "address",
+        "address_status",
+        "context",
+        "ranking_point",
+        "routing_point",
+        "destination_searchable",
+        "origin_search_eligible",
+        "pickup_access_verified",
+        "entity_group_id",
+        "branch_id",
+        "complex_id",
+        "preserve_individual_access_point",
+        "admin_region_ids_json",
+        "osm_type",
+        "osm_id"
+      ],
+      "null_counts": {
+        "poi_id": 0,
+        "name": 0,
+        "aliases": 0,
+        "category": 0,
+        "brand": 170594,
+        "ref": 178707,
+        "address": 0,
+        "address_status": 0,
+        "context": 0,
+        "ranking_point": 0,
+        "routing_point": 0,
+        "destination_searchable": 0,
+        "origin_search_eligible": 0,
+        "pickup_access_verified": 0,
+        "entity_group_id": 0,
+        "branch_id": 179209,
+        "complex_id": 179209,
+        "preserve_individual_access_point": 0,
+        "admin_region_ids_json": 0,
+        "osm_type": 0,
+        "osm_id": 0
+      },
+      "blank_string_counts": {
+        "poi_id": 0,
+        "name": 0,
+        "category": 0,
+        "brand": 0,
+        "ref": 0,
+        "address_status": 0,
+        "entity_group_id": 0,
+        "admin_region_ids_json": 0,
+        "osm_type": 0
+      },
+      "distinct_keys": {
+        "poi_id": 179209
+      },
+      "distributions": {
+        "category": {
+          "address=": 31391,
+          "address=|building=yes": 14365,
+          "public_transport=platform": 13575,
+          "amenity=restaurant": 9635,
+          "amenity=school": 7622,
+          "amenity=cafe": 7611,
+          "shop=convenience": 5886,
+          "tourism=hotel": 4716,
+          "amenity=place_of_worship": 3913,
+          "building=yes": 3773,
+          "amenity=atm": 2889,
+          "building=apartments": 2763,
+          "amenity=fuel": 2714,
+          "address=|building=house": 2230,
+          "amenity=bank": 1820,
+          "amenity=place_of_worship|building=yes": 1625,
+          "amenity=hospital|healthcare=hospital": 1522,
+          "amenity=pharmacy": 1508,
+          "amenity=kindergarten": 1488,
+          "tourism=guest_house": 1359
+        },
+        "address_status": {
+          "missing": 90138,
+          "direct": 89071
+        },
+        "destination_searchable": {
+          "True": 179209
+        },
+        "pickup_access_verified": {
+          "False": 179209
+        }
+      },
+      "distribution_distinct_counts": {
+        "category": 1489,
+        "address_status": 2,
+        "destination_searchable": 1,
+        "pickup_access_verified": 1
+      }
+    },
+    {
+      "path": "data/vietnam/poi_corpus_v3/pois_access_enrichment.parquet",
+      "role": "current_source_or_derived_view",
+      "rows": 179209,
+      "bytes": 1215171,
+      "sha256": "1977a5e9cca17499fe0f347e6c9798ac2d7b00a864bc23c6fd3d3b7fa89ad58d",
+      "columns": [
+        "poi_id",
+        "routing_point",
+        "routing_point_status",
+        "pickup_access_verified",
+        "pickup_access_evidence",
+        "pickup_access_policy_version",
+        "approachability_fallback",
+        "enrichment_source"
+      ],
+      "null_counts": {
+        "poi_id": 0,
+        "routing_point": 179209,
+        "routing_point_status": 0,
+        "pickup_access_verified": 0,
+        "pickup_access_evidence": 179209,
+        "pickup_access_policy_version": 0,
+        "approachability_fallback": 0,
+        "enrichment_source": 0
+      },
+      "blank_string_counts": {
+        "poi_id": 0,
+        "routing_point_status": 0,
+        "pickup_access_policy_version": 0,
+        "approachability_fallback": 0,
+        "enrichment_source": 0
+      },
+      "distinct_keys": {
+        "poi_id": 179209
+      },
+      "distributions": {
+        "routing_point_status": {
+          "unknown": 179209
+        },
+        "pickup_access_verified": {
+          "False": 179209
+        }
+      },
+      "distribution_distinct_counts": {
+        "routing_point_status": 1,
+        "pickup_access_verified": 1
+      }
+    },
+    {
+      "path": "data/vietnam/poi_corpus_v3/pois_core.parquet",
+      "role": "current_source_or_derived_view",
+      "rows": 179209,
+      "bytes": 12631565,
+      "sha256": "b542a03ca6820ea30dadd83b94833a0bd019641a96c21c8ab4405cba6cec3b54",
+      "columns": [
+        "poi_id",
+        "name",
+        "aliases",
+        "category",
+        "brand",
+        "ref",
+        "address",
+        "address_text",
+        "address_status",
+        "province",
+        "subdistrict",
+        "province_region_id",
+        "subdistrict_region_id",
+        "ranking_point",
+        "destination_searchable",
+        "entity_group_id",
+        "branch_id",
+        "preserve_individual_access_point",
+        "osm_type",
+        "osm_id"
+      ],
+      "null_counts": {
+        "poi_id": 0,
+        "name": 0,
+        "aliases": 0,
+        "category": 0,
+        "brand": 170594,
+        "ref": 178707,
+        "address": 0,
+        "address_text": 0,
+        "address_status": 0,
+        "province": 0,
+        "subdistrict": 176,
+        "province_region_id": 0,
+        "subdistrict_region_id": 176,
+        "ranking_point": 0,
+        "destination_searchable": 0,
+        "entity_group_id": 0,
+        "branch_id": 179209,
+        "preserve_individual_access_point": 0,
+        "osm_type": 0,
+        "osm_id": 0
+      },
+      "blank_string_counts": {
+        "poi_id": 0,
+        "name": 0,
+        "category": 0,
+        "brand": 0,
+        "ref": 0,
+        "address_text": 0,
+        "address_status": 0,
+        "province": 0,
+        "subdistrict": 0,
+        "province_region_id": 0,
+        "subdistrict_region_id": 0,
+        "entity_group_id": 0,
+        "osm_type": 0
+      },
+      "distinct_keys": {
+        "poi_id": 179209
+      },
+      "distributions": {
+        "category": {
+          "address=": 31391,
+          "address=|building=yes": 14365,
+          "public_transport=platform": 13575,
+          "amenity=restaurant": 9635,
+          "amenity=school": 7622,
+          "amenity=cafe": 7611,
+          "shop=convenience": 5886,
+          "tourism=hotel": 4716,
+          "amenity=place_of_worship": 3913,
+          "building=yes": 3773,
+          "amenity=atm": 2889,
+          "building=apartments": 2763,
+          "amenity=fuel": 2714,
+          "address=|building=house": 2230,
+          "amenity=bank": 1820,
+          "amenity=place_of_worship|building=yes": 1625,
+          "amenity=hospital|healthcare=hospital": 1522,
+          "amenity=pharmacy": 1508,
+          "amenity=kindergarten": 1488,
+          "tourism=guest_house": 1359
+        },
+        "address_status": {
+          "missing": 93170,
+          "direct": 86039
+        },
+        "province": {
+          "Thành phố Hồ Chí Minh": 50206,
+          "Hà Nội": 45402,
+          "Thành phố Đà Nẵng": 14305,
+          "Thành phố Bắc Ninh": 10135,
+          "Tỉnh Lâm Đồng": 6580,
+          "Thành phố Cần Thơ": 5315,
+          "Thành phố Đồng Nai": 5003,
+          "Thành phố Hải Phòng": 4392,
+          "Khánh Hòa": 4218,
+          "Tỉnh An Giang": 3938,
+          "Thành phố Huế": 2328,
+          "Tỉnh Ninh Bình": 2205,
+          "Tỉnh Tây Ninh": 2084,
+          "Tỉnh Đắk Lắk": 2065,
+          "Tỉnh Hưng Yên": 2056,
+          "Tỉnh Gia Lai": 2047,
+          "Tỉnh Đồng Tháp": 1861,
+          "Tỉnh Quảng Trị": 1715,
+          "Tỉnh Lào Cai": 1596,
+          "Tỉnh Vĩnh Long": 1492
+        },
+        "destination_searchable": {
+          "True": 179209
+        }
+      },
+      "distribution_distinct_counts": {
+        "category": 1489,
+        "address_status": 2,
+        "province": 34,
+        "destination_searchable": 1
+      }
+    },
+    {
+      "path": "data/vietnam/poi_corpus_v3/search_documents.parquet",
+      "role": "current_source_or_derived_view",
+      "rows": 179209,
+      "bytes": 16860166,
+      "sha256": "6301bc85f6ac5229854875359db57e25c66ca78ba4f484807788e5ba27eb00f2",
+      "columns": [
+        "poi_id",
+        "name",
+        "aliases",
+        "address_text",
+        "passage_address",
+        "passage_context"
+      ],
+      "null_counts": {
+        "poi_id": 0,
+        "name": 0,
+        "aliases": 0,
+        "address_text": 0,
+        "passage_address": 0,
+        "passage_context": 0
+      },
+      "blank_string_counts": {
+        "poi_id": 0,
+        "name": 0,
+        "address_text": 0,
+        "passage_address": 0,
+        "passage_context": 0
+      },
+      "distinct_keys": {
+        "poi_id": 179209
+      },
+      "distributions": {},
+      "distribution_distinct_counts": {}
+    },
+    {
+      "path": "data/vietnam/stage1_eval_suite_v2/gold_stage1_brand_v1/brand_qrels_v1.parquet",
+      "role": "current_source_or_derived_view",
+      "rows": 6610,
+      "bytes": 19943,
+      "sha256": "907258f6673c606bb0620bdd71a65b05b17342572ab4deb58b22e05add1401b9",
+      "columns": [
+        "schema_version",
+        "record_type",
+        "suite_id",
+        "qrel_set_id",
+        "target_type",
+        "target_id",
+        "label",
+        "relevance",
+        "label_reason",
+        "evidence_source"
+      ],
+      "null_counts": {
+        "schema_version": 0,
+        "record_type": 0,
+        "suite_id": 0,
+        "qrel_set_id": 0,
+        "target_type": 0,
+        "target_id": 0,
+        "label": 0,
+        "relevance": 0,
+        "label_reason": 0,
+        "evidence_source": 0
+      },
+      "blank_string_counts": {
+        "schema_version": 0,
+        "record_type": 0,
+        "suite_id": 0,
+        "qrel_set_id": 0,
+        "target_type": 0,
+        "target_id": 0,
+        "label": 0,
+        "label_reason": 0
+      },
+      "distinct_keys": {},
+      "distributions": {
+        "label": {
+          "compatible": 6610
+        }
+      },
+      "distribution_distinct_counts": {
+        "label": 1
+      }
+    },
+    {
+      "path": "data/vietnam/stage1_eval_suite_v2/gold_stage1_brand_v1/brand_queries_v1.parquet",
+      "role": "current_source_or_derived_view",
+      "rows": 248,
+      "bytes": 27239,
+      "sha256": "24dc126237e0864bd634561fcbc9f0dd4fb58f579a3e43a47b6cfbcfb8981668",
+      "columns": [
+        "schema_version",
+        "record_type",
+        "suite_id",
+        "query_id",
+        "query_family_id",
+        "query_text",
+        "query_role",
+        "difficulty",
+        "brand_family_id",
+        "brand_group_id",
+        "namespace",
+        "variant_operator",
+        "exposure_class",
+        "acceptable_poi_ids",
+        "qrel_set_id",
+        "review_status"
+      ],
+      "null_counts": {
+        "schema_version": 0,
+        "record_type": 0,
+        "suite_id": 0,
+        "query_id": 0,
+        "query_family_id": 0,
+        "query_text": 0,
+        "query_role": 0,
+        "difficulty": 0,
+        "brand_family_id": 0,
+        "brand_group_id": 0,
+        "namespace": 0,
+        "variant_operator": 0,
+        "exposure_class": 0,
+        "acceptable_poi_ids": 0,
+        "qrel_set_id": 0,
+        "review_status": 0
+      },
+      "blank_string_counts": {
+        "schema_version": 0,
+        "record_type": 0,
+        "suite_id": 0,
+        "query_id": 0,
+        "query_family_id": 0,
+        "query_text": 0,
+        "query_role": 0,
+        "difficulty": 0,
+        "brand_family_id": 0,
+        "brand_group_id": 0,
+        "namespace": 0,
+        "variant_operator": 0,
+        "exposure_class": 0,
+        "qrel_set_id": 0,
+        "review_status": 0
+      },
+      "distinct_keys": {
+        "query_id": 248,
+        "brand_family_id": 70
+      },
+      "distributions": {
+        "query_role": {
+          "brand_error": 84,
+          "canonical_brand": 82,
+          "namespace_qualified": 82
+        },
+        "difficulty": {
+          "clean": 164,
+          "mild": 64,
+          "compound": 20
+        },
+        "namespace": {
+          "retail": 96,
+          "hotel": 39,
+          "fuel": 30,
+          "bank": 22,
+          "atm": 19,
+          "restaurant": 16,
+          "supermarket": 14,
+          "cafe": 12
+        },
+        "exposure_class": {
+          "brand_query_heldout_branch_unseen": 137,
+          "brand_query_heldout_branch_seen": 111
+        },
+        "review_status": {
+          "accepted": 248
+        }
+      },
+      "distribution_distinct_counts": {
+        "query_role": 3,
+        "difficulty": 3,
+        "namespace": 8,
+        "exposure_class": 2,
+        "review_status": 1
+      },
+      "query_text": {
+        "characters_p50_p95_max": [
+          13.0,
+          22.0,
+          33.0
+        ],
+        "tokens_p50_p95_max": [
+          3.0,
+          4.0,
+          8.0
+        ],
+        "duplicate_raw_rows_beyond_first": 0,
+        "duplicate_normalized_rows_beyond_first": 0,
+        "normalizer": "NFKC + casefold + collapse whitespace; accents preserved"
+      }
+    },
+    {
+      "path": "data/vietnam/stage1_eval_suite_v2/gold_stage1_v2_1/qrels_v2_1.parquet",
+      "role": "historical_lineage_incomplete_provenance",
+      "rows": 820,
+      "bytes": 23800,
+      "sha256": "c9579fc7267841d20e59ab11ed735eca1c750d8f5f45ee8139e1a3fc3b4127f4",
+      "columns": [
+        "schema_version",
+        "record_type",
+        "suite_id",
+        "qrel_set_id",
+        "target_type",
+        "target_id",
+        "label",
+        "relevance",
+        "label_reason",
+        "evidence_source"
+      ],
+      "null_counts": {
+        "schema_version": 0,
+        "record_type": 0,
+        "suite_id": 0,
+        "qrel_set_id": 0,
+        "target_type": 0,
+        "target_id": 0,
+        "label": 0,
+        "relevance": 0,
+        "label_reason": 0,
+        "evidence_source": 0
+      },
+      "blank_string_counts": {
+        "schema_version": 0,
+        "record_type": 0,
+        "suite_id": 0,
+        "qrel_set_id": 0,
+        "target_type": 0,
+        "target_id": 0,
+        "label": 0,
+        "label_reason": 0
+      },
+      "distinct_keys": {},
+      "distributions": {
+        "label": {
+          "positive": 820
+        }
+      },
+      "distribution_distinct_counts": {
+        "label": 1
+      }
+    },
+    {
+      "path": "data/vietnam/stage1_eval_suite_v2/gold_stage1_v2_1/query_sessions_v2_1.parquet",
+      "role": "historical_lineage_incomplete_provenance",
+      "rows": 800,
+      "bytes": 53812,
+      "sha256": "690cbc793b4a89b568f581b2bd48e3d1ccfab03e3463ff0910b340eca24c0bb6",
+      "columns": [
+        "schema_version",
+        "record_type",
+        "suite_id",
+        "query_id",
+        "query_family_id",
+        "case_id",
+        "query_role",
+        "query_text",
+        "difficulty",
+        "coverage_tags",
+        "intended_poi_id",
+        "acceptable_poi_ids",
+        "entity_group_id",
+        "qrel_set_id",
+        "primary_sampling_stratum",
+        "case_origin",
+        "exposure_class",
+        "review_status"
+      ],
+      "null_counts": {
+        "schema_version": 0,
+        "record_type": 0,
+        "suite_id": 0,
+        "query_id": 0,
+        "query_family_id": 0,
+        "case_id": 0,
+        "query_role": 0,
+        "query_text": 0,
+        "difficulty": 0,
+        "coverage_tags": 0,
+        "intended_poi_id": 0,
+        "acceptable_poi_ids": 0,
+        "entity_group_id": 0,
+        "qrel_set_id": 0,
+        "primary_sampling_stratum": 0,
+        "case_origin": 0,
+        "exposure_class": 0,
+        "review_status": 0
+      },
+      "blank_string_counts": {
+        "schema_version": 0,
+        "record_type": 0,
+        "suite_id": 0,
+        "query_id": 0,
+        "query_family_id": 0,
+        "case_id": 0,
+        "query_role": 0,
+        "query_text": 0,
+        "difficulty": 0,
+        "intended_poi_id": 0,
+        "entity_group_id": 0,
+        "qrel_set_id": 0,
+        "primary_sampling_stratum": 0,
+        "case_origin": 0,
+        "exposure_class": 0,
+        "review_status": 0
+      },
+      "distinct_keys": {
+        "query_id": 800,
+        "case_id": 200
+      },
+      "distributions": {
+        "query_role": {
+          "q01": 200,
+          "q02": 200,
+          "q03": 200,
+          "q04": 200
+        },
+        "difficulty": {
+          "compound": 591,
+          "clean": 200,
+          "challenge": 9
+        },
+        "primary_sampling_stratum": {
+          "brand_branch": 152,
+          "named_clear": 152,
+          "address_street_building": 128,
+          "building_code": 104,
+          "category_local": 92,
+          "explicit_area_cross_region": 92,
+          "code_transit_landmark": 80
+        },
+        "exposure_class": {
+          "poi_heldout_namespace_seen": 604,
+          "poi_heldout_namespace_unseen": 196
+        },
+        "review_status": {
+          "accepted": 800
+        }
+      },
+      "distribution_distinct_counts": {
+        "query_role": 4,
+        "difficulty": 3,
+        "primary_sampling_stratum": 7,
+        "exposure_class": 2,
+        "review_status": 1
+      },
+      "query_text": {
+        "characters_p50_p95_max": [
+          28.0,
+          41.0,
+          53.0
+        ],
+        "tokens_p50_p95_max": [
+          6.0,
+          9.0,
+          12.0
+        ],
+        "duplicate_raw_rows_beyond_first": 0,
+        "duplicate_normalized_rows_beyond_first": 0,
+        "normalizer": "NFKC + casefold + collapse whitespace; accents preserved"
+      }
+    },
+    {
+      "path": "data/vietnam/stage1_eval_suite_v2/gold_stage1_v2_1/target_pois_v2_1.parquet",
+      "role": "historical_lineage_incomplete_provenance",
+      "rows": 200,
+      "bytes": 29462,
+      "sha256": "146c65f8481d6b56620e20094f4ffd90dc8647b2fb9865b036d68988b42af1af",
+      "columns": [
+        "case_id",
+        "poi_id",
+        "name",
+        "brand",
+        "ref",
+        "category",
+        "province",
+        "subdistrict",
+        "housenumber",
+        "street",
+        "address_text",
+        "address_status",
+        "primary_sampling_stratum",
+        "case_origin",
+        "exposure_class",
+        "entity_group_id",
+        "clean_reason",
+        "clean_pass",
+        "clean_notes"
+      ],
+      "null_counts": {
+        "case_id": 0,
+        "poi_id": 0,
+        "name": 0,
+        "brand": 166,
+        "ref": 200,
+        "category": 0,
+        "province": 0,
+        "subdistrict": 0,
+        "housenumber": 3,
+        "street": 2,
+        "address_text": 0,
+        "address_status": 0,
+        "primary_sampling_stratum": 0,
+        "case_origin": 0,
+        "exposure_class": 0,
+        "entity_group_id": 0,
+        "clean_reason": 0,
+        "clean_pass": 0,
+        "clean_notes": 0
+      },
+      "blank_string_counts": {
+        "case_id": 0,
+        "poi_id": 0,
+        "name": 0,
+        "brand": 0,
+        "category": 0,
+        "province": 0,
+        "subdistrict": 0,
+        "housenumber": 0,
+        "street": 0,
+        "address_text": 0,
+        "address_status": 0,
+        "primary_sampling_stratum": 0,
+        "case_origin": 0,
+        "exposure_class": 0,
+        "entity_group_id": 0,
+        "clean_reason": 0,
+        "clean_notes": 0
+      },
+      "distinct_keys": {
+        "poi_id": 200,
+        "case_id": 200
+      },
+      "distributions": {
+        "category": {
+          "address=": 21,
+          "address=|building=apartments": 20,
+          "amenity=cafe": 17,
+          "amenity=restaurant": 12,
+          "amenity=school": 9,
+          "address=|building=yes": 7,
+          "amenity=bank": 6,
+          "amenity=fast_food": 6,
+          "tourism=hotel": 5,
+          "amenity=bus_station|public_transport=station": 5,
+          "shop=motorcycle": 4,
+          "shop=supermarket": 4,
+          "tourism=hotel|building=yes": 3,
+          "amenity=pharmacy|healthcare=pharmacy": 3,
+          "amenity=restaurant|building=yes": 3,
+          "amenity=kindergarten": 3,
+          "amenity=bus_station": 3,
+          "amenity=place_of_worship|tourism=attraction": 3,
+          "tourism=attraction": 3,
+          "amenity=place_of_worship": 3
+        },
+        "province": {
+          "Thành phố Hồ Chí Minh": 51,
+          "Hà Nội": 46,
+          "Thành phố Đà Nẵng": 19,
+          "Thành phố Bắc Ninh": 16,
+          "Tỉnh Lâm Đồng": 15,
+          "Thành phố Cần Thơ": 10,
+          "Khánh Hòa": 7,
+          "Thành phố Hải Phòng": 7,
+          "Tỉnh Đắk Lắk": 6,
+          "Thành phố Đồng Nai": 5,
+          "Tỉnh Gia Lai": 4,
+          "Tỉnh Quảng Trị": 3,
+          "Thành phố Huế": 3,
+          "Tỉnh Ninh Bình": 2,
+          "Tỉnh An Giang": 1,
+          "Tỉnh Vĩnh Long": 1,
+          "Hà Tĩnh": 1,
+          "Tỉnh Tuyên Quang": 1,
+          "Tỉnh Tây Ninh": 1,
+          "Tỉnh Nghệ An": 1
+        },
+        "address_status": {
+          "direct": 198,
+          "missing": 2
+        },
+        "primary_sampling_stratum": {
+          "brand_branch": 38,
+          "named_clear": 38,
+          "address_street_building": 32,
+          "building_code": 26,
+          "category_local": 23,
+          "explicit_area_cross_region": 23,
+          "code_transit_landmark": 20
+        },
+        "exposure_class": {
+          "poi_heldout_namespace_seen": 151,
+          "poi_heldout_namespace_unseen": 49
+        }
+      },
+      "distribution_distinct_counts": {
+        "category": 66,
+        "province": 20,
+        "address_status": 2,
+        "primary_sampling_stratum": 7,
+        "exposure_class": 2
+      }
+    },
+    {
+      "path": "data/vietnam/stage1_eval_suite_v2/gold_stage1_v2_2/qrels_v2_2.parquet",
+      "role": "active_gold_reissue_not_new_holdout",
+      "rows": 820,
+      "bytes": 23800,
+      "sha256": "c9579fc7267841d20e59ab11ed735eca1c750d8f5f45ee8139e1a3fc3b4127f4",
+      "columns": [
+        "schema_version",
+        "record_type",
+        "suite_id",
+        "qrel_set_id",
+        "target_type",
+        "target_id",
+        "label",
+        "relevance",
+        "label_reason",
+        "evidence_source"
+      ],
+      "null_counts": {
+        "schema_version": 0,
+        "record_type": 0,
+        "suite_id": 0,
+        "qrel_set_id": 0,
+        "target_type": 0,
+        "target_id": 0,
+        "label": 0,
+        "relevance": 0,
+        "label_reason": 0,
+        "evidence_source": 0
+      },
+      "blank_string_counts": {
+        "schema_version": 0,
+        "record_type": 0,
+        "suite_id": 0,
+        "qrel_set_id": 0,
+        "target_type": 0,
+        "target_id": 0,
+        "label": 0,
+        "label_reason": 0
+      },
+      "distinct_keys": {},
+      "distributions": {
+        "label": {
+          "positive": 820
+        }
+      },
+      "distribution_distinct_counts": {
+        "label": 1
+      }
+    },
+    {
+      "path": "data/vietnam/stage1_eval_suite_v2/gold_stage1_v2_2/query_sessions_v2_2.parquet",
+      "role": "active_gold_reissue_not_new_holdout",
+      "rows": 800,
+      "bytes": 53812,
+      "sha256": "690cbc793b4a89b568f581b2bd48e3d1ccfab03e3463ff0910b340eca24c0bb6",
+      "columns": [
+        "schema_version",
+        "record_type",
+        "suite_id",
+        "query_id",
+        "query_family_id",
+        "case_id",
+        "query_role",
+        "query_text",
+        "difficulty",
+        "coverage_tags",
+        "intended_poi_id",
+        "acceptable_poi_ids",
+        "entity_group_id",
+        "qrel_set_id",
+        "primary_sampling_stratum",
+        "case_origin",
+        "exposure_class",
+        "review_status"
+      ],
+      "null_counts": {
+        "schema_version": 0,
+        "record_type": 0,
+        "suite_id": 0,
+        "query_id": 0,
+        "query_family_id": 0,
+        "case_id": 0,
+        "query_role": 0,
+        "query_text": 0,
+        "difficulty": 0,
+        "coverage_tags": 0,
+        "intended_poi_id": 0,
+        "acceptable_poi_ids": 0,
+        "entity_group_id": 0,
+        "qrel_set_id": 0,
+        "primary_sampling_stratum": 0,
+        "case_origin": 0,
+        "exposure_class": 0,
+        "review_status": 0
+      },
+      "blank_string_counts": {
+        "schema_version": 0,
+        "record_type": 0,
+        "suite_id": 0,
+        "query_id": 0,
+        "query_family_id": 0,
+        "case_id": 0,
+        "query_role": 0,
+        "query_text": 0,
+        "difficulty": 0,
+        "intended_poi_id": 0,
+        "entity_group_id": 0,
+        "qrel_set_id": 0,
+        "primary_sampling_stratum": 0,
+        "case_origin": 0,
+        "exposure_class": 0,
+        "review_status": 0
+      },
+      "distinct_keys": {
+        "query_id": 800,
+        "case_id": 200
+      },
+      "distributions": {
+        "query_role": {
+          "q01": 200,
+          "q02": 200,
+          "q03": 200,
+          "q04": 200
+        },
+        "difficulty": {
+          "compound": 591,
+          "clean": 200,
+          "challenge": 9
+        },
+        "primary_sampling_stratum": {
+          "brand_branch": 152,
+          "named_clear": 152,
+          "address_street_building": 128,
+          "building_code": 104,
+          "category_local": 92,
+          "explicit_area_cross_region": 92,
+          "code_transit_landmark": 80
+        },
+        "exposure_class": {
+          "poi_heldout_namespace_seen": 604,
+          "poi_heldout_namespace_unseen": 196
+        },
+        "review_status": {
+          "accepted": 800
+        }
+      },
+      "distribution_distinct_counts": {
+        "query_role": 4,
+        "difficulty": 3,
+        "primary_sampling_stratum": 7,
+        "exposure_class": 2,
+        "review_status": 1
+      },
+      "query_text": {
+        "characters_p50_p95_max": [
+          28.0,
+          41.0,
+          53.0
+        ],
+        "tokens_p50_p95_max": [
+          6.0,
+          9.0,
+          12.0
+        ],
+        "duplicate_raw_rows_beyond_first": 0,
+        "duplicate_normalized_rows_beyond_first": 0,
+        "normalizer": "NFKC + casefold + collapse whitespace; accents preserved"
+      }
+    },
+    {
+      "path": "data/vietnam/stage1_eval_suite_v2/gold_stage1_v2_2/target_pois_v2_2.parquet",
+      "role": "active_gold_reissue_not_new_holdout",
+      "rows": 200,
+      "bytes": 29462,
+      "sha256": "146c65f8481d6b56620e20094f4ffd90dc8647b2fb9865b036d68988b42af1af",
+      "columns": [
+        "case_id",
+        "poi_id",
+        "name",
+        "brand",
+        "ref",
+        "category",
+        "province",
+        "subdistrict",
+        "housenumber",
+        "street",
+        "address_text",
+        "address_status",
+        "primary_sampling_stratum",
+        "case_origin",
+        "exposure_class",
+        "entity_group_id",
+        "clean_reason",
+        "clean_pass",
+        "clean_notes"
+      ],
+      "null_counts": {
+        "case_id": 0,
+        "poi_id": 0,
+        "name": 0,
+        "brand": 166,
+        "ref": 200,
+        "category": 0,
+        "province": 0,
+        "subdistrict": 0,
+        "housenumber": 3,
+        "street": 2,
+        "address_text": 0,
+        "address_status": 0,
+        "primary_sampling_stratum": 0,
+        "case_origin": 0,
+        "exposure_class": 0,
+        "entity_group_id": 0,
+        "clean_reason": 0,
+        "clean_pass": 0,
+        "clean_notes": 0
+      },
+      "blank_string_counts": {
+        "case_id": 0,
+        "poi_id": 0,
+        "name": 0,
+        "brand": 0,
+        "category": 0,
+        "province": 0,
+        "subdistrict": 0,
+        "housenumber": 0,
+        "street": 0,
+        "address_text": 0,
+        "address_status": 0,
+        "primary_sampling_stratum": 0,
+        "case_origin": 0,
+        "exposure_class": 0,
+        "entity_group_id": 0,
+        "clean_reason": 0,
+        "clean_notes": 0
+      },
+      "distinct_keys": {
+        "poi_id": 200,
+        "case_id": 200
+      },
+      "distributions": {
+        "category": {
+          "address=": 21,
+          "address=|building=apartments": 20,
+          "amenity=cafe": 17,
+          "amenity=restaurant": 12,
+          "amenity=school": 9,
+          "address=|building=yes": 7,
+          "amenity=bank": 6,
+          "amenity=fast_food": 6,
+          "tourism=hotel": 5,
+          "amenity=bus_station|public_transport=station": 5,
+          "shop=motorcycle": 4,
+          "shop=supermarket": 4,
+          "tourism=hotel|building=yes": 3,
+          "amenity=pharmacy|healthcare=pharmacy": 3,
+          "amenity=restaurant|building=yes": 3,
+          "amenity=kindergarten": 3,
+          "amenity=bus_station": 3,
+          "amenity=place_of_worship|tourism=attraction": 3,
+          "tourism=attraction": 3,
+          "amenity=place_of_worship": 3
+        },
+        "province": {
+          "Thành phố Hồ Chí Minh": 51,
+          "Hà Nội": 46,
+          "Thành phố Đà Nẵng": 19,
+          "Thành phố Bắc Ninh": 16,
+          "Tỉnh Lâm Đồng": 15,
+          "Thành phố Cần Thơ": 10,
+          "Khánh Hòa": 7,
+          "Thành phố Hải Phòng": 7,
+          "Tỉnh Đắk Lắk": 6,
+          "Thành phố Đồng Nai": 5,
+          "Tỉnh Gia Lai": 4,
+          "Tỉnh Quảng Trị": 3,
+          "Thành phố Huế": 3,
+          "Tỉnh Ninh Bình": 2,
+          "Tỉnh An Giang": 1,
+          "Tỉnh Vĩnh Long": 1,
+          "Hà Tĩnh": 1,
+          "Tỉnh Tuyên Quang": 1,
+          "Tỉnh Tây Ninh": 1,
+          "Tỉnh Nghệ An": 1
+        },
+        "address_status": {
+          "direct": 198,
+          "missing": 2
+        },
+        "primary_sampling_stratum": {
+          "brand_branch": 38,
+          "named_clear": 38,
+          "address_street_building": 32,
+          "building_code": 26,
+          "category_local": 23,
+          "explicit_area_cross_region": 23,
+          "code_transit_landmark": 20
+        },
+        "exposure_class": {
+          "poi_heldout_namespace_seen": 151,
+          "poi_heldout_namespace_unseen": 49
+        }
+      },
+      "distribution_distinct_counts": {
+        "category": 66,
+        "province": 20,
+        "address_status": 2,
+        "primary_sampling_stratum": 7,
+        "exposure_class": 2
+      }
+    },
+    {
+      "path": "data/vietnam/train_stage1_20k/target_pois_20k.parquet",
+      "role": "current_source_or_derived_view",
+      "rows": 19891,
+      "bytes": 1369227,
+      "sha256": "cc209cad9af14ad77ee01c71cf139f48594bc6cbe3ce900dc7d607782b827857",
+      "columns": [
+        "case_id",
+        "poi_id",
+        "name",
+        "brand",
+        "ref",
+        "category",
+        "province",
+        "subdistrict",
+        "housenumber",
+        "street",
+        "address_text",
+        "address_status",
+        "primary_sampling_stratum",
+        "region",
+        "clean_reason",
+        "clean_pass"
+      ],
+      "null_counts": {
+        "case_id": 0,
+        "poi_id": 0,
+        "name": 0,
+        "brand": 16735,
+        "ref": 19870,
+        "category": 0,
+        "province": 0,
+        "subdistrict": 0,
+        "housenumber": 5490,
+        "street": 4370,
+        "address_text": 0,
+        "address_status": 0,
+        "primary_sampling_stratum": 0,
+        "region": 0,
+        "clean_reason": 0,
+        "clean_pass": 0
+      },
+      "blank_string_counts": {
+        "case_id": 0,
+        "poi_id": 0,
+        "name": 0,
+        "brand": 0,
+        "ref": 0,
+        "category": 0,
+        "province": 0,
+        "subdistrict": 0,
+        "housenumber": 0,
+        "street": 0,
+        "address_text": 0,
+        "address_status": 0,
+        "primary_sampling_stratum": 0,
+        "region": 0,
+        "clean_reason": 0
+      },
+      "distinct_keys": {
+        "poi_id": 19891,
+        "case_id": 19891
+      },
+      "distributions": {
+        "category": {
+          "address=": 3887,
+          "address=|building=yes": 1590,
+          "shop=convenience": 1180,
+          "amenity=school": 1146,
+          "amenity=restaurant": 920,
+          "amenity=cafe": 753,
+          "amenity=atm": 677,
+          "amenity=bank": 577,
+          "tourism=hotel": 539,
+          "amenity=fuel": 516,
+          "amenity=place_of_worship": 457,
+          "public_transport=platform": 335,
+          "amenity=hospital|healthcare=hospital": 291,
+          "shop=department_store": 239,
+          "address=|building=house": 236,
+          "tourism=attraction": 231,
+          "amenity=kindergarten": 230,
+          "amenity=fast_food": 195,
+          "shop=supermarket": 181,
+          "address=|building=residential": 152
+        },
+        "province": {
+          "Thành phố Hồ Chí Minh": 5807,
+          "Hà Nội": 4163,
+          "Thành phố Đà Nẵng": 2485,
+          "Thành phố Bắc Ninh": 1622,
+          "Tỉnh Lâm Đồng": 954,
+          "Khánh Hòa": 588,
+          "Thành phố Huế": 430,
+          "Thành phố Cần Thơ": 395,
+          "Thành phố Hải Phòng": 339,
+          "Tỉnh Gia Lai": 326,
+          "Tỉnh Quảng Trị": 308,
+          "Tỉnh Đắk Lắk": 306,
+          "Thành phố Đồng Nai": 249,
+          "Tỉnh Ninh Bình": 209,
+          "Tỉnh Quảng Ngãi": 159,
+          "Tỉnh Nghệ An": 158,
+          "Tỉnh An Giang": 154,
+          "Tỉnh Thanh Hóa": 134,
+          "Thành phố Quảng Ninh": 125,
+          "Tỉnh Đồng Tháp": 118
+        },
+        "address_status": {
+          "direct": 19891
+        },
+        "primary_sampling_stratum": {
+          "named_clear": 3988,
+          "brand_branch": 3964,
+          "address_street_building": 3180,
+          "building_code": 2388,
+          "explicit_area_cross_region": 2191,
+          "category_local": 2190,
+          "code_transit_landmark": 1990
+        }
+      },
+      "distribution_distinct_counts": {
+        "category": 564,
+        "province": 34,
+        "address_status": 1,
+        "primary_sampling_stratum": 7
+      }
+    },
+    {
+      "path": "data/vietnam/train_stage1_brand_lookup_v3/brand_group_summary_v3.parquet",
+      "role": "current_source_or_derived_view",
+      "rows": 921,
+      "bytes": 36400,
+      "sha256": "89170b92203dde0bf96410d563e11f4fb96bd8c3936045d6c3f6dfc7d0fab325",
+      "columns": [
+        "brand_group_id",
+        "brand_family_id",
+        "brand_canonical",
+        "brand_namespace",
+        "n_members",
+        "n_accepted",
+        "n_needs_review",
+        "n_excluded",
+        "province_count",
+        "evidence_distribution_json",
+        "group_status",
+        "group_version"
+      ],
+      "null_counts": {
+        "brand_group_id": 0,
+        "brand_family_id": 0,
+        "brand_canonical": 0,
+        "brand_namespace": 0,
+        "n_members": 0,
+        "n_accepted": 0,
+        "n_needs_review": 0,
+        "n_excluded": 0,
+        "province_count": 0,
+        "evidence_distribution_json": 0,
+        "group_status": 0,
+        "group_version": 0
+      },
+      "blank_string_counts": {
+        "brand_group_id": 0,
+        "brand_family_id": 0,
+        "brand_canonical": 0,
+        "brand_namespace": 0,
+        "evidence_distribution_json": 0,
+        "group_status": 0,
+        "group_version": 0
+      },
+      "distinct_keys": {
+        "brand_family_id": 704
+      },
+      "distributions": {},
+      "distribution_distinct_counts": {}
+    },
+    {
+      "path": "data/vietnam/train_stage1_brand_lookup_v3/brand_match_index_v3.parquet",
+      "role": "current_source_or_derived_view",
+      "rows": 5268,
+      "bytes": 202986,
+      "sha256": "b123c489a644c67ad246e8418e9f2e5f9fab59ca4cee66554ab6d461acf319dd",
+      "columns": [
+        "lookup_key",
+        "lookup_fold",
+        "lookup_text",
+        "brand_family_id",
+        "match_source",
+        "match_status",
+        "source_poi_count",
+        "lookup_version"
+      ],
+      "null_counts": {
+        "lookup_key": 0,
+        "lookup_fold": 0,
+        "lookup_text": 0,
+        "brand_family_id": 0,
+        "match_source": 0,
+        "match_status": 0,
+        "source_poi_count": 0,
+        "lookup_version": 0
+      },
+      "blank_string_counts": {
+        "lookup_key": 0,
+        "lookup_fold": 0,
+        "lookup_text": 0,
+        "brand_family_id": 0,
+        "match_source": 0,
+        "match_status": 0,
+        "lookup_version": 0
+      },
+      "distinct_keys": {
+        "brand_family_id": 4630
+      },
+      "distributions": {
+        "match_status": {
+          "needs_review": 4943,
+          "accepted": 322,
+          "excluded": 3
+        }
+      },
+      "distribution_distinct_counts": {
+        "match_status": 3
+      }
+    },
+    {
+      "path": "data/vietnam/train_stage1_brand_membership_v3/brand_group_members_v3.parquet",
+      "role": "current_source_or_derived_view",
+      "rows": 12714,
+      "bytes": 342984,
+      "sha256": "119ebb78518817acc12f114995241df0e931c5d03ea6bd0797dc5ef0095a41a2",
+      "columns": [
+        "brand_family_id",
+        "brand_group_id",
+        "brand_canonical",
+        "brand_fold",
+        "brand_namespace",
+        "poi_id",
+        "source_poi_id",
+        "mapped_poi_id",
+        "mapping_action",
+        "mapping_evidence",
+        "destination_searchable",
+        "province_region_id",
+        "subdistrict_region_id",
+        "membership_status",
+        "membership_evidence",
+        "evidence_text",
+        "group_version",
+        "review_status"
+      ],
+      "null_counts": {
+        "brand_family_id": 0,
+        "brand_group_id": 0,
+        "brand_canonical": 0,
+        "brand_fold": 0,
+        "brand_namespace": 0,
+        "poi_id": 0,
+        "source_poi_id": 0,
+        "mapped_poi_id": 0,
+        "mapping_action": 0,
+        "mapping_evidence": 0,
+        "destination_searchable": 0,
+        "province_region_id": 0,
+        "subdistrict_region_id": 0,
+        "membership_status": 0,
+        "membership_evidence": 0,
+        "evidence_text": 0,
+        "group_version": 0,
+        "review_status": 0
+      },
+      "blank_string_counts": {
+        "brand_family_id": 0,
+        "brand_group_id": 0,
+        "brand_canonical": 0,
+        "brand_fold": 0,
+        "brand_namespace": 0,
+        "poi_id": 0,
+        "source_poi_id": 0,
+        "mapped_poi_id": 0,
+        "mapping_action": 0,
+        "mapping_evidence": 0,
+        "province_region_id": 0,
+        "subdistrict_region_id": 0,
+        "membership_status": 0,
+        "membership_evidence": 0,
+        "evidence_text": 0,
+        "group_version": 0,
+        "review_status": 0
+      },
+      "distinct_keys": {
+        "poi_id": 12488,
+        "brand_family_id": 704
+      },
+      "distributions": {
+        "destination_searchable": {
+          "True": 12714
+        },
+        "membership_status": {
+          "accepted": 11124,
+          "needs_review": 1447,
+          "excluded": 143
+        },
+        "review_status": {
+          "accepted": 9480,
+          "authored": 1787,
+          "needs_review": 1447
+        }
+      },
+      "distribution_distinct_counts": {
+        "destination_searchable": 1,
+        "membership_status": 3,
+        "review_status": 3
+      }
+    },
+    {
+      "path": "data/vietnam/train_stage1_brand_membership_v3/composed_poi_id_migration_v1_v3.parquet",
+      "role": "current_source_or_derived_view",
+      "rows": 186322,
+      "bytes": 1957906,
+      "sha256": "aa146e3c429b8bf2e667460d57b3e5ba52ffd8d18fce07995a04f935ce7e6134",
+      "columns": [
+        "source_poi_id",
+        "v2_poi_id",
+        "mapped_poi_id",
+        "v2_action",
+        "v3_action",
+        "v2_reason",
+        "v3_reason",
+        "composed_action",
+        "mapping_evidence"
+      ],
+      "null_counts": {
+        "source_poi_id": 0,
+        "v2_poi_id": 0,
+        "mapped_poi_id": 0,
+        "v2_action": 0,
+        "v3_action": 0,
+        "v2_reason": 0,
+        "v3_reason": 0,
+        "composed_action": 0,
+        "mapping_evidence": 0
+      },
+      "blank_string_counts": {
+        "source_poi_id": 0,
+        "v2_poi_id": 0,
+        "mapped_poi_id": 1533,
+        "v2_action": 0,
+        "v3_action": 1040,
+        "v2_reason": 184135,
+        "v3_reason": 181392,
+        "composed_action": 0,
+        "mapping_evidence": 0
+      },
+      "distinct_keys": {},
+      "distributions": {},
+      "distribution_distinct_counts": {}
+    },
+    {
+      "path": "data/vietnam/train_stage1_brand_queries_v3/brand_intent_queries_v3.parquet",
+      "role": "current_source_or_derived_view",
+      "rows": 1156,
+      "bytes": 30106,
+      "sha256": "ee90db546db3d2d5f5c78247a44b4e6db06674abd4880d5d88de1dd0c644d3f3",
+      "columns": [
+        "query_id",
+        "query_text",
+        "canonical_brand_query",
+        "brand_family_id",
+        "namespace_scope",
+        "intent_scope",
+        "intent_id",
+        "qrel_policy",
+        "query_variant_family",
+        "variant_operator",
+        "severity",
+        "language_tag",
+        "review_status",
+        "generator_version"
+      ],
+      "null_counts": {
+        "query_id": 0,
+        "query_text": 0,
+        "canonical_brand_query": 0,
+        "brand_family_id": 0,
+        "namespace_scope": 0,
+        "intent_scope": 0,
+        "intent_id": 0,
+        "qrel_policy": 0,
+        "query_variant_family": 0,
+        "variant_operator": 0,
+        "severity": 0,
+        "language_tag": 0,
+        "review_status": 0,
+        "generator_version": 0
+      },
+      "blank_string_counts": {
+        "query_id": 0,
+        "query_text": 0,
+        "canonical_brand_query": 0,
+        "brand_family_id": 0,
+        "intent_scope": 0,
+        "intent_id": 0,
+        "qrel_policy": 0,
+        "query_variant_family": 0,
+        "variant_operator": 0,
+        "severity": 0,
+        "language_tag": 0,
+        "review_status": 0,
+        "generator_version": 0
+      },
+      "distinct_keys": {
+        "query_id": 1156,
+        "brand_family_id": 320
+      },
+      "distributions": {
+        "intent_scope": {
+          "BRAND": 1156
+        },
+        "query_variant_family": {
+          "BRAND_CANONICAL": 381,
+          "BRAND_NAMESPACE": 379,
+          "BRAND_MECHANICAL_TYPO": 246,
+          "BRAND_ORTHOGRAPHIC_IME": 101,
+          "BRAND_CASE_PUNCT": 25,
+          "BRAND_SPACE_VARIANT": 23,
+          "BRAND_PHONETIC": 1
+        },
+        "severity": {
+          "CLEAN": 760,
+          "SINGLE": 396
+        },
+        "review_status": {
+          "authored": 1154,
+          "needs_review": 2
+        }
+      },
+      "distribution_distinct_counts": {
+        "intent_scope": 1,
+        "query_variant_family": 7,
+        "severity": 2,
+        "review_status": 2
+      },
+      "query_text": {
+        "characters_p50_p95_max": [
+          14.0,
+          25.25,
+          39.0
+        ],
+        "tokens_p50_p95_max": [
+          3.0,
+          5.0,
+          8.0
+        ],
+        "duplicate_raw_rows_beyond_first": 0,
+        "duplicate_normalized_rows_beyond_first": 0,
+        "normalizer": "NFKC + casefold + collapse whitespace; accents preserved"
+      }
+    },
+    {
+      "path": "data/vietnam/train_stage1_brand_queries_v3/brand_query_qrels_v3.parquet",
+      "role": "current_source_or_derived_view",
+      "rows": 33381,
+      "bytes": 111317,
+      "sha256": "7336d3e3c37f37250b579cd3c9bb27f59e9358170c53aa3992193833550b1871",
+      "columns": [
+        "query_id",
+        "poi_id",
+        "relation",
+        "label_reason",
+        "brand_group_id",
+        "qrels_version"
+      ],
+      "null_counts": {
+        "query_id": 0,
+        "poi_id": 0,
+        "relation": 0,
+        "label_reason": 0,
+        "brand_group_id": 0,
+        "qrels_version": 0
+      },
+      "blank_string_counts": {
+        "query_id": 0,
+        "poi_id": 0,
+        "relation": 0,
+        "label_reason": 0,
+        "brand_group_id": 0,
+        "qrels_version": 0
+      },
+      "distinct_keys": {
+        "query_id": 1156,
+        "poi_id": 10927
+      },
+      "distributions": {
+        "relation": {
+          "positive_pool": 33381
+        }
+      },
+      "distribution_distinct_counts": {
+        "relation": 1
+      }
+    },
+    {
+      "path": "data/vietnam/train_stage1_brand_queries_v3/train_eval_view/brand_qrels_v1.parquet",
+      "role": "current_source_or_derived_view",
+      "rows": 24653,
+      "bytes": 85497,
+      "sha256": "d60c8ae61c58803f91ef36843adf91f5f08fc1d99b33760f608e0f4d52b4111a",
+      "columns": [
+        "schema_version",
+        "record_type",
+        "suite_id",
+        "qrel_set_id",
+        "target_type",
+        "target_id",
+        "label",
+        "relevance",
+        "label_reason",
+        "evidence_source"
+      ],
+      "null_counts": {
+        "schema_version": 0,
+        "record_type": 0,
+        "suite_id": 0,
+        "qrel_set_id": 0,
+        "target_type": 0,
+        "target_id": 0,
+        "label": 0,
+        "relevance": 0,
+        "label_reason": 0,
+        "evidence_source": 0
+      },
+      "blank_string_counts": {
+        "schema_version": 0,
+        "record_type": 0,
+        "suite_id": 0,
+        "qrel_set_id": 0,
+        "target_type": 0,
+        "target_id": 0,
+        "label": 0,
+        "label_reason": 0
+      },
+      "distinct_keys": {},
+      "distributions": {
+        "label": {
+          "compatible": 24589,
+          "ignore": 64
+        }
+      },
+      "distribution_distinct_counts": {
+        "label": 2
+      }
+    },
+    {
+      "path": "data/vietnam/train_stage1_brand_queries_v3/train_eval_view/brand_queries_v1.parquet",
+      "role": "current_source_or_derived_view",
+      "rows": 782,
+      "bytes": 101386,
+      "sha256": "3ce0e3a4e1f004944f5fc4591701d985739ecd17151e84d9b8537704798a385c",
+      "columns": [
+        "schema_version",
+        "record_type",
+        "suite_id",
+        "query_id",
+        "query_family_id",
+        "query_text",
+        "query_role",
+        "difficulty",
+        "brand_family_id",
+        "brand_group_id",
+        "namespace",
+        "variant_operator",
+        "exposure_class",
+        "acceptable_poi_ids",
+        "qrel_set_id",
+        "review_status"
+      ],
+      "null_counts": {
+        "schema_version": 0,
+        "record_type": 0,
+        "suite_id": 0,
+        "query_id": 0,
+        "query_family_id": 0,
+        "query_text": 0,
+        "query_role": 0,
+        "difficulty": 0,
+        "brand_family_id": 0,
+        "brand_group_id": 0,
+        "namespace": 0,
+        "variant_operator": 0,
+        "exposure_class": 0,
+        "acceptable_poi_ids": 0,
+        "qrel_set_id": 0,
+        "review_status": 0
+      },
+      "blank_string_counts": {
+        "schema_version": 0,
+        "record_type": 0,
+        "suite_id": 0,
+        "query_id": 0,
+        "query_family_id": 0,
+        "query_text": 0,
+        "query_role": 0,
+        "difficulty": 0,
+        "brand_family_id": 0,
+        "brand_group_id": 0,
+        "namespace": 0,
+        "variant_operator": 0,
+        "exposure_class": 0,
+        "qrel_set_id": 0,
+        "review_status": 0
+      },
+      "distinct_keys": {
+        "query_id": 782,
+        "brand_family_id": 215
+      },
+      "distributions": {
+        "query_role": {
+          "brand_error": 266,
+          "canonical_brand": 259,
+          "namespace_qualified": 257
+        },
+        "difficulty": {
+          "clean": 516,
+          "mild": 192,
+          "compound": 74
+        },
+        "namespace": {
+          "retail": 236,
+          "bank": 100,
+          "fuel": 76,
+          "atm": 71,
+          "restaurant": 69,
+          "hotel": 68,
+          "cafe": 58,
+          "convenience_store": 45,
+          "supermarket": 45,
+          "pharmacy": 14
+        },
+        "exposure_class": {
+          "brand_query_heldout_branch_unseen": 414,
+          "brand_query_heldout_branch_seen": 368
+        },
+        "review_status": {
+          "accepted": 782
+        }
+      },
+      "distribution_distinct_counts": {
+        "query_role": 3,
+        "difficulty": 3,
+        "namespace": 10,
+        "exposure_class": 2,
+        "review_status": 1
+      },
+      "query_text": {
+        "characters_p50_p95_max": [
+          14.0,
+          26.0,
+          39.0
+        ],
+        "tokens_p50_p95_max": [
+          3.0,
+          5.0,
+          8.0
+        ],
+        "duplicate_raw_rows_beyond_first": 0,
+        "duplicate_normalized_rows_beyond_first": 0,
+        "normalizer": "NFKC + casefold + collapse whitespace; accents preserved"
+      }
+    },
+    {
+      "path": "data/vietnam/train_stage1_poi_brand_views_v1/query_relation_view.parquet",
+      "role": "current_source_or_derived_view",
+      "rows": 68261,
+      "bytes": 244618,
+      "sha256": "e9966b8a3d6a8ef1b5bfc9fd5c3fd9123a6d34f7f4baa7da53fb781be1502519",
+      "columns": [
+        "query_id",
+        "poi_id",
+        "relation",
+        "label",
+        "label_reason",
+        "split"
+      ],
+      "null_counts": {
+        "query_id": 0,
+        "poi_id": 0,
+        "relation": 0,
+        "label": 0,
+        "label_reason": 0,
+        "split": 0
+      },
+      "blank_string_counts": {
+        "query_id": 0,
+        "poi_id": 0,
+        "relation": 0,
+        "label": 0,
+        "label_reason": 0,
+        "split": 0
+      },
+      "distinct_keys": {
+        "query_id": 36908,
+        "poi_id": 14271
+      },
+      "distributions": {
+        "relation": {
+          "positive_pool": 68197,
+          "ignore": 64
+        },
+        "label": {
+          "positive": 68197,
+          "ignore": 64
+        },
+        "split": {
+          "train": 66143,
+          "dev": 2118
+        }
+      },
+      "distribution_distinct_counts": {
+        "relation": 2,
+        "label": 2,
+        "split": 2
+      }
+    },
+    {
+      "path": "data/vietnam/train_stage1_poi_brand_views_v1/query_train_view.parquet",
+      "role": "current_source_or_derived_view",
+      "rows": 36908,
+      "bytes": 897204,
+      "sha256": "daab259ee0a67d2c33358e54783e9cb4242b1cb0bc9d829808ea36e9bd09e58a",
+      "columns": [
+        "query_id",
+        "query_text",
+        "source_dataset",
+        "intent_scope",
+        "intent_id",
+        "intended_poi_id",
+        "entity_group_id",
+        "brand_family_id",
+        "brand_group_id",
+        "case_id",
+        "variant_id",
+        "query_variant_family",
+        "variant_operator",
+        "split",
+        "sample_weight",
+        "generator_version"
+      ],
+      "null_counts": {
+        "query_id": 0,
+        "query_text": 0,
+        "source_dataset": 0,
+        "intent_scope": 0,
+        "intent_id": 0,
+        "intended_poi_id": 0,
+        "entity_group_id": 0,
+        "brand_family_id": 0,
+        "brand_group_id": 0,
+        "case_id": 0,
+        "variant_id": 0,
+        "query_variant_family": 0,
+        "variant_operator": 0,
+        "split": 0,
+        "sample_weight": 0,
+        "generator_version": 0
+      },
+      "blank_string_counts": {
+        "query_id": 0,
+        "query_text": 0,
+        "source_dataset": 0,
+        "intent_scope": 0,
+        "intent_id": 0,
+        "intended_poi_id": 0,
+        "entity_group_id": 0,
+        "brand_family_id": 36000,
+        "brand_group_id": 29202,
+        "case_id": 0,
+        "variant_id": 0,
+        "query_variant_family": 0,
+        "variant_operator": 0,
+        "split": 0,
+        "generator_version": 0
+      },
+      "distinct_keys": {
+        "query_id": 36908,
+        "case_id": 6250,
+        "brand_family_id": 251
+      },
+      "distributions": {
+        "source_dataset": {
+          "poi_queries": 36000,
+          "brand_queries": 908
+        },
+        "intent_scope": {
+          "POI": 36000,
+          "BRAND": 908
+        },
+        "query_variant_family": {
+          "COMPOUND": 24000,
+          "CLEAN": 6000,
+          "ALIAS": 6000,
+          "brand_canonical": 299,
+          "brand_namespace_form": 297,
+          "brand_mechanical_typo": 188,
+          "brand_orthographic_ime": 81,
+          "brand_case_punct": 22,
+          "brand_space_variant": 20,
+          "brand_phonetic": 1
+        },
+        "split": {
+          "train": 36782,
+          "dev": 126
+        },
+        "sample_weight": {
+          "0.85": 36000,
+          "0.15": 908
+        }
+      },
+      "distribution_distinct_counts": {
+        "source_dataset": 2,
+        "intent_scope": 2,
+        "query_variant_family": 10,
+        "split": 2,
+        "sample_weight": 2
+      },
+      "query_text": {
+        "characters_p50_p95_max": [
+          27.0,
+          49.0,
+          112.0
+        ],
+        "tokens_p50_p95_max": [
+          6.0,
+          11.0,
+          26.0
+        ],
+        "duplicate_raw_rows_beyond_first": 0,
+        "duplicate_normalized_rows_beyond_first": 0,
+        "normalizer": "NFKC + casefold + collapse whitespace; accents preserved"
+      }
+    },
+    {
+      "path": "data/vietnam/train_stage1_queries_v6/query_variants.parquet",
+      "role": "current_source_or_derived_view",
+      "rows": 36000,
+      "bytes": 1400857,
+      "sha256": "e8a6a4c305b797cfcc5e77803e5a58ce89acfa4e00bce6df0d4d0310cc3bc1c6",
+      "columns": [
+        "case_id",
+        "variant_id",
+        "query_text",
+        "canonical_query",
+        "query_variant_family",
+        "variant_operator",
+        "variant_subtype",
+        "severity",
+        "query_types",
+        "intended_poi_id",
+        "acceptable_poi_ids",
+        "primary_sampling_stratum",
+        "review_status",
+        "generator_version",
+        "n_acceptable",
+        "is_multipositive"
+      ],
+      "null_counts": {
+        "case_id": 0,
+        "variant_id": 0,
+        "query_text": 0,
+        "canonical_query": 0,
+        "query_variant_family": 0,
+        "variant_operator": 0,
+        "variant_subtype": 0,
+        "severity": 0,
+        "query_types": 0,
+        "intended_poi_id": 0,
+        "acceptable_poi_ids": 0,
+        "primary_sampling_stratum": 0,
+        "review_status": 0,
+        "generator_version": 0,
+        "n_acceptable": 0,
+        "is_multipositive": 0
+      },
+      "blank_string_counts": {
+        "case_id": 0,
+        "variant_id": 0,
+        "query_text": 0,
+        "canonical_query": 0,
+        "query_variant_family": 0,
+        "variant_operator": 0,
+        "variant_subtype": 0,
+        "severity": 0,
+        "query_types": 0,
+        "intended_poi_id": 0,
+        "primary_sampling_stratum": 0,
+        "review_status": 0,
+        "generator_version": 0
+      },
+      "distinct_keys": {
+        "case_id": 6000
+      },
+      "distributions": {
+        "query_variant_family": {
+          "COMPOUND": 24000,
+          "CLEAN": 6000,
+          "ALIAS": 6000
+        },
+        "severity": {
+          "COMPOUND": 20000,
+          "CLEAN": 12000,
+          "SINGLE": 4000
+        },
+        "primary_sampling_stratum": {
+          "brand_branch": 7110,
+          "named_clear": 6996,
+          "address_street_building": 5952,
+          "building_code": 4314,
+          "explicit_area_cross_region": 4062,
+          "category_local": 3882,
+          "code_transit_landmark": 3684
+        },
+        "review_status": {
+          "authored": 36000
+        }
+      },
+      "distribution_distinct_counts": {
+        "query_variant_family": 3,
+        "severity": 3,
+        "primary_sampling_stratum": 7,
+        "review_status": 1
+      },
+      "query_text": {
+        "characters_p50_p95_max": [
+          27.0,
+          50.0,
+          112.0
+        ],
+        "tokens_p50_p95_max": [
+          6.0,
+          11.0,
+          26.0
+        ],
+        "duplicate_raw_rows_beyond_first": 0,
+        "duplicate_normalized_rows_beyond_first": 0,
+        "normalizer": "NFKC + casefold + collapse whitespace; accents preserved"
+      }
+    },
+    {
+      "path": "data/vietnam/train_stage1_v6_hardneg_5k/query_relation_view.parquet",
+      "role": "historical_diagnostic_pack",
+      "rows": 2707218,
+      "bytes": 2283595,
+      "sha256": "f2e297ee79299b75f5a68a928d9939bc2ad150ec1d84c503c321ef3bc6a7d7aa",
+      "columns": [
+        "query_id",
+        "poi_id",
+        "label",
+        "label_reason",
+        "split"
+      ],
+      "null_counts": {
+        "query_id": 0,
+        "poi_id": 0,
+        "label": 0,
+        "label_reason": 0,
+        "split": 0
+      },
+      "blank_string_counts": {
+        "query_id": 0,
+        "poi_id": 0,
+        "label": 0,
+        "label_reason": 0,
+        "split": 0
+      },
+      "distinct_keys": {
+        "query_id": 29994,
+        "poi_id": 13561
+      },
+      "distributions": {
+        "label": {
+          "hard_neg_candidate": 2676774,
+          "positive": 30336,
+          "ignore": 108
+        },
+        "split": {
+          "train": 2393892,
+          "dev": 313326
+        }
+      },
+      "distribution_distinct_counts": {
+        "label": 3,
+        "split": 2
+      }
+    },
+    {
+      "path": "data/vietnam/train_stage1_v6_hardneg_5k/query_train_view.parquet",
+      "role": "historical_diagnostic_pack",
+      "rows": 29994,
+      "bytes": 892578,
+      "sha256": "35ace0ec0867a704a836a735d3b6aafc248f96f9d9ecb7e2cb0786af751ad5dc",
+      "columns": [
+        "query_id",
+        "case_id",
+        "variant_id",
+        "slot",
+        "query_text",
+        "canonical_query",
+        "query_variant_family",
+        "variant_operator",
+        "primary_sampling_stratum",
+        "intended_poi_id",
+        "intended_poi_id_source",
+        "acceptable_poi_ids",
+        "n_acceptable",
+        "entity_group_id",
+        "brand_group_id",
+        "sample_weight",
+        "split",
+        "source_dataset"
+      ],
+      "null_counts": {
+        "query_id": 0,
+        "case_id": 0,
+        "variant_id": 0,
+        "slot": 0,
+        "query_text": 0,
+        "canonical_query": 0,
+        "query_variant_family": 0,
+        "variant_operator": 0,
+        "primary_sampling_stratum": 0,
+        "intended_poi_id": 0,
+        "intended_poi_id_source": 0,
+        "acceptable_poi_ids": 0,
+        "n_acceptable": 0,
+        "entity_group_id": 0,
+        "brand_group_id": 0,
+        "sample_weight": 0,
+        "split": 0,
+        "source_dataset": 0
+      },
+      "blank_string_counts": {
+        "query_id": 0,
+        "case_id": 0,
+        "variant_id": 0,
+        "slot": 0,
+        "query_text": 0,
+        "canonical_query": 0,
+        "query_variant_family": 0,
+        "variant_operator": 0,
+        "primary_sampling_stratum": 0,
+        "intended_poi_id": 0,
+        "intended_poi_id_source": 0,
+        "acceptable_poi_ids": 0,
+        "entity_group_id": 0,
+        "brand_group_id": 24264,
+        "split": 0,
+        "source_dataset": 0
+      },
+      "distinct_keys": {
+        "query_id": 29994,
+        "case_id": 4999
+      },
+      "distributions": {
+        "query_variant_family": {
+          "COMPOUND": 19996,
+          "CLEAN": 4999,
+          "ALIAS": 4999
+        },
+        "primary_sampling_stratum": {
+          "brand_branch": 5910,
+          "named_clear": 5790,
+          "address_street_building": 4926,
+          "building_code": 3612,
+          "explicit_area_cross_region": 3420,
+          "category_local": 3240,
+          "code_transit_landmark": 3096
+        },
+        "sample_weight": {
+          "1.0": 9998,
+          "0.5": 9998,
+          "0.25": 9998
+        },
+        "split": {
+          "train": 26994,
+          "dev": 3000
+        },
+        "source_dataset": {
+          "train_stage1_queries_v6": 29994
+        }
+      },
+      "distribution_distinct_counts": {
+        "query_variant_family": 3,
+        "primary_sampling_stratum": 7,
+        "sample_weight": 3,
+        "split": 2,
+        "source_dataset": 1
+      },
+      "query_text": {
+        "characters_p50_p95_max": [
+          27.0,
+          50.0,
+          112.0
+        ],
+        "tokens_p50_p95_max": [
+          6.0,
+          11.0,
+          26.0
+        ],
+        "duplicate_raw_rows_beyond_first": 0,
+        "duplicate_normalized_rows_beyond_first": 0,
+        "normalizer": "NFKC + casefold + collapse whitespace; accents preserved"
+      }
+    },
+    {
+      "path": "data/vietnam/train_stage1_v6_hardneg_5k/training_pairs.parquet",
+      "role": "historical_diagnostic_pack",
+      "rows": 242434,
+      "bytes": 1275453,
+      "sha256": "97407fc074ede9844ae9c292f130b2fa1a2201ca7a86761ffd58711c32688b27",
+      "columns": [
+        "query_id",
+        "poi_id",
+        "label",
+        "negative_source",
+        "source_rank",
+        "label_reason",
+        "sample_weight"
+      ],
+      "null_counts": {
+        "query_id": 0,
+        "poi_id": 0,
+        "label": 0,
+        "negative_source": 27384,
+        "source_rank": 81372,
+        "label_reason": 0,
+        "sample_weight": 0
+      },
+      "blank_string_counts": {
+        "query_id": 0,
+        "poi_id": 0,
+        "label": 0,
+        "negative_source": 0,
+        "label_reason": 0
+      },
+      "distinct_keys": {
+        "query_id": 26994,
+        "poi_id": 89071
+      },
+      "distributions": {
+        "label": {
+          "negative": 215050,
+          "positive": 27282,
+          "ignore": 102
+        },
+        "negative_source": {
+          "dense_hard": 80982,
+          "lexical_hard": 80080,
+          "random": 53988,
+          "None": 27384
+        },
+        "sample_weight": {
+          "1.0": 81095,
+          "0.25": 80870,
+          "0.5": 80469
+        }
+      },
+      "distribution_distinct_counts": {
+        "label": 3,
+        "negative_source": 4,
+        "sample_weight": 3
+      }
+    },
+    {
+      "path": "data/vietnam/train_stage1_v6_hardneg_5k_v21/query_relation_view.parquet",
+      "role": "historical_diagnostic_pack",
+      "rows": 2705040,
+      "bytes": 2344427,
+      "sha256": "9373b7e1f7fb61209e01dc6958d267ac919b4df5e93d57940d3e5df5d11216d9",
+      "columns": [
+        "query_id",
+        "poi_id",
+        "label",
+        "label_reason",
+        "split"
+      ],
+      "null_counts": {
+        "query_id": 0,
+        "poi_id": 0,
+        "label": 0,
+        "label_reason": 0,
+        "split": 0
+      },
+      "blank_string_counts": {
+        "query_id": 0,
+        "poi_id": 0,
+        "label": 0,
+        "label_reason": 0,
+        "split": 0
+      },
+      "distinct_keys": {
+        "query_id": 29994,
+        "poi_id": 13532
+      },
+      "distributions": {
+        "label": {
+          "hard_neg_candidate": 2674596,
+          "positive": 30336,
+          "ignore": 108
+        },
+        "split": {
+          "train": 2391768,
+          "dev": 313272
+        }
+      },
+      "distribution_distinct_counts": {
+        "label": 3,
+        "split": 2
+      }
+    },
+    {
+      "path": "data/vietnam/train_stage1_v6_hardneg_5k_v21/query_train_view.parquet",
+      "role": "historical_diagnostic_pack",
+      "rows": 29994,
+      "bytes": 892563,
+      "sha256": "69c298737328ab96a734ffb8f1b1cc3f7792ad3490a960a3cd701babd392d462",
+      "columns": [
+        "query_id",
+        "case_id",
+        "variant_id",
+        "slot",
+        "query_text",
+        "canonical_query",
+        "query_variant_family",
+        "variant_operator",
+        "primary_sampling_stratum",
+        "intended_poi_id",
+        "intended_poi_id_source",
+        "acceptable_poi_ids",
+        "n_acceptable",
+        "entity_group_id",
+        "brand_group_id",
+        "sample_weight",
+        "split",
+        "source_dataset"
+      ],
+      "null_counts": {
+        "query_id": 0,
+        "case_id": 0,
+        "variant_id": 0,
+        "slot": 0,
+        "query_text": 0,
+        "canonical_query": 0,
+        "query_variant_family": 0,
+        "variant_operator": 0,
+        "primary_sampling_stratum": 0,
+        "intended_poi_id": 0,
+        "intended_poi_id_source": 0,
+        "acceptable_poi_ids": 0,
+        "n_acceptable": 0,
+        "entity_group_id": 0,
+        "brand_group_id": 0,
+        "sample_weight": 0,
+        "split": 0,
+        "source_dataset": 0
+      },
+      "blank_string_counts": {
+        "query_id": 0,
+        "case_id": 0,
+        "variant_id": 0,
+        "slot": 0,
+        "query_text": 0,
+        "canonical_query": 0,
+        "query_variant_family": 0,
+        "variant_operator": 0,
+        "primary_sampling_stratum": 0,
+        "intended_poi_id": 0,
+        "intended_poi_id_source": 0,
+        "acceptable_poi_ids": 0,
+        "entity_group_id": 0,
+        "brand_group_id": 24264,
+        "split": 0,
+        "source_dataset": 0
+      },
+      "distinct_keys": {
+        "query_id": 29994,
+        "case_id": 4999
+      },
+      "distributions": {
+        "query_variant_family": {
+          "COMPOUND": 19996,
+          "CLEAN": 4999,
+          "ALIAS": 4999
+        },
+        "primary_sampling_stratum": {
+          "brand_branch": 5910,
+          "named_clear": 5790,
+          "address_street_building": 4926,
+          "building_code": 3612,
+          "explicit_area_cross_region": 3420,
+          "category_local": 3240,
+          "code_transit_landmark": 3096
+        },
+        "sample_weight": {
+          "0.25": 19996,
+          "1.0": 9998
+        },
+        "split": {
+          "train": 26994,
+          "dev": 3000
+        },
+        "source_dataset": {
+          "train_stage1_queries_v6": 29994
+        }
+      },
+      "distribution_distinct_counts": {
+        "query_variant_family": 3,
+        "primary_sampling_stratum": 7,
+        "sample_weight": 2,
+        "split": 2,
+        "source_dataset": 1
+      },
+      "query_text": {
+        "characters_p50_p95_max": [
+          27.0,
+          50.0,
+          112.0
+        ],
+        "tokens_p50_p95_max": [
+          6.0,
+          11.0,
+          26.0
+        ],
+        "duplicate_raw_rows_beyond_first": 0,
+        "duplicate_normalized_rows_beyond_first": 0,
+        "normalizer": "NFKC + casefold + collapse whitespace; accents preserved"
+      }
+    },
+    {
+      "path": "data/vietnam/train_stage1_v6_hardneg_5k_v21/training_pairs.parquet",
+      "role": "historical_diagnostic_pack",
+      "rows": 189085,
+      "bytes": 1193380,
+      "sha256": "31560407d8c95eb0c02c9ac0fa3403c8007f69c96e83b78689d7d00f443ac550",
+      "columns": [
+        "query_id",
+        "poi_id",
+        "label",
+        "negative_source",
+        "source_rank",
+        "label_reason",
+        "sample_weight"
+      ],
+      "null_counts": {
+        "query_id": 0,
+        "poi_id": 0,
+        "label": 0,
+        "negative_source": 27384,
+        "source_rank": 81372,
+        "label_reason": 0,
+        "sample_weight": 0
+      },
+      "blank_string_counts": {
+        "query_id": 0,
+        "poi_id": 0,
+        "label": 0,
+        "negative_source": 0,
+        "label_reason": 0
+      },
+      "distinct_keys": {
+        "query_id": 26994,
+        "poi_id": 78696
+      },
+      "distributions": {
+        "label": {
+          "negative": 161701,
+          "positive": 27282,
+          "ignore": 102
+        },
+        "negative_source": {
+          "dense_hard": 80982,
+          "random": 53988,
+          "None": 27384,
+          "lexical_hard": 26731
+        },
+        "sample_weight": {
+          "0.25": 125974,
+          "1.0": 63111
+        }
+      },
+      "distribution_distinct_counts": {
+        "label": 3,
+        "negative_source": 4,
+        "sample_weight": 2
+      }
+    },
+    {
+      "path": "data/vietnam/train_stage1_v6_hardneg_6k/query_relation_view.parquet",
+      "role": "historical_diagnostic_pack",
+      "rows": 3239748,
+      "bytes": 2585311,
+      "sha256": "2cd91e2d3cff41390f1a1b1c35c54d8317200d26154f415da3df8317693cffb3",
+      "columns": [
+        "query_id",
+        "poi_id",
+        "label",
+        "label_reason",
+        "split"
+      ],
+      "null_counts": {
+        "query_id": 0,
+        "poi_id": 0,
+        "label": 0,
+        "label_reason": 0,
+        "split": 0
+      },
+      "blank_string_counts": {
+        "query_id": 0,
+        "poi_id": 0,
+        "label": 0,
+        "label_reason": 0,
+        "split": 0
+      },
+      "distinct_keys": {
+        "query_id": 35994,
+        "poi_id": 14881
+      },
+      "distributions": {
+        "label": {
+          "hard_neg_candidate": 3198162,
+          "positive": 41478,
+          "ignore": 108
+        },
+        "split": {
+          "train": 2914464,
+          "dev": 325284
+        }
+      },
+      "distribution_distinct_counts": {
+        "label": 3,
+        "split": 2
+      }
+    },
+    {
+      "path": "data/vietnam/train_stage1_v6_hardneg_6k/query_train_view.parquet",
+      "role": "historical_diagnostic_pack",
+      "rows": 35994,
+      "bytes": 1057866,
+      "sha256": "9c33c33154aef501d16fc835dfee776f9abfb27933ee354ff4fce63bce78cc77",
+      "columns": [
+        "query_id",
+        "case_id",
+        "variant_id",
+        "slot",
+        "query_text",
+        "canonical_query",
+        "query_variant_family",
+        "variant_operator",
+        "primary_sampling_stratum",
+        "intended_poi_id",
+        "intended_poi_id_source",
+        "acceptable_poi_ids",
+        "n_acceptable",
+        "entity_group_id",
+        "brand_group_id",
+        "sample_weight",
+        "split",
+        "source_dataset"
+      ],
+      "null_counts": {
+        "query_id": 0,
+        "case_id": 0,
+        "variant_id": 0,
+        "slot": 0,
+        "query_text": 0,
+        "canonical_query": 0,
+        "query_variant_family": 0,
+        "variant_operator": 0,
+        "primary_sampling_stratum": 0,
+        "intended_poi_id": 0,
+        "intended_poi_id_source": 0,
+        "acceptable_poi_ids": 0,
+        "n_acceptable": 0,
+        "entity_group_id": 0,
+        "brand_group_id": 0,
+        "sample_weight": 0,
+        "split": 0,
+        "source_dataset": 0
+      },
+      "blank_string_counts": {
+        "query_id": 0,
+        "case_id": 0,
+        "variant_id": 0,
+        "slot": 0,
+        "query_text": 0,
+        "canonical_query": 0,
+        "query_variant_family": 0,
+        "variant_operator": 0,
+        "primary_sampling_stratum": 0,
+        "intended_poi_id": 0,
+        "intended_poi_id_source": 0,
+        "acceptable_poi_ids": 0,
+        "entity_group_id": 0,
+        "brand_group_id": 29202,
+        "split": 0,
+        "source_dataset": 0
+      },
+      "distinct_keys": {
+        "query_id": 35994,
+        "case_id": 5999
+      },
+      "distributions": {
+        "query_variant_family": {
+          "COMPOUND": 23996,
+          "CLEAN": 5999,
+          "ALIAS": 5999
+        },
+        "primary_sampling_stratum": {
+          "brand_branch": 7104,
+          "named_clear": 6996,
+          "address_street_building": 5952,
+          "building_code": 4314,
+          "explicit_area_cross_region": 4062,
+          "category_local": 3882,
+          "code_transit_landmark": 3684
+        },
+        "sample_weight": {
+          "0.25": 23996,
+          "1.0": 11998
+        },
+        "split": {
+          "train": 32394,
+          "dev": 3600
+        },
+        "source_dataset": {
+          "train_stage1_queries_v6": 35994
+        }
+      },
+      "distribution_distinct_counts": {
+        "query_variant_family": 3,
+        "primary_sampling_stratum": 7,
+        "sample_weight": 2,
+        "split": 2,
+        "source_dataset": 1
+      },
+      "query_text": {
+        "characters_p50_p95_max": [
+          27.0,
+          50.0,
+          112.0
+        ],
+        "tokens_p50_p95_max": [
+          6.0,
+          11.0,
+          26.0
+        ],
+        "duplicate_raw_rows_beyond_first": 0,
+        "duplicate_normalized_rows_beyond_first": 0,
+        "normalizer": "NFKC + casefold + collapse whitespace; accents preserved"
+      }
+    },
+    {
+      "path": "data/vietnam/train_stage1_v6_hardneg_6k/training_pairs.parquet",
+      "role": "historical_diagnostic_pack",
+      "rows": 231632,
+      "bytes": 1456597,
+      "sha256": "785c224035b69040eaff41b4d9b4e80a4dc14ef9796ab649f9d10a1eadb7021f",
+      "columns": [
+        "query_id",
+        "poi_id",
+        "label",
+        "negative_source",
+        "source_rank",
+        "label_reason",
+        "sample_weight"
+      ],
+      "null_counts": {
+        "query_id": 0,
+        "poi_id": 0,
+        "label": 0,
+        "negative_source": 37572,
+        "source_rank": 102360,
+        "label_reason": 0,
+        "sample_weight": 0
+      },
+      "blank_string_counts": {
+        "query_id": 0,
+        "poi_id": 0,
+        "label": 0,
+        "negative_source": 0,
+        "label_reason": 0
+      },
+      "distinct_keys": {
+        "query_id": 32394,
+        "poi_id": 89369
+      },
+      "distributions": {
+        "label": {
+          "negative": 194060,
+          "positive": 37470,
+          "ignore": 102
+        },
+        "negative_source": {
+          "dense_hard": 97182,
+          "random": 64788,
+          "None": 37572,
+          "lexical_hard": 32090
+        },
+        "sample_weight": {
+          "0.25": 154327,
+          "1.0": 77305
+        }
+      },
+      "distribution_distinct_counts": {
+        "label": 3,
+        "negative_source": 4,
+        "sample_weight": 2
+      }
+    },
+    {
+      "path": "data/vietnam/train_stage1_v6_hardneg_6k_clean/query_relation_view.parquet",
+      "role": "active_devlock_training_pack_local",
+      "rows": 3237666,
+      "bytes": 2716488,
+      "sha256": "d31203bffdd43c9c8f2625b732f79ae699e465e1cb7a98440e35a9364b3f42d8",
+      "columns": [
+        "query_id",
+        "poi_id",
+        "label",
+        "label_reason",
+        "split"
+      ],
+      "null_counts": {
+        "query_id": 0,
+        "poi_id": 0,
+        "label": 0,
+        "label_reason": 0,
+        "split": 0
+      },
+      "blank_string_counts": {
+        "query_id": 0,
+        "poi_id": 0,
+        "label": 0,
+        "label_reason": 0,
+        "split": 0
+      },
+      "distinct_keys": {
+        "query_id": 35994,
+        "poi_id": 14850
+      },
+      "distributions": {
+        "label": {
+          "hard_neg_candidate": 3196104,
+          "positive": 41454,
+          "ignore": 108
+        },
+        "split": {
+          "train": 2912550,
+          "dev": 325116
+        }
+      },
+      "distribution_distinct_counts": {
+        "label": 3,
+        "split": 2
+      }
+    },
+    {
+      "path": "data/vietnam/train_stage1_v6_hardneg_6k_clean/query_train_view.parquet",
+      "role": "active_devlock_training_pack_local",
+      "rows": 35994,
+      "bytes": 1057844,
+      "sha256": "6a82efc9bc69bfe888f78bcd96244a6357904bb5c6b7d881cbe0cf2efedd35a3",
+      "columns": [
+        "query_id",
+        "case_id",
+        "variant_id",
+        "slot",
+        "query_text",
+        "canonical_query",
+        "query_variant_family",
+        "variant_operator",
+        "primary_sampling_stratum",
+        "intended_poi_id",
+        "intended_poi_id_source",
+        "acceptable_poi_ids",
+        "n_acceptable",
+        "entity_group_id",
+        "brand_group_id",
+        "sample_weight",
+        "split",
+        "source_dataset"
+      ],
+      "null_counts": {
+        "query_id": 0,
+        "case_id": 0,
+        "variant_id": 0,
+        "slot": 0,
+        "query_text": 0,
+        "canonical_query": 0,
+        "query_variant_family": 0,
+        "variant_operator": 0,
+        "primary_sampling_stratum": 0,
+        "intended_poi_id": 0,
+        "intended_poi_id_source": 0,
+        "acceptable_poi_ids": 0,
+        "n_acceptable": 0,
+        "entity_group_id": 0,
+        "brand_group_id": 0,
+        "sample_weight": 0,
+        "split": 0,
+        "source_dataset": 0
+      },
+      "blank_string_counts": {
+        "query_id": 0,
+        "case_id": 0,
+        "variant_id": 0,
+        "slot": 0,
+        "query_text": 0,
+        "canonical_query": 0,
+        "query_variant_family": 0,
+        "variant_operator": 0,
+        "primary_sampling_stratum": 0,
+        "intended_poi_id": 0,
+        "intended_poi_id_source": 0,
+        "acceptable_poi_ids": 0,
+        "entity_group_id": 0,
+        "brand_group_id": 29202,
+        "split": 0,
+        "source_dataset": 0
+      },
+      "distinct_keys": {
+        "query_id": 35994,
+        "case_id": 5999
+      },
+      "distributions": {
+        "query_variant_family": {
+          "COMPOUND": 23996,
+          "CLEAN": 5999,
+          "ALIAS": 5999
+        },
+        "primary_sampling_stratum": {
+          "brand_branch": 7104,
+          "named_clear": 6996,
+          "address_street_building": 5952,
+          "building_code": 4314,
+          "explicit_area_cross_region": 4062,
+          "category_local": 3882,
+          "code_transit_landmark": 3684
+        },
+        "sample_weight": {
+          "0.25": 23996,
+          "1.0": 11998
+        },
+        "split": {
+          "train": 32394,
+          "dev": 3600
+        },
+        "source_dataset": {
+          "train_stage1_queries_v6": 35994
+        }
+      },
+      "distribution_distinct_counts": {
+        "query_variant_family": 3,
+        "primary_sampling_stratum": 7,
+        "sample_weight": 2,
+        "split": 2,
+        "source_dataset": 1
+      },
+      "query_text": {
+        "characters_p50_p95_max": [
+          27.0,
+          50.0,
+          112.0
+        ],
+        "tokens_p50_p95_max": [
+          6.0,
+          11.0,
+          26.0
+        ],
+        "duplicate_raw_rows_beyond_first": 0,
+        "duplicate_normalized_rows_beyond_first": 0,
+        "normalizer": "NFKC + casefold + collapse whitespace; accents preserved"
+      }
+    },
+    {
+      "path": "data/vietnam/train_stage1_v6_hardneg_6k_clean/training_pairs.parquet",
+      "role": "active_devlock_training_pack_local",
+      "rows": 231608,
+      "bytes": 1456041,
+      "sha256": "6f41341233bc407e5960b89c1cf085881733608ededf416beddeb839d2388c69",
+      "columns": [
+        "query_id",
+        "poi_id",
+        "label",
+        "negative_source",
+        "source_rank",
+        "label_reason",
+        "sample_weight"
+      ],
+      "null_counts": {
+        "query_id": 0,
+        "poi_id": 0,
+        "label": 0,
+        "negative_source": 37548,
+        "source_rank": 102336,
+        "label_reason": 0,
+        "sample_weight": 0
+      },
+      "blank_string_counts": {
+        "query_id": 0,
+        "poi_id": 0,
+        "label": 0,
+        "negative_source": 0,
+        "label_reason": 0
+      },
+      "distinct_keys": {
+        "query_id": 32394,
+        "poi_id": 89330
+      },
+      "distributions": {
+        "label": {
+          "negative": 194060,
+          "positive": 37446,
+          "ignore": 102
+        },
+        "negative_source": {
+          "dense_hard": 97182,
+          "random": 64788,
+          "None": 37548,
+          "lexical_hard": 32090
+        },
+        "sample_weight": {
+          "0.25": 154311,
+          "1.0": 77297
+        }
+      },
+      "distribution_distinct_counts": {
+        "label": 3,
+        "negative_source": 4,
+        "sample_weight": 2
+      }
+    }
+  ],
+  "audits": {
+    "corpus": {
+      "rows": 179209,
+      "unique_poi_ids": 179209,
+      "search_document_id_set_matches": true,
+      "invalid_or_missing_ranking_points": 0,
+      "pois_in_nonunique_normalized_name_groups": 40238,
+      "top_repeated_names": [
+        [
+          "winmart+",
+          1216
+        ],
+        [
+          "petrolimex",
+          1103
+        ],
+        [
+          "bidv",
+          465
+        ],
+        [
+          "sua xe",
+          426
+        ],
+        [
+          "agribank",
+          395
+        ],
+        [
+          "vietcombank",
+          370
+        ],
+        [
+          "pv oil",
+          364
+        ],
+        [
+          "techcombank",
+          314
+        ],
+        [
+          "vietinbank",
+          305
+        ],
+        [
+          "vinfast",
+          258
+        ],
+        [
+          "highlands coffee",
+          253
+        ],
+        [
+          "pnj",
+          239
+        ],
+        [
+          "circle k",
+          206
+        ],
+        [
+          "sacombank",
+          196
+        ],
+        [
+          "bách hóa xanh",
+          172
+        ]
+      ],
+      "note": "Name collisions indicate ambiguity; do not imply duplicate entities."
+    },
+    "training_packs": {
+      "train_stage1_v6_hardneg_5k": {
+        "train_queries": 26994,
+        "dev_queries": 3000,
+        "train_dev_intended_poi_overlap": 0,
+        "train_dev_normalized_text_overlap": 0,
+        "train_positive_gold_overlap": 0,
+        "train_gold_normalized_text_overlap": 0,
+        "pair_label_counts": {
+          "positive": 27282,
+          "negative": 215050,
+          "ignore": 102
+        },
+        "pair_rows_with_gold_positive_poi_by_label": {
+          "positive": 0,
+          "negative": 290,
+          "ignore": 0
+        },
+        "pair_poi_outside_corpus": 0,
+        "pair_query_outside_train_split": 0,
+        "note": "Checks current file contents; does not retroactively certify which pack trained a historical checkpoint."
+      },
+      "train_stage1_v6_hardneg_5k_v21": {
+        "train_queries": 26994,
+        "dev_queries": 3000,
+        "train_dev_intended_poi_overlap": 0,
+        "train_dev_normalized_text_overlap": 0,
+        "train_positive_gold_overlap": 0,
+        "train_gold_normalized_text_overlap": 0,
+        "pair_label_counts": {
+          "positive": 27282,
+          "negative": 161701,
+          "ignore": 102
+        },
+        "pair_rows_with_gold_positive_poi_by_label": {
+          "positive": 0,
+          "negative": 0,
+          "ignore": 0
+        },
+        "pair_poi_outside_corpus": 0,
+        "pair_query_outside_train_split": 0,
+        "note": "Checks current file contents; does not retroactively certify which pack trained a historical checkpoint."
+      },
+      "train_stage1_v6_hardneg_6k": {
+        "train_queries": 32394,
+        "dev_queries": 3600,
+        "train_dev_intended_poi_overlap": 0,
+        "train_dev_normalized_text_overlap": 0,
+        "train_positive_gold_overlap": 4,
+        "train_gold_normalized_text_overlap": 0,
+        "pair_label_counts": {
+          "positive": 37470,
+          "negative": 194060,
+          "ignore": 102
+        },
+        "pair_rows_with_gold_positive_poi_by_label": {
+          "positive": 24,
+          "negative": 260,
+          "ignore": 0
+        },
+        "pair_poi_outside_corpus": 0,
+        "pair_query_outside_train_split": 0,
+        "note": "Checks current file contents; does not retroactively certify which pack trained a historical checkpoint."
+      },
+      "train_stage1_v6_hardneg_6k_clean": {
+        "train_queries": 32394,
+        "dev_queries": 3600,
+        "train_dev_intended_poi_overlap": 0,
+        "train_dev_normalized_text_overlap": 0,
+        "train_positive_gold_overlap": 0,
+        "train_gold_normalized_text_overlap": 0,
+        "pair_label_counts": {
+          "positive": 37446,
+          "negative": 194060,
+          "ignore": 102
+        },
+        "pair_rows_with_gold_positive_poi_by_label": {
+          "positive": 0,
+          "negative": 0,
+          "ignore": 0
+        },
+        "pair_poi_outside_corpus": 0,
+        "pair_query_outside_train_split": 0,
+        "note": "Checks current file contents; does not retroactively certify which pack trained a historical checkpoint."
+      }
+    },
+    "brand": {
+      "family_split_counts": {
+        "dev": 35,
+        "test": 70,
+        "train": 215
+      },
+      "duplicate_family_assignments": 0,
+      "query_split_counts": {
+        "dev": 126,
+        "train": 782,
+        "test": 248
+      },
+      "gold_families": 70,
+      "gold_family_not_test": [],
+      "accepted_member_rows": 11124,
+      "accepted_unique_destination_ids": 10929,
+      "accepted_ids_outside_corpus": 0
+    }
+  },
+  "limits": [
+    "Statistics are descriptive, not independent factual label review.",
+    "Top categorical values are truncated to 20; row counts, nulls and split audits use all rows.",
+    "No real-traffic query distribution or verified behavioral training log is established by these datasets."
+  ]
+}

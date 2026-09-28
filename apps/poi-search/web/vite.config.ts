@@ -8,6 +8,10 @@ export default defineConfig({
     proxy: {
       // Same-origin so session cookies work whether the UI is opened as
       // localhost or 127.0.0.1 (and on alternate Vite ports).
+      '/mix': {
+        target: 'http://127.0.0.1:8002',
+        rewrite: (path) => path.replace(/^\/mix/, '') || '/',
+      },
       '/v1': 'http://127.0.0.1:8000',
       '/health': 'http://127.0.0.1:8000',
     },

@@ -63,6 +63,31 @@ def alnum_compact(text: str) -> str:
     return "".join(ch for ch in fold(text) if ch.isalnum())
 
 
+def letter_compact(text: str) -> str:
+    """Fold + letters only. Spaced and glued names share one key."""
+    return "".join(ch for ch in fold(text) if ch.isalpha())
+
+
+def names_compact_values(*parts: object) -> list[str]:
+    """Space-insensitive name keys. Full name/alias only; no adjacent-pair explosion."""
+    out: set[str] = set()
+    for part in parts:
+        if part is None:
+            continue
+        if isinstance(part, (list, tuple)):
+            values = [str(item) for item in part if item is not None and str(item).strip()]
+        else:
+            text = str(part).strip()
+            if not text or text in {"None", "nan"}:
+                continue
+            values = [text]
+        for value in values:
+            key = letter_compact(value)
+            if len(key) >= 6:
+                out.add(key)
+    return sorted(out)
+
+
 _PATH_SPLIT = re.compile(r"[/-]+")
 _TOKEN_KEEP = re.compile(r"[^\W_]+(?:[/-][^\W_]+)*")
 
@@ -188,6 +213,7 @@ def index_body(dimension: int) -> dict[str, Any]:
                 "label_folded": {"type": "keyword"},
                 "aliases_folded": {"type": "keyword"},
                 "codes_compact": {"type": "keyword"},
+                "names_compact": {"type": "keyword"},
                 "address": {"type": "text", "analyzer": "vi_folded"},
                 "housenumber": {"type": "keyword"},
                 "housenumber_path_key": {"type": "keyword"},
@@ -364,6 +390,9 @@ def bulk_index(
                         "aliases_folded": [fold(value) for value in aliases],
                         "codes_compact": codes_compact_values(
                             row["search_label"], aliases, row.get("ref")
+                        ),
+                        "names_compact": names_compact_values(
+                            row["search_label"], aliases
                         ),
                         "address": row["address"],
                         "housenumber": row.get("housenumber") or "",

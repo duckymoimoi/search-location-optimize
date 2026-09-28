@@ -19,10 +19,10 @@ Chi tiết: [`docs/specs/search2.0.md`](docs/specs/search2.0.md).
 
 ```text
 1. Corpus toàn quốc vn-poi-core-v3 (179,209 POI)
-2. Gold POI v2.1: 200 POI · 800 session · 820 qrel
+2. Gold POI v2.2 reissue: 200 POI · 800 session · 820 qrel
 3. Gold brand v1: 70 family · 248 query · 6,610 qrel
 4. Docker demo: Elasticsearch 9 + mE5 + FE/BE
-5. E0 baseline đã chạy; E1 POI+brand gated
+5. E0 baseline đã chạy; POI-only hard-neg 6k là diagnostic, E1 POI+brand gated
 ```
 
 Tree hiện hành chỉ giữ **một bộ** (corpus v3 + Gold v2.1 + brand v1). Bản cũ nằm trong git history.
@@ -31,14 +31,20 @@ Tree hiện hành chỉ giữ **một bộ** (corpus v3 + Gold v2.1 + brand v1).
 |---|---|
 | Corpus | `data/vietnam/poi_corpus_v3/` |
 | Admin | `data/vietnam/admin_regions_v1/` |
-| Gold POI | `data/vietnam/stage1_eval_suite_v2/gold_stage1_v2_1/` |
+| Gold POI | `data/vietnam/stage1_eval_suite_v2/gold_stage1_v2_2/` |
 | Gold brand | `data/vietnam/stage1_eval_suite_v2/gold_stage1_brand_v1/` |
 | Embeddings (mE5, local) | `artifacts/embeddings/me5_small_v3/` |
 | W1 evidence | `docs/deliveries/w1_evidence/` |
+| W2/W3 evidence | `docs/deliveries/w2_evidence/`, `docs/deliveries/w3_evidence/` |
 | Protocol chọn model | `docs/specs/SEARCH_2.0_STAGE1_MODEL_SELECTION_PROTOCOL.md` |
 | App FE + BE | `apps/poi-search/` |
 
 Trạng thái triển khai: [`docs/as-built/CURRENT_STATE.md`](docs/as-built/CURRENT_STATE.md).
+
+Stage 1 hiện có [báo cáo retrieval và candidate bàn giao](docs/deliveries/stage1_handoff_20260928/README.md).
+Trước khi dùng bản này làm release, đọc [biên bản kiểm tra và giới hạn](docs/operations/STAGE1_SOURCE_RELEASE_CHECKLIST.md):
+retrieval đã kiểm tra offline/live, Stage 2 chưa train/triển khai, provenance Gold POI v2.1 còn pending.
+Model/tokenizer, vectors, trace benchmark và payload Kaggle sinh lại nằm ở local; mã nguồn chứa cấu hình, recipe, manifest và evidence summary.
 
 ---
 
@@ -75,8 +81,8 @@ python -m pip install pandas pyarrow numpy rank_bm25
 ### Kiểm tra gold đã khóa
 
 ```powershell
-python -X utf8 tools\verify_gold_stage1_v21_release.py
-python -X utf8 tools\validate_gold_stage1_brand_v1.py
+python -X utf8 tools\reissue_gold_stage1_v22.py verify
+python -X utf8 tools\validate_gold_stage1_brand_v1.py --release-dir data/vietnam/stage1_eval_suite_v2/gold_stage1_brand_v1 --require-lock --report artifacts/results/brand_validation.json
 ```
 
 ---
@@ -138,3 +144,5 @@ python apps\poi-search\bench\gold_stage1_selection_report.py
 | ES baseline method (W2) | [`docs/specs/SEARCH_2.0_W2_ZERO_SHOT_BASELINE_METHOD.md`](docs/specs/SEARCH_2.0_W2_ZERO_SHOT_BASELINE_METHOD.md) |
 | W1 evidence | [`docs/deliveries/w1_evidence/`](docs/deliveries/w1_evidence/) |
 | Kế hoạch W1–W6 | [`docs/deliveries/SEARCH_2.0_TONG_HOP_TASK.md`](docs/deliveries/SEARCH_2.0_TONG_HOP_TASK.md) |
+
+EDA m?i nh?t: [40 b?ng dataset v? audit leakage](docs/deliveries/dataset_eda_20260928/README.md).

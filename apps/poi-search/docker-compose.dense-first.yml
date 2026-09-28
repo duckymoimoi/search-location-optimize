@@ -1,0 +1,35 @@
+# Downloaded-model inference only. Does not train or overwrite demo indexes.
+name: vn-poi-dense-first
+services:
+  api:
+    image: vn-poi/stage1-api:0.1.0-local
+    build:
+      context: ./docker
+      dockerfile: Dockerfile.api
+    container_name: vn-poi-dense-first-api
+    environment:
+      POI_MODEL_DIR: /repo/artifacts/models/me5_6k_devlock_serving
+      POI_MODEL_ID: me5-6k-devlock-epoch2
+      POI_ES_URL: http://host.docker.internal:9201
+      POI_INDEX: vn-poi-core-v3-me5-6k-devlock
+      POI_DEVICE: cuda
+      POI_RETRIEVAL_PROFILE: ${DF_RETRIEVAL_PROFILE:-dense_first}
+      POI_RANKING_PROFILE: ${DF_RANKING_PROFILE:-raw}
+      POI_ENCODER_NORMALIZER: ${DF_ENCODER_NORMALIZER:-raw}
+      POI_DENSE_BACKEND: ${DF_DENSE_BACKEND:-ann}
+      POI_BUNDLE_MANIFEST: /repo/artifacts/results/dense_first/serving/bundle.json
+      POI_RELEASE_ID: vn-poi-dense-first-research-6k
+      POI_EMBEDDING_SPACE_ID: me5-6k-devlock-384
+      POI_SEARCH_POLICY: ${DF_POLICY:-/repo/apps/poi-search/api/search_policy.stage1-handoff.json}
+      POI_BRAND_LOOKUP: /repo/data/vietnam/train_stage1_brand_lookup_v3/brand_lookup_v3.sqlite
+      POI_BRAND_FUZZY: ${DF_BRAND_FUZZY:-1}
+      POI_BRAND_MEMBERSHIP: ${DF_BRAND_MEMBERSHIP:-1}
+      POI_NAME_LOOKUP: ${DF_NAME_LOOKUP:-0}
+      HF_HOME: /tmp/model-cache
+    volumes:
+      - ../..:/repo:ro
+    ports:
+      - 127.0.0.1:8003:8000
+    gpus: all
+    command: [python, -m, uvicorn, "app:app", --app-dir, /repo/apps/poi-search/api, --host, "0.0.0.0", --port, "8000", --workers, "1"]
+    restart: "no"

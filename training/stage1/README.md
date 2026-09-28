@@ -1,8 +1,8 @@
 # Stage 1 — training and evaluation tools
 
-Thư mục này chỉ giữ mã nghiên cứu còn dùng. Runtime API/FE nằm tại [`apps/poi-search`](../../apps/poi-search/README.md).
+Thư mục này giữ mã train/đánh giá nghiên cứu. Runtime API/FE nằm tại [`apps/poi-search`](../../apps/poi-search/README.md). Với thử nghiệm dense-first hiện tại, optimizer/training nặng chỉ chạy trên Kaggle; GPU local dùng inference/benchmark sau khi tải checkpoint. Xem [báo cáo thực thi](../../docs/operations/DENSE_FIRST_EXECUTION_STATUS_2026_09_28.md).
 
-Nguồn canonical:
+Các đường dẫn dưới là baseline **Hà Nội lịch sử**, không phải corpus/index của phép đo dense-first 2026-09-28:
 
 - Corpus: `HANOI_POI_STABLE_V1/hanoi_poi_stable_v1/`
 - Evaluation dataset: `HANOI_QUERIES_20K/hanoi_queries_20k_stable_v1/`

@@ -229,8 +229,8 @@ def main() -> None:
                 })
     draft = staging / "draft"
     draft.mkdir(parents=True, exist_ok=True)
-    session_schema_arrow = pq.read_schema(ROOT / "data/vietnam/stage1_eval_suite_v2/gold_stage1_v2/query_sessions_v2.parquet")
-    qrel_schema_arrow = pq.read_schema(ROOT / "data/vietnam/stage1_eval_suite_v2/gold_stage1_v2/qrels_v2.parquet")
+    session_schema_arrow = pq.read_schema(ROOT / "data/vietnam/stage1_eval_suite_v2/gold_stage1_v2_1/query_sessions_v2_1.parquet")
+    qrel_schema_arrow = pq.read_schema(ROOT / "data/vietnam/stage1_eval_suite_v2/gold_stage1_v2_1/qrels_v2_1.parquet")
     pq.write_table(pa.Table.from_pylist(sessions, schema=session_schema_arrow), draft / "query_sessions_v2_1_draft.parquet")
     pq.write_table(pa.Table.from_pylist(qrels, schema=qrel_schema_arrow), draft / "qrels_v2_1_draft.parquet")
     write_csv(draft / "query_sessions_v2_1_draft.csv", sessions)

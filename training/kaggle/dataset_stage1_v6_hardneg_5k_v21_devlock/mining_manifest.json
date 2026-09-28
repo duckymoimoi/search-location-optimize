@@ -1,0 +1,54 @@
+{
+  "dataset": "mine_out",
+  "status": "EXPERIMENTAL",
+  "miner_checkpoint": "intfloat/multilingual-e5-small",
+  "embedding_source": "encoded_on_device",
+  "embeddings_sha256": null,
+  "poi_ids_sha256": null,
+  "passage_max_tokens": 128,
+  "documents_sha256": "a9d8ab88238b8e25aba3f598c0011ccc168907b2518b6683f5740703aa5b2460",
+  "view_sha256": "69c298737328ab96a734ffb8f1b1cc3f7792ad3490a960a3cd701babd392d462",
+  "relation_sha256": "9373b7e1f7fb61209e01dc6958d267ac919b4df5e93d57940d3e5df5d11216d9",
+  "seed": 42,
+  "pool_depth": 100,
+  "quota": {
+    "random": 2,
+    "lexical_hard": 1,
+    "dense_hard": 3,
+    "same_brand_other_branch": 0
+  },
+  "exclusions": [
+    "authored_positive",
+    "brand_membership_needs_review",
+    "same_entity_group",
+    "gold_holdout_poi"
+  ],
+  "holdout_gold": {
+    "path": "/kaggle/input/datasets/hiengchi/vn-poi-stage1-v6-hardneg-5k-v21-mine/gold_holdout_ids.json",
+    "n_ids": 205,
+    "gold_pool_hits": 7001,
+    "pair_overlap": 0
+  },
+  "note": "Same-brand other branches stay eligible as hard-neg candidates. They are not expanded into positives.",
+  "train_queries": 26994,
+  "pair_rows": 189085,
+  "pairs_by_label": {
+    "negative": 161701,
+    "positive": 27282,
+    "ignore": 102
+  },
+  "negatives_by_source": {
+    "dense_hard": 80982,
+    "random": 53988,
+    "lexical_hard": 26731
+  },
+  "fill_rate": {
+    "lexical_hard": 0.9902570941690746,
+    "dense_hard": 1.0,
+    "same_brand_other_branch": 0.0,
+    "random": 1.0
+  },
+  "outputs": {
+    "training_pairs.parquet": "31560407d8c95eb0c02c9ac0fa3403c8007f69c96e83b78689d7d00f443ac550"
+  }
+}

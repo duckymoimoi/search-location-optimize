@@ -1,0 +1,35 @@
+{
+  "data/vietnam/stage1_eval_suite_v2/gold_stage1_v2_1/query_sessions_v2_1.parquet": {
+    "sha256": "690cbc793b4a89b568f581b2bd48e3d1ccfab03e3463ff0910b340eca24c0bb6"
+  },
+  "data/vietnam/stage1_eval_suite_v2/gold_stage1_v2_1/qrels_v2_1.parquet": {
+    "sha256": "c9579fc7267841d20e59ab11ed735eca1c750d8f5f45ee8139e1a3fc3b4127f4"
+  },
+  "data/vietnam/stage1_eval_suite_v2/gold_stage1_v2_1/target_pois_v2_1.parquet": {
+    "sha256": "146c65f8481d6b56620e20094f4ffd90dc8647b2fb9865b036d68988b42af1af"
+  },
+  "data/vietnam/stage1_eval_suite_v2/gold_stage1_v2_1/prefix_evidence_v2_1.jsonl": {
+    "sha256": "84b7373a5bf345f2093950917c179fd837a24831d1ba6869a1d2a1703985b6e0"
+  },
+  "data/vietnam/stage1_eval_suite_v2/gold_stage1_v2_1/mutation_traces_v2_1.jsonl": {
+    "sha256": "da8c1b9c3af71df4af2bbe95043a7465cb1984860f0637ba661ea385048bdfb7"
+  },
+  "data/vietnam/stage1_eval_suite_v2/gold_stage1_v2_1/manifest.json": {
+    "sha256": "965079a861fd19a0209a793ef372bae7a5272c00e69ce7a73b9e1722f7fa012e"
+  },
+  "data/vietnam/stage1_eval_suite_v2/gold_stage1_v2_1/source_files.json": {
+    "sha256": "2341ead55e065c7f33933ebefc83fbec67279b9d117840a9c25c36006381908d"
+  },
+  "docs/specs/schemas/stage1_evaluation_v2.schema.json": {
+    "sha256": "c5a39ec1a74d92e67995c75a8c8078750e1ada6dce80cb1586b6b2b222ffaf21"
+  },
+  "data/vietnam/poi_corpus_v3/pois_core.parquet": {
+    "sha256": "b542a03ca6820ea30dadd83b94833a0bd019641a96c21c8ab4405cba6cec3b54"
+  },
+  "data/vietnam/train_stage1_20k/target_pois_20k.parquet": {
+    "sha256": "cc209cad9af14ad77ee01c71cf139f48594bc6cbe3ce900dc7d607782b827857"
+  },
+  "tools/reissue_gold_stage1_v22.py": {
+    "sha256": "6899f382c3982b3260be2a190696d48d6dd64d7eab6ab37e32290d08d73f578b"
+  }
+}

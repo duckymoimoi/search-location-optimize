@@ -1,0 +1,63 @@
+{
+  "dataset": "train_stage1_v6_hardneg_5k_v21",
+  "status": "EXPERIMENTAL",
+  "note": "Compiled views only. Does not modify published v6 queries.",
+  "split_seed": 42,
+  "dev_case_fraction": 0.1,
+  "slot_weight": {
+    "v01": 1.0,
+    "v02": 1.0,
+    "v03": 0.25,
+    "v04": 0.25,
+    "v05": 0.25,
+    "v06": 0.25
+  },
+  "excluded_cases": {
+    "train20k-02003": "intended osm:node/5608881031 merges into a different PNJ branch on v3"
+  },
+  "holdout_gold": {
+    "path": "D:\\vsf\\data\\vietnam\\stage1_eval_suite_v2\\gold_stage1_v2_1",
+    "n_ids": 205,
+    "stripped_acceptables": 0,
+    "stripped_relations": 1782,
+    "max_cases": 5000
+  },
+  "counts": {
+    "view_rows": 29994,
+    "train_rows": 26994,
+    "dev_rows": 3000,
+    "train_cases": 4499,
+    "dev_cases": 500,
+    "excluded_source_rows": 6,
+    "dropped_unresolved": 0,
+    "relation_rows": 2705040,
+    "relations_by_label": {
+      "hard_neg_candidate": 2674596,
+      "positive": 30336,
+      "ignore": 108
+    },
+    "rows_with_brand_group": 5730
+  },
+  "sources": {
+    "query_variants.csv": {
+      "path": "D:/vsf/data/vietnam/train_stage1_queries_v6/query_variants.csv",
+      "sha256": "aafea7af07cd36a35b5f8ea262dba191b226d0403dd44016c398315580693561"
+    },
+    "train_manifest.json": {
+      "path": "D:/vsf/data/vietnam/train_stage1_queries_v6/manifest.json",
+      "sha256": "a2667d316d9cbcc7bdb2693a10964f65730a252a3ed00250a1a1b86bb5722059"
+    },
+    "search_documents.parquet": {
+      "path": "D:/vsf/data/vietnam/poi_corpus_v3/search_documents.parquet",
+      "sha256": "6301bc85f6ac5229854875359db57e25c66ca78ba4f484807788e5ba27eb00f2"
+    },
+    "brand_group_members_v1.parquet": {
+      "path": "D:/vsf/data/vietnam/train_stage1_brand_membership_v3/brand_group_members_v3.parquet",
+      "sha256": "119ebb78518817acc12f114995241df0e931c5d03ea6bd0797dc5ef0095a41a2"
+    }
+  },
+  "outputs": {
+    "query_train_view.parquet": "69c298737328ab96a734ffb8f1b1cc3f7792ad3490a960a3cd701babd392d462",
+    "query_relation_view.parquet": "9373b7e1f7fb61209e01dc6958d267ac919b4df5e93d57940d3e5df5d11216d9"
+  }
+}

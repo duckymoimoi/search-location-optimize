@@ -20,6 +20,7 @@ import gc
 import hashlib
 import json
 import math
+import os
 from pathlib import Path
 import re
 import time
@@ -208,10 +209,11 @@ def encode_queries(
     cache_only: bool,
     batch_size: int,
     threads: int,
+    device: torch.device,
     glue_code_spans: Any,
 ) -> np.ndarray:
     tokenizer = AutoTokenizer.from_pretrained(model_id, local_files_only=cache_only)
-    model = AutoModel.from_pretrained(model_id, local_files_only=cache_only).cpu().eval()
+    model = AutoModel.from_pretrained(model_id, local_files_only=cache_only).to(device).eval()
     torch.set_num_threads(max(1, threads))
     vectors: list[np.ndarray] = []
     began = time.perf_counter()
@@ -224,12 +226,13 @@ def encode_queries(
             max_length=64,
             return_tensors="pt",
         )
+        tokens = {key: value.to(device) for key, value in tokens.items()}
         with torch.no_grad():
             hidden = model(**tokens).last_hidden_state
             mask = tokens["attention_mask"].unsqueeze(-1).expand(hidden.size()).float()
             pooled = torch.sum(hidden * mask, dim=1) / torch.clamp(mask.sum(dim=1), min=1e-9)
             encoded = functional.normalize(pooled, p=2, dim=1)
-        vectors.append(encoded.numpy().astype(np.float32, copy=False))
+        vectors.append(encoded.cpu().numpy().astype(np.float32, copy=False))
         print(
             f"encode {min(start + len(batch), len(queries))}/{len(queries)} "
             f"elapsed={time.perf_counter() - began:.1f}s",
@@ -248,20 +251,28 @@ def dense_exact_runs(
     corpus_ids_path: Path,
     depth: int,
     score_batch_size: int,
+    device: torch.device,
 ) -> list[list[str]]:
     corpus = np.load(corpus_embeddings_path, mmap_mode="r")
-    ids_frame = pd.read_parquet(corpus_ids_path).sort_values("row_index")
+    ids_frame = pd.read_parquet(corpus_ids_path)
+    if "row_index" in ids_frame.columns:
+        ids_frame = ids_frame.sort_values("row_index")
     corpus_ids = ids_frame["poi_id"].astype(str).to_numpy()
     if corpus.shape[0] != len(corpus_ids) or corpus.shape[1] != query_vectors.shape[1]:
         raise ValueError(
             f"Embedding mismatch: corpus={corpus.shape}, ids={len(corpus_ids)}, "
             f"queries={query_vectors.shape}"
         )
+    corpus_gpu = torch.tensor(corpus, dtype=torch.float32, device=device) if device.type == "cuda" else None
     runs: list[list[str]] = []
     began = time.perf_counter()
     for start in range(0, len(query_vectors), score_batch_size):
         query_batch = query_vectors[start : start + score_batch_size]
-        scores = query_batch @ corpus.T
+        if corpus_gpu is None:
+            scores = query_batch @ corpus.T
+        else:
+            with torch.no_grad():
+                scores = (torch.from_numpy(query_batch).to(device) @ corpus_gpu.T).cpu().numpy()
         part = np.argpartition(scores, -depth, axis=1)[:, -depth:]
         for row_index, candidates in enumerate(part):
             candidate_scores = scores[row_index, candidates]
@@ -472,9 +483,17 @@ def main() -> None:
     parser.add_argument("--encode-batch-size", type=int, default=64)
     parser.add_argument("--score-batch-size", type=int, default=64)
     parser.add_argument("--threads", type=int, default=8)
+    parser.add_argument("--device", choices=("auto", "cuda", "cpu"), default=os.environ.get("POI_DEVICE", "auto"))
     parser.add_argument("--allow-download", action="store_true")
     parser.add_argument("--limit", type=int)
     args = parser.parse_args()
+    device_name = "cuda" if args.device == "auto" and torch.cuda.is_available() else args.device
+    if device_name == "auto":
+        device_name = "cpu"
+    if device_name == "cuda" and not torch.cuda.is_available():
+        raise RuntimeError("CUDA requested but unavailable; check the Docker GPU reservation and PyTorch wheel")
+    device = torch.device(device_name)
+    print(f"device={device} torch={torch.__version__} cuda={torch.version.cuda}", flush=True)
 
     began = time.perf_counter()
     policy = json.loads(POLICY_PATH.read_text(encoding="utf-8"))
@@ -509,6 +528,7 @@ def main() -> None:
         cache_only=not args.allow_download,
         batch_size=args.encode_batch_size,
         threads=args.threads,
+        device=device,
         glue_code_spans=fn["glue_code_spans"],
     )
     dense = dense_exact_runs(
@@ -517,6 +537,7 @@ def main() -> None:
         corpus_ids_path=args.corpus_ids,
         depth=depth,
         score_batch_size=args.score_batch_size,
+        device=device,
     )
     del query_vectors
     gc.collect()
@@ -622,6 +643,10 @@ def main() -> None:
                 b"".join((API_DIR / name).read_bytes() for name in ALGO_FILES)
             ).hexdigest(),
             "model_id": args.model_id,
+            "device": str(device),
+            "gpu_name": torch.cuda.get_device_name(device) if device.type == "cuda" else None,
+            "torch_version": torch.__version__,
+            "torch_cuda_version": torch.version.cuda,
             "corpus_embeddings_sha256": sha256(args.corpus_embeddings),
             "corpus_ids_sha256": sha256(args.corpus_ids),
             "branch_depth": depth,

@@ -1,0 +1,14 @@
+{
+  "mode": "loss_only",
+  "dev_only": true,
+  "submitted": false,
+  "canonical_trainer_sha256": "ca130fe4db0a9f9ecf67e523839c48ec4a4c468b794ed0bc086fdb6f71154255",
+  "input_hashes": {
+    "train_config.json": "a32b972dbcc77e3481002ff6cdb289957ccae68eca1aafebf61bda2c346e9ba0",
+    "query_train_view.parquet": "6a82efc9bc69bfe888f78bcd96244a6357904bb5c6b7d881cbe0cf2efedd35a3",
+    "training_pairs.parquet": "6f41341233bc407e5960b89c1cf085881733608ededf416beddeb839d2388c69",
+    "search_documents.parquet": "a9d8ab88238b8e25aba3f598c0011ccc168907b2518b6683f5740703aa5b2460",
+    "gold_query_variants.csv": "29015df77ab49aff8c2ce4b922060b7110c81d82def4b2c661d8a03354f60bb2"
+  },
+  "budget_note": "Same epochs are not equal optimizer steps across weighting modes; compare recorded steps and effective samples before attributing causality."
+}

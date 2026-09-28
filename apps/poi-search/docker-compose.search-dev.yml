@@ -83,6 +83,7 @@ services:
       - POI_CORPUS_VERSION=vn-poi-core-v1
       - POI_SEARCH_POLICY=/repo/apps/poi-search/api/search_policy.json
       - POI_RETRIEVAL_PROFILE=${POI_RETRIEVAL_PROFILE:-hybrid}
+      - POI_DEVICE=cuda
       - HF_HOME=/model-cache
       - GOONG_API_KEY=${GOONG_API_KEY:-}
     env_file:
@@ -108,6 +109,7 @@ services:
       - ../..:/repo
       - hf_cache:/model-cache
     mem_limit: 3g
+    gpus: all
     restart: unless-stopped
     healthcheck:
       test:
@@ -128,6 +130,7 @@ services:
       dockerfile: Dockerfile.search-dev
     container_name: vn-poi-searchdev-bench
     environment:
+      - POI_DEVICE=cuda
       - POI_ES_URL=http://elasticsearch:9200
       - POI_API_BASE_URL=http://api:8000
       - POI_INDEX=vn-poi-core-v1-me5-small
@@ -140,6 +143,7 @@ services:
       - ../..:/repo
       - hf_cache:/model-cache
     mem_limit: 4g
+    gpus: all
     restart: unless-stopped
     networks:
       - default

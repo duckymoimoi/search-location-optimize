@@ -1,0 +1,25 @@
+{
+  "schema_version": "gold-reissue-v1",
+  "release_id": "gold_stage1_v2_2",
+  "logical_suite_id": "gold_stage1_v2",
+  "release_date": "2026-09-28",
+  "status": "reissued_payload_verified",
+  "new_independent_holdout": false,
+  "counts": {
+    "targets": 200,
+    "sessions": 800,
+    "qrels": 820,
+    "prefixes": 200
+  },
+  "artifact_hashes": {
+    "lineage.json": "45f4f8445a972b478e86fbf4632f9c22a6734c260327037cb859c2f91b60eb7b",
+    "mutation_traces_v2_2.jsonl": "da8c1b9c3af71df4af2bbe95043a7465cb1984860f0637ba661ea385048bdfb7",
+    "prefix_evidence_v2_2.jsonl": "84b7373a5bf345f2093950917c179fd837a24831d1ba6869a1d2a1703985b6e0",
+    "qrels_v2_2.parquet": "c9579fc7267841d20e59ab11ed735eca1c750d8f5f45ee8139e1a3fc3b4127f4",
+    "query_sessions_v2_2.parquet": "690cbc793b4a89b568f581b2bd48e3d1ccfab03e3463ff0910b340eca24c0bb6",
+    "README.md": "ef8f6a395b9470a521e4968ec61bb614bdb8955a70ece83815bfc5ebbdbdad32",
+    "source_files.json": "8c32e345f21b79c8b27efde892facc929570ba56304dee4fb8675f5278a70c1a",
+    "target_pois_v2_2.parquet": "146c65f8481d6b56620e20094f4ffd90dc8647b2fb9865b036d68988b42af1af",
+    "validation_report.json": "1f0b2c1e1d346f43961ff4af2e163614730a2f04e5e3dbefdb18efbd25df8e04"
+  }
+}

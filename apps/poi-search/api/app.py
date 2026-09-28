@@ -73,7 +73,12 @@ async def http_error(_: Request, exc: HTTPException) -> JSONResponse:
 @app.get("/health")
 def health() -> dict[str, Any]:
     count = runtime.client().request("GET", f"/{INDEX_NAME}/_count")["count"]
-    return {"status": "ok" if count == EXPECTED_ROWS else "degraded", "index": INDEX_NAME, "corpus_rows": count}
+    return {
+        "status": "ok" if count == EXPECTED_ROWS else "degraded",
+        "index": INDEX_NAME,
+        "corpus_rows": count,
+        "device": str(runtime.device),
+    }
 
 
 @app.post("/v1/sessions")
@@ -189,6 +194,10 @@ def debug_trace_suggest(payload: TraceSuggestRequest) -> dict[str, Any]:
         "rescued_n": traced["rescued_n"],
         "candidate_count": traced["candidate_count"],
         "stages": {key: value[:80] for key, value in stages.items()},
+        "stage_sizes": {key: len(value) for key, value in stages.items()},
+        "trace_truncated": any(len(value) > 80 for value in stages.values()),
+        "branch_candidates": traced.get("branch_candidates", {}),
+        "encoder_input": traced.get("encoder_input"),
         "results": traced["results"],
         "target_poi_id": target,
         "target_ranks": ranks,

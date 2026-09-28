@@ -52,7 +52,9 @@ def main() -> None:
     parser.add_argument("--es-url", default="http://127.0.0.1:9200")
     parser.add_argument("--workers", type=int, default=4)
     parser.add_argument("--prefix-hybrid", action="store_true")
+    parser.add_argument("--out", type=Path, default=OUT)
     args = parser.parse_args()
+    out_dir = args.out
     began = time.perf_counter()
 
     lock = json.loads((GOLD / "LOCKED.json").read_text(encoding="utf-8"))
@@ -147,10 +149,10 @@ def main() -> None:
         report["prefix_diagnostic"]["hybrid_api"] = prefix_metrics(prefix_rows, prefix_hybrid)
 
     report["elapsed_seconds"] = round(time.perf_counter() - began, 2)
-    OUT.mkdir(parents=True, exist_ok=True)
-    scores.to_parquet(OUT / "per_query_results.parquet", index=False)
-    scores.to_csv(OUT / "per_query_results.csv", index=False, encoding="utf-8-sig")
-    (OUT / "baseline_report.json").write_text(
+    out_dir.mkdir(parents=True, exist_ok=True)
+    scores.to_parquet(out_dir / "per_query_results.parquet", index=False)
+    scores.to_csv(out_dir / "per_query_results.csv", index=False, encoding="utf-8-sig")
+    (out_dir / "baseline_report.json").write_text(
         json.dumps(report, ensure_ascii=False, indent=2) + "\n", encoding="utf-8"
     )
     print(json.dumps({"elapsed_seconds": report["elapsed_seconds"],

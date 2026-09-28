@@ -37,7 +37,7 @@ for name in ALGO_FILES:
 module = ast.Module(body=[ast.ImportFrom(module='__future__', names=[ast.alias(name='annotations')], level=0), *functions], type_ignores=[])
 ns = dict(globals(), LEXICAL_CONFIG=POLICY['lexical'], RANKING_POLICY=POLICY['ranking'],
           BRANCH_DEPTH=50, RRF_CONSTANT=60, CORPUS_VERSION='hn-poi-stable-v1',
-          RETRIEVAL_PROFILE='hybrid', INDEX_NAME='test', POLICY=POLICY,
+          RETRIEVAL_PROFILE='hybrid', RANKING_PROFILE='current', ENCODER_NORMALIZER='glue_code_spans', INDEX_NAME='test', POLICY=POLICY,
           RELEASE_ID='test-release', MODEL_ID='test-model',
           EMBEDDING_SPACE_ID='test-space', PASSAGE_BUILDER_VERSION='test-passage',
           known_user=demo_users.known_user, history_snapshot=demo_users.history_snapshot,
@@ -52,9 +52,133 @@ def evidence(docs):
     return {d['canonical_id']: {'rrf': 1/(60+i)} for i,d in enumerate(docs,1)}
 
 class Algorithms(unittest.TestCase):
+    def test_dense_first_routes_and_encoder_failure_fallback(self):
+        previous_profile, previous_runtime = ns['RETRIEVAL_PROFILE'], ns.get('runtime')
+        ns['RETRIEVAL_PROFILE'] = 'dense_first'
+        runtime = SimpleNamespace(brand_family=lambda query: 'brand:scb' if query == 'SCB' else None,
+                                 encode=lambda query: [1], dense=lambda vector: (['dense'], 1),
+                                 lexical=lambda query: (['lexical'], 1),
+                                 pool=SimpleNamespace(submit=lambda fn, query: SimpleNamespace(result=lambda: fn(query))))
+        ns['runtime'] = runtime
+        try:
+            self.assertEqual(ns['retrieve_detailed']('SCB')['route'], 'dense_first_brand_exact')
+            self.assertEqual(ns['retrieve_detailed']('SCB Nguyen Trai')['route'], 'dense_first_entity')
+            self.assertEqual(ns['retrieve_detailed']('sc')['ids'], ['lexical'])
+            runtime.encode = lambda query: (_ for _ in ()).throw(RuntimeError('offline'))
+            result = ns['retrieve_detailed']('SCB Nguyen Trai')
+            self.assertEqual(result['route'], 'dense_first_lexical_fallback')
+            self.assertEqual(result['degraded_reasons'], ['dense_unavailable'])
+            runtime.lexical = lambda query: (_ for _ in ()).throw(RuntimeError('offline'))
+            with self.assertRaises(HTTPException) as caught:
+                ns['retrieve_detailed']('SCB Nguyen Trai')
+            self.assertEqual(caught.exception.status_code, 503)
+        finally:
+            ns['RETRIEVAL_PROFILE'], ns['runtime'] = previous_profile, previous_runtime
+
+    def test_fusion_depth_controls_scores_and_membership(self):
+        left = ['a', 'b', 'c']
+        right = ['c', 'd', 'a']
+        ids, ev = ns['_hybrid_evidence'](left, right, depth=1)
+        self.assertEqual(set(ids), {'a', 'c'})
+        self.assertIsNone(ev['a']['dense_rank'])
+        self.assertIsNone(ev['c']['lexical_rank'])
+        full, full_ev = ns['_hybrid_evidence'](left, right, depth=3)
+        self.assertEqual(set(full), {'a', 'b', 'c', 'd'})
+        self.assertGreater(full_ev['a']['rrf'], ev['a']['rrf'])
+
+    def test_raw_dense_profile_preserves_semantic_order(self):
+        docs = [doc(1, 'Trường Khương Hạ'), doc(2, 'Truogn Khương Ha')]
+        ranked = ns['rank_candidates_traced']('Truogn Khương Ha', docs, evidence(docs), None, profile='raw')
+        self.assertEqual([row[3]['canonical_id'] for row in ranked['final']], ['1', '2'])
+        current = ns['rank_candidates_traced']('Truogn Khương Ha', docs, evidence(docs), None, profile='current')
+        self.assertEqual(current['final'][0][3]['canonical_id'], '2')
+
+    def test_dedup_and_cap_are_distinct_stages(self):
+        docs = [doc(1, 'A'), doc(2, 'A'), doc(3, 'B'), doc(4, 'C')]
+        stages = ns['candidate_document_stages'](['1', '2', '3', '4'], docs, budget=2)
+        self.assertEqual([d['canonical_id'] for d in stages['after_dedup']], ['1', '3', '4'])
+        self.assertEqual([d['canonical_id'] for d in stages['after_cap']], ['1', '3'])
+        raw = ns['candidate_document_stages'](['1', '2', '3', '4'], docs, budget=2, dedup=False)
+        self.assertEqual([d['canonical_id'] for d in raw['after_cap']], ['1', '2'])
+
+    def test_encoder_input_keeps_numeric_ranges_in_raw_mode(self):
+        self.assertEqual(ns['encoder_input']('MSB 274-276 Ngô Gia Tự', 'raw'), 'MSB 274-276 Ngô Gia Tự')
+        self.assertEqual(ns['encoder_input']('S3.01', 'glue_code_spans'), 's301')
+        with self.assertRaises(ValueError):
+            ns['encoder_input']('abc', 'invalid')
+
     def test_no_destructive_name_rewrite(self):
         for q in ['Hoàng Mai','cửa hàng Tiến','Việt Anh','Trương Định']:
             self.assertEqual(ns['expand_query'](q), q)
+
+    def test_name_compact_glued_spaces_share_one_key(self):
+        compact = ns['letter_compact']
+        self.assertEqual(compact('Vạn Hạnh Mall'), 'vanhanhmall')
+        self.assertEqual(compact('van hanh mall'), 'vanhanhmall')
+        self.assertEqual(compact('vanhanh mall'), 'vanhanhmall')
+        self.assertEqual(compact('vanhanhmall'), 'vanhanhmall')
+        self.assertEqual(ns['names_compact_values']('Vạn Hạnh Mall', ['VHM']), ['vanhanhmall'])
+        self.assertEqual(ns['names_compact_values']('Mall'), [])
+        self.assertEqual(ns['query_name_compacts']('vanhanh mall'), ['vanhanhmall'])
+        self.assertEqual(ns['query_name_compacts']('vanhanhmall'), ['vanhanhmall'])
+        self.assertEqual(ns['query_name_compacts']('vanhanh-mall'), ['vanhanhmall'])
+        # Spaced name already has label_folded / BM25; do not add a compact should.
+        self.assertEqual(ns['query_name_compacts']('van hanh mall'), [])
+        self.assertEqual(ns['query_name_compacts']('ga'), [])
+        self.assertEqual(ns['query_name_compacts']('hàng bún'), [])
+        # House+street: longest syllable nguyen=6 stays off this path.
+        self.assertEqual(ns['query_name_compacts']('23 nguyễn trãi'), [])
+        self.assertEqual(ns['query_name_compacts']('259/15 Nguyễn Chí Thanh'), [])
+
+    def test_glued_name_lexical_uses_names_compact_not_prefix(self):
+        glued = json.dumps(ns['lexical_body']('vanhanh mall', 20), ensure_ascii=False)
+        self.assertIn('names_compact', glued)
+        self.assertIn('vanhanhmall', glued)
+        spaced = json.dumps(ns['lexical_body']('van hanh mall', 20), ensure_ascii=False)
+        self.assertNotIn('names_compact', spaced)
+        address = json.dumps(ns['lexical_body']('23 Nguyễn Trãi', 20), ensure_ascii=False)
+        self.assertNotIn('names_compact', address)
+        self.assertIn('housenumber', address)
+
+    def test_name_match_treats_glued_letters_as_exact_name(self):
+        mall = doc(1, 'Vạn Hạnh Mall')
+        other = doc(2, 'AEON Mall Đà Nẵng')
+        self.assertEqual(ns['name_match_class']('vanhanh mall', mall), (3, 0))
+        self.assertIsNone(ns['name_match_class']('vanhanh mall', other))
+        self.assertIsNotNone(ns['name_match_class']('van hanh mall', mall))
+        # House number keeps compact-equivalence off; token path still works for spaced names.
+        self.assertIsNone(ns['name_match_class']('11 vanhanh mall', mall))
+
+    def test_gated_fuzzy_letters_only_edit_one(self):
+        self.assertEqual(ns['query_fuzzy_terms']('Jolibee'), ['jolibee'])
+        self.assertEqual(ns['query_fuzzy_terms']('23 Nguyễn Trãi'), ['nguyen', 'trai'])
+        self.assertEqual(ns['query_fuzzy_terms']('ga'), [])
+        self.assertEqual(ns['query_fuzzy_terms']('B12'), [])
+        self.assertEqual(ns['query_fuzzy_terms']('s10.2'), [])
+        self.assertEqual(ns['query_fuzzy_terms']('33 Lạc Trung'), ['trung'])
+        body = ns['lexical_body']('Jolibee Trần Hưng Đạo', 20)
+        fuzzy = [
+            clause['multi_match']
+            for clause in body['query']['bool']['should']
+            if 'fuzziness' in clause.get('multi_match', {})
+        ]
+        self.assertEqual(len(fuzzy), 1)
+        self.assertEqual(fuzzy[0]['fuzziness'], 1)
+        self.assertEqual(fuzzy[0]['prefix_length'], 1)
+        self.assertEqual(fuzzy[0]['query'], 'jolibee tran hung')
+        self.assertEqual(fuzzy[0]['fields'], ['search_label^4', 'search_aliases^3'])
+        house = json.dumps(ns['lexical_body']('259/15 Nguyễn Chí Thanh', 20), ensure_ascii=False)
+        self.assertIn('"fuzziness": 1', house)
+        fuzzy_q = next(
+            clause['multi_match']['query']
+            for clause in ns['lexical_body']('259/15 Nguyễn Chí Thanh', 20)['query']['bool']['should']
+            if 'fuzziness' in clause.get('multi_match', {})
+        )
+        self.assertEqual(fuzzy_q, 'nguyen thanh')
+        self.assertNotIn('259', fuzzy_q)
+        self.assertNotIn('15', fuzzy_q)
+        short = json.dumps(ns['lexical_body']('ga', 20), ensure_ascii=False)
+        self.assertNotIn('fuzziness', short)
 
     def test_dotted_code_stays_one_lexical_token(self):
         self.assertEqual(ns['glue_code_spans']('s10.2'), 's102')

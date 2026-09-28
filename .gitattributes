@@ -1,0 +1,5 @@
+# Dataset manifests pin exact file bytes, including original line endings.
+# Do not normalize signed evidence when cloning across Windows and Linux.
+data/** -text whitespace=cr-at-eol
+docs/specs/schemas/stage1_evaluation_v2.schema.json -text whitespace=cr-at-eol
+tools/reissue_gold_stage1_v22.py -text

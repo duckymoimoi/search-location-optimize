@@ -1,0 +1,7 @@
+# CPU-only regression checks. GPU inference uses the API Docker image.
+pytest==8.4.1
+numpy==2.5.2
+pandas==2.3.0
+pyarrow==23.0.1
+jsonschema==4.26.0
+ruff==0.15.20

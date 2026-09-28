@@ -1,0 +1,17 @@
+{
+  "id": "hiengchi/vn-poi-stage1-v6-hardneg-6k-devlock-encode",
+  "title": "vn-poi-stage1-v6-hardneg-6k-devlock-encode",
+  "code_file": "run_encode_corpus.py",
+  "language": "python",
+  "kernel_type": "script",
+  "is_private": "true",
+  "enable_gpu": "true",
+  "enable_internet": "true",
+  "dataset_sources": [
+    "hiengchi/vn-poi-stage1-v6-hardneg-6k-devlock",
+    "hiengchi/vn-poi-stage1-v6-hardneg-6k-devlock-rescore"
+  ],
+  "competition_sources": [],
+  "kernel_sources": [],
+  "model_sources": []
+}

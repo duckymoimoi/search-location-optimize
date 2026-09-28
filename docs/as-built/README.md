@@ -1,6 +1,7 @@
 # As-built
 
 - [Current state](CURRENT_STATE.md): phiên bản, luồng đang chạy và gap với kiến trúc đích.
+- [Lexical search](LEXICAL_SEARCH.md): nhánh ES lexical đang chạy (policy v12) — chuẩn hóa, field, DSL, núm boost.
 - [Nationwide corpus direction](NATIONWIDE_CORPUS_DIRECTION.md): corpus toàn quốc và lineage.
 - [Diagnostic negatives/geo plan](DIAGNOSTIC_NEGATIVES_GEO_PLAN.md): audit/plan theo snapshot ghi trong file.
 - Kết quả Stage 1 W1 nằm trong [`../deliveries/w1_evidence/`](../deliveries/w1_evidence/README.md), đặc biệt model catalog và lexical reports.

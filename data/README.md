@@ -6,7 +6,7 @@ GitHub giữ **một bộ hiện hành**. Bản cũ nằm trong git history, kh�
 |---|---|
 | `data/vietnam/poi_corpus_v3/` | Active corpus `vn-poi-core-v3-semantic-address-dedup50` — 179,209 POI |
 | `data/vietnam/admin_regions_v1/` | Admin polygons + catalog |
-| `data/vietnam/stage1_eval_suite_v2/gold_stage1_v2_1/` | Gold POI/entity — 200 POI · 800 session · 820 qrel |
+| `data/vietnam/stage1_eval_suite_v2/gold_stage1_v2_2/` | Gold POI/entity reissue, kh?ng ph?i holdout m?i — 200 POI · 800 session · 820 qrel |
 | `data/vietnam/stage1_eval_suite_v2/gold_stage1_brand_v1/` | Gold brand — 70 family · 248 query · 6,610 qrel |
 | `data/vietnam/train_stage1_brand_membership_v3/` | Brand membership sidecar trên corpus v3 |
 | `data/vietnam/train_stage1_brand_lookup_v3/` | Fast lookup brand v3 |
@@ -24,3 +24,6 @@ Contract: `docs/specs/STAGE1_EVALUATION_SUITE.md`. Address-scope eval vẫn out 
 PBF nguồn (nếu có): `vietnam-*.osm.pbf` ở repo root — không commit.
 
 > Đã gỡ khỏi tree hiện hành: corpus v1/v2, Gold v1, Gold v2, brand membership/lookup/query cũ. Khôi phục bằng git history.
+
+EDA hi?n h?nh: [b?o c?o 2026-09-28](../docs/deliveries/dataset_eda_20260928/README.md).
+X?c minh Gold POI hi?n h?nh: `python tools/reissue_gold_stage1_v22.py verify`. Verifier v2.1 c? gi? nguy?n v? c?n FAIL historical provenance.

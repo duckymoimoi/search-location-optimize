@@ -5,7 +5,17 @@ import re
 import unicodedata
 from types import SimpleNamespace
 
-from settings import POLICY
+from settings import POLICY, ENCODER_NORMALIZER
+
+
+def encoder_input(query: str, normalizer: str | None = None) -> str:
+    """Versioned query input; lexical keys are independent of this choice."""
+    mode = normalizer or ENCODER_NORMALIZER
+    if mode == "raw":
+        return query
+    if mode == "glue_code_spans":
+        return glue_code_spans(query)
+    raise ValueError(f"Unknown encoder normalizer: {mode}")
 
 def fold(text: str) -> str:
     text = unicodedata.normalize("NFKC", text or "").replace("đ", "d").replace("Đ", "D")
@@ -15,6 +25,58 @@ def fold(text: str) -> str:
 def alnum_compact(text: str) -> str:
     """Fold + strip non-alphanumerics so S2.02 / s2-02 / s202 share one key."""
     return "".join(ch for ch in fold(text) if ch.isalnum())
+
+
+def letter_compact(text: str) -> str:
+    """Fold + letters only. 'van hanh mall' / 'vanhanh mall' / 'Vạn Hạnh Mall' share one key."""
+    return "".join(ch for ch in fold(text) if ch.isalpha())
+
+
+def names_compact_values(*parts: object) -> list[str]:
+    """Exact space-insensitive keys for a name and its aliases. No pairs, no prefixes."""
+    out: set[str] = set()
+    for part in parts:
+        if part is None:
+            continue
+        if isinstance(part, (list, tuple)):
+            values = [str(item) for item in part if item is not None and str(item).strip()]
+        else:
+            text = str(part).strip()
+            if not text or text in {"None", "nan"}:
+                continue
+            values = [text]
+        for value in values:
+            key = letter_compact(value)
+            if len(key) >= 6:
+                out.add(key)
+    return sorted(out)
+
+
+def query_name_compacts(query: str) -> list[str]:
+    """Emit a name-compact key only when the query looks space-glued.
+
+    A spaced name already matches label_folded / BM25. Address queries whose
+    longest letter token is a normal Vietnamese syllable (nguyen=6) stay off
+    this path so a street name cannot outrank a house+street hit.
+    """
+    tokens = [token for token in text_tokens(query) if _token_kind(token) == "letter"]
+    key = letter_compact(query)
+    if len(key) < 6:
+        return []
+    longest = max((len(letter_compact(token)) for token in tokens), default=0)
+    # 7+ = two folded syllables glued (vanhanh). Solo 8+ = whole name glued (vanhanhmall).
+    if longest >= 7 or (len(tokens) == 1 and len(key) >= 8):
+        return [key]
+    return []
+
+
+def query_fuzzy_terms(query: str) -> list[str]:
+    """Letter tokens long enough to typo. Never numbers, codes, or 1–3 letter syllables."""
+    return [
+        token
+        for token in text_tokens(query)
+        if _token_kind(token) == "letter" and len(token) >= 4
+    ]
 
 
 def glue_code_spans(query: str) -> str:
@@ -208,7 +270,7 @@ def _letter_run_from(atoms: list[str], start: int) -> list[str]:
     return run
 
 
-def parse_query_structure(query: str) -> QueryStructure:
+def parse_query_structure(query: str) -> SimpleNamespace:
     """Topology-only parse: house/alley path vs named span vs number-in-name.
 
     Glue between house atoms is any single letter token ('ngo', '/', '-').

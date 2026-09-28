@@ -10,12 +10,26 @@ import type {
 } from '../types/api'
 import { ApiError } from '../types/api'
 
-const BASE = (import.meta.env.VITE_API_BASE_URL as string | undefined)?.replace(/\/$/, '') ?? ''
 const CORPUS_VERSION =
   (import.meta.env.VITE_CORPUS_VERSION as string | undefined)?.trim() || 'vn-poi-core-v3-semantic-address-dedup50'
 
+const DEFAULT_API_BASE = (import.meta.env.VITE_API_BASE_URL as string | undefined)?.replace(/\/$/, '') ?? ''
+
+export const BACKENDS = [
+  { id: 'current', label: 'Bản hiện tại', base: DEFAULT_API_BASE },
+  { id: 'brand_poi_mix', label: 'Brand+POI', base: '/mix' },
+] as const
+
+export type BackendId = (typeof BACKENDS)[number]['id']
+
+let apiBase = DEFAULT_API_BASE
+
+export function setApiBase(base: string) {
+  apiBase = base.replace(/\/$/, '')
+}
+
 async function http<T>(path: string, init?: RequestInit): Promise<T> {
-  const res = await fetch(`${BASE}${path}`, {
+  const res = await fetch(`${apiBase}${path}`, {
     credentials: 'include',
     headers: {
       'Content-Type': 'application/json',

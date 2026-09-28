@@ -1,0 +1,51 @@
+{
+  "schema_version": "stage1-eval-suite-v2",
+  "record_type": "suite_manifest",
+  "suite_id": "gold_stage1_v2",
+  "status": "locked",
+  "created_at_utc": "2026-09-26T01:58:33.849847+00:00",
+  "corpus_version": "vn-poi-core-v3-semantic-address-dedup50",
+  "normalizer_version": "v2-nfkc-casefold",
+  "entity_snapshot_version": null,
+  "brand_snapshot_version": null,
+  "address_snapshot_version": null,
+  "prefix_expander_version": "v2-grapheme-nfc",
+  "label_policy_version": "v2-strict-poi-positive",
+  "source_hashes": {
+    "corpus_v3_pois_core": "b542a03ca6820ea30dadd83b94833a0bd019641a96c21c8ab4405cba6cec3b54",
+    "corpus_v3_search_documents": "6301bc85f6ac5229854875359db57e25c66ca78ba4f484807788e5ba27eb00f2",
+    "train_targets_current": "cc209cad9af14ad77ee01c71cf139f48594bc6cbe3ce900dc7d607782b827857",
+    "published_train_v6_queries": "e8a6a4c305b797cfcc5e77803e5a58ce89acfa4e00bce6df0d4d0310cc3bc1c6",
+    "gold_v2_manifest": "4a92b19535af75ab9c55da3a88016e762cdb0c4ffe8c2d8aecf3c9fa8a76f71b",
+    "authoring_packet": "389329707128d70cceaadc39faa54b130bef08106e9bdc67e5932999f6dc8496",
+    "authoring_packet_manifest": "6e27a8a785bb9b60eb38081b4475b1da39ee4ca62c93ea64d0d6119d4da683e7",
+    "target_overrides": "5f1cbdc0f7d533a427ae4fadf9956e95c1559ae252a0332960967bf0fff07516",
+    "schema": "c5a39ec1a74d92e67995c75a8c8078750e1ada6dce80cb1586b6b2b222ffaf21"
+  },
+  "artifact_hashes": {
+    "coverage_report_v2_1.json": "fcb89a0a870c238d5f11ade492cac11b34f8735f9e525251a983e1bef2820812",
+    "coverage_shortfall_adjudication_v1.json": "f26a8cd8a2cd92f0991d04334fd299e6178d1da163cbc590d3078218ea3dade7",
+    "mutation_traces_v2_1.jsonl": "da8c1b9c3af71df4af2bbe95043a7465cb1984860f0637ba661ea385048bdfb7",
+    "name_street_exceptions_adjudication_v1.json": "ebf3ee720f572e8c1b4923331810e653a6b034f767f533138888cc8ba4147e38",
+    "name_street_no_house_coverage.json": "8de43a98cf8cbd3a704ca706c34b3e4662636daabdcd1adc99282ae9e3449e71",
+    "prefix_evidence_v2_1.jsonl": "84b7373a5bf345f2093950917c179fd837a24831d1ba6869a1d2a1703985b6e0",
+    "qrels_v2_1.parquet": "c9579fc7267841d20e59ab11ed735eca1c750d8f5f45ee8139e1a3fc3b4127f4",
+    "quality_signoff.json": "850d30085837084143ea9393e0ec0e63d11307f4f8c598f55c99640e723eedca",
+    "query_sessions_v2_1.csv": "a8f47c7578b539cec735a975f3098bc1b6281a7e98d308f20b63d424859e4fc0",
+    "query_sessions_v2_1.parquet": "690cbc793b4a89b568f581b2bd48e3d1ccfab03e3463ff0910b340eca24c0bb6",
+    "README.md": "58967a6ff6cbe017f101d640ee18449833c8dd8157d0bb3a34e19bf5bd438316",
+    "selection_and_leakage_audit.json": "b6feb7ddae0d20e6a1ee5a4d78ce1ac658753974304c5bf827c7cd59a60017d5",
+    "source_files.json": "2341ead55e065c7f33933ebefc83fbec67279b9d117840a9c25c36006381908d",
+    "target_pois_v2_1.csv": "191bcb6c0b60cac9ce3c88c4131c29ccb24efd6328d21e919fb8dbc0f302ffff",
+    "target_pois_v2_1.parquet": "146c65f8481d6b56620e20094f4ffd90dc8647b2fb9865b036d68988b42af1af"
+  },
+  "counts": {
+    "n_target_pois": 200,
+    "n_query_sessions": 800,
+    "n_qrels": 820,
+    "n_q01_prefix_evidence": 200,
+    "n_name_street_no_house_covered": 131,
+    "n_name_street_accepted_exceptions": 3,
+    "n_coverage_accepted_shortfalls": 1
+  }
+}

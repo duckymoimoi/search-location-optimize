@@ -421,6 +421,19 @@ select {
   border-color: var(--line);
 }
 
+.model-switch {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
+}
+
+.model-switch select {
+  border: 0;
+  background: transparent;
+  color: inherit;
+  font: inherit;
+}
+
 .main {
   display: grid;
   grid-template-columns: 33% 1fr;

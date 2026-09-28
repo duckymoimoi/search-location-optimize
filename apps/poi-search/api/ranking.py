@@ -11,6 +11,7 @@ from settings import BRANCH_DEPTH, POLICY, RANKING_POLICY, RRF_CONSTANT
 from textnorm import (
     fold,
     is_house_atom,
+    letter_compact,
     letter_runs,
     normalized_text,
     parse_query_structure,
@@ -327,26 +328,36 @@ def is_near_name_duplicate(kept: dict[str, Any], candidate: dict[str, Any], with
 
 
 def candidate_documents(ids: list[str], docs: list[dict[str, Any]]) -> list[dict[str, Any]]:
+    from settings import RANKING_PROFILE
+    return candidate_document_stages(ids, docs, dedup=RANKING_PROFILE != "raw", stop_at_budget=True)["after_cap"]
+
+
+def candidate_document_stages(
+    ids: list[str], docs: list[dict[str, Any]], *, budget: int | None = None, dedup: bool = True, stop_at_budget: bool = False,
+) -> dict[str, list[dict[str, Any]]]:
     """Stable retrieval order, entity + nearby same-name collapse, fixed Stage 1 budget."""
     by_id = {doc["canonical_id"]: doc for doc in docs}
     seen = set()
     output = []
-    budget = int(POLICY["retrieval"]["candidate_budget"])
+    budget = int(POLICY["retrieval"]["candidate_budget"]) if budget is None else budget
+    if budget < 1:
+        raise ValueError("candidate budget must be positive")
     within_m = float(RANKING_POLICY.get("deduplication", {}).get("normalized_name_within_m") or 0)
+    labels = {doc["canonical_id"]: fold(doc.get("search_label", "")) for doc in docs} if dedup else {}
     for poi_id in ids:
         doc = by_id.get(poi_id)
         if doc is None:
             continue
         key = entity_key(doc)
-        if key in seen:
+        if dedup and key in seen:
             continue
-        if within_m > 0 and any(is_near_name_duplicate(kept, doc, within_m) for kept in output):
+        if dedup and within_m > 0 and any(labels[kept["canonical_id"]] == labels[doc["canonical_id"]] and is_near_name_duplicate(kept, doc, within_m) for kept in output):
             continue
         seen.add(key)
         output.append(doc)
-        if len(output) >= budget:
+        if stop_at_budget and len(output) >= budget:
             break
-    return output
+    return {"after_dedup": output, "after_cap": output[:budget]}
 
 
 def name_match_class(query: str, doc: dict[str, Any]) -> tuple[int, int] | None:
@@ -360,6 +371,15 @@ def name_match_class(query: str, doc: dict[str, Any]) -> tuple[int, int] | None:
         return None
     classes: list[tuple[int, int]] = []
     names = [doc.get("search_label", ""), *(doc.get("search_aliases") or [])]
+    compact_query = letter_compact(query)
+    if (
+        len(compact_query) >= 6
+        and not any(is_house_atom(atom) for atom in path_atoms(query))
+    ):
+        for name in names:
+            if compact_query == letter_compact(name):
+                classes.append((3, 0))
+                break
     accented_query = normalized_text(query) != fold(query)
     for name in names:
         tokens = text_tokens(name)
@@ -507,15 +527,22 @@ def rank_candidates_traced(
     docs: list[dict[str, Any]],
     evidence: dict,
     anchor: dict | None,
+    *, profile: str | None = None,
 ) -> dict[str, list[tuple[float, int, float | None, dict]]]:
     """Same as rank_candidates, but keep intermediate lists for freeze diagnostics."""
+    from settings import RANKING_PROFILE
+    profile = profile or RANKING_PROFILE
+    if profile not in {"current", "raw", "dedup_only", "name_address", "name_quality"}:
+        raise ValueError(f"Unknown ranking profile: {profile}")
     mode = str(RANKING_POLICY.get("geo_mode", "v6")).strip().lower()
-    if mode == "v5":
+    if profile != "current":
+        after_geo = [(float(evidence[d["canonical_id"]]["rrf"] or 0), i, None, d) for i, d in enumerate(docs, 1)]
+    elif mode == "v5":
         after_geo = rank_candidates_v5(query, docs, evidence, anchor)
     else:
         after_geo = rank_candidates_v6(query, docs, evidence, anchor)
-    after_name_address = prioritize_name_address(query, after_geo)
-    after_name_match = prioritize_name_match_quality(query, after_name_address)
+    after_name_address = prioritize_name_address(query, after_geo) if profile in {"current", "name_address"} else after_geo
+    after_name_match = prioritize_name_match_quality(query, after_name_address) if profile in {"current", "name_quality"} else after_name_address
     return {
         "after_geo": after_geo,
         "after_name_address": after_name_address,
@@ -575,10 +602,11 @@ def apply_history_cohort(
     return updated
 
 
-def rrf(left: list[str], right: list[str]) -> list[str]:
+def rrf(left: list[str], right: list[str], *, depth: int | None = None) -> list[str]:
     scores: dict[str, float] = defaultdict(float)
     best: dict[str, int] = {}
-    for branch in (left[:BRANCH_DEPTH], right[:BRANCH_DEPTH]):
+    depth = BRANCH_DEPTH if depth is None else depth
+    for branch in (left[:depth], right[:depth]):
         for rank, poi_id in enumerate(branch, 1):
             scores[poi_id] += 1 / (RRF_CONSTANT + rank)
             best[poi_id] = min(best.get(poi_id, rank), rank)
@@ -599,8 +627,10 @@ def _dense_evidence(ids: list[str]) -> dict[str, dict[str, float | None]]:
     }
 
 
-def _hybrid_evidence(lexical_ids: list[str], dense_ids: list[str]) -> tuple[list[str], dict[str, dict[str, float | None]]]:
-    ids = rrf(lexical_ids, dense_ids)
+def _hybrid_evidence(lexical_ids: list[str], dense_ids: list[str], *, depth: int | None = None) -> tuple[list[str], dict[str, dict[str, float | None]]]:
+    depth = BRANCH_DEPTH if depth is None else depth
+    lexical_ids, dense_ids = lexical_ids[:depth], dense_ids[:depth]
+    ids = rrf(lexical_ids, dense_ids, depth=depth)
     lexical_ranks = {poi_id: rank for rank, poi_id in enumerate(lexical_ids, 1)}
     dense_ranks = {poi_id: rank for rank, poi_id in enumerate(dense_ids, 1)}
     evidence: dict[str, dict[str, float | None]] = {}

@@ -1,5 +1,5 @@
 import { useEffect, useMemo, useRef, useState } from 'react'
-import { api } from './api/client'
+import { api, BACKENDS, setApiBase, type BackendId } from './api/client'
 import { MapView } from './components/MapView'
 import { DebugDrawer } from './components/DebugDrawer'
 import { SearchSheet } from './components/SearchSheet'
@@ -38,6 +38,7 @@ export default function App() {
   const [note, setNote] = useState<string | null>(null)
   const [debugOpen, setDebugOpen] = useState(false)
   const [mode, setMode] = useState<Mode>('personalized')
+  const [backendId, setBackendId] = useState<BackendId>('current')
   const [demoUsers, setDemoUsers] = useState<DemoUser[]>([])
   const [demoUserId, setDemoUserId] = useState(DEFAULT_DEMO_USER)
 
@@ -65,7 +66,20 @@ export default function App() {
   }, [originChoice, gps])
 
   useEffect(() => {
+    const backend = BACKENDS.find((item) => item.id === backendId) ?? BACKENDS[0]
+    setApiBase(backend.base)
     let cancelled = false
+    abortRef.current?.abort()
+    seqRef.current += 1
+    displayedFor.current = null
+    setSessionId(null)
+    setStatus(null)
+    setLoading(false)
+    setResults([])
+    setLastSuggest(null)
+    setDestination(null)
+    setRouteCoordinates(null)
+    setError(null)
     ;(async () => {
       try {
         const [s, st, users] = await Promise.all([
@@ -81,13 +95,17 @@ export default function App() {
           setDemoUserId(users[0].demo_user_id)
         }
       } catch (e) {
-        if (!cancelled) setError(e instanceof Error ? e.message : String(e))
+        if (!cancelled) {
+          setSessionId(null)
+          setStatus(null)
+          setError(e instanceof Error ? e.message : String(e))
+        }
       }
     })()
     return () => {
       cancelled = true
     }
-  }, [])
+  }, [backendId])
 
   useEffect(() => {
     if (composing) return
@@ -293,6 +311,8 @@ export default function App() {
         <TopBar
           mode={mode}
           onMode={setMode}
+          backendId={backendId}
+          onBackend={setBackendId}
           status={status}
           users={demoUsers}
           demoUserId={demoUserId}
