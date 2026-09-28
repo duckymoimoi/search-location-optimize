@@ -50,9 +50,12 @@ train target list, train queries đã publish, brand lookup, normalizer và poli
 đánh giá. Chạy:
 
 ```powershell
-python -X utf8 tools/verify_clean_poi_corpus_v2.py
-python -X utf8 tools/verify_stage1_targets_corpus_v2.py
+python tools/verify_clean_poi_corpus_v3.py --scope artifacts
+python tools/reissue_gold_stage1_v22.py verify
 ```
+
+Current tooling: [tools/README.md](../../tools/README.md). Corpus-v2-only migration commands are no longer available; they do not validate the active corpus/release.
+
 
 Đối chiếu `/_count` của index v2 bằng 184.135. Nếu source thay đổi, dừng selection
 và lập version mới; không vừa author vừa đổi corpus. Sổ provenance cho từng case

@@ -5,6 +5,8 @@ snapshots stay in git history, not as sibling folders.
 
 ## Source of truth
 
+Tool hiện hành và cách dùng: [tools/README.md](../../tools/README.md). Các tool migration chỉ dùng cho corpus v2 đã được bỏ; pipeline active dùng corpus v3 và verifier có scope rõ ràng.
+
 | Component | Canonical path | Lifecycle |
 |---|---|---|
 | Product demo | `apps/poi-search/` | Source code; Elasticsearch 9 + FastAPI + React |
